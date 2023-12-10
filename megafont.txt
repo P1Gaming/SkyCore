@@ -1,5 +1,14 @@
 Video: https://youtu.be/GtISzOf90uc
 
+* I think this game has a lot of potential, and am excited at the chance to help work on it!8
+* I feel like the camera shift when you interact with a jelly should be faster.
+* There wasn't too much to do, but it sounds like you guys recently stopped work on the prototype and shifted to full dev.
+* I love these kinds of games and want to keep progressing and unlocking more materials and tech.
+
+
+BUGS
+======
+
 [01:08] The floating block I touched gave me a ton of green items (blocks)?
 [01:18] The berry I touched gave me a ton of food compared to the others.
 [01:35]	I landed on a floating gray cube and it launched me high in the air for some reason.
