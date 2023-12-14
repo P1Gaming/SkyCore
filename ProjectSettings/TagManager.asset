@@ -3,18 +3,27 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UICanvas
+  - CraftingRecipe
+  - stone
+  - grass
+  - Island
+  - sand
+  - water
+  - InteractionUI
+  - InventoryUI
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Jellies
   - Water
   - UI
   - 
   - 
-  - 
-  - 
+  - Character
+  - Ground
   - 
   - 
   - 
