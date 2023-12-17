@@ -1,0 +1,14 @@
+YouTube video link:
+https://youtu.be/bCMqphggikE
+
+No specific time stamps for these:
+1. Can press G, R, T, or Y instead of E when trying to interact with the jellies, and it still works.
+2. Music does not start up by itself even though it was on 74 as the default, had to go into the music toggle and move it around a litte, 
+then it started (not in video since did not have sound on, but tried later on).
+
+Time stamped:
+(7:37)  - When I respawned after falling, I started very very high up and fell down to the map.
+(10:46) - Pressed F when testing all letters on keyboard, and every jelly got enormous.
+(13:08) - Could see the block that the laser comes out of come up from below after respawning and tried to jump on it when slightly below 
+the map. When I did so, I got stuck into a loop where I just kept falling, getting put below the map, falling, respawning and so on. 
+        - The block that the laser comes out of respawns at the same time as me and comes up from below the map  
