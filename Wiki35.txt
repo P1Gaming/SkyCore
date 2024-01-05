@@ -1,0 +1,19 @@
+Discord nickname: Wiki35 or wiki355
+YouTube link: https://youtu.be/83exXZ5Lt-k
+
+What needs to be improved & found bugs:
+-- horrible optimization (that is why my video is not 15 minutes long – I just could not stand the laggy screen)
+-- [0:00] the sound bars in the sound menu should be draggable because it is intuitive;
+-- [0:29] the game could use alpha walls to prevent from falling from the platform;
+-- [0:45] once, after jumping, I was stuck in the sky (I had to press some key to fall);
+-- [1:06] sometimes I could not collect berries;
+-- [1:30] sometimes feeding the jelly was laggy;
+-- [1:44] no music.
+
+My laptop specification:
+MacBook Pro (Retina, 15-inch, Late 2013)
+Processor: 2.6 GHz Quad-core Intel Core i7
+RAM: 16 GB 1600 MHz DDR3
+Graphics: Intel Iris Pro 1536 MB & NVIDIA GeForce GT 750M 2 GB
+
+I used the Parallels Desktop 18 and Windows 11 to run the game, meaning my laptop resources were halved.
