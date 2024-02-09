@@ -10,7 +10,7 @@ namespace Player.Motion
     ///Decides if the player is on the ground
     /// </summary>
     [Serializable]
-    public class NewGroundedDecider
+    public class GroundedDecider
     {
         [SerializeField, Tooltip("What layer the character uses for the ground")]
         private LayerMask _groundLayer;

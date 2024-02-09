@@ -24,10 +24,10 @@ public class JellyWanderTests
     public IEnumerator TestEnvSetup()
     {
         yield return EditorSceneManager.LoadSceneAsyncInPlayMode(JELLY_MOVEMENT_TEST_SCENE, new LoadSceneParameters());
-        yield return new WaitUntil(() => GameObject.FindObjectOfType(typeof(NewWandering)) != null);
+        yield return new WaitUntil(() => GameObject.FindObjectOfType(typeof(Wandering)) != null);
         // Lock Target frame rate to be independent of user device for testing
         Application.targetFrameRate = 60;
-        _jellyGameObject = GameObject.FindObjectOfType<NewWandering>().gameObject;
+        _jellyGameObject = GameObject.FindObjectOfType<Wandering>().gameObject;
         _jellyGameObject.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
     }
 
@@ -40,8 +40,8 @@ public class JellyWanderTests
     {
         // Setup
         yield return TestEnvSetup();
-        NewParameters parameters = _jellyGameObject.AddComponent<NewParameters>();
-        NewWandering wandering = _jellyGameObject.AddComponent<NewWandering>();
+        Parameters parameters = _jellyGameObject.AddComponent<Parameters>();
+        Wandering wandering = _jellyGameObject.AddComponent<Wandering>();
         UnityEngine.AI.NavMeshAgent _agent = wandering.GetComponent<UnityEngine.AI.NavMeshAgent>();
         _destination = _agent.destination;
 

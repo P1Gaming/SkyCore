@@ -10,7 +10,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 
 
-public class NewWandering : NewState
+public class Wandering : State
 {
     /// <summary>
     /// Used to indicate a change in direction.

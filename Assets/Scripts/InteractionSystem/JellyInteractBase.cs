@@ -27,10 +27,10 @@ public class JellyInteractBase : Interactable
 
     private GameObject _interactionUI;
     private GameObject _inventoryUI;
-    private FirstPersonViewNew _firstPersonView;
+    private FirstPersonView _firstPersonView;
     private PlayerInteraction _playerInteraction;
-    private NewWandering _pathing;
-    private NewParameters _jellyParams;
+    private Wandering _pathing;
+    private Parameters _jellyParams;
     
     private bool _interacting;
     public bool Interacting
@@ -53,15 +53,15 @@ public class JellyInteractBase : Interactable
 
     private void Awake()
     {
-        _pathing = GetComponent<NewWandering>();
+        _pathing = GetComponent<Wandering>();
 
-        _jellyParams = GetComponent<NewParameters>();
+        _jellyParams = GetComponent<Parameters>();
 
         // Temporary single player reference. These might not work later, e.g. if the inventoryUI
         // starts inactivate b/c FindWithTag wont work.
         _interactionUI = InteractionUI.Instance.gameObject;
         _inventoryUI = GameObject.FindWithTag("InventoryUI");
-        _firstPersonView = FindObjectOfType<FirstPersonViewNew>();
+        _firstPersonView = FindObjectOfType<FirstPersonView>();
         _playerInteraction = _firstPersonView?.GetComponent<PlayerInteraction>();
     }
 

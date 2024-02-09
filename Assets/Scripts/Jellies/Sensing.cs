@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Jellies
 {
-    public class NewSensing : MonoBehaviour
+    public class Sensing : MonoBehaviour
     {
         public event Action<EventArgs> Sensed;
 

@@ -9,7 +9,7 @@ public class SensitivitySlider : MonoBehaviour
     [SerializeField]
     private Text _sensText;
 
-    private FirstPersonViewNew _fPV;
+    private FirstPersonView _fPV;
 
     /// <summary>
     /// Set default value to the Slider.
@@ -17,7 +17,7 @@ public class SensitivitySlider : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        _fPV = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonViewNew>();
+        _fPV = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonView>();
         _sensSlider.value = _fPV.GetSensitivity() * 100f;
         _sensText.text = _sensSlider.value.ToString("F0");
     }

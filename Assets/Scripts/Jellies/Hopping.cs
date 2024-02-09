@@ -3,10 +3,10 @@ using System.Collections;
 using Jellies.Behaviors;
 using UnityEngine;
 
-    [RequireComponent(typeof(NewWandering))]
+    [RequireComponent(typeof(Wandering))]
 
     
-    public class NewHopping : MonoBehaviour
+    public class Hopping : MonoBehaviour
     {
     [SerializeField, Tooltip("We manipulate local position of the model itself so we need a reference to just the model")]
     private GameObject _model;
@@ -28,7 +28,7 @@ using UnityEngine;
     ///</summary>
     private void Awake()
     {
-        NewWandering wandering = GetComponent<NewWandering>();
+        Wandering wandering = GetComponent<Wandering>();
         wandering.OnChangeDirection += SetIsFinished;
         wandering.Exited += SetIsFinishedWithState;
     }
@@ -50,7 +50,7 @@ using UnityEngine;
         _isFinished = newValue;
     }
 
-    private void SetIsFinishedWithState(NewState stateInfo)
+    private void SetIsFinishedWithState(State stateInfo)
     {
         _isFinished = true;
     }

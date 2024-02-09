@@ -10,7 +10,7 @@ public class JelliesFeedingTests
     public IEnumerator TestIfJellyCanBeFed()
     {
         GameObject testJelly = new GameObject("TestJelly");
-        NewParameters parameters = testJelly.AddComponent<NewParameters>();
+        Parameters parameters = testJelly.AddComponent<Parameters>();
         Feeding feeding = testJelly.AddComponent<Feeding>();
         float initValue = 50;
         float increasseValue = 10;

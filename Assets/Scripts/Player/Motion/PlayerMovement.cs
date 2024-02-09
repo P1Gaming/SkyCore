@@ -20,7 +20,7 @@ namespace Player.Motion
         [SerializeField, Tooltip("Point where the raycast is fired to ground the player for interactions.")]
         private Transform _forceGround;
         [SerializeField, Tooltip("Decides whether the player is on the ground.")]
-        private NewGroundedDecider _groundedDecider;
+        private GroundedDecider _groundedDecider;
         [SerializeField]
         private PlayerMovementSettings _settings;
         [SerializeField] 

@@ -18,11 +18,11 @@ namespace Jellies
         " the type of item to feed the jelly")]
         private ItemBase _berryItem;
 
-        private NewParameters _parameters;
+        private Parameters _parameters;
 
         private void Awake()
         {
-            _parameters = GetComponent<NewParameters>();
+            _parameters = GetComponent<Parameters>();
         }
 
         /// <summary>

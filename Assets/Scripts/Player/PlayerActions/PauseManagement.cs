@@ -10,7 +10,7 @@ public class PauseManagement : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera[] _virtualCamera;
     [SerializeField]
-    private FirstPersonViewNew _firstPersonView;
+    private FirstPersonView _firstPersonView;
     [SerializeField]
     private GameObject _jellyInteractVisual;
     [SerializeField, Range(0f,1f)]

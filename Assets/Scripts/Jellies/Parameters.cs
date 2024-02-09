@@ -20,7 +20,7 @@ namespace Jellies
     /// It handles the type of Jelly a Jelly is, ensures Jelly Hunger levels are updated, with the Food Saturation decreasing at regular intervals, 
     /// and updates the Jelly experience system whenever the Jelly is fed.
     /// </summary>
-    public class NewParameters : MonoBehaviour
+    public class Parameters : MonoBehaviour
     {
         /// <summary>
         /// What type of jelly is it.

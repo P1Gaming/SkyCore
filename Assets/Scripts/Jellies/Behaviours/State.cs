@@ -11,18 +11,18 @@ namespace Jellies.Behaviors
     /// Tientuine, Inherited by Wandering.cs and Watching.cs, seems to be a setup to separate scripts and emulate enums.
     /// Having logic in these 2 scripts for moving and stopping instead of one script.
     /// </summary>
-    public class NewState : MonoBehaviour
+    public class State : MonoBehaviour
     {
 
         /// <summary>
         /// Register with this event if you need to know when the jelly starts an action
         /// </summary>
-        public System.Action<NewState> Entered { get; set; }
+        public System.Action<State> Entered { get; set; }
 
         /// <summary>
         /// Register with this event if you need to know when the jelly stops an action
         /// </summary>
-        public System.Action<NewState> Exited { get; set; }
+        public System.Action<State> Exited { get; set; }
 
         /// <summary>
         /// Enables this state and notifies listeners that the jelly has entered this state

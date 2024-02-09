@@ -13,7 +13,7 @@ namespace UI.Inventory
     public class InventoryUI : MonoBehaviour
     {
         [SerializeField]
-        private FirstPersonViewNew _firstPersonView;
+        private FirstPersonView _firstPersonView;
         [SerializeField]
         private GameObject _jellyInteractVisual;
 

@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace Player.View
 {
 
-    public class FirstPersonViewNew : MonoBehaviour
+    public class FirstPersonView : MonoBehaviour
     {
         [Header("Modifiable by player")]
         [SerializeField]

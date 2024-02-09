@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Jellies.Behaviors;
 [RequireComponent(typeof(NavMeshAgent))]
-public class NewWatching : NewState
+public class Watching : State
 {
     [SerializeField,Range(0,10),Tooltip("The distance the jelly watches the subject from")]
     private int _watchDistance;
