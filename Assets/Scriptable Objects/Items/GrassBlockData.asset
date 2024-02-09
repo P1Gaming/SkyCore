@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec7d1cae61052da4c99f9cf19184c64b, type: 3}
-  m_Name: NewGrassBlockData
+  m_Name: GrassBlockData
   m_EditorClassIdentifier: 
   _id: 1
   _name: Grass Block

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98e9a94804c015c48ab7259f9a432a3c, type: 3}
-  m_Name: NewBerryData
+  m_Name: BerryData
   m_EditorClassIdentifier: 
   _id: 0
   _name: Red Berry
