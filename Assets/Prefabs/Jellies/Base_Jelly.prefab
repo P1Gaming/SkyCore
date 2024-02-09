@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 1020487285805059011}
   - component: {fileID: 7557739289652406554}
   m_Layer: 3
-  m_Name: NewBase_Jelly
+  m_Name: Base_Jelly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

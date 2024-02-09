@@ -439,7 +439,7 @@ PrefabInstance:
     - target: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_Name
-      value: '[NewBerry] (4)'
+      value: '[Berry] (4)'
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
@@ -568,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 7086291400229522862, guid: 0e98eebaa4775c140a61142b9e7ad224,
         type: 3}
       propertyPath: m_Name
-      value: NewFirstPersonCamera
+      value: FirstPersonCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e98eebaa4775c140a61142b9e7ad224, type: 3}
@@ -1587,7 +1587,7 @@ PrefabInstance:
     - target: {fileID: 564520608544531992, guid: 68eea3fc79eb3494aaa9f78ea6a3f356,
         type: 3}
       propertyPath: m_Name
-      value: NewTumble
+      value: Tumble
       objectReference: {fileID: 0}
     - target: {fileID: 8730205451980050505, guid: 68eea3fc79eb3494aaa9f78ea6a3f356,
         type: 3}
@@ -1934,7 +1934,7 @@ PrefabInstance:
     - target: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_Name
-      value: '[NewBerry]'
+      value: '[Berry]'
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
@@ -3242,7 +3242,7 @@ PrefabInstance:
     - target: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_Name
-      value: '[NewBerry] (2)'
+      value: '[Berry] (2)'
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
@@ -3354,7 +3354,7 @@ PrefabInstance:
     - target: {fileID: 2644272998681635633, guid: 08d40551f3617224faabcbae46be112b,
         type: 3}
       propertyPath: m_Name
-      value: NewInGameUI
+      value: InGameUI
       objectReference: {fileID: 0}
     - target: {fileID: 4277516636505856767, guid: 08d40551f3617224faabcbae46be112b,
         type: 3}
@@ -3516,7 +3516,7 @@ PrefabInstance:
     - target: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_Name
-      value: '[NewBerry] (3)'
+      value: '[Berry] (3)'
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
@@ -4235,7 +4235,7 @@ PrefabInstance:
     - target: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_Name
-      value: '[NewBerry] (1)'
+      value: '[Berry] (1)'
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
@@ -4393,7 +4393,7 @@ PrefabInstance:
     - target: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_Name
-      value: '[NewBerry] (6)'
+      value: '[Berry] (6)'
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
@@ -4559,7 +4559,7 @@ PrefabInstance:
     - target: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_Name
-      value: '[NewBerry] (5)'
+      value: '[Berry] (5)'
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
