@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6926148501174335545}
   - component: {fileID: -8599889517674976643}
   - component: {fileID: 4083773366731029148}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: '[GRASSBLOCK]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

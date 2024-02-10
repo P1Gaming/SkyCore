@@ -35,8 +35,19 @@ public class DroneBehaviourSettings
     public float DetectionRange { get; private set; } = 10f;
     [field: SerializeField, Tooltip("Max distance from the player things can be and still will be scanned")]
     public float MaxDistanceFromPlayerToScan { get; private set; } = 10f;
-    [field: SerializeField, Tooltip("How long it takes the drone to scan an item or jelly")]
-    public float ScanningTime { get; private set; } = 3f;
+    [field: SerializeField, Tooltip("How long it takes the drone to scan an item or jelly after the player gets close enough")]
+    public float ScanSucceedDuration { get; private set; } = 1f;
+    [field: SerializeField, Tooltip("How long the drone tries to scan something, waiting for player to get close, before it gives up")]
+    public float ScanFailAfterDurationParameter { get; private set; } = 5f;
+    [field: SerializeField, Tooltip("How close the drone must be (from where it wants to hover next to the player)" +
+        " in order to start moving towards something to scan it.")]
+    public float MaxDistanceFromDroneToHoverbyPlayerToGoScan { get; private set; } = .5f;
+    [field: SerializeField, Tooltip("How close the player must go to whatever the drone is trying to scan before" +
+        " the drone will successfully scan it.")]
+    public float MaxDistanceBetweenPlayerAndUnscannedToSuccessfullyScan { get; private set; } = 3f;
+    [field: SerializeField, Tooltip("With button press scanning, how far the player must be from the unscanned thing" +
+        " in order for the button to deactivate and scanning to fail.")]
+    public float ButtonDeactivationRadius { get; private set; } = 5f;
 
     [field: Header("Misc")]
     [field: SerializeField]

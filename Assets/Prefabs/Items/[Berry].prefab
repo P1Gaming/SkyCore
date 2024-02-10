@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 9166573729873561301}
   - component: {fileID: 8013927114772816816}
   - component: {fileID: 1173396387614795828}
-  m_Layer: 0
-  m_Name: '[NewBerry]'
+  m_Layer: 13
+  m_Name: '[Berry]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 8169263774834870181}
   - component: {fileID: 3216119329767164564}
   - component: {fileID: 1705959039500773130}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

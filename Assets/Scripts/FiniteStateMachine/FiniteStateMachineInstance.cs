@@ -36,19 +36,20 @@ namespace FiniteStateMachine
     /// </summary>
     public class FiniteStateMachineInstance
     {
-        [SerializeField, Tooltip("A scriptable object which defines the state machine.")]
         private FSMDefinition _definition;
-
         private FSMState _currentState;
+        private float _timeEnteredCurrentState;
+        private bool _logTransitions;
 
         // names and values of parameters (like in Unity's animator)
         private Dictionary<FSMParameter, bool> _bools = new();
         private Dictionary<FSMParameter, bool> _triggers = new();
         private Dictionary<FSMParameter, float> _floats = new();
 
-        public FiniteStateMachineInstance(FSMDefinition definition)
+        public FiniteStateMachineInstance(FSMDefinition definition, bool logTransitions)
         {
             _definition = definition;
+            _logTransitions = logTransitions;
 
             foreach (FSMParameter x in _definition.Parameters)
             {
@@ -65,6 +66,8 @@ namespace FiniteStateMachine
                     _floats.Add(x, x.InitialFloat);
                 }
             }
+
+            _definition.CheckValid(_floats);
         }
 
         /// <summary>
@@ -72,17 +75,32 @@ namespace FiniteStateMachine
         /// </summary>
         private bool CheckTransition()
         {
+            float durationInCurrentState = Time.time - _timeEnteredCurrentState;
             FSMState newState = null;
             for (int i = 0; i < _definition.Transitions.Length; i++)
             {
-                _definition.Transitions[i].Check(_currentState, _definition.DefaultState, _bools
-                    , _triggers, _floats, ref newState);
+                _definition.Transitions[i].Check(_currentState, _definition.DefaultState
+                    , durationInCurrentState, _bools, _triggers, _floats, ref newState);
 
                 if (newState != null)
                 {
+                    for (int j = i + 1; j < _definition.Transitions.Length; j++)
+                    {
+                        FSMTransition notChecked = _definition.Transitions[j];
+                        if (notChecked.LogFailureReason && notChecked.FromCorrectState(_currentState))
+                        {
+                            Debug.Log("Failure reason: another transition happened because earlier in list", notChecked);
+                        }
+                    }
+
+                    if (_logTransitions)
+                    {
+                        Debug.Log($"Transition at frame #{Time.frameCount}: \"{_currentState.name}\" --> \"{newState.name}\"");
+                    }
                     _currentState.OnExit?.Raise();
                     _currentState.OnExit?.Raise(this);
                     _currentState = newState;
+                    _timeEnteredCurrentState = Time.time;
                     _currentState.OnEnter?.Raise();
                     _currentState.OnEnter?.Raise(this);
                     return true;
@@ -134,9 +152,9 @@ namespace FiniteStateMachine
             {
                 // Will only happen the 1st time this method runs.
                 _currentState = _definition.DefaultState;
+                _timeEnteredCurrentState = Time.time;
                 _currentState.OnEnter?.Raise();
                 _currentState.OnEnter?.Raise(this);
-
             }
 
             // Check transitions until no transition happens. Don't allow infinite loop.

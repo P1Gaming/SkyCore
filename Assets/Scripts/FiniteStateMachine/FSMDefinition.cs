@@ -18,8 +18,16 @@ namespace FiniteStateMachine
         [field: SerializeField]
         public FSMState DefaultState { get; private set; }
         [field: SerializeField]
-        public FSMTransition[] Transitions { get; private set; }
-        [field: SerializeField]
         public FSMParameter[] Parameters { get; private set; }
+        [field: SerializeField]
+        public FSMTransition[] Transitions { get; private set; }
+
+        public void CheckValid(Dictionary<FSMParameter, float> floatParameters)
+        {
+            foreach (FSMTransition transition in Transitions)
+            {
+                transition.CheckValid(floatParameters);
+            }
+        }
     }
 }

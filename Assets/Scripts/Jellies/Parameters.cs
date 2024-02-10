@@ -11,8 +11,7 @@ namespace Jellies
     [Serializable]
     public enum JellyType
     {
-        Base,
-        Grass
+        Base, Tumble, MonsterTumbleEvolutionTest
     }
 
     /// <summary>
