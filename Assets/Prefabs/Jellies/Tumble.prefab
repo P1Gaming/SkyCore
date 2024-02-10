@@ -107,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 94955809726303427, guid: 33c867d60e0514d40b5d18506242c367,
         type: 3}
       propertyPath: m_Name
-      value: NewTumble
+      value: Tumble
       objectReference: {fileID: 0}
     - target: {fileID: 4714310058802045046, guid: 33c867d60e0514d40b5d18506242c367,
         type: 3}
@@ -119,6 +119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897571014077337869, guid: 33c867d60e0514d40b5d18506242c367,
+        type: 3}
+      propertyPath: <jellyType>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9197237557971434130, guid: 33c867d60e0514d40b5d18506242c367,
         type: 3}

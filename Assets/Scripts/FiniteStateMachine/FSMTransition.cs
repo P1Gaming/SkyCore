@@ -12,6 +12,8 @@ namespace FiniteStateMachine
     {
         [SerializeField]
         private bool _disable;
+        [field: SerializeField, Tooltip("Logs why the transition isn't happening, when at the required state (_from or any)")]
+        public bool LogFailureReason { get; private set; }
 
         [Header("From = null means transition from any state.")]
         [SerializeField]
@@ -20,35 +22,96 @@ namespace FiniteStateMachine
         [Header("To = null means transition to default state.")]
         [SerializeField]
         private FSMState _to;
+        
+        [Header("Min Duration")]
+        [SerializeField, Tooltip("Must be in the state for this duration before can do this transition.")]
+        private float _minDurationInFrom = 0;
+
+        [SerializeField, Tooltip("Must be null or a float parameter. If not null, must be in the state for duration" +
+            " of the parameter's value before can do this transition.")]
+        private FSMParameter _parameterForMinDurationInFrom;
 
         [SerializeField, Tooltip("All conditions must be met for the transition to happen.")]
         private FSMTransitionCondition[] _conditions;
 
+        public void CheckValid(Dictionary<FSMParameter, float> floatParameters)
+        {
+            if (_parameterForMinDurationInFrom != null)
+            {
+                if (!floatParameters.ContainsKey(_parameterForMinDurationInFrom))
+                {
+                    Debug.LogError("The FSMDefinition doesn't contain the parameter _parameterForMinDurationInFrom");
+                }
+                if (_parameterForMinDurationInFrom.Type != FSMParameter.ParameterType.Float)
+                {
+                    Debug.LogError("_parameterForMinDurationInFrom must be null or a float parameter", this);
+                }
+            }
+        }
+
+        public bool FromCorrectState(FSMState currentState)
+        {
+            // If _from is null, transition from any state, except from currentState to currentState.
+            bool transitionFromAnyState = _from == null && currentState != _to;
+            return currentState == _from || transitionFromAnyState;
+        }
+
         /// <summary>
         /// Checks whether this transition occurs, and resets trigger parameters if so.
         /// </summary>
-        public void Check(FSMState currentState, FSMState defaultState
+        public void Check(FSMState currentState, FSMState defaultState, float durationInCurrentState
             , Dictionary<FSMParameter, bool> bools, Dictionary<FSMParameter, bool> triggers
             , Dictionary<FSMParameter, float> floats, ref FSMState newState)
         {
             if (_disable)
             {
+                if (LogFailureReason)
+                {
+                    Debug.Log("Failure reason: disabled", this);
+                }
                 return;
             }
 
-            // If _from is null, transition from any state, except from currentState to currentState.
-            bool transitionFromAnyState = _from == null && currentState != _to;
-
-            bool fromCorrectState = currentState == _from || transitionFromAnyState;
-            if (!fromCorrectState)
+            if (!FromCorrectState(currentState))
             {
                 return;
             }
+
+            if (durationInCurrentState < _minDurationInFrom)
+            {
+                if (_minDurationInFrom <= 0)
+                {
+                    throw new System.Exception("unexpected behaviour: if _minDurationInFrom is 0," +
+                        " it should have no effect");
+                }
+
+                if (LogFailureReason)
+                {
+                    Debug.Log("Failure reason: haven't been in current state long enough", this);
+                }
+
+                return;
+            }
+            if (_parameterForMinDurationInFrom != null && durationInCurrentState < floats[_parameterForMinDurationInFrom])
+            {
+                if (LogFailureReason)
+                {
+                    Debug.Log("Failure reason: haven't been in current state long enough", this);
+                }
+
+                return;
+            }
+
 
             for (int i = 0; i < _conditions.Length; i++)
             {
                 if (!_conditions[i].MeetsCondition(bools, triggers, floats))
                 {
+                    if (LogFailureReason)
+                    {
+                        Debug.Log("Failure reason: don't meet condition at index " + i, this);
+                    }
+
                     return;
                 }
             }

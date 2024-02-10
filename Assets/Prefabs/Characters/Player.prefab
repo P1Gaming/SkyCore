@@ -107,6 +107,8 @@ MonoBehaviour:
   _clampAngle: 89.9
   _cameraTarget: {fileID: 548689563490798967}
   _playerControls: {fileID: 548689562930659583}
+  _lookDirectionChangeEvent: {fileID: 11400000, guid: 69a51e4938c1a42489c2a4ea9df7479d,
+    type: 2}
 --- !u!114 &548689562930659570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,14 +195,6 @@ MonoBehaviour:
   _interactionDistance: 2
   _workBench: {fileID: 0}
   _workBenchUI: {fileID: 0}
-  OpenCraftingSystem:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  CloseCraftingSystem:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
 --- !u!114 &548689562930659571
 MonoBehaviour:
   m_ObjectHideFlags: 0

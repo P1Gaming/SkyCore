@@ -6,6 +6,10 @@ using FiniteStateMachine;
 // Just a way to test FiniteStateMachine. We should use DroneBehaviour, not this.
 public class DroneBehaviourUsingStateMachine : MonoBehaviour
 {
+    [SerializeField, Tooltip("Whether to require the player to press a button to finish scanning.")]
+    private bool _buttonPressScanning;
+    [SerializeField]
+    private bool _logStateMachineTransitions;
     [SerializeField]
     private DroneBehaviourSettings _settings;
     [SerializeField]
@@ -13,9 +17,13 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField]
+    private GameObject _scanButtonUI;
+    [SerializeField]
     private PictogramBehavior _pictogramBehaviour;
     [SerializeField]
-    private LineRenderer _placeholderScanningVisual;
+    private LineRenderer _placeholderScanAttemptingVisual;
+    [SerializeField]
+    private LineRenderer _placeholderScanSuccessVisual;
     [SerializeField]
     private Sprite _droneMedical;
     [SerializeField]
@@ -24,44 +32,73 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
     private Sprite _droneMovementControls;
     [SerializeField]
     private Sprite _droneTutorialComplete;
+    
 
     [Header("Finite State Machine Parameters")]
     [SerializeField]
-    private FSMParameter _distanceFromPlayerParameter;
+    private FSMParameter _distanceFromHoverbyPlayerParameter;
     [SerializeField]
-    private FSMParameter _distanceFromUnscannedItemParameter;
+    private FSMParameter _distanceFromHoverbyUnscannedParameter;
     [SerializeField]
-    private FSMParameter _seesUnscannedItemParameter;
+    private FSMParameter _distanceBetweenUnscannedAndPlayerParameter;
     [SerializeField]
-    private FSMParameter _scanTimeLeftParameter;
+    private FSMParameter _seesUnscannedParameter;
+    [SerializeField]
+    private FSMParameter _buttonPressedParameter;
     [SerializeField]
     private FSMParameter _finishedTutorialParameter;
+
+    [Header("Finite State Machine Parameters for Settings")]
     [SerializeField]
     private FSMParameter _maxDistanceFromTargetPositionToStopParameter;
     [SerializeField]
-    private FSMParameter _minDistanceFromTargetPositionToResumeMoving;
+    private FSMParameter _minDistanceFromTargetPositionToResumeMovingParameter;
     [SerializeField]
-    private FSMParameter _minDistanceFromTargetPositionToResumeMovingDuringTutorial;
+    private FSMParameter _minDistanceFromTargetPositionToResumeMovingDuringTutorialParameter;
+    [SerializeField]
+    private FSMParameter _maxDistanceFromDroneToHoverbyPlayerToGoScanParameter;
+    [SerializeField]
+    private FSMParameter _maxDistanceBetweenPlayerAndUnscannedToSuccessfullyScanParameter;
+    [SerializeField]
+    private FSMParameter _scanSucceedDurationParameter;
+    [SerializeField]
+    private FSMParameter _scanFailAfterDurationParameter;
+    [SerializeField]
+    private FSMParameter _buttonPressScanningParameter;
+    [SerializeField]
+    private FSMParameter _buttonDeactivationRadiusParameter;
 
     [Header("Finite State Machine Events")]
     [SerializeField]
-    private GameEventScriptableObject _updateIdleEvent;
+    private GameEventScriptableObject _idleUpdate;
     [SerializeField]
-    private GameEventScriptableObject _enterTutorialEvent;
+    private GameEventScriptableObject _tutorialEnter;
     [SerializeField]
-    private GameEventScriptableObject _updateTutorialEvent;
+    private GameEventScriptableObject _tutorialUpdate;
     [SerializeField]
-    private GameEventScriptableObject _exitTutorialEvent;
+    private GameEventScriptableObject _tutorialExit;
     [SerializeField]
-    private GameEventScriptableObject _updateFollowPlayerEvent;
+    private GameEventScriptableObject _followPlayerUpdate;
     [SerializeField]
-    private GameEventScriptableObject _updateMoveTowardsItemToScanEvent;
+    private GameEventScriptableObject _moveToUnscannedUpdate;
     [SerializeField]
-    private GameEventScriptableObject _enterScanningItemEvent;
+    private GameEventScriptableObject _scanAttemptingEnter;
     [SerializeField]
-    private GameEventScriptableObject _updateScanningItemEvent;
+    private GameEventScriptableObject _scanAttemptingUpdate;
     [SerializeField]
-    private GameEventScriptableObject _exitScanningItemEvent;
+    private GameEventScriptableObject _scanAwaitingButtonEnter;
+    [SerializeField]
+    private GameEventScriptableObject _scanAwaitingButtonUpdate;
+    [SerializeField]
+    private GameEventScriptableObject _scanAwaitingButtonExit;
+    [SerializeField]
+    private GameEventScriptableObject _scanFailedExit;
+    [SerializeField]
+    private GameEventScriptableObject _scanSucceededEnter;
+    [SerializeField]
+    private GameEventScriptableObject _scanSucceededUpdate;
+    [SerializeField]
+    private GameEventScriptableObject _scanSucceededExit;
 
     [Header("Events for Tutorial Detecting Controls")]
     [SerializeField]
@@ -75,12 +112,17 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _playerMovementDEvent;
 
+    [Header("Events for When Scanned Something")]
+    [SerializeField]
+    private GameEventScriptableObject _scannedItemEvent;
+    [SerializeField]
+    private GameEventScriptableObject _scannedJellyEvent;
+
     private FiniteStateMachineInstance _stateMachine;
     private Transform _player;
 
-    private MonoBehaviour _currentThingToScan;
-    private DroneScannableLocator _itemLocator = new();
-    private float _scanTimeLeft;
+    private MonoBehaviour _toScan;
+    private DroneScannableLocator _scannableLocator;
 
     private bool _movedCamera = false;
     private bool _playerPressedW = false;
@@ -92,15 +134,30 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        _stateMachine = new FiniteStateMachineInstance(_stateMachineDefinition);
+        _scannableLocator = new DroneScannableLocator();
+        _stateMachine = new FiniteStateMachineInstance(_stateMachineDefinition, _logStateMachineTransitions);
         _player = Player.Motion.PlayerMovement.Instance.transform;
 
         _stateMachine.SetFloat(_maxDistanceFromTargetPositionToStopParameter
             , _settings.MaxDistanceFromTargetPositionToStop);
-        _stateMachine.SetFloat(_minDistanceFromTargetPositionToResumeMoving
+        _stateMachine.SetFloat(_minDistanceFromTargetPositionToResumeMovingParameter
            , _settings.MinDistanceFromTargetPositionToResumeMoving);
-        _stateMachine.SetFloat(_minDistanceFromTargetPositionToResumeMovingDuringTutorial
+        _stateMachine.SetFloat(_minDistanceFromTargetPositionToResumeMovingDuringTutorialParameter
             , _settings.MinDistanceFromTargetPositionToResumeMovingDuringTutorial);
+
+        _stateMachine.SetFloat(_scanSucceedDurationParameter
+            , _settings.ScanSucceedDuration);
+        _stateMachine.SetFloat(_scanFailAfterDurationParameter
+            , _settings.ScanFailAfterDurationParameter);
+        _stateMachine.SetFloat(_maxDistanceFromDroneToHoverbyPlayerToGoScanParameter
+            , _settings.MaxDistanceFromDroneToHoverbyPlayerToGoScan);
+        _stateMachine.SetFloat(_maxDistanceBetweenPlayerAndUnscannedToSuccessfullyScanParameter
+            , _settings.MaxDistanceBetweenPlayerAndUnscannedToSuccessfullyScan);
+        _stateMachine.SetFloat(_buttonDeactivationRadiusParameter
+            , _settings.ButtonDeactivationRadius);
+
+        _stateMachine.SetBool(_buttonPressScanningParameter, _buttonPressScanning);
+
     }
 
     private void Start()
@@ -111,15 +168,21 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
 
     private void OnEnable()
     {
-        _updateIdleEvent.OnRaise += UpdateIdle;
-        _enterTutorialEvent.OnRaise += EnterTutorial;
-        _updateTutorialEvent.OnRaise += UpdateTutorial;
-        _exitTutorialEvent.OnRaise += ExitTutorial;
-        _updateFollowPlayerEvent.OnRaise += UpdateMoveTowardsPlayer;
-        _updateMoveTowardsItemToScanEvent.OnRaise += UpdateMoveTowardsItemToScan;
-        _enterScanningItemEvent.OnRaise += EnterScanningItem;
-        _updateScanningItemEvent.OnRaise += UpdateScanningItem;
-        _exitScanningItemEvent.OnRaise += ExitScanningItem;
+        _idleUpdate.OnRaise += UpdateIdle;
+        _tutorialEnter.OnRaise += EnterTutorial;
+        _tutorialUpdate.OnRaise += UpdateTutorial;
+        _tutorialExit.OnRaise += ExitTutorial;
+        _followPlayerUpdate.OnRaise += UpdateMoveTowardsPlayer;
+        _moveToUnscannedUpdate.OnRaise += UpdateMoveTowardsToScan;
+        _scanAttemptingEnter.OnRaise += EnterScanAttempting;
+        _scanAttemptingUpdate.OnRaise += UpdateScanAttempting;
+        _scanFailedExit.OnRaise += ExitScanFailed;
+        _scanSucceededEnter.OnRaise += EnterScanSucceeded;
+        _scanSucceededUpdate.OnRaise += UpdateScanSucceeded;
+        _scanSucceededExit.OnRaise += ExitScanSucceeded;
+        _scanAwaitingButtonEnter.OnRaise += EnterScanAwaitingButton;
+        _scanAwaitingButtonUpdate.OnRaise += UpdateScanAwaitingButton;
+        _scanAwaitingButtonExit.OnRaise += ExitScanAwaitingButton;
 
         _playerLookControlsEvent.OnRaise += PlayerMovedCamera;
         _playerMovementWEvent.OnRaise += PlayerMoved;
@@ -130,15 +193,21 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
 
     private void OnDisable()
     {
-        _updateIdleEvent.OnRaise -= UpdateIdle;
-        _enterTutorialEvent.OnRaise -= EnterTutorial;
-        _updateTutorialEvent.OnRaise -= UpdateTutorial;
-        _exitTutorialEvent.OnRaise -= ExitTutorial;
-        _updateFollowPlayerEvent.OnRaise -= UpdateMoveTowardsPlayer;
-        _updateMoveTowardsItemToScanEvent.OnRaise -= UpdateMoveTowardsItemToScan;
-        _enterScanningItemEvent.OnRaise -= EnterScanningItem;
-        _updateScanningItemEvent.OnRaise -= UpdateScanningItem;
-        _exitScanningItemEvent.OnRaise -= ExitScanningItem;
+        _idleUpdate.OnRaise -= UpdateIdle;
+        _tutorialEnter.OnRaise -= EnterTutorial;
+        _tutorialUpdate.OnRaise -= UpdateTutorial;
+        _tutorialExit.OnRaise -= ExitTutorial;
+        _followPlayerUpdate.OnRaise -= UpdateMoveTowardsPlayer;
+        _moveToUnscannedUpdate.OnRaise -= UpdateMoveTowardsToScan;
+        _scanAttemptingEnter.OnRaise -= EnterScanAttempting;
+        _scanAttemptingUpdate.OnRaise -= UpdateScanAttempting;
+        _scanFailedExit.OnRaise -= ExitScanFailed;
+        _scanSucceededEnter.OnRaise -= EnterScanSucceeded;
+        _scanSucceededUpdate.OnRaise -= UpdateScanSucceeded;
+        _scanSucceededExit.OnRaise -= ExitScanSucceeded;
+        _scanAwaitingButtonEnter.OnRaise -= EnterScanAwaitingButton;
+        _scanAwaitingButtonUpdate.OnRaise -= UpdateScanAwaitingButton;
+        _scanAwaitingButtonExit.OnRaise -= ExitScanAwaitingButton;
 
         _playerLookControlsEvent.OnRaise -= PlayerMovedCamera;
         _playerMovementWEvent.OnRaise -= PlayerMoved;
@@ -149,29 +218,30 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
 
     private void Update()
     {
-        UpdateCurrentItemToScan();
+        UpdateThingToScan();
 
-        _stateMachine.SetFloat(_distanceFromPlayerParameter, FromDroneToNear(_player).magnitude);
+        _stateMachine.SetFloat(_distanceFromHoverbyPlayerParameter, FromDroneToNear(_player).magnitude);
 
         _stateMachine.Update();
     }
 
-    private void UpdateCurrentItemToScan()
+    private void UpdateThingToScan()
     {
-        if (_currentThingToScan == null || _itemLocator.AlreadyScanned(_currentThingToScan))
+        if (_toScan == null || _scannableLocator.AlreadyScanned(_toScan))
         {
-            _currentThingToScan = _itemLocator.TryGetThingToScan(transform, _player
+            _toScan = _scannableLocator.TryGetThingToScan(transform, _player
                 , _settings.DetectionRange, _settings.MaxDistanceFromPlayerToScan);
-            _scanTimeLeft = _settings.ScanningTime;
         }
-        float distanceToUnscannedItem = float.PositiveInfinity;
-        if (_currentThingToScan != null)
+        float distanceToThingToScan = float.PositiveInfinity;
+        float distanceBetweenThingToScanAndPlayer = float.PositiveInfinity;
+        if (_toScan != null)
         {
-            distanceToUnscannedItem = FromDroneToNear(_currentThingToScan.transform, backAwayIfTooClose: false).magnitude;
+            distanceToThingToScan = FromDroneToNear(_toScan.transform, backAwayIfTooClose: false).magnitude;
+            distanceBetweenThingToScanAndPlayer = (_toScan.transform.position - _player.position).magnitude;
         }
-        _stateMachine.SetFloat(_distanceFromUnscannedItemParameter, distanceToUnscannedItem);
-        _stateMachine.SetBool(_seesUnscannedItemParameter, _currentThingToScan != null);
-        _stateMachine.SetFloat(_scanTimeLeftParameter, _scanTimeLeft);
+        _stateMachine.SetFloat(_distanceFromHoverbyUnscannedParameter, distanceToThingToScan);
+        _stateMachine.SetFloat(_distanceBetweenUnscannedAndPlayerParameter, distanceBetweenThingToScanAndPlayer);
+        _stateMachine.SetBool(_seesUnscannedParameter, _toScan != null);
     }
 
     #region Drone Movement
@@ -200,8 +270,7 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
             // If it's already closer horizontally than the target position, use its current horizontal position
             Vector3 toSamePosition = toHoverNear.position - transform.position;
             float horizontalDistanceToSamePosition = (new Vector2(toSamePosition.x, toSamePosition.z)).magnitude;
-            float horizontalDistanceToNear = (new Vector2(toTargetPosition.x, toTargetPosition.z)).magnitude;
-            if (horizontalDistanceToSamePosition < horizontalDistanceToNear)
+            if (horizontalDistanceToSamePosition < _settings.MoveToHorizontalDistanceFromTarget)
             {
                 toTargetPosition.x = 0;
                 toTargetPosition.z = 0;
@@ -258,55 +327,91 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
         MoveDrone(FromDroneToNear(_player));
     }
 
-    private void UpdateMoveTowardsItemToScan()
+    private void UpdateMoveTowardsToScan()
     {
-        RotateTowardsTarget(_currentThingToScan.transform);
-        MoveDrone(FromDroneToNear(_currentThingToScan.transform, backAwayIfTooClose: false));
+        RotateTowardsTarget(_toScan.transform);
+        MoveDrone(FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
     }
 
-    private void EnterScanningItem()
+    private void EnterScanAttempting()
     {
-        _scanTimeLeft = _settings.ScanningTime;
-        _stateMachine.SetFloat(_scanTimeLeftParameter, _scanTimeLeft);
-        _placeholderScanningVisual.enabled = true;
+        _placeholderScanAttemptingVisual.enabled = true;
     }
 
-    private void UpdateScanningItem()
+    private void UpdateScanAttempting()
     {
-        _scanTimeLeft -= Time.deltaTime;
-        _stateMachine.SetFloat(_scanTimeLeftParameter, _scanTimeLeft);
-        _placeholderScanningVisual.SetPosition(0, transform.position);
-        _placeholderScanningVisual.SetPosition(1, _currentThingToScan.transform.position);
+        _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
+        _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
     }
 
-    private void ExitScanningItem()
+    private void EnterScanAwaitingButton()
     {
-        if (_scanTimeLeft <= 0)
+        _scanButtonUI.SetActive(true);
+    }
+
+    private void UpdateScanAwaitingButton()
+    {
+        _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
+        _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
+
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            _itemLocator.OnFinishedScanning(_currentThingToScan);
+            _stateMachine.SetBool(_buttonPressedParameter, true);
+        }
+    }
 
-            PickupItem item = _currentThingToScan as PickupItem;
-            JellyInteractBase jelly = _currentThingToScan as JellyInteractBase;
+    private void ExitScanAwaitingButton()
+    {
+        _scanButtonUI.SetActive(false);
+        _stateMachine.SetBool(_buttonPressedParameter, false);
+    }
+
+    private void ExitScanFailed()
+    {
+        _toScan = null;
+        _placeholderScanAttemptingVisual.enabled = false;
+        UpdateThingToScan();
+    }
+
+    private void EnterScanSucceeded()
+    {
+        _placeholderScanAttemptingVisual.enabled = false;
+        _placeholderScanSuccessVisual.enabled = true;
+    }
+
+    private void UpdateScanSucceeded()
+    {
+        _placeholderScanSuccessVisual.SetPosition(0, transform.position);
+        _placeholderScanSuccessVisual.SetPosition(1, _toScan.transform.position);
+    }
+
+    private void ExitScanSucceeded()
+    {
+        // it can be null if it was destroyed (e.g. item picked up)
+        // during the time when it's successfully scanning it.
+        if (_toScan != null)
+        {
+            _scannableLocator.MarkAsScanned(_toScan);
+
+            PickupItem item = _toScan as PickupItem;
+            Jellies.Parameters jelly = _toScan as Jellies.Parameters;
             if (item != null)
             {
-                bool isCraftingMaterial = item.ItemInfo.Attributes.Contains(ItemAttribute.CraftingMaterial);
-                bool isJellyFood = item.ItemInfo.Attributes.Contains(ItemAttribute.JellyFood);
-                Debug.Log("scanned item is crafting material: " + isCraftingMaterial
-                    + ", isJellyFood: " + isJellyFood
-                    + ", item position: " + item.transform.position);
+                _scannedItemEvent.Raise(item.ItemInfo);
             }
             else if (jelly != null)
             {
-                Debug.Log("scanned a jelly! yay! position: " + jelly.transform.position);
+                _scannedJellyEvent.Raise(jelly.TypeOfThisJelly());
             }
             else
             {
-                Debug.LogError("log for this type isnt implemented (are we scanning another thing besides jellies and items?");
+                Debug.LogError("log for this type isnt implemented (are we scanning" +
+                    " another thing besides jellies and items?", _toScan);
             }
         }
-        _placeholderScanningVisual.enabled = false;
 
-        UpdateCurrentItemToScan();
+        _placeholderScanSuccessVisual.enabled = false;
+        UpdateThingToScan();
     }
 
     private void EnterTutorial()

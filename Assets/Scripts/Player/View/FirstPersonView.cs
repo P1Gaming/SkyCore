@@ -35,6 +35,9 @@ namespace Player.View
         [SerializeField]
         private PlayerInput _playerControls;
 
+        [SerializeField]
+        private GameEventScriptableObject _lookDirectionChangeEvent;
+
         private Vector2 _lookDirection;
 
         private float _xRot = 0f;
@@ -91,6 +94,7 @@ namespace Player.View
             {
                 return;
             }
+            _lookDirectionChangeEvent.Raise();
             _xRot -= _lookDirection.y * (_sensitivitySetting * _baseSpeed);
             _xRot = Mathf.Clamp(_xRot, -_clampAngle, _clampAngle);
             transform.Rotate(0f, _lookDirection.x * (_sensitivitySetting * _baseSpeed), 0f);

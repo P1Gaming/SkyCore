@@ -1,69 +1,143 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Jellies;
 
 public class DroneScannableLocator
 {
     private Collider[] _overlapSphereResults = new Collider[10000];
-    private HashSet<MonoBehaviour> _scannedThings = new();
+    private HashSet<ItemBase> _scannedItems = new();
+    private HashSet<Jellies.JellyType> _scannedJellyTypes = new();
+    private int _jellyLayerMask;
+    private int _itemLayerMask;
 
-    // brain death right now, dunno what to call it besides thing.
+    public DroneScannableLocator()
+    {
+        _jellyLayerMask = LayerMask.GetMask("Jellies");
+        _itemLayerMask = LayerMask.GetMask("PickupItem");
+    }
+
     public bool AlreadyScanned(MonoBehaviour thing)
     {
-        return _scannedThings.Contains(thing);
+        Parameters parameters = thing as Parameters;
+        if (parameters != null)
+        {
+            return _scannedJellyTypes.Contains(parameters.TypeOfThisJelly());
+        }
+
+        PickupItem item = thing as PickupItem;
+        if (item != null)
+        {
+            return _scannedItems.Contains(item.ItemInfo);
+        }
+
+        throw new System.ArgumentException("thing must be a Parameters or a PickupItem");
+    }
+
+    public void MarkAsScanned(MonoBehaviour thing)
+    {
+        Parameters parameters = thing as Parameters;
+        if (parameters != null)
+        {
+            _scannedJellyTypes.Add(parameters.TypeOfThisJelly());
+        }
+
+        PickupItem item = thing as PickupItem;
+        if (item != null)
+        {
+            _scannedItems.Add(item.ItemInfo);
+        }
     }
 
     /// <summary>
-    /// Finds the PickupItem or JellyInteractBase nearest the drone, so long as it's near enough to
+    /// Finds the PickupItem or Jellies.Parameters nearest the drone, so long as it's near enough to
     /// the player. Prioritizes jellies over items.
     /// </summary>
     public MonoBehaviour TryGetThingToScan(Transform drone, Transform player
         , float maxDistanceFromDrone, float maxDistanceFromPlayer)
     {
-        int numColliders = Physics.OverlapSphereNonAlloc(drone.position, maxDistanceFromDrone, _overlapSphereResults);
-
-        JellyInteractBase closestJelly = ClosestScannable<JellyInteractBase>(drone, player, maxDistanceFromPlayer, numColliders);
-        if (closestJelly != null)
+        Parameters jelly = TryGetJellyToScan(drone, player, maxDistanceFromDrone, maxDistanceFromPlayer);
+        if (jelly != null)
         {
-            return closestJelly;
+            return jelly;
         }
-        PickupItem closestItem = ClosestScannable<PickupItem>(drone, player, maxDistanceFromPlayer, numColliders);
-        return closestItem;
+
+        return TryGetItemToScan(drone, player, maxDistanceFromDrone, maxDistanceFromPlayer);
     }
 
-    private T ClosestScannable<T>(Transform drone, Transform player, float maxDistanceFromPlayer
-        , int numColliders) where T : MonoBehaviour
+    private Parameters TryGetJellyToScan(Transform drone, Transform player
+        , float maxDistanceFromDrone, float maxDistanceFromPlayer)
     {
-        float minSqrDistance = float.PositiveInfinity;
-        T closestThing = null;
+        int numColliders = Physics.OverlapSphereNonAlloc(drone.position, maxDistanceFromDrone
+            , _overlapSphereResults, _jellyLayerMask, QueryTriggerInteraction.Ignore);
+
+        float lowestSqrDistanceFromDrone = float.PositiveInfinity;
+        Parameters result = null;
         for (int i = 0; i < numColliders; i++)
         {
-            if (_overlapSphereResults[i].TryGetComponent(out T thing))
-            {
-                if (!_scannedThings.Contains(thing))
-                {
-                    float sqrDistanceFromPlayer = (player.position - thing.transform.position).sqrMagnitude;
-                    if (sqrDistanceFromPlayer > maxDistanceFromPlayer * maxDistanceFromPlayer)
-                    {
-                        // The item needs to be within max distance from the player, but so long as that condition is
-                        // met, use the item closest to the drone.
-                        continue;
-                    }
+            _overlapSphereResults[i].TryGetComponent(out Parameters jelly);
 
-                    float sqrDistance = (drone.position - thing.transform.position).sqrMagnitude;
-                    if (sqrDistance < minSqrDistance)
-                    {
-                        minSqrDistance = sqrDistance;
-                        closestThing = thing;
-                    }
-                }
+            if (jelly == null)
+            {
+                continue;
+            }
+            if (_scannedJellyTypes.Contains(jelly.TypeOfThisJelly()))
+            {
+                continue;
+            }
+
+            float sqrDistanceFromPlayer = (jelly.transform.position - player.position).sqrMagnitude;
+            if (sqrDistanceFromPlayer > maxDistanceFromPlayer * maxDistanceFromPlayer)
+            {
+                continue;
+            }
+
+            float sqrDistanceFromDrone = (jelly.transform.position - drone.position).sqrMagnitude;
+            if (sqrDistanceFromDrone < lowestSqrDistanceFromDrone)
+            {
+                lowestSqrDistanceFromDrone = sqrDistanceFromDrone;
+                result = jelly;
             }
         }
-        return closestThing;
+
+        return result;
     }
 
-    public void OnFinishedScanning(MonoBehaviour thing)
+    private PickupItem TryGetItemToScan(Transform drone, Transform player
+        , float maxDistanceFromDrone, float maxDistanceFromPlayer)
     {
-        _scannedThings.Add(thing);
+        int numColliders = Physics.OverlapSphereNonAlloc(drone.position, maxDistanceFromDrone
+            , _overlapSphereResults, _itemLayerMask, QueryTriggerInteraction.Collide);
+
+        float lowestSqrDistanceFromDrone = float.PositiveInfinity;
+        PickupItem result = null;
+        for (int i = 0; i < numColliders; i++)
+        {
+            _overlapSphereResults[i].TryGetComponent(out PickupItem item);
+            if (item == null)
+            {
+                continue;
+            }
+
+            if (_scannedItems.Contains(item.ItemInfo))
+            {
+                continue;
+            }
+
+            float sqrDistanceFromPlayer = (item.transform.position - player.position).sqrMagnitude;
+            if (sqrDistanceFromPlayer > maxDistanceFromPlayer * maxDistanceFromPlayer)
+            {
+                continue;
+            }
+
+            float sqrDistanceFromDrone = (item.transform.position - drone.position).sqrMagnitude;
+            if (sqrDistanceFromDrone < lowestSqrDistanceFromDrone)
+            {
+                lowestSqrDistanceFromDrone = sqrDistanceFromDrone;
+                result = item;
+            }
+        }
+
+        return result;
     }
 }
