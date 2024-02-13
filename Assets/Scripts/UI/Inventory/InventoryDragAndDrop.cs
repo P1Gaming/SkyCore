@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Player;
+using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Collections.Specialized;
+using System;
 
 namespace UI.Inventory
 {
@@ -83,8 +87,29 @@ namespace UI.Inventory
         /// </summary>
         public void OnClickStart(InventorySlotUI slotBelowMouse)
         {
+            //Check if there is a slot, if not toss the item
             if (slotBelowMouse == null)
             {
+                if (_beingDragged.ItemStack.amount > 0)
+                {
+                    GameObject droppedItem = _beingDragged.ItemStack.itemInfo.ItemPrefab;
+
+                    //Spawn item in front of the player
+                    Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
+                    Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
+                    Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
+                    UnityEngine.Object.Instantiate(droppedItem, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+
+                    //Decrement Item
+                    _beingDragged.ItemStack.amount -= 1;
+                }
+                if (_beingDragged.ItemStack.amount <= 0)
+                {
+                    //Hide UI Drag Element
+                    _beingDragged.ShowItem(null);
+                    _beingDragged.ItemStack.amount = 0;
+                }
+
                 return;
             }
 

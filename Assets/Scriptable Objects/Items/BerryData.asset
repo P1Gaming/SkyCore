@@ -15,7 +15,8 @@ MonoBehaviour:
   _id: 0
   _name: Red Berry
   _icon: {fileID: 21300000, guid: ffba26bbe9968df4d8e501be48a6c5a4, type: 3}
-  _itemPrefab: {fileID: 0}
+  _itemPrefab: {fileID: 2871547551631433579, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
+    type: 3}
   _maxStack: 99
   _isDroppable: 1
   _isStackable: 1
