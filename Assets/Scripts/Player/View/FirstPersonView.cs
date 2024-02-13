@@ -72,6 +72,8 @@ namespace Player.View
             _xRot = _cameraTarget.transform.rotation.eulerAngles.x;
             Cursor.lockState = (CursorLockMode.Locked);
             Cursor.visible = false;
+
+            _sensitivitySetting = PlayerPrefs.GetFloat(PlayerPrefsKeys.FirstPersonViewSensitivity);
         }
 
         /// <summary>

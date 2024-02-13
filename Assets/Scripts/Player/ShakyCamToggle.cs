@@ -7,28 +7,21 @@ using UnityEngine.UI;
 
 public class ShakyCamToggle : MonoBehaviour
 {
-    [SerializeField, Tooltip("The shaky cam toggle")]
-    Toggle _shakyCam;
     [SerializeField, Tooltip("The cinemachine camera that controls the shaking")]
     CinemachineVirtualCamera _cinemachine;
     //The key for the playerPref setting
-    const string _playerPrefKey = "ShakyCamToggle";
     bool _isDestroyed = false;
     //The current thread
+
+
     System.Threading.Thread _thread; 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        _thread = System.Threading.Thread.CurrentThread;
-        
-        if (PlayerPrefs.GetInt(_playerPrefKey) == 0)
-        {
-            _shakyCam.isOn = false;
-        }
-        else if (PlayerPrefs.GetInt(_playerPrefKey) == 1)
-        {
-            _shakyCam.isOn = true;
-        }
+        _thread = System.Threading.Thread.CurrentThread;        
     }
     
     /**
@@ -38,25 +31,28 @@ public class ShakyCamToggle : MonoBehaviour
      * If it is not toggled, then the camera does not shake
      * For the player prefs, 0 means it is deactivated, 1 means that it is activated.
      * **/
-    public void Toggle()
+    public void Toggle(bool value)
     {
         if (_thread == System.Threading.Thread.CurrentThread)
         {
             if (!_isDestroyed)
             {
-                if (_shakyCam.isOn)
+                IsShakyCamEnabled = value;
+
+                if (value)
                 {
                     //Cinemachine noise enabled
                     _cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = .5f;
                     _cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = .3f;
-                    PlayerPrefs.SetInt(_playerPrefKey, 1);
                 }
-                else if (!_shakyCam.isOn)
+                else if (!value)
                 {
                     //Cinemachine noise disabled
+                    if (_cinemachine == null)
+                        Debug.Log("NULL");
+
                     _cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
                     _cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;   
-                    PlayerPrefs.SetInt(_playerPrefKey, 0);
                 }
             }
         } 
@@ -65,5 +61,8 @@ public class ShakyCamToggle : MonoBehaviour
     {
         _isDestroyed = true;   
     }
+
+
+    public bool IsShakyCamEnabled { get; private set; }
 
 }
