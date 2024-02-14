@@ -9,18 +9,17 @@ namespace FiniteStateMachineEditor
     public class FSMEditorOneTransition : MonoBehaviour
     {
         [SerializeField]
-        private LineRenderer _line;
+        private LineFor2DEditor _line;
         [SerializeField]
-        private LineRenderer _arrowLeftHalf;
+        private LineFor2DEditor _arrowLeftHalf;
         [SerializeField]
-        private LineRenderer _arrowRightHalf;
+        private LineFor2DEditor _arrowRightHalf;
+        [SerializeField]
+        private Color _normalColor = Color.white;
         [SerializeField]
         private Color _selectedColor;
         [SerializeField]
         private Color _colorWhileCreating;
-
-
-        private Color _normalColor;
 
         public FSMEditorOneState From { get; private set; }
         public FSMEditorOneState To { get; private set; }
@@ -30,7 +29,7 @@ namespace FiniteStateMachineEditor
         private List<FSMEditorOneTransition> _existingTransitions;
 
         public void Initialize(FSMTransition transition, List<FSMEditorOneState> editorStates
-            , List<FSMEditorOneTransition> existingTransitions)
+            , List<FSMEditorOneTransition> existingTransitions, CameraInfo cameraInfo)
         {
             _existingTransitions = existingTransitions;
             Transition = transition;
@@ -39,15 +38,21 @@ namespace FiniteStateMachineEditor
             From.AddConnectedTransition(this);
             To.AddConnectedTransition(this);
 
-            _normalColor = _line.startColor;
-
             _nthBetweenSameTwoStates = NthBetweenSameTwoStates(_existingTransitions, From, To);
 
+            _line.Initialize(cameraInfo);
+            _arrowLeftHalf.Initialize(cameraInfo);
+            _arrowRightHalf.Initialize(cameraInfo);
+
             UpdateLine();
+            SetColor(_normalColor);
         }
 
-        public void InitializeSpecialOneForCreatingNewTransitions()
+        public void InitializeSpecialOneForCreatingNewTransitions(CameraInfo cameraInfo)
         {
+            _line.Initialize(cameraInfo);
+            _arrowLeftHalf.Initialize(cameraInfo);
+            _arrowRightHalf.Initialize(cameraInfo);
             SetColor(_colorWhileCreating);
         }
 
@@ -81,12 +86,9 @@ namespace FiniteStateMachineEditor
 
         private void SetColor(Color c)
         {
-            _line.startColor = c;
-            _line.endColor = c;
-            _arrowLeftHalf.startColor = c;
-            _arrowLeftHalf.endColor = c;
-            _arrowRightHalf.startColor = c;
-            _arrowRightHalf.endColor = c;
+            _line.SetColor(c);
+            _arrowLeftHalf.SetColor(c);
+            _arrowRightHalf.SetColor(c);
         }
 
         private FSMEditorOneState FindAssociatedEditorState(FSMState state, List<FSMEditorOneState> editorStates)
@@ -106,19 +108,31 @@ namespace FiniteStateMachineEditor
             SetLine(posFrom, posTo);
         }
 
+        
+
         public void SetLine(Vector2 posFrom, Vector2 posTo)
         {
-            Vector3 displacement = posFrom - posTo;
-            float distance = displacement.magnitude;
-            float angle = Mathf.Atan2(displacement.y, displacement.x) * Mathf.Rad2Deg + 90f;
+            _line.SetLine(posFrom, posTo);
 
-            transform.position = posFrom;
-            _line.SetPosition(1, new Vector3(0, distance, 0));
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            Vector2 displacement = posTo - posFrom;
 
-            Vector3 arrowPosition = new Vector3(0, distance * .6f, 0);
-            _arrowLeftHalf.transform.localPosition = arrowPosition;
-            _arrowRightHalf.transform.localPosition = arrowPosition;
+            float rotationOfMainLine = Mathf.Atan2(displacement.y, displacement.x);
+            Vector2 arrowLinesFrom = Vector2.Lerp(posFrom, posTo, .6f);
+            Vector2 leftArrowDisplacement = RotateVector(new Vector2(0, 15), (45f + 90) * Mathf.Deg2Rad + rotationOfMainLine);
+            Vector2 rightArrowDisplacement = RotateVector(new Vector2(0, 15), (-45f + 90) * Mathf.Deg2Rad + rotationOfMainLine);
+
+            _arrowLeftHalf.SetLine(arrowLinesFrom, arrowLinesFrom + leftArrowDisplacement);
+            _arrowRightHalf.SetLine(arrowLinesFrom, arrowLinesFrom + rightArrowDisplacement);
+
+            UpdateLineWidth();
+        }
+
+        public void UpdateLineWidth()
+        {
+            // need to do this to keep the width constant pixel size, so whenever the camera size changes.
+            _line.UpdateWidth();
+            _arrowLeftHalf.UpdateWidth();
+            _arrowRightHalf.UpdateWidth();
         }
 
         private void GetLinePoints(out Vector2 posFrom, out Vector2 posTo)
@@ -146,6 +160,15 @@ namespace FiniteStateMachineEditor
                 }
             }
             return result;
+        }
+
+        private static Vector2 RotateVector(Vector2 v, float radians)
+        {
+            float cos = Mathf.Cos(radians);
+            float sin = Mathf.Sin(radians);
+            float x = cos * v.x - sin * v.y;
+            float y = sin * v.x + cos * v.y;
+            return new Vector2(x, y);
         }
     }
 }

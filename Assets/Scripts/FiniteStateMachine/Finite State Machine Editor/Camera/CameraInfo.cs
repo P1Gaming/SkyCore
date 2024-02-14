@@ -39,7 +39,7 @@ namespace FiniteStateMachineEditor
             set => _mainCamera.transform.position = new Vector3(value.x, value.y, _mainCamera.transform.position.z);
         }
 
-
+        public float UnitsPerPixelWithDevelopmentScreenSize => _mainCamera.orthographicSize * 2f / 1080;
 
 
 

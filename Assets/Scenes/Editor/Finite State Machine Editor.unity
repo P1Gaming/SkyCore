@@ -965,7 +965,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1595850754}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &380005846
 GameObject:
@@ -1153,10 +1153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6484c639da5c3a444bbf732636323654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _comment: '-add support for undo
+  _comment: '-add support for undo?
 
-    -incorporate antialiased lines shader in
-    place of line renderer
+    -add support for anystate (transitions which
+    come from anystate, like in the animator).
 
 
 
@@ -1170,13 +1170,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387237764}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1595850754}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425821442
 GameObject:
@@ -2410,7 +2410,7 @@ Transform:
   - {fileID: 645484356}
   - {fileID: 1374975434}
   m_Father: {fileID: 1595850754}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &714010169
 MonoBehaviour:
@@ -2431,7 +2431,7 @@ MonoBehaviour:
   <NonZoomedAreaLeftForSeeingWorkspace>k__BackingField: {fileID: 555698334}
   <StateVisualPrefab>k__BackingField: {fileID: 8996451367737917210, guid: fbe09b1b4c93fee419dbec598d9cf4e3,
     type: 3}
-  <TransitionVisualPrefab>k__BackingField: {fileID: 2500452560467863475, guid: f99ba6ee876001c4c96176bc2b68a441,
+  <TransitionVisualPrefab>k__BackingField: {fileID: 2500452560467863475, guid: bc2aa3e2cbc6b0a4284ffa0eb6097af1,
     type: 3}
   <StateTitleInputField>k__BackingField: {fileID: 158036091}
   <SelectedTransitionEditorToggle>k__BackingField: {fileID: 1719796071}
@@ -2528,7 +2528,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1595850754}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &752805596
 MonoBehaviour:
@@ -3978,7 +3978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816353bbe51fca84ca90d3c77949e98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateMachineName: 
+  _stateMachineName: test
   _stateMachineDefinition: {fileID: 0}
 --- !u!1 &1158849126
 GameObject:
@@ -4168,7 +4168,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1595850754}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1324407517
 GameObject:
@@ -5366,12 +5366,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 387237766}
   - {fileID: 752805595}
   - {fileID: 1320037245}
   - {fileID: 310794620}
   - {fileID: 714010168}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601633469
 GameObject:

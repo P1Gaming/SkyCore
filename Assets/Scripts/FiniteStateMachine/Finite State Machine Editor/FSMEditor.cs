@@ -155,7 +155,7 @@ namespace FiniteStateMachineEditor
         {
             GameObject instantiated = Instantiate(_refs.TransitionVisualPrefab, _refs.LinesFolder);
             FSMEditorOneTransition transitionEditor = instantiated.GetComponent<FSMEditorOneTransition>();
-            transitionEditor.Initialize(transition, _states, _transitions);
+            transitionEditor.Initialize(transition, _states, _transitions, _cameraInfo);
             _transitions.Add(transitionEditor);
         }
         private FSMEditorOneTransition CreateVisualForTransitionForCreatingNewTransitions()
@@ -163,7 +163,7 @@ namespace FiniteStateMachineEditor
             GameObject instantiated = Instantiate(_refs.TransitionVisualPrefab, _refs.LinesFolder);
             instantiated.SetActive(false);
             FSMEditorOneTransition result = instantiated.GetComponent<FSMEditorOneTransition>();
-            result.InitializeSpecialOneForCreatingNewTransitions();
+            result.InitializeSpecialOneForCreatingNewTransitions(_cameraInfo);
             return result;
         }
 
@@ -214,7 +214,13 @@ namespace FiniteStateMachineEditor
             }
 
 
+            float zoomOutBefore = _cameraInfo.ZoomOut;
             _cameraControls.OnUpdate();
+            if (_cameraInfo.ZoomOut != zoomOutBefore)
+            {
+                foreach (FSMEditorOneTransition transition in _transitions)
+                    transition.UpdateLineWidth();
+            }
 
             bool clickingZoomableArea = Input.GetButtonDown("left click")
                 && MouseIsInsideZoomableArea();
