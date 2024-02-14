@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
+using System.Diagnostics;
 
 
 namespace UI.Inventory
@@ -57,8 +58,15 @@ namespace UI.Inventory
                 index = GetEmptySlotWithLowestIndex();
                 _itemsInSlotIndexes.Add(item, index);
             }
-
-            _slotUIsResource[index].ShowItem(item);
+            if (item.amount <= 0)
+            {
+                _itemsInSlotIndexes.Remove(item);
+                _slotUIsResource[index].ShowItem(null);
+            }
+            else
+            {
+                _slotUIsResource[index].ShowItem(item);
+            }
         }
 
         private int GetEmptySlotWithLowestIndex()
@@ -70,7 +78,7 @@ namespace UI.Inventory
                     return i;
                 }
             }
-            Debug.LogError("Couldn't find a free slot in UI to show the item. This is a bug.");
+            //Debug.LogError("Couldn't find a free slot in UI to show the item. This is a bug.");
             return -1; // shouldn't happen
         }
 

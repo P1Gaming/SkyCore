@@ -41,6 +41,11 @@ namespace Player
                 item.amount -= overflowAmount;
                 TryAddItemAsNewStack(new ItemStack(item.itemInfo, overflowAmount));
             }
+            //Check if amount is zero or less, if so, remove it from the inventory
+            if (item.amount <= 0)
+            {
+                _items.Remove(item);
+            }
             OnChangeItem?.Invoke(item);
         }
 
