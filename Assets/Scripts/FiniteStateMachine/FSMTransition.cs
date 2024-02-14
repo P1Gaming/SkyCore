@@ -34,6 +34,15 @@ namespace FiniteStateMachine
         [SerializeField, Tooltip("All conditions must be met for the transition to happen.")]
         private FSMTransitionCondition[] _conditions;
 
+#if UNITY_EDITOR
+        public bool Disable => _disable;
+        public FSMState From => _from;
+        public FSMState To => _to;
+        public float MinDurationInFrom => _minDurationInFrom;
+        public FSMParameter ParameterForMinDurationInFrom => _parameterForMinDurationInFrom;
+        public FSMTransitionCondition[] Conditions => _conditions;
+#endif
+
         public void CheckValid(Dictionary<FSMParameter, float> floatParameters)
         {
             if (_parameterForMinDurationInFrom != null)
@@ -77,23 +86,19 @@ namespace FiniteStateMachine
                 return;
             }
 
-            if (durationInCurrentState < _minDurationInFrom)
+            float minDurationInFrom = _minDurationInFrom;
+            if (_parameterForMinDurationInFrom != null)
             {
-                if (_minDurationInFrom <= 0)
+                minDurationInFrom = floats[_parameterForMinDurationInFrom];
+            }
+            if (durationInCurrentState < minDurationInFrom)
+            {
+                if (minDurationInFrom <= 0)
                 {
-                    throw new System.Exception("unexpected behaviour: if _minDurationInFrom is 0," +
+                    throw new System.Exception("unexpected behaviour: if minDurationInFrom is 0," +
                         " it should have no effect");
                 }
 
-                if (LogFailureReason)
-                {
-                    Debug.Log("Failure reason: haven't been in current state long enough", this);
-                }
-
-                return;
-            }
-            if (_parameterForMinDurationInFrom != null && durationInCurrentState < floats[_parameterForMinDurationInFrom])
-            {
                 if (LogFailureReason)
                 {
                     Debug.Log("Failure reason: haven't been in current state long enough", this);
