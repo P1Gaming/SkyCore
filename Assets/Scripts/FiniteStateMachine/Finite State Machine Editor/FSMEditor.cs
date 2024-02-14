@@ -199,6 +199,11 @@ namespace FiniteStateMachineEditor
                 if (_selectedTransition != null)
                 {
                     DeleteTransition(_selectedTransition);
+                    for (int i = 0; i < _transitions.Count; i++)
+                    {
+                        _transitions[i].UpdateNthBetweenSameTwoStates();
+                        _transitions[i].UpdateLine();
+                    }
                 }
                 if (_selectedState != null && _selectedState != _creatingTransitionFrom)
                 {
@@ -312,9 +317,12 @@ namespace FiniteStateMachineEditor
             if (MouseIsInsideZoomableArea())
             {
                 FSMEditorOneState stateBelowMouse = FindStateBelowMouse();
+                if (stateBelowMouse == _creatingTransitionFrom)
+                    stateBelowMouse = null;
                 if (stateBelowMouse != null)
                 {
-                    int nthBelowMouse = FSMEditorOneTransition.NthBetweenSameTwoStates(_transitions, _creatingTransitionFrom, stateBelowMouse);
+                    int nthBelowMouse = FSMEditorOneTransition.NthBetweenSameTwoStates(_transitions, null
+                        , _creatingTransitionFrom, stateBelowMouse);
                     Vector3 offset = FSMEditorOneTransition.AdjustmentToAvoidIdenticalLines(nthBelowMouse);
                     posTo = stateBelowMouse.transform.position + offset;
                     posFrom += (Vector2)offset;
@@ -322,6 +330,12 @@ namespace FiniteStateMachineEditor
             }
 
             _transitionEditorToShowCreatingTransition.SetLine(posFrom, posTo);
+        }
+
+        public void OnChangeParameterType()
+        {
+            FSMEditorOneCondition.SetParametersInDropdownOnlyIncludingFloats(_stateMachineDefinition
+                , _refs.TransitionMinTimeParameterSelectionDropdown);
         }
 
 
@@ -342,13 +356,16 @@ namespace FiniteStateMachineEditor
         {
             if (!clickingZoomableArea)
                 return;
+            FSMEditorOneState belowMouse = FindStateBelowMouse();
+            if (belowMouse == _creatingTransitionFrom && belowMouse != null)
+                return;
 
             if (_selectedState != null)
                 _selectedState.SetSelected(false);
             if (_selectedTransition != null)
                 _selectedTransition.SetWhetherSelected(false);
 
-            _selectedState = FindStateBelowMouse();
+            _selectedState = belowMouse;
             if (_selectedState != null)
             {
                 if (_creatingTransitionFrom == null)

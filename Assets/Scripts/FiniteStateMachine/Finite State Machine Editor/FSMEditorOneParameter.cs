@@ -110,6 +110,7 @@ namespace FiniteStateMachineEditor
         {
             FSMEditorSaveDataChanger.SetParameterType(Parameter, changeTo);
             UpdateActiveGameObjectsBasedOnParameterType();
+            _fsmEditor.OnChangeParameterType();
         }
 
         public void OnInitialFloatInputFieldChanged(string changeTo)

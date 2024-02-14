@@ -3920,6 +3920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1152390464}
   - component: {fileID: 1152390463}
+  - component: {fileID: 1152390466}
   - component: {fileID: 1152390465}
   m_Layer: 0
   m_Name: '*** CONTROLS AND GUIDE ***'
@@ -3940,17 +3941,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6484c639da5c3a444bbf732636323654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _comment: '-enter play mode
-
-    -right click to pan
-
-    -scroll to zoom
+  _comment: 'GENERAL
 
 
+    * Enter the state machine''s name in the script below.
+    Then enter playmode to create or edit that state machine.
 
 
+    * There is no
+    undo, and things save immediately.
 
-'
+
+    * The state machine works a lot like
+    Unity''s animator, but geared towards behavior rather than animation.'
 --- !u!4 &1152390464
 Transform:
   m_ObjectHideFlags: 0
@@ -3980,6 +3983,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateMachineName: test
   _stateMachineDefinition: {fileID: 0}
+--- !u!114 &1152390466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152390462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6484c639da5c3a444bbf732636323654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _comment: 'CONTROLS
+
+    * Right Click: Pan
+
+    * Scroll: Zoom
+
+    * Left Click:
+    Select a state or transition'
 --- !u!1 &1158849126
 GameObject:
   m_ObjectHideFlags: 0

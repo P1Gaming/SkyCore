@@ -38,7 +38,7 @@ namespace FiniteStateMachineEditor
             From.AddConnectedTransition(this);
             To.AddConnectedTransition(this);
 
-            _nthBetweenSameTwoStates = NthBetweenSameTwoStates(_existingTransitions, From, To);
+            _nthBetweenSameTwoStates = NthBetweenSameTwoStates(_existingTransitions, null, From, To);
 
             _line.Initialize(cameraInfo);
             _arrowLeftHalf.Initialize(cameraInfo);
@@ -108,6 +108,11 @@ namespace FiniteStateMachineEditor
             SetLine(posFrom, posTo);
         }
 
+        public void UpdateNthBetweenSameTwoStates()
+        {
+            _nthBetweenSameTwoStates = NthBetweenSameTwoStates(_existingTransitions, this, From, To);
+        }
+
         
 
         public void SetLine(Vector2 posFrom, Vector2 posTo)
@@ -148,12 +153,15 @@ namespace FiniteStateMachineEditor
         }
 
         public static int NthBetweenSameTwoStates(List<FSMEditorOneTransition> existingTransitions
+            , FSMEditorOneTransition transitionIfAlreadyAddedToList
            , FSMEditorOneState from, FSMEditorOneState to)
         {
             int result = 0;
             for (int i = 0; i < existingTransitions.Count; i++)
             {
                 FSMEditorOneTransition other = existingTransitions[i];
+                if (other == transitionIfAlreadyAddedToList)
+                    return result;
                 if (other.From == from && other.To == to || other.From == to && other.To == from)
                 {
                     result++;
