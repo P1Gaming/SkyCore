@@ -336,6 +336,11 @@ namespace FiniteStateMachineEditor
         {
             FSMEditorOneCondition.SetParametersInDropdownOnlyIncludingFloats(_stateMachineDefinition
                 , _refs.TransitionMinTimeParameterSelectionDropdown);
+            if (_selectedTransition != null)
+            {
+                foreach (FSMEditorOneCondition condition in _conditionsOfSelectedTransition)
+                    condition.UpdateParameterDropdownsAndCondition();
+            }
         }
 
 

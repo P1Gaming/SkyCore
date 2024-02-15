@@ -112,6 +112,28 @@ namespace FiniteStateMachineEditor
 
         public void OnParameterTypeDropdownChanged(int changeTo)
         {
+            bool beingUsed = false;
+            for (int i = 0; i < _fsmDefinition.Transitions.Length; i++)
+            {
+                FSMTransition transition = _fsmDefinition.Transitions[i];
+                if (transition.ParameterForMinDurationInFrom == Parameter)
+                    beingUsed = true;
+                for (int j = 0; j < transition.Conditions.Length; j++)
+                {
+                    FSMTransitionCondition condition = transition.Conditions[j];
+                    if (condition.Parameter == Parameter || condition.OtherFloatParameterToCompareTo == Parameter)
+                        beingUsed = true;
+                }
+            }
+
+            if (beingUsed)
+            {
+                Debug.LogWarning("Cannot change the parameter's type because it's being used.");
+                UpdateDisplayedInfo();
+                return;
+            }
+
+
             FSMEditorSaveDataChanger.SetParameterType(Parameter, changeTo);
             UpdateActiveGameObjectsBasedOnParameterType();
             _fsmEditor.OnChangeParameterType();
