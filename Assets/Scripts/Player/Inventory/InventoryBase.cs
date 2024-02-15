@@ -17,6 +17,7 @@ namespace Player
         private InventoryBase[] _overflowTo;
 
         private HashSet<ItemStack> _items = new HashSet<ItemStack>(); // unordered. UI code stores positioning in slots.
+        private UI.Inventory.InventoryDragAndDrop _dragAndDrop;
 
         [SerializeField, Tooltip("Designated sort type of inventory section.")]
         private ItemBase.ItemSortType _sortType;
@@ -27,12 +28,14 @@ namespace Player
 
         public ItemBase.ItemSortType SortType => _sortType;
 
+        public void SetDragAndDrop(UI.Inventory.InventoryDragAndDrop dragAndDrop) => _dragAndDrop = dragAndDrop;
+
         /// <summary>
         /// Creates a new item stack if the items picked up puts the amount over the max for the next open stack.
         /// </summary>
         /// <param name="item">The stack that has not reached the max items yet</param>
         /// <param name="amount">The number of items to add to the stack</param>
-        private void AddToStack(ItemStack item, int amount, UI.Inventory.InventoryDragAndDrop dragAndDropIfDroppingItem = null)
+        private void AddToStack(ItemStack item, int amount)
         {
             item.amount += amount;
             if (item.amount > item.itemInfo.MaxStack)
@@ -45,7 +48,7 @@ namespace Player
             if (item.amount <= 0)
             {
                 _items.Remove(item);
-                dragAndDropIfDroppingItem.OnDroppedLastItemOfStack();
+                _dragAndDrop.CheckDraggedStackNowEmpty();
             }
             OnChangeItem?.Invoke(item);
         }
@@ -151,8 +154,7 @@ namespace Player
         /// <param name="itemInfo"></param>
         /// <param name="subtractedAmount"></param>
         /// <returns>return the possibility to substract</returns>
-        public bool TrySubtractItemAmount(ItemBase itemInfo, int subtractedAmount
-            , UI.Inventory.InventoryDragAndDrop dragAndDropIfDroppingItem = null)
+        public bool TrySubtractItemAmount(ItemBase itemInfo, int subtractedAmount)
         {
             ItemStack item = GetItem(itemInfo, requireStackNotFull: false);
             if ((item is null) || item.amount < subtractedAmount)
@@ -160,7 +162,8 @@ namespace Player
                 return false;
             }
 
-            AddToStack(item, -subtractedAmount, dragAndDropIfDroppingItem);
+            AddToStack(item, -subtractedAmount);
+
             //PrintHotbar();
 
             return true;

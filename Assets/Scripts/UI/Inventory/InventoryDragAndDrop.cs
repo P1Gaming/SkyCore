@@ -31,7 +31,7 @@ namespace UI.Inventory
             _click.canceled += OnClickCancel;
         }
 
-        public void OnDroppedLastItemOfStack()
+        public void CheckDraggedStackNowEmpty()
         {
             _beingDragged.StopItemDrag();
             _beingDragged = null;
@@ -179,7 +179,7 @@ namespace UI.Inventory
 
                 //Decrement Item
 
-                _beingDragged.InventoryOrHotBarUI.InventoryOrHotBar.TrySubtractItemAmount(_beingDragged.ItemStack.itemInfo, 1, this);
+                _beingDragged.InventoryOrHotBarUI.InventoryOrHotBar.TrySubtractItemAmount(_beingDragged.ItemStack.itemInfo, 1);
             }
         }
 

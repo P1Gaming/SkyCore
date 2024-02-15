@@ -546,6 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstPersonView: {fileID: 0}
   _jellyInteractVisual: {fileID: 0}
+  _hotBarUI: {fileID: 3797097006058136079}
   _inventoryCenter: {x: 0, y: 0}
   _inventorySlotObject: {fileID: 1216759428009543111, guid: 05d2673f19a8d3046bceb338039fd469,
     type: 3}
