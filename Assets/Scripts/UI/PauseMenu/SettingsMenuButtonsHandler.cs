@@ -10,13 +10,12 @@ using UnityEngine;
 /// </summary>
 public class SettingsMenuButtonsHandler : MonoBehaviour
 {
-    private EscMenuToggle _escMenuToggle;
-
+    private PauseManagement _pauseManagement;
 
 
     private void Awake()
     {
-        _escMenuToggle = FindObjectOfType<EscMenuToggle>();
+        _pauseManagement = FindObjectOfType<PauseManagement>();
     }
 
     public void OnSaveClicked()
@@ -31,6 +30,6 @@ public class SettingsMenuButtonsHandler : MonoBehaviour
 
     public void OnCloseClicked()
     {
-        _escMenuToggle.SetActive(false);
+        _pauseManagement.DeterminePause();
     }
 }

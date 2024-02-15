@@ -32,6 +32,11 @@ public class MainMenu : MonoBehaviour
         _pauseAction.Enable();
     }
 
+    private void OnDestroy()
+    {
+        _pauseAction.UI.Pause.performed -= OnPauseKeyPressed;
+    }
+
     public void OnPlayClicked()
     {
         if (_sceneToLoadOnPlayClicked != null)
