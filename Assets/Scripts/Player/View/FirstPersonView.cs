@@ -42,6 +42,8 @@ namespace Player.View
 
         private float _xRot = 0f;
 
+
+
         private void OnEnable()
         {
             if (!TryGetComponent(out PlayerInput handler))
@@ -72,6 +74,13 @@ namespace Player.View
             _xRot = _cameraTarget.transform.rotation.eulerAngles.x;
             Cursor.lockState = (CursorLockMode.Locked);
             Cursor.visible = false;
+
+
+            // Get the sensitivity value if one is saved, or use the default.
+            float sensitivity = PlayerPrefs.GetFloat(PlayerPrefsKeys.FirstPersonViewSensitivity,
+                                                            DefaultSettingsMenuValues.FirstPersonViewSensitivity);
+
+            _sensitivitySetting = sensitivity / 100f;
         }
 
         /// <summary>
@@ -141,6 +150,7 @@ namespace Player.View
         /// </summary> 
         public void SetSensitivity(float newSens)
         {
+            Debug.Log(newSens);
             _sensitivitySetting = newSens;
         }
 

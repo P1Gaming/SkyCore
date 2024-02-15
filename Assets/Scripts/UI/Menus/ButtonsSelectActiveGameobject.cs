@@ -15,6 +15,8 @@ namespace UI
 
         private GameObject _currentActive;
 
+
+
         private void Awake()
         {
             if (_firstActive != null)
@@ -36,5 +38,6 @@ namespace UI
             gameObject.SetActive(true);
             _currentActive = gameObject;
         }
+        
     }
 }

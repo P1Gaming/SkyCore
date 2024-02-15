@@ -54,7 +54,7 @@ public class PauseManagement : MonoBehaviour
         _pauseAction.UI.Pause.performed += _ => DeterminePause();
         _paused = !_paused;
 
-        _pMenu = FindObjectOfType<EscMenuToggle>();
+        _pMenu = FindObjectOfType<EscMenuToggle>(true);
 
         _pMenu.SetActive(false);
         _firstPersonView.enabled = true;
