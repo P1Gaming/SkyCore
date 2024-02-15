@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
+  m_Name: FollowPlayer to Tutorial
+  m_EditorClassIdentifier: 
+  _disable: 0
+  _from: {fileID: 11400000, guid: 4c315bf5e45427e4c8846ef931e59e40, type: 2}
+  _to: {fileID: 11400000, guid: 7f611553cc7352a479d5c1cc3536a0b8, type: 2}
+  _conditions:
+  - _parameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771, type: 2}
+    _equalsForBoolParameter: 0
+    _comparisonTypeForFloatParameter: 3
+    _otherFloatParameterToCompareTo: {fileID: 11400000, guid: 4c5a9aae75a6fe140a420012d9636337,
+      type: 2}
+    _comparedToForFloatParameter: NaN
+  - _parameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc, type: 2}
+    _equalsForBoolParameter: 0
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 0
