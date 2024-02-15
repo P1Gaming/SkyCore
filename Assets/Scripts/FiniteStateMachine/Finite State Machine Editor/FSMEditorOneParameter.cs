@@ -89,6 +89,10 @@ namespace FiniteStateMachineEditor
             if (renameTo.Length == 0 || renameTo == Parameter.name)
             {
                 _titleInputField.SetTextWithoutNotify(Parameter.name);
+                
+                // dunno why this is necessary, but otherwise when you select all text and hit enter, no text is shown
+                _titleInputField.ActivateInputField();
+                
                 return;
             }
 
