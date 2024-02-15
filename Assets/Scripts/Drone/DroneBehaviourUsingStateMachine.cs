@@ -47,26 +47,8 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
     private FSMParameter _buttonPressedParameter;
     [SerializeField]
     private FSMParameter _finishedTutorialParameter;
-
-    [Header("Finite State Machine Parameters for Settings")]
-    [SerializeField]
-    private FSMParameter _maxDistanceFromTargetPositionToStopParameter;
-    [SerializeField]
-    private FSMParameter _minDistanceFromTargetPositionToResumeMovingParameter;
-    [SerializeField]
-    private FSMParameter _minDistanceFromTargetPositionToResumeMovingDuringTutorialParameter;
-    [SerializeField]
-    private FSMParameter _maxDistanceFromDroneToHoverbyPlayerToGoScanParameter;
-    [SerializeField]
-    private FSMParameter _maxDistanceBetweenPlayerAndUnscannedToSuccessfullyScanParameter;
-    [SerializeField]
-    private FSMParameter _scanSucceedDurationParameter;
-    [SerializeField]
-    private FSMParameter _scanFailAfterDurationParameter;
     [SerializeField]
     private FSMParameter _buttonPressScanningParameter;
-    [SerializeField]
-    private FSMParameter _buttonDeactivationRadiusParameter;
 
     [Header("Finite State Machine Events")]
     [SerializeField]
@@ -137,27 +119,7 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
         _scannableLocator = new DroneScannableLocator();
         _stateMachine = new FiniteStateMachineInstance(_stateMachineDefinition, _logStateMachineTransitions);
         _player = Player.Motion.PlayerMovement.Instance.transform;
-
-        _stateMachine.SetFloat(_maxDistanceFromTargetPositionToStopParameter
-            , _settings.MaxDistanceFromTargetPositionToStop);
-        _stateMachine.SetFloat(_minDistanceFromTargetPositionToResumeMovingParameter
-           , _settings.MinDistanceFromTargetPositionToResumeMoving);
-        _stateMachine.SetFloat(_minDistanceFromTargetPositionToResumeMovingDuringTutorialParameter
-            , _settings.MinDistanceFromTargetPositionToResumeMovingDuringTutorial);
-
-        _stateMachine.SetFloat(_scanSucceedDurationParameter
-            , _settings.ScanSucceedDuration);
-        _stateMachine.SetFloat(_scanFailAfterDurationParameter
-            , _settings.ScanFailAfterDurationParameter);
-        _stateMachine.SetFloat(_maxDistanceFromDroneToHoverbyPlayerToGoScanParameter
-            , _settings.MaxDistanceFromDroneToHoverbyPlayerToGoScan);
-        _stateMachine.SetFloat(_maxDistanceBetweenPlayerAndUnscannedToSuccessfullyScanParameter
-            , _settings.MaxDistanceBetweenPlayerAndUnscannedToSuccessfullyScan);
-        _stateMachine.SetFloat(_buttonDeactivationRadiusParameter
-            , _settings.ButtonDeactivationRadius);
-
         _stateMachine.SetBool(_buttonPressScanningParameter, _buttonPressScanning);
-
     }
 
     private void Start()
