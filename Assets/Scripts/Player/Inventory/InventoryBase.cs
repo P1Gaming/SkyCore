@@ -32,7 +32,7 @@ namespace Player
         /// </summary>
         /// <param name="item">The stack that has not reached the max items yet</param>
         /// <param name="amount">The number of items to add to the stack</param>
-        private void AddToStack(ItemStack item, int amount)
+        private void AddToStack(ItemStack item, int amount, UI.Inventory.InventoryDragAndDrop dragAndDropIfDroppingItem = null)
         {
             item.amount += amount;
             if (item.amount > item.itemInfo.MaxStack)
@@ -45,6 +45,7 @@ namespace Player
             if (item.amount <= 0)
             {
                 _items.Remove(item);
+                dragAndDropIfDroppingItem.OnDroppedLastItemOfStack();
             }
             OnChangeItem?.Invoke(item);
         }
@@ -150,7 +151,8 @@ namespace Player
         /// <param name="itemInfo"></param>
         /// <param name="subtractedAmount"></param>
         /// <returns>return the possibility to substract</returns>
-        public bool TrySubtractItemAmount(ItemBase itemInfo, int subtractedAmount)
+        public bool TrySubtractItemAmount(ItemBase itemInfo, int subtractedAmount
+            , UI.Inventory.InventoryDragAndDrop dragAndDropIfDroppingItem = null)
         {
             ItemStack item = GetItem(itemInfo, requireStackNotFull: false);
             if ((item is null) || item.amount < subtractedAmount)
@@ -158,7 +160,7 @@ namespace Player
                 return false;
             }
 
-            AddToStack(item, -subtractedAmount);
+            AddToStack(item, -subtractedAmount, dragAndDropIfDroppingItem);
             //PrintHotbar();
 
             return true;

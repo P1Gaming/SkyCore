@@ -31,6 +31,12 @@ namespace UI.Inventory
             _click.canceled += OnClickCancel;
         }
 
+        public void OnDroppedLastItemOfStack()
+        {
+            _beingDragged.StopItemDrag();
+            _beingDragged = null;
+        }
+
         private void OnClickStart(InputAction.CallbackContext context)
         {
             OnClickStart(_slotBelowMouseFinder.FindInventorySlotBelowMouse());
@@ -98,6 +104,7 @@ namespace UI.Inventory
                 return;
             }
 
+            
             if (_beingDragged != null && (_beingDragged.ItemStack.itemInfo.SortType == slotBelowMouse.SlotType || slotBelowMouse.SlotType == ItemBase.ItemSortType.None))
             {
                 // Clicking again after clicking to pick up the item, so the player
@@ -172,7 +179,7 @@ namespace UI.Inventory
 
                 //Decrement Item
 
-                _beingDragged.InventoryOrHotBarUI.InventoryOrHotBar.TrySubtractItemAmount(_beingDragged.ItemStack.itemInfo, 1);
+                _beingDragged.InventoryOrHotBarUI.InventoryOrHotBar.TrySubtractItemAmount(_beingDragged.ItemStack.itemInfo, 1, this);
             }
         }
 
