@@ -1,0 +1,5486 @@
+
+Wolf.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-4Die_4
+  rotate: true
+  xy: 212, 7
+  size: 144, 85
+  orig: 240, 152
+  offset: 56, 4
+  index: -1
+Wolf-4Die_5
+  rotate: false
+  xy: 664, 946
+  size: 158, 76
+  orig: 240, 152
+  offset: 48, 5
+  index: -1
+Wolf-4Die_6
+  rotate: false
+  xy: 173, 957
+  size: 167, 65
+  orig: 240, 152
+  offset: 42, 5
+  index: -1
+Wolf-4Die_7
+  rotate: false
+  xy: 2, 962
+  size: 169, 60
+  orig: 240, 152
+  offset: 42, 3
+  index: -1
+Wolf-4FlyFront_2
+  rotate: false
+  xy: 768, 581
+  size: 149, 93
+  orig: 240, 152
+  offset: 63, 14
+  index: -1
+Wolf-4FlyFront_3
+  rotate: false
+  xy: 790, 763
+  size: 150, 92
+  orig: 240, 152
+  offset: 63, 14
+  index: -1
+Wolf-4FlyFront_4
+  rotate: false
+  xy: 629, 686
+  size: 150, 92
+  orig: 240, 152
+  offset: 65, 15
+  index: -1
+Wolf-4FlyFront_5
+  rotate: true
+  xy: 384, 8
+  size: 143, 94
+  orig: 240, 152
+  offset: 70, 15
+  index: -1
+Wolf-4JumpFly_00
+  rotate: false
+  xy: 2, 799
+  size: 153, 80
+  orig: 240, 152
+  offset: 47, 15
+  index: -1
+Wolf-4JumpFly_20
+  rotate: false
+  xy: 2, 799
+  size: 153, 80
+  orig: 240, 152
+  offset: 47, 15
+  index: -1
+Wolf-4JumpLanding_00
+  rotate: false
+  xy: 2, 799
+  size: 153, 80
+  orig: 240, 152
+  offset: 47, 15
+  index: -1
+Wolf-4Jump_17
+  rotate: false
+  xy: 2, 799
+  size: 153, 80
+  orig: 240, 152
+  offset: 47, 15
+  index: -1
+Wolf-4JumpFly_01
+  rotate: false
+  xy: 167, 808
+  size: 153, 81
+  orig: 240, 152
+  offset: 47, 15
+  index: -1
+Wolf-4JumpFly_02
+  rotate: false
+  xy: 322, 766
+  size: 152, 80
+  orig: 240, 152
+  offset: 48, 15
+  index: -1
+Wolf-4JumpFly_03
+  rotate: false
+  xy: 157, 726
+  size: 152, 80
+  orig: 240, 152
+  offset: 48, 16
+  index: -1
+Wolf-4JumpFly_04
+  rotate: false
+  xy: 637, 780
+  size: 151, 80
+  orig: 240, 152
+  offset: 49, 16
+  index: -1
+Wolf-4JumpFly_05
+  rotate: false
+  xy: 156, 645
+  size: 151, 79
+  orig: 240, 152
+  offset: 49, 16
+  index: -1
+Wolf-4JumpFly_06
+  rotate: false
+  xy: 2, 637
+  size: 151, 79
+  orig: 240, 152
+  offset: 49, 17
+  index: -1
+Wolf-4JumpFly_07
+  rotate: false
+  xy: 2, 556
+  size: 150, 79
+  orig: 240, 152
+  offset: 50, 17
+  index: -1
+Wolf-4JumpFly_08
+  rotate: false
+  xy: 616, 605
+  size: 150, 79
+  orig: 240, 152
+  offset: 50, 17
+  index: -1
+Wolf-4JumpFly_09
+  rotate: false
+  xy: 306, 436
+  size: 149, 79
+  orig: 240, 152
+  offset: 51, 17
+  index: -1
+Wolf-4JumpFly_10
+  rotate: false
+  xy: 154, 403
+  size: 149, 79
+  orig: 240, 152
+  offset: 51, 17
+  index: -1
+Wolf-4JumpFly_11
+  rotate: false
+  xy: 457, 374
+  size: 148, 79
+  orig: 240, 152
+  offset: 52, 17
+  index: -1
+Wolf-4JumpFly_12
+  rotate: false
+  xy: 2, 401
+  size: 149, 79
+  orig: 240, 152
+  offset: 51, 17
+  index: -1
+Wolf-4JumpFly_13
+  rotate: false
+  xy: 764, 500
+  size: 149, 79
+  orig: 240, 152
+  offset: 51, 17
+  index: -1
+Wolf-4JumpFly_14
+  rotate: false
+  xy: 461, 544
+  size: 150, 79
+  orig: 240, 152
+  offset: 50, 17
+  index: -1
+Wolf-4JumpFly_15
+  rotate: false
+  xy: 307, 517
+  size: 150, 79
+  orig: 240, 152
+  offset: 50, 17
+  index: -1
+Wolf-4JumpFly_16
+  rotate: false
+  xy: 476, 711
+  size: 151, 80
+  orig: 240, 152
+  offset: 49, 16
+  index: -1
+Wolf-4JumpFly_17
+  rotate: false
+  xy: 311, 684
+  size: 151, 80
+  orig: 240, 152
+  offset: 49, 16
+  index: -1
+Wolf-4JumpFly_18
+  rotate: false
+  xy: 2, 718
+  size: 152, 79
+  orig: 240, 152
+  offset: 48, 16
+  index: -1
+Wolf-4JumpFly_19
+  rotate: false
+  xy: 824, 942
+  size: 153, 80
+  orig: 240, 152
+  offset: 47, 15
+  index: -1
+Wolf-4JumpLanding_01
+  rotate: false
+  xy: 154, 484
+  size: 150, 76
+  orig: 240, 152
+  offset: 50, 17
+  index: -1
+Wolf-4JumpLanding_02
+  rotate: false
+  xy: 2, 482
+  size: 150, 72
+  orig: 240, 152
+  offset: 50, 17
+  index: -1
+Wolf-4JumpLanding_03
+  rotate: false
+  xy: 305, 365
+  size: 148, 69
+  orig: 240, 152
+  offset: 51, 17
+  index: -1
+Wolf-4JumpLanding_04
+  rotate: false
+  xy: 153, 333
+  size: 148, 68
+  orig: 240, 152
+  offset: 51, 15
+  index: -1
+Wolf-4JumpLanding_05
+  rotate: false
+  xy: 451, 217
+  size: 145, 69
+  orig: 240, 152
+  offset: 53, 13
+  index: -1
+Wolf-4JumpLanding_06
+  rotate: false
+  xy: 744, 153
+  size: 143, 70
+  orig: 240, 152
+  offset: 54, 11
+  index: -1
+Wolf-4JumpLanding_09
+  rotate: true
+  xy: 942, 670
+  size: 140, 80
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-4Jump_03
+  rotate: false
+  xy: 756, 309
+  size: 145, 94
+  orig: 240, 152
+  offset: 54, 10
+  index: -1
+Wolf-4Jump_04
+  rotate: false
+  xy: 2, 306
+  size: 147, 93
+  orig: 240, 152
+  offset: 51, 11
+  index: -1
+Wolf-4Jump_05
+  rotate: false
+  xy: 760, 405
+  size: 147, 93
+  orig: 240, 152
+  offset: 51, 11
+  index: -1
+Wolf-4Jump_06
+  rotate: false
+  xy: 303, 271
+  size: 146, 92
+  orig: 240, 152
+  offset: 51, 12
+  index: -1
+Wolf-4Jump_07
+  rotate: false
+  xy: 607, 328
+  size: 147, 92
+  orig: 240, 152
+  offset: 50, 12
+  index: -1
+Wolf-4Jump_08
+  rotate: false
+  xy: 610, 422
+  size: 148, 91
+  orig: 240, 152
+  offset: 50, 12
+  index: -1
+Wolf-4Jump_09
+  rotate: false
+  xy: 613, 515
+  size: 149, 88
+  orig: 240, 152
+  offset: 50, 13
+  index: -1
+Wolf-4Jump_10
+  rotate: false
+  xy: 459, 455
+  size: 149, 87
+  orig: 240, 152
+  offset: 50, 13
+  index: -1
+Wolf-4Jump_11
+  rotate: false
+  xy: 781, 676
+  size: 150, 85
+  orig: 240, 152
+  offset: 50, 13
+  index: -1
+Wolf-4Jump_12
+  rotate: false
+  xy: 464, 625
+  size: 150, 84
+  orig: 240, 152
+  offset: 50, 14
+  index: -1
+Wolf-4Jump_13
+  rotate: false
+  xy: 309, 598
+  size: 150, 84
+  orig: 240, 152
+  offset: 50, 14
+  index: -1
+Wolf-4Jump_14
+  rotate: false
+  xy: 816, 857
+  size: 151, 83
+  orig: 240, 152
+  offset: 49, 14
+  index: -1
+Wolf-4Jump_15
+  rotate: false
+  xy: 662, 862
+  size: 152, 82
+  orig: 240, 152
+  offset: 48, 15
+  index: -1
+Wolf-4Jump_16
+  rotate: false
+  xy: 483, 793
+  size: 152, 81
+  orig: 240, 152
+  offset: 48, 15
+  index: -1
+Wolf-4Run_00
+  rotate: true
+  xy: 919, 529
+  size: 139, 103
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-4Run_17
+  rotate: true
+  xy: 919, 529
+  size: 139, 103
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-4Run_01
+  rotate: false
+  xy: 299, 168
+  size: 144, 101
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-4Run_02
+  rotate: false
+  xy: 328, 848
+  size: 153, 93
+  orig: 240, 152
+  offset: 48, 15
+  index: -1
+Wolf-4Run_03
+  rotate: false
+  xy: 342, 943
+  size: 159, 79
+  orig: 240, 152
+  offset: 43, 24
+  index: -1
+Wolf-4Run_04
+  rotate: false
+  xy: 2, 881
+  size: 163, 79
+  orig: 240, 152
+  offset: 40, 20
+  index: -1
+Wolf-4Run_05
+  rotate: false
+  xy: 503, 876
+  size: 157, 80
+  orig: 240, 152
+  offset: 47, 14
+  index: -1
+Wolf-4Run_06
+  rotate: false
+  xy: 155, 562
+  size: 150, 81
+  orig: 240, 152
+  offset: 54, 11
+  index: -1
+Wolf-4Run_13
+  rotate: true
+  xy: 299, 7
+  size: 144, 83
+  orig: 240, 152
+  offset: 62, 15
+  index: -1
+Wolf-4Run_14
+  rotate: false
+  xy: 150, 167
+  size: 144, 86
+  orig: 240, 152
+  offset: 61, 15
+  index: -1
+Wolf-4To2_2
+  rotate: true
+  xy: 898, 159
+  size: 120, 124
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-4Walk_06
+  rotate: false
+  xy: 2, 140
+  size: 144, 86
+  orig: 240, 152
+  offset: 59, 8
+  index: -1
+Wolf-4Walk_07
+  rotate: false
+  xy: 598, 153
+  size: 144, 86
+  orig: 240, 152
+  offset: 59, 7
+  index: -1
+Wolf-4Walk_08
+  rotate: false
+  xy: 604, 241
+  size: 145, 85
+  orig: 240, 152
+  offset: 58, 7
+  index: -1
+Wolf-4Walk_09
+  rotate: false
+  xy: 455, 288
+  size: 147, 84
+  orig: 240, 152
+  offset: 57, 7
+  index: -1
+Wolf-4Walk_10
+  rotate: false
+  xy: 751, 225
+  size: 145, 82
+  orig: 240, 152
+  offset: 59, 8
+  index: -1
+Wolf-Attack3_03
+  rotate: false
+  xy: 775, 25
+  size: 112, 126
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-ClimbingLadder_02
+  rotate: false
+  xy: 969, 812
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-DieBack_01
+  rotate: false
+  xy: 603, 8
+  size: 84, 143
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-DieBack_14
+  rotate: false
+  xy: 151, 255
+  size: 146, 76
+  orig: 240, 152
+  offset: 0, 2
+  index: -1
+Wolf-DieFront_07
+  rotate: false
+  xy: 2, 2
+  size: 103, 136
+  orig: 240, 152
+  offset: 57, 5
+  index: -1
+Wolf-DieFront_17
+  rotate: false
+  xy: 167, 891
+  size: 159, 64
+  orig: 240, 152
+  offset: 81, 0
+  index: -1
+Wolf-PistolDieBack_01
+  rotate: false
+  xy: 689, 8
+  size: 84, 143
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-PistolDieBack_14
+  rotate: false
+  xy: 2, 228
+  size: 146, 76
+  orig: 240, 152
+  offset: 0, 2
+  index: -1
+Wolf-PistolDieFront_07
+  rotate: false
+  xy: 107, 2
+  size: 103, 136
+  orig: 240, 152
+  offset: 57, 5
+  index: -1
+Wolf-PistolDieFront_15
+  rotate: true
+  xy: 480, 107
+  size: 108, 116
+  orig: 240, 152
+  offset: 81, 3
+  index: -1
+Wolf-PistolDieFront_17
+  rotate: false
+  xy: 503, 958
+  size: 159, 64
+  orig: 240, 152
+  offset: 81, 0
+  index: -1
+Wolf-PistolFlyFront_05
+  rotate: true
+  xy: 480, 2
+  size: 103, 121
+  orig: 240, 152
+  offset: 36, 23
+  index: -1
+Wolf-PistolRun_07
+  rotate: false
+  xy: 915, 397
+  size: 107, 130
+  orig: 240, 152
+  offset: 45, 11
+  index: -1
+Wolf-Punch_08
+  rotate: true
+  xy: 889, 55
+  size: 102, 133
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-SpeedRun_07
+  rotate: true
+  xy: 903, 281
+  size: 114, 119
+  orig: 240, 152
+  offset: 45, 20
+  index: -1
+
+Wolf2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-2To4_1
+  rotate: true
+  xy: 255, 785
+  size: 113, 127
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-2To4_2
+  rotate: false
+  xy: 518, 908
+  size: 131, 114
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-2To4_3
+  rotate: false
+  xy: 246, 587
+  size: 136, 95
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-4Attack_3
+  rotate: true
+  xy: 617, 108
+  size: 133, 91
+  orig: 240, 152
+  offset: 82, 9
+  index: -1
+Wolf-4Attack_4
+  rotate: false
+  xy: 780, 240
+  size: 139, 91
+  orig: 240, 152
+  offset: 82, 9
+  index: -1
+Wolf-4Attack_5
+  rotate: false
+  xy: 780, 333
+  size: 138, 91
+  orig: 240, 152
+  offset: 82, 9
+  index: -1
+Wolf-4Attack_6
+  rotate: false
+  xy: 784, 819
+  size: 134, 93
+  orig: 240, 152
+  offset: 79, 9
+  index: -1
+Wolf-4Die_1
+  rotate: false
+  xy: 246, 496
+  size: 136, 89
+  orig: 240, 152
+  offset: 66, 8
+  index: -1
+Wolf-4FlyBack_1
+  rotate: false
+  xy: 124, 472
+  size: 120, 84
+  orig: 240, 152
+  offset: 66, 16
+  index: -1
+Wolf-4FlyBack_3
+  rotate: false
+  xy: 131, 558
+  size: 113, 82
+  orig: 240, 152
+  offset: 73, 13
+  index: -1
+Wolf-4FlyFront_1
+  rotate: false
+  xy: 527, 477
+  size: 140, 93
+  orig: 240, 152
+  offset: 72, 14
+  index: -1
+Wolf-4HitBack_4
+  rotate: true
+  xy: 228, 103
+  size: 129, 95
+  orig: 240, 152
+  offset: 82, 12
+  index: -1
+Wolf-4HitBack_5
+  rotate: false
+  xy: 255, 684
+  size: 127, 99
+  orig: 240, 152
+  offset: 82, 7
+  index: -1
+Wolf-4Idle_01
+  rotate: false
+  xy: 784, 730
+  size: 134, 87
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4JumpLanding_07
+  rotate: false
+  xy: 384, 670
+  size: 141, 72
+  orig: 240, 152
+  offset: 56, 10
+  index: -1
+Wolf-4JumpLanding_10
+  rotate: false
+  xy: 246, 412
+  size: 136, 82
+  orig: 240, 152
+  offset: 63, 9
+  index: -1
+Wolf-4Jump_02
+  rotate: false
+  xy: 384, 570
+  size: 141, 98
+  orig: 240, 152
+  offset: 59, 5
+  index: -1
+Wolf-4Run_08
+  rotate: false
+  xy: 384, 392
+  size: 141, 78
+  orig: 240, 152
+  offset: 63, 9
+  index: -1
+Wolf-4Run_09
+  rotate: false
+  xy: 384, 829
+  size: 142, 77
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-4Run_10
+  rotate: false
+  xy: 528, 829
+  size: 142, 77
+  orig: 240, 152
+  offset: 62, 10
+  index: -1
+Wolf-4Run_12
+  rotate: false
+  xy: 527, 391
+  size: 141, 84
+  orig: 240, 152
+  offset: 64, 11
+  index: -1
+Wolf-4Run_15
+  rotate: false
+  xy: 384, 472
+  size: 141, 96
+  orig: 240, 152
+  offset: 63, 11
+  index: -1
+Wolf-4Run_16
+  rotate: false
+  xy: 527, 572
+  size: 140, 101
+  orig: 240, 152
+  offset: 62, 10
+  index: -1
+Wolf-4To2_1
+  rotate: false
+  xy: 784, 914
+  size: 134, 108
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-4Walk_11
+  rotate: false
+  xy: 384, 744
+  size: 142, 83
+  orig: 240, 152
+  offset: 62, 8
+  index: -1
+Wolf-4Walk_12
+  rotate: true
+  xy: 325, 103
+  size: 138, 85
+  orig: 240, 152
+  offset: 65, 8
+  index: -1
+Wolf-Attack1_02
+  rotate: true
+  xy: 384, 302
+  size: 88, 141
+  orig: 240, 152
+  offset: 40, 9
+  index: -1
+Wolf-Attack1_03
+  rotate: true
+  xy: 527, 300
+  size: 89, 141
+  orig: 240, 152
+  offset: 40, 9
+  index: -1
+Wolf-Attack1_05
+  rotate: true
+  xy: 660, 2
+  size: 98, 140
+  orig: 240, 152
+  offset: 46, 9
+  index: -1
+Wolf-Attack1_07
+  rotate: false
+  xy: 119, 103
+  size: 107, 129
+  orig: 240, 152
+  offset: 50, 9
+  index: -1
+Wolf-Attack1_09
+  rotate: false
+  xy: 921, 108
+  size: 101, 132
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Attack2_02
+  rotate: false
+  xy: 920, 891
+  size: 102, 131
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Attack3_02
+  rotate: false
+  xy: 920, 891
+  size: 102, 131
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Attack2_04
+  rotate: false
+  xy: 133, 891
+  size: 120, 131
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Attack2_05
+  rotate: false
+  xy: 2, 888
+  size: 129, 134
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Attack2_06
+  rotate: false
+  xy: 2, 755
+  size: 127, 131
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Attack2_07
+  rotate: false
+  xy: 2, 501
+  size: 120, 128
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Attack2_08
+  rotate: false
+  xy: 670, 270
+  size: 108, 125
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Attack3_04
+  rotate: false
+  xy: 2, 103
+  size: 115, 129
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Attack3_05
+  rotate: false
+  xy: 131, 642
+  size: 113, 128
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Attack3_06
+  rotate: false
+  xy: 672, 791
+  size: 110, 115
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Attack3_07
+  rotate: true
+  xy: 133, 772
+  size: 117, 120
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-ClimbingLadder_00
+  rotate: true
+  xy: 382, 243
+  size: 57, 128
+  orig: 240, 152
+  offset: 62, 8
+  index: -1
+Wolf-ClimbingLadder_12
+  rotate: true
+  xy: 382, 243
+  size: 57, 128
+  orig: 240, 152
+  offset: 62, 8
+  index: -1
+Wolf-ClimbingLadder_01
+  rotate: true
+  xy: 512, 243
+  size: 55, 128
+  orig: 240, 152
+  offset: 61, 8
+  index: -1
+Wolf-ClimbingLadder_11
+  rotate: true
+  xy: 252, 243
+  size: 58, 128
+  orig: 240, 152
+  offset: 61, 8
+  index: -1
+Wolf-DieBack_04
+  rotate: false
+  xy: 2, 631
+  size: 127, 122
+  orig: 240, 152
+  offset: 5, 25
+  index: -1
+Wolf-DieBack_05
+  rotate: true
+  xy: 2, 234
+  size: 131, 114
+  orig: 240, 152
+  offset: 6, 32
+  index: -1
+Wolf-DieBack_06
+  rotate: false
+  xy: 384, 908
+  size: 132, 114
+  orig: 240, 152
+  offset: 9, 30
+  index: -1
+Wolf-DieBack_07
+  rotate: true
+  xy: 672, 659
+  size: 130, 110
+  orig: 240, 152
+  offset: 11, 31
+  index: -1
+Wolf-DieBack_08
+  rotate: true
+  xy: 669, 530
+  size: 127, 113
+  orig: 240, 152
+  offset: 10, 23
+  index: -1
+Wolf-DieBack_09
+  rotate: true
+  xy: 920, 502
+  size: 123, 102
+  orig: 240, 152
+  offset: 9, 20
+  index: -1
+Wolf-DieBack_13
+  rotate: false
+  xy: 528, 752
+  size: 142, 75
+  orig: 240, 152
+  offset: 0, 3
+  index: -1
+Wolf-DieFront_06
+  rotate: true
+  xy: 780, 426
+  size: 98, 138
+  orig: 240, 152
+  offset: 58, 8
+  index: -1
+Wolf-DieFront_13
+  rotate: true
+  xy: 547, 3
+  size: 103, 111
+  orig: 240, 152
+  offset: 81, 8
+  index: -1
+Wolf-Idle3_09
+  rotate: false
+  xy: 839, 102
+  size: 80, 136
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-PistolDieBack_04
+  rotate: false
+  xy: 255, 900
+  size: 127, 122
+  orig: 240, 152
+  offset: 5, 25
+  index: -1
+Wolf-PistolDieBack_05
+  rotate: false
+  xy: 651, 908
+  size: 131, 114
+  orig: 240, 152
+  offset: 6, 32
+  index: -1
+Wolf-PistolDieBack_06
+  rotate: true
+  xy: 2, 367
+  size: 132, 114
+  orig: 240, 152
+  offset: 9, 30
+  index: -1
+Wolf-PistolDieBack_07
+  rotate: true
+  xy: 118, 340
+  size: 130, 110
+  orig: 240, 152
+  offset: 11, 31
+  index: -1
+Wolf-PistolDieBack_08
+  rotate: false
+  xy: 710, 125
+  size: 127, 113
+  orig: 240, 152
+  offset: 10, 23
+  index: -1
+Wolf-PistolDieBack_09
+  rotate: true
+  xy: 920, 377
+  size: 123, 102
+  orig: 240, 152
+  offset: 9, 20
+  index: -1
+Wolf-PistolDieBack_13
+  rotate: false
+  xy: 528, 675
+  size: 142, 75
+  orig: 240, 152
+  offset: 0, 3
+  index: -1
+Wolf-PistolDieFront_06
+  rotate: true
+  xy: 802, 2
+  size: 98, 138
+  orig: 240, 152
+  offset: 58, 8
+  index: -1
+Wolf-PistolRun_00
+  rotate: true
+  xy: 2, 2
+  size: 99, 135
+  orig: 240, 152
+  offset: 49, 9
+  index: -1
+Wolf-PistolRun_04
+  rotate: false
+  xy: 920, 759
+  size: 102, 130
+  orig: 240, 152
+  offset: 48, 14
+  index: -1
+Wolf-PistolRun_05
+  rotate: true
+  xy: 118, 234
+  size: 104, 132
+  orig: 240, 152
+  offset: 47, 11
+  index: -1
+Wolf-PistolRun_08
+  rotate: false
+  xy: 670, 397
+  size: 108, 131
+  orig: 240, 152
+  offset: 44, 11
+  index: -1
+Wolf-PistolRun_11
+  rotate: false
+  xy: 412, 108
+  size: 101, 130
+  orig: 240, 152
+  offset: 49, 15
+  index: -1
+Wolf-PistolRun_12
+  rotate: false
+  xy: 515, 108
+  size: 100, 133
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-PistolRun_13
+  rotate: true
+  xy: 784, 628
+  size: 100, 134
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+Wolf-PistolRun_14
+  rotate: true
+  xy: 139, 2
+  size: 99, 135
+  orig: 240, 152
+  offset: 49, 9
+  index: -1
+Wolf-Punch_05
+  rotate: false
+  xy: 921, 242
+  size: 101, 133
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Run_00
+  rotate: true
+  xy: 276, 2
+  size: 99, 135
+  orig: 240, 152
+  offset: 49, 9
+  index: -1
+Wolf-Run_14
+  rotate: true
+  xy: 276, 2
+  size: 99, 135
+  orig: 240, 152
+  offset: 49, 9
+  index: -1
+Wolf-Run_04
+  rotate: false
+  xy: 920, 627
+  size: 102, 130
+  orig: 240, 152
+  offset: 48, 14
+  index: -1
+Wolf-Run_05
+  rotate: true
+  xy: 413, 2
+  size: 104, 132
+  orig: 240, 152
+  offset: 47, 11
+  index: -1
+Wolf-Run_07
+  rotate: true
+  xy: 252, 303
+  size: 107, 130
+  orig: 240, 152
+  offset: 45, 11
+  index: -1
+Wolf-Run_13
+  rotate: true
+  xy: 784, 526
+  size: 100, 134
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+
+Wolf3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-2To4_0
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-4To2_4
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Attack1_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Attack1_10
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Attack2_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Attack2_10
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Attack3_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Attack3_10
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-DieBack_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-DieFront_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-HitBack_0
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-HitBack_7
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-HitFront_0
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-HitFront_7
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle1_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle1_34
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_34
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle3_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle3_34
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle4_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle4_34
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Jump_0
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Kick_0
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Kick_7
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Punch_00
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Punch_10
+  rotate: true
+  xy: 234, 826
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-2To4_4
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Attack_0
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Attack_8
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Die_0
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4HitBack_0
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4HitBack_7
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4HitFront_0
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4HitFront_6
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Idle_00
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Idle_35
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4JumpLanding_14
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Jump_00
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4To2_0
+  rotate: false
+  xy: 112, 729
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Attack_1
+  rotate: false
+  xy: 371, 823
+  size: 132, 92
+  orig: 240, 152
+  offset: 74, 9
+  index: -1
+Wolf-4Attack_2
+  rotate: false
+  xy: 371, 728
+  size: 132, 93
+  orig: 240, 152
+  offset: 81, 9
+  index: -1
+Wolf-4FlyFront_0
+  rotate: false
+  xy: 485, 427
+  size: 128, 92
+  orig: 240, 152
+  offset: 83, 14
+  index: -1
+Wolf-4FlyFront_7
+  rotate: false
+  xy: 485, 427
+  size: 128, 92
+  orig: 240, 152
+  offset: 83, 14
+  index: -1
+Wolf-4HitBack_1
+  rotate: false
+  xy: 644, 726
+  size: 130, 96
+  orig: 240, 152
+  offset: 76, 7
+  index: -1
+Wolf-4HitBack_2
+  rotate: false
+  xy: 646, 824
+  size: 128, 96
+  orig: 240, 152
+  offset: 82, 9
+  index: -1
+Wolf-4HitBack_3
+  rotate: false
+  xy: 894, 99
+  size: 128, 91
+  orig: 240, 152
+  offset: 83, 14
+  index: -1
+Wolf-4JumpLanding_08
+  rotate: true
+  xy: 282, 362
+  size: 140, 76
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-4Jump_01
+  rotate: false
+  xy: 505, 826
+  size: 139, 94
+  orig: 240, 152
+  offset: 61, 7
+  index: -1
+Wolf-4Run_07
+  rotate: true
+  xy: 204, 216
+  size: 139, 81
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Run_11
+  rotate: true
+  xy: 104, 485
+  size: 141, 79
+  orig: 240, 152
+  offset: 64, 14
+  index: -1
+Wolf-4To2_3
+  rotate: true
+  xy: 509, 629
+  size: 97, 133
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-4Walk_03
+  rotate: false
+  xy: 615, 438
+  size: 136, 84
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Walk_05
+  rotate: false
+  xy: 776, 836
+  size: 137, 87
+  orig: 240, 152
+  offset: 65, 8
+  index: -1
+Wolf-4Walk_16
+  rotate: false
+  xy: 615, 345
+  size: 136, 91
+  orig: 240, 152
+  offset: 64, 8
+  index: -1
+Wolf-Attack1_01
+  rotate: false
+  xy: 104, 342
+  size: 86, 141
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Attack1_04
+  rotate: false
+  xy: 192, 357
+  size: 88, 141
+  orig: 240, 152
+  offset: 40, 9
+  index: -1
+Wolf-Attack1_06
+  rotate: true
+  xy: 234, 916
+  size: 106, 131
+  orig: 240, 152
+  offset: 50, 9
+  index: -1
+Wolf-Attack1_08
+  rotate: true
+  xy: 485, 521
+  size: 106, 128
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Attack2_03
+  rotate: true
+  xy: 356, 518
+  size: 109, 127
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Attack3_08
+  rotate: false
+  xy: 360, 393
+  size: 111, 123
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-ClimbingLadder_06
+  rotate: true
+  xy: 2, 20
+  size: 55, 123
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-ClimbingLadder_09
+  rotate: false
+  xy: 185, 500
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-ClimbingLadder_10
+  rotate: true
+  xy: 127, 22
+  size: 53, 128
+  orig: 240, 152
+  offset: 61, 8
+  index: -1
+Wolf-DieBack_02
+  rotate: false
+  xy: 287, 220
+  size: 89, 140
+  orig: 240, 152
+  offset: 35, 9
+  index: -1
+Wolf-DieBack_11
+  rotate: false
+  xy: 117, 818
+  size: 115, 77
+  orig: 240, 152
+  offset: 7, 14
+  index: -1
+Wolf-DieFront_04
+  rotate: true
+  xy: 615, 254
+  size: 89, 136
+  orig: 240, 152
+  offset: 63, 8
+  index: -1
+Wolf-DieFront_05
+  rotate: false
+  xy: 101, 77
+  size: 90, 137
+  orig: 240, 152
+  offset: 64, 8
+  index: -1
+Wolf-DieFront_15
+  rotate: true
+  xy: 730, 2
+  size: 108, 110
+  orig: 240, 152
+  offset: 81, 9
+  index: -1
+Wolf-DieFront_16
+  rotate: true
+  xy: 668, 113
+  size: 139, 83
+  orig: 240, 152
+  offset: 81, 7
+  index: -1
+Wolf-FlyBack_4
+  rotate: false
+  xy: 432, 2
+  size: 78, 111
+  orig: 240, 152
+  offset: 66, 28
+  index: -1
+Wolf-FlyFront_00
+  rotate: false
+  xy: 104, 216
+  size: 98, 124
+  orig: 240, 152
+  offset: 42, 21
+  index: -1
+Wolf-FlyFront_10
+  rotate: false
+  xy: 104, 216
+  size: 98, 124
+  orig: 240, 152
+  offset: 42, 21
+  index: -1
+Wolf-FlyFront_01
+  rotate: true
+  xy: 247, 629
+  size: 98, 122
+  orig: 240, 152
+  offset: 42, 23
+  index: -1
+Wolf-FlyUp_11
+  rotate: true
+  xy: 776, 747
+  size: 87, 137
+  orig: 240, 152
+  offset: 56, 12
+  index: -1
+Wolf-HitBack_1
+  rotate: true
+  xy: 776, 557
+  size: 90, 137
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-HitBack_2
+  rotate: true
+  xy: 592, 2
+  size: 95, 136
+  orig: 240, 152
+  offset: 72, 12
+  index: -1
+Wolf-Idle1_21
+  rotate: true
+  xy: 842, 2
+  size: 95, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle3_02
+  rotate: true
+  xy: 753, 112
+  size: 89, 139
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-Idle3_12
+  rotate: false
+  xy: 291, 78
+  size: 87, 140
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle3_13
+  rotate: true
+  xy: 753, 469
+  size: 86, 140
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle3_14
+  rotate: true
+  xy: 753, 381
+  size: 86, 140
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle4_23
+  rotate: true
+  xy: 109, 630
+  size: 97, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle4_24
+  rotate: true
+  xy: 371, 629
+  size: 97, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle4_25
+  rotate: true
+  xy: 615, 524
+  size: 97, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-PistolDieBack_02
+  rotate: true
+  xy: 753, 290
+  size: 89, 140
+  orig: 240, 152
+  offset: 35, 9
+  index: -1
+Wolf-PistolDieFront_09
+  rotate: true
+  xy: 249, 729
+  size: 95, 120
+  orig: 240, 152
+  offset: 78, 7
+  index: -1
+Wolf-PistolFlyBack_4
+  rotate: false
+  xy: 512, 2
+  size: 78, 111
+  orig: 240, 152
+  offset: 66, 28
+  index: -1
+Wolf-PistolIdle_22
+  rotate: true
+  xy: 505, 728
+  size: 96, 137
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-PistolIdle_23
+  rotate: true
+  xy: 776, 925
+  size: 97, 137
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-PistolIdle_24
+  rotate: false
+  xy: 2, 77
+  size: 97, 137
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-PistolIdle_25
+  rotate: true
+  xy: 776, 649
+  size: 96, 137
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-PistolIdle_26
+  rotate: false
+  xy: 193, 77
+  size: 96, 137
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-PistolIdle_27
+  rotate: false
+  xy: 378, 254
+  size: 95, 137
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-PistolIdle_28
+  rotate: false
+  xy: 380, 115
+  size: 95, 137
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-PistolIdle_29
+  rotate: false
+  xy: 477, 115
+  size: 94, 137
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-PistolIdle_30
+  rotate: false
+  xy: 573, 115
+  size: 93, 137
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-PistolRun_01
+  rotate: false
+  xy: 2, 490
+  size: 100, 136
+  orig: 240, 152
+  offset: 49, 8
+  index: -1
+Wolf-PistolRun_02
+  rotate: false
+  xy: 2, 353
+  size: 100, 135
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+Wolf-PistolRun_03
+  rotate: false
+  xy: 915, 893
+  size: 107, 129
+  orig: 240, 152
+  offset: 43, 16
+  index: -1
+Wolf-PistolRun_06
+  rotate: false
+  xy: 2, 628
+  size: 105, 132
+  orig: 240, 152
+  offset: 46, 10
+  index: -1
+Wolf-PistolRun_10
+  rotate: true
+  xy: 895, 294
+  size: 100, 127
+  orig: 240, 152
+  offset: 50, 18
+  index: -1
+Wolf-PistolShoot_4
+  rotate: true
+  xy: 475, 254
+  size: 77, 138
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-PistolWalk_07
+  rotate: true
+  xy: 291, 2
+  size: 74, 139
+  orig: 240, 152
+  offset: 70, 10
+  index: -1
+Wolf-Punch_02
+  rotate: true
+  xy: 753, 203
+  size: 85, 140
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Punch_03
+  rotate: true
+  xy: 753, 203
+  size: 85, 140
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Punch_04
+  rotate: true
+  xy: 475, 333
+  size: 92, 138
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Punch_09
+  rotate: true
+  xy: 639, 922
+  size: 100, 135
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Run_01
+  rotate: true
+  xy: 501, 922
+  size: 100, 136
+  orig: 240, 152
+  offset: 49, 8
+  index: -1
+Wolf-Run_02
+  rotate: false
+  xy: 2, 216
+  size: 100, 135
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+Wolf-Run_03
+  rotate: false
+  xy: 915, 762
+  size: 107, 129
+  orig: 240, 152
+  offset: 43, 16
+  index: -1
+Wolf-Run_06
+  rotate: true
+  xy: 367, 917
+  size: 105, 132
+  orig: 240, 152
+  offset: 46, 10
+  index: -1
+Wolf-Run_08
+  rotate: false
+  xy: 2, 762
+  size: 108, 131
+  orig: 240, 152
+  offset: 44, 11
+  index: -1
+Wolf-Run_10
+  rotate: true
+  xy: 895, 192
+  size: 100, 127
+  orig: 240, 152
+  offset: 50, 18
+  index: -1
+Wolf-Run_11
+  rotate: true
+  xy: 644, 623
+  size: 101, 130
+  orig: 240, 152
+  offset: 49, 15
+  index: -1
+Wolf-SpeedRun_00
+  rotate: true
+  xy: 895, 396
+  size: 106, 127
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-SpeedRun_10
+  rotate: true
+  xy: 895, 396
+  size: 106, 127
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-SpeedRun_01
+  rotate: false
+  xy: 915, 633
+  size: 107, 127
+  orig: 240, 152
+  offset: 53, 10
+  index: -1
+Wolf-SpeedRun_04
+  rotate: false
+  xy: 2, 895
+  size: 113, 127
+  orig: 240, 152
+  offset: 46, 10
+  index: -1
+Wolf-SpeedRun_05
+  rotate: false
+  xy: 117, 897
+  size: 115, 125
+  orig: 240, 152
+  offset: 45, 11
+  index: -1
+Wolf-SpeedRun_06
+  rotate: false
+  xy: 240, 504
+  size: 114, 123
+  orig: 240, 152
+  offset: 45, 14
+  index: -1
+Wolf-SpeedRun_09
+  rotate: false
+  xy: 915, 504
+  size: 107, 127
+  orig: 240, 152
+  offset: 53, 10
+  index: -1
+
+Wolf4.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-4Attack_7
+  rotate: false
+  xy: 411, 628
+  size: 135, 92
+  orig: 240, 152
+  offset: 72, 9
+  index: -1
+Wolf-4Die_2
+  rotate: false
+  xy: 786, 447
+  size: 135, 90
+  orig: 240, 152
+  offset: 66, 6
+  index: -1
+Wolf-4Die_3
+  rotate: false
+  xy: 795, 735
+  size: 133, 92
+  orig: 240, 152
+  offset: 64, 3
+  index: -1
+Wolf-4FlyBack_0
+  rotate: true
+  xy: 715, 113
+  size: 126, 86
+  orig: 240, 152
+  offset: 60, 16
+  index: -1
+Wolf-4FlyBack_7
+  rotate: true
+  xy: 715, 113
+  size: 126, 86
+  orig: 240, 152
+  offset: 60, 16
+  index: -1
+Wolf-4FlyBack_4
+  rotate: false
+  xy: 414, 722
+  size: 114, 82
+  orig: 240, 152
+  offset: 72, 14
+  index: -1
+Wolf-4FlyBack_6
+  rotate: false
+  xy: 530, 728
+  size: 122, 84
+  orig: 240, 152
+  offset: 64, 17
+  index: -1
+Wolf-4HitFront_2
+  rotate: false
+  xy: 656, 351
+  size: 128, 89
+  orig: 240, 152
+  offset: 61, 12
+  index: -1
+Wolf-4HitFront_4
+  rotate: true
+  xy: 100, 75
+  size: 127, 87
+  orig: 240, 152
+  offset: 66, 13
+  index: -1
+Wolf-4Idle_34
+  rotate: false
+  xy: 786, 358
+  size: 135, 87
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4JumpLanding_13
+  rotate: true
+  xy: 281, 393
+  size: 135, 86
+  orig: 240, 152
+  offset: 65, 10
+  index: -1
+Wolf-Attack2_09
+  rotate: false
+  xy: 109, 755
+  size: 99, 129
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Attack3_09
+  rotate: false
+  xy: 109, 755
+  size: 99, 129
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-ClimbingLadder_05
+  rotate: true
+  xy: 2, 19
+  size: 54, 125
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-DieBack_03
+  rotate: false
+  xy: 208, 891
+  size: 101, 131
+  orig: 240, 152
+  offset: 18, 17
+  index: -1
+Wolf-DieFront_08
+  rotate: false
+  xy: 213, 628
+  size: 98, 127
+  orig: 240, 152
+  offset: 69, 7
+  index: -1
+Wolf-DieFront_12
+  rotate: true
+  xy: 548, 627
+  size: 99, 114
+  orig: 240, 152
+  offset: 81, 9
+  index: -1
+Wolf-DieFront_14
+  rotate: true
+  xy: 548, 519
+  size: 106, 112
+  orig: 240, 152
+  offset: 81, 8
+  index: -1
+Wolf-FlyBack_1
+  rotate: false
+  xy: 189, 2
+  size: 77, 107
+  orig: 240, 152
+  offset: 69, 25
+  index: -1
+Wolf-FlyBack_3
+  rotate: false
+  xy: 627, 6
+  size: 78, 109
+  orig: 240, 152
+  offset: 66, 30
+  index: -1
+Wolf-FlyBack_6
+  rotate: false
+  xy: 268, 2
+  size: 77, 107
+  orig: 240, 152
+  offset: 69, 24
+  index: -1
+Wolf-FlyFront_02
+  rotate: false
+  xy: 313, 535
+  size: 96, 119
+  orig: 240, 152
+  offset: 44, 25
+  index: -1
+Wolf-FlyFront_03
+  rotate: true
+  xy: 664, 533
+  size: 94, 120
+  orig: 240, 152
+  offset: 46, 25
+  index: -1
+Wolf-FlyFront_06
+  rotate: true
+  xy: 662, 442
+  size: 89, 122
+  orig: 240, 152
+  offset: 50, 22
+  index: -1
+Wolf-FlyFront_08
+  rotate: false
+  xy: 803, 2
+  size: 93, 119
+  orig: 240, 152
+  offset: 47, 25
+  index: -1
+Wolf-FlyUp_02
+  rotate: false
+  xy: 466, 258
+  size: 86, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-FlyUp_10
+  rotate: true
+  xy: 411, 533
+  size: 93, 135
+  orig: 240, 152
+  offset: 53, 12
+  index: -1
+Wolf-HitBack_4
+  rotate: false
+  xy: 923, 387
+  size: 99, 126
+  orig: 240, 152
+  offset: 76, 19
+  index: -1
+Wolf-HitFront_1
+  rotate: false
+  xy: 467, 401
+  size: 79, 130
+  orig: 240, 152
+  offset: 61, 13
+  index: -1
+Wolf-HitFront_3
+  rotate: false
+  xy: 347, 2
+  size: 77, 107
+  orig: 240, 152
+  offset: 39, 23
+  index: -1
+Wolf-Idle1_22
+  rotate: true
+  xy: 654, 829
+  size: 95, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle1_23
+  rotate: false
+  xy: 2, 489
+  size: 96, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle1_24
+  rotate: true
+  xy: 311, 926
+  size: 96, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle1_25
+  rotate: false
+  xy: 2, 351
+  size: 96, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle1_26
+  rotate: true
+  xy: 449, 926
+  size: 96, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle1_30
+  rotate: false
+  xy: 930, 649
+  size: 92, 136
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Idle2_21
+  rotate: true
+  xy: 786, 261
+  size: 95, 135
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle2_23
+  rotate: false
+  xy: 313, 656
+  size: 96, 135
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle2_24
+  rotate: true
+  xy: 786, 637
+  size: 96, 135
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle2_25
+  rotate: false
+  xy: 2, 213
+  size: 96, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle2_26
+  rotate: true
+  xy: 587, 926
+  size: 96, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle3_03
+  rotate: true
+  xy: 654, 738
+  size: 89, 139
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-Idle3_10
+  rotate: false
+  xy: 100, 486
+  size: 76, 139
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Idle3_11
+  rotate: false
+  xy: 100, 345
+  size: 81, 139
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Idle3_15
+  rotate: false
+  xy: 100, 204
+  size: 87, 139
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle3_16
+  rotate: false
+  xy: 189, 111
+  size: 88, 139
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle3_30
+  rotate: false
+  xy: 279, 111
+  size: 85, 139
+  orig: 240, 152
+  offset: 64, 9
+  index: -1
+Wolf-Idle3_31
+  rotate: false
+  xy: 280, 252
+  size: 87, 139
+  orig: 240, 152
+  offset: 63, 9
+  index: -1
+Wolf-Idle4_20
+  rotate: true
+  xy: 786, 539
+  size: 96, 135
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Idle4_21
+  rotate: false
+  xy: 183, 393
+  size: 96, 135
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle4_22
+  rotate: false
+  xy: 369, 396
+  size: 96, 135
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle4_26
+  rotate: false
+  xy: 109, 886
+  size: 97, 136
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle4_27
+  rotate: false
+  xy: 2, 75
+  size: 96, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle4_28
+  rotate: true
+  xy: 725, 926
+  size: 96, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle4_29
+  rotate: true
+  xy: 792, 829
+  size: 95, 136
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-IdleLadder_00
+  rotate: true
+  xy: 656, 296
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_14
+  rotate: true
+  xy: 656, 296
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_01
+  rotate: true
+  xy: 656, 241
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-Jump_5
+  rotate: false
+  xy: 554, 275
+  size: 100, 123
+  orig: 240, 152
+  offset: 48, 7
+  index: -1
+Wolf-Kick_2
+  rotate: true
+  xy: 178, 530
+  size: 96, 133
+  orig: 240, 152
+  offset: 43, 10
+  index: -1
+Wolf-PistolDieBack_03
+  rotate: false
+  xy: 311, 793
+  size: 101, 131
+  orig: 240, 152
+  offset: 18, 17
+  index: -1
+Wolf-PistolDieFront_14
+  rotate: false
+  xy: 548, 400
+  size: 106, 117
+  orig: 240, 152
+  offset: 81, 3
+  index: -1
+Wolf-PistolDieFront_16
+  rotate: true
+  xy: 189, 252
+  size: 139, 89
+  orig: 240, 152
+  offset: 81, 1
+  index: -1
+Wolf-PistolFlyBack_1
+  rotate: false
+  xy: 426, 2
+  size: 77, 107
+  orig: 240, 152
+  offset: 69, 25
+  index: -1
+Wolf-PistolFlyBack_3
+  rotate: false
+  xy: 707, 2
+  size: 78, 109
+  orig: 240, 152
+  offset: 66, 30
+  index: -1
+Wolf-PistolFlyFront_01
+  rotate: true
+  xy: 900, 56
+  size: 99, 122
+  orig: 240, 152
+  offset: 41, 23
+  index: -1
+Wolf-PistolFlyFront_03
+  rotate: true
+  xy: 664, 629
+  size: 107, 120
+  orig: 240, 152
+  offset: 33, 25
+  index: -1
+Wolf-PistolFlyFront_04
+  rotate: true
+  xy: 505, 10
+  size: 105, 120
+  orig: 240, 152
+  offset: 34, 24
+  index: -1
+Wolf-PistolFlyFront_06
+  rotate: false
+  xy: 612, 117
+  size: 101, 122
+  orig: 240, 152
+  offset: 38, 22
+  index: -1
+Wolf-PistolFlyFront_07
+  rotate: true
+  xy: 900, 157
+  size: 100, 122
+  orig: 240, 152
+  offset: 40, 23
+  index: -1
+Wolf-PistolHitBack_2
+  rotate: false
+  xy: 369, 258
+  size: 95, 136
+  orig: 240, 152
+  offset: 72, 12
+  index: -1
+Wolf-PistolHitBack_4
+  rotate: false
+  xy: 923, 259
+  size: 99, 126
+  orig: 240, 152
+  offset: 76, 19
+  index: -1
+Wolf-PistolIdle_20
+  rotate: false
+  xy: 803, 123
+  size: 95, 136
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-PistolIdle_21
+  rotate: true
+  xy: 863, 926
+  size: 96, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-PistolIdle_31
+  rotate: false
+  xy: 930, 787
+  size: 92, 137
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-PistolRun_09
+  rotate: false
+  xy: 2, 893
+  size: 105, 129
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-PistolShoot_2
+  rotate: false
+  xy: 366, 111
+  size: 80, 139
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-PistolShoot_5
+  rotate: false
+  xy: 448, 117
+  size: 78, 139
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-Punch_06
+  rotate: false
+  xy: 210, 757
+  size: 99, 132
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Punch_07
+  rotate: false
+  xy: 923, 515
+  size: 99, 132
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Run_09
+  rotate: false
+  xy: 2, 762
+  size: 105, 129
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-Run_12
+  rotate: false
+  xy: 2, 627
+  size: 100, 133
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-SpeedRun_02
+  rotate: false
+  xy: 414, 806
+  size: 114, 118
+  orig: 240, 152
+  offset: 44, 20
+  index: -1
+Wolf-SpeedRun_03
+  rotate: true
+  xy: 530, 814
+  size: 110, 122
+  orig: 240, 152
+  offset: 48, 16
+  index: -1
+Wolf-SpeedRun_08
+  rotate: false
+  xy: 104, 630
+  size: 107, 123
+  orig: 240, 152
+  offset: 51, 16
+  index: -1
+Wolf-Walk_07
+  rotate: false
+  xy: 528, 117
+  size: 82, 139
+  orig: 240, 152
+  offset: 62, 10
+  index: -1
+
+Wolf5.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-4FlyFront_6
+  rotate: true
+  xy: 291, 750
+  size: 133, 94
+  orig: 240, 152
+  offset: 79, 14
+  index: -1
+Wolf-4HitBack_6
+  rotate: false
+  xy: 764, 833
+  size: 131, 93
+  orig: 240, 152
+  offset: 73, 8
+  index: -1
+Wolf-4HitFront_3
+  rotate: false
+  xy: 897, 733
+  size: 125, 86
+  orig: 240, 152
+  offset: 63, 16
+  index: -1
+Wolf-4HitFront_5
+  rotate: false
+  xy: 762, 744
+  size: 133, 87
+  orig: 240, 152
+  offset: 65, 10
+  index: -1
+Wolf-4Idle_02
+  rotate: true
+  xy: 289, 473
+  size: 134, 87
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4JumpLanding_12
+  rotate: true
+  xy: 288, 336
+  size: 135, 84
+  orig: 240, 152
+  offset: 65, 10
+  index: -1
+Wolf-4Walk_00
+  rotate: true
+  xy: 641, 59
+  size: 135, 88
+  orig: 240, 152
+  offset: 65, 8
+  index: -1
+Wolf-4Walk_18
+  rotate: true
+  xy: 641, 59
+  size: 135, 88
+  orig: 240, 152
+  offset: 65, 8
+  index: -1
+Wolf-4Walk_01
+  rotate: true
+  xy: 731, 59
+  size: 135, 86
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-Attack2_01
+  rotate: false
+  xy: 387, 887
+  size: 95, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Attack3_01
+  rotate: false
+  xy: 387, 887
+  size: 95, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-ClimbingLadder_03
+  rotate: true
+  xy: 2, 2
+  size: 53, 126
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-ClimbingLadder_04
+  rotate: true
+  xy: 260, 2
+  size: 53, 126
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-ClimbingLadder_07
+  rotate: true
+  xy: 806, 4
+  size: 53, 126
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-DieFront_10
+  rotate: true
+  xy: 677, 196
+  size: 94, 117
+  orig: 240, 152
+  offset: 80, 9
+  index: -1
+Wolf-FlyUp_03
+  rotate: false
+  xy: 97, 196
+  size: 90, 136
+  orig: 240, 152
+  offset: 55, 12
+  index: -1
+Wolf-FlyUp_04
+  rotate: false
+  xy: 656, 514
+  size: 88, 136
+  orig: 240, 152
+  offset: 56, 12
+  index: -1
+Wolf-HitBack_3
+  rotate: true
+  xy: 897, 922
+  size: 99, 125
+  orig: 240, 152
+  offset: 76, 20
+  index: -1
+Wolf-HitBack_5
+  rotate: false
+  xy: 2, 885
+  size: 94, 136
+  orig: 240, 152
+  offset: 74, 12
+  index: -1
+Wolf-HitBack_6
+  rotate: false
+  xy: 2, 57
+  size: 91, 137
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-Idle1_09
+  rotate: false
+  xy: 469, 336
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_16
+  rotate: false
+  xy: 819, 59
+  size: 92, 135
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Idle1_18
+  rotate: true
+  xy: 760, 928
+  size: 93, 135
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Idle1_19
+  rotate: false
+  xy: 193, 336
+  size: 93, 135
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Idle1_20
+  rotate: false
+  xy: 98, 610
+  size: 94, 135
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Idle1_27
+  rotate: false
+  xy: 2, 747
+  size: 94, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle1_28
+  rotate: false
+  xy: 98, 885
+  size: 94, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle1_29
+  rotate: false
+  xy: 194, 611
+  size: 93, 136
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Idle1_31
+  rotate: false
+  xy: 746, 514
+  size: 91, 136
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Idle2_19
+  rotate: false
+  xy: 387, 750
+  size: 93, 135
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Idle2_20
+  rotate: false
+  xy: 2, 334
+  size: 94, 135
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Idle2_22
+  rotate: false
+  xy: 194, 886
+  size: 95, 135
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle2_27
+  rotate: false
+  xy: 2, 609
+  size: 94, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle2_28
+  rotate: false
+  xy: 98, 747
+  size: 94, 136
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle2_29
+  rotate: true
+  xy: 484, 928
+  size: 93, 136
+  orig: 240, 152
+  offset: 55, 9
+  index: -1
+Wolf-Idle2_30
+  rotate: false
+  xy: 372, 612
+  size: 92, 136
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Idle3_01
+  rotate: false
+  xy: 95, 57
+  size: 89, 137
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-Idle3_04
+  rotate: true
+  xy: 484, 838
+  size: 88, 138
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-Idle3_05
+  rotate: false
+  xy: 186, 57
+  size: 88, 137
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle3_17
+  rotate: true
+  xy: 624, 837
+  size: 89, 138
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle3_18
+  rotate: true
+  xy: 482, 747
+  size: 89, 138
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle3_19
+  rotate: false
+  xy: 189, 196
+  size: 90, 137
+  orig: 240, 152
+  offset: 51, 9
+  index: -1
+Wolf-Idle3_20
+  rotate: false
+  xy: 276, 57
+  size: 90, 137
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Idle3_29
+  rotate: false
+  xy: 368, 57
+  size: 87, 137
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle3_32
+  rotate: true
+  xy: 622, 747
+  size: 88, 138
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-Idle4_16
+  rotate: false
+  xy: 374, 336
+  size: 93, 135
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Idle4_17
+  rotate: true
+  xy: 562, 652
+  size: 93, 135
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Idle4_18
+  rotate: false
+  xy: 98, 473
+  size: 94, 135
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Idle4_19
+  rotate: false
+  xy: 194, 749
+  size: 95, 135
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Idle4_30
+  rotate: false
+  xy: 194, 473
+  size: 93, 136
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Idle4_31
+  rotate: false
+  xy: 562, 514
+  size: 92, 136
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-IdleLadder_02
+  rotate: true
+  xy: 130, 2
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_03
+  rotate: true
+  xy: 388, 2
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_04
+  rotate: true
+  xy: 546, 4
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_05
+  rotate: true
+  xy: 676, 4
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-Kick_3
+  rotate: true
+  xy: 796, 196
+  size: 94, 132
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+Wolf-PistolDieFront_05
+  rotate: false
+  xy: 378, 473
+  size: 90, 137
+  orig: 240, 152
+  offset: 64, 8
+  index: -1
+Wolf-PistolFlyFront_02
+  rotate: false
+  xy: 913, 60
+  size: 103, 119
+  orig: 240, 152
+  offset: 37, 25
+  index: -1
+Wolf-PistolFlyUp_10
+  rotate: false
+  xy: 546, 59
+  size: 93, 135
+  orig: 240, 152
+  offset: 53, 12
+  index: -1
+Wolf-PistolFlyUp_11
+  rotate: false
+  xy: 457, 57
+  size: 87, 137
+  orig: 240, 152
+  offset: 56, 12
+  index: -1
+Wolf-PistolHitBack_1
+  rotate: false
+  xy: 470, 473
+  size: 90, 137
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-PistolHitBack_3
+  rotate: true
+  xy: 897, 821
+  size: 99, 125
+  orig: 240, 152
+  offset: 76, 20
+  index: -1
+Wolf-PistolHitBack_5
+  rotate: false
+  xy: 291, 885
+  size: 94, 136
+  orig: 240, 152
+  offset: 74, 12
+  index: -1
+Wolf-PistolHitBack_6
+  rotate: false
+  xy: 562, 375
+  size: 91, 137
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-PistolIdle_00
+  rotate: false
+  xy: 655, 375
+  size: 89, 137
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolIdle_34
+  rotate: false
+  xy: 655, 375
+  size: 89, 137
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolIdle_01
+  rotate: false
+  xy: 839, 594
+  size: 89, 137
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolIdle_06
+  rotate: false
+  xy: 746, 376
+  size: 91, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_09
+  rotate: false
+  xy: 930, 595
+  size: 92, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_10
+  rotate: false
+  xy: 930, 457
+  size: 92, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_11
+  rotate: false
+  xy: 930, 319
+  size: 92, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_12
+  rotate: false
+  xy: 930, 181
+  size: 92, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_16
+  rotate: false
+  xy: 2, 196
+  size: 93, 136
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-PistolIdle_17
+  rotate: true
+  xy: 622, 928
+  size: 93, 136
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-PistolIdle_18
+  rotate: false
+  xy: 98, 335
+  size: 93, 136
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-PistolIdle_19
+  rotate: false
+  xy: 2, 471
+  size: 94, 136
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-PistolIdle_32
+  rotate: true
+  xy: 699, 652
+  size: 90, 137
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_33
+  rotate: false
+  xy: 839, 455
+  size: 89, 137
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolShoot_1
+  rotate: false
+  xy: 281, 196
+  size: 84, 138
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-PistolShoot_6
+  rotate: false
+  xy: 367, 196
+  size: 82, 138
+  orig: 240, 152
+  offset: 63, 9
+  index: -1
+Wolf-PistolWalk_00
+  rotate: false
+  xy: 289, 609
+  size: 81, 138
+  orig: 240, 152
+  offset: 60, 10
+  index: -1
+Wolf-PistolWalk_15
+  rotate: true
+  xy: 562, 292
+  size: 81, 138
+  orig: 240, 152
+  offset: 62, 11
+  index: -1
+Wolf-PistolWalk_16
+  rotate: true
+  xy: 702, 292
+  size: 81, 137
+  orig: 240, 152
+  offset: 61, 11
+  index: -1
+Wolf-PistolWalk_21
+  rotate: false
+  xy: 841, 316
+  size: 87, 137
+  orig: 240, 152
+  offset: 57, 11
+  index: -1
+Wolf-PistolWalk_25
+  rotate: false
+  xy: 466, 612
+  size: 94, 133
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+Wolf-Walk_22
+  rotate: false
+  xy: 451, 196
+  size: 89, 138
+  orig: 240, 152
+  offset: 55, 11
+  index: -1
+Wolf-Walk_25
+  rotate: true
+  xy: 542, 196
+  size: 94, 133
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+
+Wolf6.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-4HitFront_1
+  rotate: false
+  xy: 425, 840
+  size: 132, 88
+  orig: 240, 152
+  offset: 63, 11
+  index: -1
+Wolf-4Idle_09
+  rotate: false
+  xy: 709, 566
+  size: 132, 86
+  orig: 240, 152
+  offset: 68, 9
+  index: -1
+Wolf-4Walk_15
+  rotate: false
+  xy: 706, 474
+  size: 135, 90
+  orig: 240, 152
+  offset: 66, 8
+  index: -1
+Wolf-ClimbingLadder_08
+  rotate: false
+  xy: 970, 896
+  size: 52, 126
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-DieBack_10
+  rotate: true
+  xy: 843, 625
+  size: 120, 85
+  orig: 240, 152
+  offset: 9, 27
+  index: -1
+Wolf-DieFront_09
+  rotate: false
+  xy: 284, 592
+  size: 95, 118
+  orig: 240, 152
+  offset: 78, 9
+  index: -1
+Wolf-Fall_3
+  rotate: false
+  xy: 843, 355
+  size: 85, 129
+  orig: 240, 152
+  offset: 46, 13
+  index: -1
+Wolf-FlyFront_04
+  rotate: false
+  xy: 96, 216
+  size: 91, 120
+  orig: 240, 152
+  offset: 48, 24
+  index: -1
+Wolf-FlyFront_09
+  rotate: false
+  xy: 283, 467
+  size: 97, 123
+  orig: 240, 152
+  offset: 43, 22
+  index: -1
+Wolf-FlyUp_05
+  rotate: true
+  xy: 568, 392
+  size: 85, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-HitFront_2
+  rotate: true
+  xy: 467, 135
+  size: 76, 121
+  orig: 240, 152
+  offset: 51, 18
+  index: -1
+Wolf-HitFront_4
+  rotate: true
+  xy: 796, 2
+  size: 76, 111
+  orig: 240, 152
+  offset: 43, 22
+  index: -1
+Wolf-Idle1_06
+  rotate: true
+  xy: 706, 382
+  size: 90, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_07
+  rotate: true
+  xy: 466, 213
+  size: 90, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_10
+  rotate: true
+  xy: 559, 931
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_11
+  rotate: false
+  xy: 96, 338
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_12
+  rotate: false
+  xy: 2, 62
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_13
+  rotate: true
+  xy: 696, 931
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_14
+  rotate: true
+  xy: 833, 931
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_15
+  rotate: true
+  xy: 379, 747
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_17
+  rotate: false
+  xy: 2, 611
+  size: 92, 135
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Idle2_16
+  rotate: false
+  xy: 381, 611
+  size: 92, 134
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Idle2_17
+  rotate: false
+  xy: 475, 611
+  size: 92, 134
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-Idle2_18
+  rotate: false
+  xy: 190, 888
+  size: 93, 134
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Idle2_31
+  rotate: false
+  xy: 382, 474
+  size: 91, 135
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Idle3_21
+  rotate: true
+  xy: 559, 839
+  size: 90, 136
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Idle3_22
+  rotate: false
+  xy: 475, 474
+  size: 91, 135
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Idle3_23
+  rotate: false
+  xy: 96, 749
+  size: 92, 135
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Idle3_25
+  rotate: true
+  xy: 835, 837
+  size: 92, 133
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle3_33
+  rotate: true
+  xy: 792, 747
+  size: 88, 136
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-Idle4_06
+  rotate: true
+  xy: 569, 654
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_07
+  rotate: true
+  xy: 706, 654
+  size: 91, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_08
+  rotate: false
+  xy: 2, 474
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_09
+  rotate: false
+  xy: 190, 751
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_10
+  rotate: true
+  xy: 285, 930
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_11
+  rotate: false
+  xy: 96, 612
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_12
+  rotate: false
+  xy: 2, 337
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_13
+  rotate: false
+  xy: 190, 614
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_14
+  rotate: true
+  xy: 422, 930
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle4_15
+  rotate: false
+  xy: 96, 475
+  size: 92, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle5_04
+  rotate: true
+  xy: 801, 270
+  size: 83, 127
+  orig: 240, 152
+  offset: 69, 9
+  index: -1
+Wolf-IdleLadder_06
+  rotate: true
+  xy: 2, 7
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-Kick_1
+  rotate: false
+  xy: 284, 712
+  size: 93, 134
+  orig: 240, 152
+  offset: 48, 10
+  index: -1
+Wolf-Kick_4
+  rotate: false
+  xy: 325, 2
+  size: 93, 131
+  orig: 240, 152
+  offset: 53, 10
+  index: -1
+Wolf-PistolFlyFront_09
+  rotate: false
+  xy: 283, 342
+  size: 97, 123
+  orig: 240, 152
+  offset: 43, 22
+  index: -1
+Wolf-PistolFlyUp_03
+  rotate: true
+  xy: 697, 839
+  size: 90, 136
+  orig: 240, 152
+  offset: 55, 12
+  index: -1
+Wolf-PistolHitFront_1
+  rotate: true
+  xy: 187, 3
+  size: 79, 130
+  orig: 240, 152
+  offset: 61, 13
+  index: -1
+Wolf-PistolHitFront_2
+  rotate: true
+  xy: 590, 135
+  size: 76, 121
+  orig: 240, 152
+  offset: 51, 18
+  index: -1
+Wolf-PistolHitFront_4
+  rotate: true
+  xy: 909, 2
+  size: 76, 111
+  orig: 240, 152
+  offset: 43, 22
+  index: -1
+Wolf-PistolIdle_02
+  rotate: true
+  xy: 516, 747
+  size: 90, 136
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolIdle_03
+  rotate: true
+  xy: 654, 747
+  size: 90, 136
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolIdle_04
+  rotate: true
+  xy: 568, 479
+  size: 90, 136
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolIdle_05
+  rotate: false
+  xy: 95, 78
+  size: 90, 136
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolIdle_07
+  rotate: false
+  xy: 2, 199
+  size: 91, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_08
+  rotate: false
+  xy: 190, 476
+  size: 91, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_13
+  rotate: false
+  xy: 2, 886
+  size: 92, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_14
+  rotate: false
+  xy: 2, 748
+  size: 92, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolIdle_15
+  rotate: false
+  xy: 96, 886
+  size: 92, 136
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolShoot_3
+  rotate: true
+  xy: 189, 262
+  size: 78, 137
+  orig: 240, 152
+  offset: 64, 9
+  index: -1
+Wolf-PistolWalk_01
+  rotate: true
+  xy: 189, 176
+  size: 84, 137
+  orig: 240, 152
+  offset: 57, 10
+  index: -1
+Wolf-PistolWalk_03
+  rotate: false
+  xy: 189, 342
+  size: 92, 131
+  orig: 240, 152
+  offset: 50, 11
+  index: -1
+Wolf-PistolWalk_05
+  rotate: false
+  xy: 610, 2
+  size: 91, 131
+  orig: 240, 152
+  offset: 52, 11
+  index: -1
+Wolf-PistolWalk_08
+  rotate: true
+  xy: 328, 135
+  size: 76, 137
+  orig: 240, 152
+  offset: 68, 11
+  index: -1
+Wolf-PistolWalk_10
+  rotate: false
+  xy: 930, 431
+  size: 92, 132
+  orig: 240, 152
+  offset: 51, 11
+  index: -1
+Wolf-PistolWalk_14
+  rotate: false
+  xy: 843, 486
+  size: 85, 137
+  orig: 240, 152
+  offset: 58, 10
+  index: -1
+Wolf-PistolWalk_20
+  rotate: false
+  xy: 930, 701
+  size: 92, 134
+  orig: 240, 152
+  offset: 51, 11
+  index: -1
+Wolf-PistolWalk_22
+  rotate: true
+  xy: 285, 848
+  size: 80, 138
+  orig: 240, 152
+  offset: 64, 11
+  index: -1
+Wolf-PistolWalk_23
+  rotate: true
+  xy: 603, 213
+  size: 84, 137
+  orig: 240, 152
+  offset: 59, 11
+  index: -1
+Wolf-PistolWalk_24
+  rotate: true
+  xy: 187, 84
+  size: 90, 136
+  orig: 240, 152
+  offset: 53, 10
+  index: -1
+Wolf-PistolWalk_26
+  rotate: false
+  xy: 420, 2
+  size: 93, 131
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+Wolf-PistolWalk_27
+  rotate: true
+  xy: 796, 175
+  size: 93, 132
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-PistolWalk_30
+  rotate: true
+  xy: 569, 571
+  size: 81, 138
+  orig: 240, 152
+  offset: 60, 10
+  index: -1
+Wolf-Punch_01
+  rotate: true
+  xy: 382, 388
+  size: 84, 138
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Walk_00
+  rotate: true
+  xy: 382, 305
+  size: 81, 138
+  orig: 240, 152
+  offset: 60, 10
+  index: -1
+Wolf-Walk_30
+  rotate: true
+  xy: 382, 305
+  size: 81, 138
+  orig: 240, 152
+  offset: 60, 10
+  index: -1
+Wolf-Walk_03
+  rotate: false
+  xy: 930, 164
+  size: 92, 131
+  orig: 240, 152
+  offset: 50, 11
+  index: -1
+Wolf-Walk_05
+  rotate: false
+  xy: 703, 2
+  size: 91, 131
+  orig: 240, 152
+  offset: 52, 11
+  index: -1
+Wolf-Walk_10
+  rotate: false
+  xy: 930, 297
+  size: 92, 132
+  orig: 240, 152
+  offset: 51, 11
+  index: -1
+Wolf-Walk_14
+  rotate: true
+  xy: 522, 305
+  size: 85, 137
+  orig: 240, 152
+  offset: 58, 10
+  index: -1
+Wolf-Walk_15
+  rotate: true
+  xy: 661, 299
+  size: 81, 138
+  orig: 240, 152
+  offset: 62, 11
+  index: -1
+Wolf-Walk_20
+  rotate: false
+  xy: 930, 565
+  size: 92, 134
+  orig: 240, 152
+  offset: 51, 11
+  index: -1
+Wolf-Walk_24
+  rotate: true
+  xy: 328, 213
+  size: 90, 136
+  orig: 240, 152
+  offset: 53, 10
+  index: -1
+Wolf-Walk_26
+  rotate: false
+  xy: 515, 2
+  size: 93, 131
+  orig: 240, 152
+  offset: 49, 10
+  index: -1
+Wolf-Walk_27
+  rotate: true
+  xy: 796, 80
+  size: 93, 132
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+
+Wolf7.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-4Idle_03
+  rotate: false
+  xy: 558, 707
+  size: 134, 87
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4Idle_04
+  rotate: true
+  xy: 543, 118
+  size: 134, 87
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4Idle_05
+  rotate: true
+  xy: 632, 118
+  size: 134, 87
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4Idle_06
+  rotate: false
+  xy: 591, 29
+  size: 133, 87
+  orig: 240, 152
+  offset: 67, 9
+  index: -1
+Wolf-4Idle_07
+  rotate: false
+  xy: 726, 29
+  size: 133, 87
+  orig: 240, 152
+  offset: 67, 9
+  index: -1
+Wolf-4Idle_12
+  rotate: false
+  xy: 425, 707
+  size: 131, 86
+  orig: 240, 152
+  offset: 69, 9
+  index: -1
+Wolf-4Idle_15
+  rotate: false
+  xy: 807, 404
+  size: 130, 86
+  orig: 240, 152
+  offset: 70, 9
+  index: -1
+Wolf-4Idle_28
+  rotate: true
+  xy: 184, 67
+  size: 133, 88
+  orig: 240, 152
+  offset: 68, 9
+  index: -1
+Wolf-4Idle_29
+  rotate: true
+  xy: 721, 118
+  size: 134, 87
+  orig: 240, 152
+  offset: 67, 9
+  index: -1
+Wolf-4Walk_02
+  rotate: false
+  xy: 838, 846
+  size: 135, 84
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-4Walk_14
+  rotate: false
+  xy: 558, 796
+  size: 134, 90
+  orig: 240, 152
+  offset: 68, 7
+  index: -1
+Wolf-4Walk_17
+  rotate: true
+  xy: 2, 475
+  size: 135, 89
+  orig: 240, 152
+  offset: 65, 8
+  index: -1
+Wolf-DieFront_01
+  rotate: true
+  xy: 694, 707
+  size: 88, 135
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-FlyUp_01
+  rotate: false
+  xy: 274, 214
+  size: 88, 135
+  orig: 240, 152
+  offset: 51, 14
+  index: -1
+Wolf-FlyUp_06
+  rotate: false
+  xy: 542, 392
+  size: 84, 135
+  orig: 240, 152
+  offset: 53, 14
+  index: -1
+Wolf-FlyUp_07
+  rotate: false
+  xy: 939, 272
+  size: 83, 135
+  orig: 240, 152
+  offset: 53, 14
+  index: -1
+Wolf-FlyUp_08
+  rotate: true
+  xy: 564, 621
+  size: 84, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-FlyUp_09
+  rotate: true
+  xy: 831, 588
+  size: 87, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-FlyUp_12
+  rotate: false
+  xy: 184, 478
+  size: 86, 136
+  orig: 240, 152
+  offset: 54, 13
+  index: -1
+Wolf-FlyUp_13
+  rotate: false
+  xy: 274, 77
+  size: 88, 135
+  orig: 240, 152
+  offset: 48, 14
+  index: -1
+Wolf-Idle1_01
+  rotate: false
+  xy: 453, 255
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle1_02
+  rotate: false
+  xy: 453, 118
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle1_03
+  rotate: true
+  xy: 694, 797
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle1_04
+  rotate: false
+  xy: 2, 338
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle1_05
+  rotate: false
+  xy: 2, 201
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle1_08
+  rotate: false
+  xy: 2, 887
+  size: 90, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle1_32
+  rotate: false
+  xy: 2, 64
+  size: 89, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_03
+  rotate: false
+  xy: 93, 479
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_04
+  rotate: false
+  xy: 93, 342
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_05
+  rotate: false
+  xy: 93, 205
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_06
+  rotate: false
+  xy: 272, 487
+  size: 90, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_07
+  rotate: false
+  xy: 272, 351
+  size: 90, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_08
+  rotate: true
+  xy: 419, 529
+  size: 90, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_09
+  rotate: false
+  xy: 94, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_10
+  rotate: false
+  xy: 187, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_11
+  rotate: false
+  xy: 280, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_12
+  rotate: false
+  xy: 373, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_13
+  rotate: false
+  xy: 466, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_14
+  rotate: false
+  xy: 559, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_15
+  rotate: false
+  xy: 652, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle2_32
+  rotate: false
+  xy: 93, 68
+  size: 89, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle3_24
+  rotate: false
+  xy: 745, 888
+  size: 91, 134
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle4_02
+  rotate: true
+  xy: 555, 530
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle4_03
+  rotate: false
+  xy: 451, 392
+  size: 89, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle4_04
+  rotate: false
+  xy: 2, 750
+  size: 90, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle4_05
+  rotate: false
+  xy: 94, 751
+  size: 90, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle4_32
+  rotate: true
+  xy: 838, 932
+  size: 90, 135
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Idle5_13
+  rotate: true
+  xy: 702, 623
+  size: 82, 127
+  orig: 240, 152
+  offset: 70, 9
+  index: -1
+Wolf-IdleLadder_07
+  rotate: false
+  xy: 969, 547
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_08
+  rotate: true
+  xy: 2, 9
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_09
+  rotate: false
+  xy: 364, 493
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_10
+  rotate: true
+  xy: 801, 263
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_11
+  rotate: false
+  xy: 953, 8
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_12
+  rotate: true
+  xy: 132, 12
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-IdleLadder_13
+  rotate: true
+  xy: 274, 22
+  size: 53, 128
+  orig: 240, 152
+  offset: 60, 8
+  index: -1
+Wolf-Jump_1
+  rotate: false
+  xy: 186, 635
+  size: 98, 122
+  orig: 240, 152
+  offset: 49, 9
+  index: -1
+Wolf-Jump_6
+  rotate: false
+  xy: 93, 616
+  size: 91, 132
+  orig: 240, 152
+  offset: 52, 10
+  index: -1
+Wolf-Kick_5
+  rotate: false
+  xy: 931, 138
+  size: 91, 132
+  orig: 240, 152
+  offset: 55, 10
+  index: -1
+Wolf-PistolDieFront_04
+  rotate: false
+  xy: 2, 612
+  size: 89, 136
+  orig: 240, 152
+  offset: 63, 8
+  index: -1
+Wolf-PistolDieFront_08
+  rotate: false
+  xy: 186, 759
+  size: 98, 127
+  orig: 240, 152
+  offset: 69, 7
+  index: -1
+Wolf-PistolFlyFront_08
+  rotate: true
+  xy: 810, 163
+  size: 98, 119
+  orig: 240, 152
+  offset: 42, 25
+  index: -1
+Wolf-PistolFlyUp_02
+  rotate: false
+  xy: 184, 340
+  size: 86, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-PistolFlyUp_04
+  rotate: false
+  xy: 184, 202
+  size: 88, 136
+  orig: 240, 152
+  offset: 56, 12
+  index: -1
+Wolf-PistolFlyUp_05
+  rotate: false
+  xy: 364, 355
+  size: 85, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-PistolFlyUp_08
+  rotate: false
+  xy: 543, 254
+  size: 84, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-PistolFlyUp_09
+  rotate: false
+  xy: 364, 217
+  size: 87, 136
+  orig: 240, 152
+  offset: 56, 13
+  index: -1
+Wolf-PistolFlyUp_12
+  rotate: false
+  xy: 628, 392
+  size: 86, 136
+  orig: 240, 152
+  offset: 54, 13
+  index: -1
+Wolf-PistolLanding_1
+  rotate: false
+  xy: 629, 254
+  size: 84, 136
+  orig: 240, 152
+  offset: 58, 9
+  index: -1
+Wolf-PistolShoot_7
+  rotate: false
+  xy: 364, 79
+  size: 87, 136
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-PistolWalk_02
+  rotate: false
+  xy: 716, 486
+  size: 89, 135
+  orig: 240, 152
+  offset: 53, 10
+  index: -1
+Wolf-PistolWalk_06
+  rotate: true
+  xy: 453, 33
+  size: 83, 136
+  orig: 240, 152
+  offset: 60, 10
+  index: -1
+Wolf-PistolWalk_11
+  rotate: true
+  xy: 807, 492
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-PistolWalk_13
+  rotate: true
+  xy: 286, 795
+  size: 91, 134
+  orig: 240, 152
+  offset: 52, 10
+  index: -1
+Wolf-PistolWalk_17
+  rotate: false
+  xy: 861, 2
+  size: 90, 134
+  orig: 240, 152
+  offset: 53, 11
+  index: -1
+Wolf-PistolWalk_29
+  rotate: false
+  xy: 715, 254
+  size: 84, 136
+  orig: 240, 152
+  offset: 57, 11
+  index: -1
+Wolf-Walk_01
+  rotate: true
+  xy: 831, 760
+  size: 84, 137
+  orig: 240, 152
+  offset: 57, 10
+  index: -1
+Wolf-Walk_06
+  rotate: false
+  xy: 939, 409
+  size: 83, 136
+  orig: 240, 152
+  offset: 60, 10
+  index: -1
+Wolf-Walk_08
+  rotate: true
+  xy: 831, 677
+  size: 81, 137
+  orig: 240, 152
+  offset: 63, 11
+  index: -1
+Wolf-Walk_13
+  rotate: true
+  xy: 422, 795
+  size: 91, 134
+  orig: 240, 152
+  offset: 52, 10
+  index: -1
+Wolf-Walk_16
+  rotate: true
+  xy: 286, 712
+  size: 81, 137
+  orig: 240, 152
+  offset: 61, 11
+  index: -1
+Wolf-Walk_21
+  rotate: true
+  xy: 286, 623
+  size: 87, 137
+  orig: 240, 152
+  offset: 57, 11
+  index: -1
+Wolf-Walk_23
+  rotate: true
+  xy: 425, 621
+  size: 84, 137
+  orig: 240, 152
+  offset: 59, 11
+  index: -1
+Wolf-Walk_29
+  rotate: true
+  xy: 801, 318
+  size: 84, 136
+  orig: 240, 152
+  offset: 57, 11
+  index: -1
+
+Wolf8.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-4FlyBack_2
+  rotate: true
+  xy: 821, 2
+  size: 117, 84
+  orig: 240, 152
+  offset: 70, 14
+  index: -1
+Wolf-4FlyBack_5
+  rotate: true
+  xy: 907, 2
+  size: 117, 83
+  orig: 240, 152
+  offset: 69, 16
+  index: -1
+Wolf-4Idle_08
+  rotate: true
+  xy: 187, 399
+  size: 133, 87
+  orig: 240, 152
+  offset: 67, 9
+  index: -1
+Wolf-4Idle_10
+  rotate: false
+  xy: 494, 143
+  size: 132, 86
+  orig: 240, 152
+  offset: 68, 9
+  index: -1
+Wolf-4Idle_11
+  rotate: false
+  xy: 628, 133
+  size: 132, 86
+  orig: 240, 152
+  offset: 68, 9
+  index: -1
+Wolf-4Idle_24
+  rotate: false
+  xy: 762, 131
+  size: 132, 87
+  orig: 240, 152
+  offset: 69, 9
+  index: -1
+Wolf-4Idle_26
+  rotate: false
+  xy: 640, 309
+  size: 133, 87
+  orig: 240, 152
+  offset: 68, 9
+  index: -1
+Wolf-4Idle_27
+  rotate: false
+  xy: 775, 306
+  size: 133, 87
+  orig: 240, 152
+  offset: 68, 9
+  index: -1
+Wolf-4Idle_30
+  rotate: false
+  xy: 494, 231
+  size: 133, 88
+  orig: 240, 152
+  offset: 67, 9
+  index: -1
+Wolf-4Idle_31
+  rotate: false
+  xy: 779, 574
+  size: 134, 88
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4Idle_32
+  rotate: false
+  xy: 505, 493
+  size: 134, 87
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4Idle_33
+  rotate: false
+  xy: 641, 488
+  size: 134, 87
+  orig: 240, 152
+  offset: 66, 9
+  index: -1
+Wolf-4JumpLanding_11
+  rotate: false
+  xy: 504, 408
+  size: 134, 83
+  orig: 240, 152
+  offset: 66, 10
+  index: -1
+Wolf-4Walk_04
+  rotate: false
+  xy: 629, 221
+  size: 133, 86
+  orig: 240, 152
+  offset: 68, 8
+  index: -1
+Wolf-4Walk_13
+  rotate: false
+  xy: 777, 485
+  size: 134, 87
+  orig: 240, 152
+  offset: 69, 8
+  index: -1
+Wolf-DieFront_02
+  rotate: true
+  xy: 368, 489
+  size: 88, 134
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-DieFront_03
+  rotate: true
+  xy: 640, 398
+  size: 88, 134
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-DieFront_11
+  rotate: false
+  xy: 724, 2
+  size: 95, 117
+  orig: 240, 152
+  offset: 81, 9
+  index: -1
+Wolf-Fall_0
+  rotate: false
+  xy: 276, 491
+  size: 90, 132
+  orig: 240, 152
+  offset: 40, 14
+  index: -1
+Wolf-Fall_7
+  rotate: false
+  xy: 276, 491
+  size: 90, 132
+  orig: 240, 152
+  offset: 40, 14
+  index: -1
+Wolf-Landing_0
+  rotate: false
+  xy: 276, 491
+  size: 90, 132
+  orig: 240, 152
+  offset: 40, 14
+  index: -1
+Wolf-Fall_4
+  rotate: false
+  xy: 367, 2
+  size: 88, 129
+  orig: 240, 152
+  offset: 44, 14
+  index: -1
+Wolf-Fall_6
+  rotate: false
+  xy: 92, 133
+  size: 90, 132
+  orig: 240, 152
+  offset: 41, 14
+  index: -1
+Wolf-FlyBack_2
+  rotate: true
+  xy: 912, 396
+  size: 77, 110
+  orig: 240, 152
+  offset: 68, 27
+  index: -1
+Wolf-FlyFront_05
+  rotate: false
+  xy: 276, 368
+  size: 90, 121
+  orig: 240, 152
+  offset: 49, 23
+  index: -1
+Wolf-FlyUp_00
+  rotate: true
+  xy: 776, 395
+  size: 88, 134
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-FlyUp_14
+  rotate: true
+  xy: 776, 395
+  size: 88, 134
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-Jump_7
+  rotate: true
+  xy: 776, 395
+  size: 88, 134
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-Idle1_33
+  rotate: false
+  xy: 2, 486
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_01
+  rotate: true
+  xy: 386, 934
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_02
+  rotate: false
+  xy: 2, 349
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle2_33
+  rotate: true
+  xy: 523, 934
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle3_06
+  rotate: false
+  xy: 2, 212
+  size: 88, 135
+  orig: 240, 152
+  offset: 56, 9
+  index: -1
+Wolf-Idle3_08
+  rotate: true
+  xy: 764, 220
+  size: 84, 133
+  orig: 240, 152
+  offset: 52, 9
+  index: -1
+Wolf-Idle3_28
+  rotate: true
+  xy: 386, 845
+  size: 87, 135
+  orig: 240, 152
+  offset: 57, 9
+  index: -1
+Wolf-Idle4_01
+  rotate: true
+  xy: 660, 934
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle4_33
+  rotate: false
+  xy: 2, 75
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle5_00
+  rotate: false
+  xy: 185, 2
+  size: 90, 131
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle5_17
+  rotate: false
+  xy: 185, 2
+  size: 90, 131
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Idle5_03
+  rotate: false
+  xy: 637, 2
+  size: 85, 129
+  orig: 240, 152
+  offset: 67, 9
+  index: -1
+Wolf-Idle5_05
+  rotate: true
+  xy: 896, 121
+  size: 83, 126
+  orig: 240, 152
+  offset: 70, 9
+  index: -1
+Wolf-Jump_2
+  rotate: false
+  xy: 394, 176
+  size: 98, 95
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-Kick_6
+  rotate: false
+  xy: 185, 624
+  size: 89, 134
+  orig: 240, 152
+  offset: 58, 10
+  index: -1
+Wolf-Landing_2
+  rotate: false
+  xy: 184, 135
+  size: 90, 126
+  orig: 240, 152
+  offset: 54, 8
+  index: -1
+Wolf-Landing_6
+  rotate: false
+  xy: 457, 2
+  size: 88, 129
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Landing_7
+  rotate: true
+  xy: 797, 934
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolDieBack_00
+  rotate: false
+  xy: 934, 887
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolDieFront_00
+  rotate: true
+  xy: 523, 844
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolDieFront_01
+  rotate: true
+  xy: 660, 844
+  size: 88, 135
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-PistolDieFront_02
+  rotate: true
+  xy: 93, 534
+  size: 88, 134
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-PistolDieFront_03
+  rotate: false
+  xy: 184, 263
+  size: 88, 134
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-PistolDieFront_12
+  rotate: true
+  xy: 274, 267
+  size: 99, 118
+  orig: 240, 152
+  offset: 81, 5
+  index: -1
+Wolf-PistolDieFront_13
+  rotate: false
+  xy: 916, 633
+  size: 103, 115
+  orig: 240, 152
+  offset: 81, 4
+  index: -1
+Wolf-PistolFlyBack_2
+  rotate: true
+  xy: 912, 317
+  size: 77, 110
+  orig: 240, 152
+  offset: 68, 27
+  index: -1
+Wolf-PistolFlyBack_6
+  rotate: true
+  xy: 915, 554
+  size: 77, 107
+  orig: 240, 152
+  offset: 69, 24
+  index: -1
+Wolf-PistolFlyFront_00
+  rotate: false
+  xy: 276, 141
+  size: 98, 124
+  orig: 240, 152
+  offset: 42, 21
+  index: -1
+Wolf-PistolFlyFront_10
+  rotate: false
+  xy: 394, 273
+  size: 98, 124
+  orig: 240, 152
+  offset: 42, 21
+  index: -1
+Wolf-PistolFlyUp_00
+  rotate: true
+  xy: 368, 399
+  size: 88, 134
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-PistolLanding_0
+  rotate: true
+  xy: 368, 399
+  size: 88, 134
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-PistolFlyUp_01
+  rotate: true
+  xy: 797, 844
+  size: 88, 135
+  orig: 240, 152
+  offset: 51, 14
+  index: -1
+Wolf-PistolFlyUp_06
+  rotate: true
+  xy: 385, 759
+  size: 84, 135
+  orig: 240, 152
+  offset: 53, 14
+  index: -1
+Wolf-PistolFlyUp_07
+  rotate: true
+  xy: 522, 759
+  size: 83, 135
+  orig: 240, 152
+  offset: 53, 14
+  index: -1
+Wolf-PistolFlyUp_13
+  rotate: false
+  xy: 934, 750
+  size: 88, 135
+  orig: 240, 152
+  offset: 48, 14
+  index: -1
+Wolf-PistolFlyUp_14
+  rotate: false
+  xy: 277, 5
+  size: 88, 134
+  orig: 240, 152
+  offset: 46, 14
+  index: -1
+Wolf-PistolHitBack_0
+  rotate: true
+  xy: 659, 754
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolHitBack_7
+  rotate: true
+  xy: 796, 754
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolHitFront_0
+  rotate: true
+  xy: 368, 669
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolHitFront_3
+  rotate: true
+  xy: 913, 475
+  size: 77, 107
+  orig: 240, 152
+  offset: 39, 23
+  index: -1
+Wolf-PistolHitFront_7
+  rotate: true
+  xy: 505, 669
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolJump_0
+  rotate: true
+  xy: 642, 664
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolJump_5
+  rotate: true
+  xy: 899, 206
+  size: 98, 123
+  orig: 240, 152
+  offset: 48, 7
+  index: -1
+Wolf-PistolJump_6
+  rotate: false
+  xy: 92, 2
+  size: 91, 129
+  orig: 240, 152
+  offset: 52, 10
+  index: -1
+Wolf-PistolJump_7
+  rotate: true
+  xy: 504, 321
+  size: 85, 134
+  orig: 240, 152
+  offset: 52, 14
+  index: -1
+Wolf-PistolLanding_6
+  rotate: false
+  xy: 547, 2
+  size: 88, 129
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolLanding_7
+  rotate: true
+  xy: 779, 664
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolShoot_0
+  rotate: true
+  xy: 368, 579
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolShoot_8
+  rotate: true
+  xy: 368, 579
+  size: 88, 135
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolWalk_04
+  rotate: false
+  xy: 290, 760
+  size: 93, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-PistolWalk_09
+  rotate: true
+  xy: 505, 582
+  size: 85, 135
+  orig: 240, 152
+  offset: 59, 11
+  index: -1
+Wolf-PistolWalk_12
+  rotate: false
+  xy: 2, 892
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-PistolWalk_18
+  rotate: false
+  xy: 2, 760
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 12
+  index: -1
+Wolf-PistolWalk_19
+  rotate: false
+  xy: 98, 892
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-PistolWalk_28
+  rotate: false
+  xy: 276, 625
+  size: 90, 133
+  orig: 240, 152
+  offset: 52, 12
+  index: -1
+Wolf-Walk_02
+  rotate: false
+  xy: 2, 623
+  size: 89, 135
+  orig: 240, 152
+  offset: 53, 10
+  index: -1
+Wolf-Walk_04
+  rotate: false
+  xy: 92, 402
+  size: 93, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-Walk_09
+  rotate: true
+  xy: 642, 577
+  size: 85, 135
+  orig: 240, 152
+  offset: 59, 11
+  index: -1
+Wolf-Walk_11
+  rotate: false
+  xy: 98, 760
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-Walk_12
+  rotate: false
+  xy: 194, 892
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-Walk_17
+  rotate: false
+  xy: 93, 624
+  size: 90, 134
+  orig: 240, 152
+  offset: 53, 11
+  index: -1
+Wolf-Walk_18
+  rotate: false
+  xy: 194, 760
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 12
+  index: -1
+Wolf-Walk_19
+  rotate: false
+  xy: 290, 892
+  size: 94, 130
+  orig: 240, 152
+  offset: 49, 11
+  index: -1
+Wolf-Walk_28
+  rotate: false
+  xy: 92, 267
+  size: 90, 133
+  orig: 240, 152
+  offset: 52, 12
+  index: -1
+
+Wolf9.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wolf-4Idle_13
+  rotate: false
+  xy: 417, 936
+  size: 131, 86
+  orig: 240, 152
+  offset: 69, 9
+  index: -1
+Wolf-4Idle_14
+  rotate: true
+  xy: 2, 224
+  size: 131, 86
+  orig: 240, 152
+  offset: 69, 9
+  index: -1
+Wolf-4Idle_16
+  rotate: true
+  xy: 91, 357
+  size: 131, 86
+  orig: 240, 152
+  offset: 70, 9
+  index: -1
+Wolf-4Idle_17
+  rotate: false
+  xy: 683, 936
+  size: 130, 86
+  orig: 240, 152
+  offset: 71, 9
+  index: -1
+Wolf-4Idle_18
+  rotate: false
+  xy: 815, 936
+  size: 130, 86
+  orig: 240, 152
+  offset: 71, 9
+  index: -1
+Wolf-4Idle_19
+  rotate: false
+  xy: 284, 847
+  size: 130, 86
+  orig: 240, 152
+  offset: 71, 9
+  index: -1
+Wolf-4Idle_20
+  rotate: false
+  xy: 284, 759
+  size: 130, 86
+  orig: 240, 152
+  offset: 71, 9
+  index: -1
+Wolf-4Idle_21
+  rotate: true
+  xy: 92, 624
+  size: 131, 87
+  orig: 240, 152
+  offset: 70, 9
+  index: -1
+Wolf-4Idle_22
+  rotate: false
+  xy: 284, 935
+  size: 131, 87
+  orig: 240, 152
+  offset: 70, 9
+  index: -1
+Wolf-4Idle_23
+  rotate: true
+  xy: 2, 357
+  size: 131, 87
+  orig: 240, 152
+  offset: 70, 9
+  index: -1
+Wolf-4Idle_25
+  rotate: true
+  xy: 93, 757
+  size: 132, 87
+  orig: 240, 152
+  offset: 69, 9
+  index: -1
+Wolf-DieBack_12
+  rotate: true
+  xy: 452, 505
+  size: 120, 77
+  orig: 240, 152
+  offset: 3, 7
+  index: -1
+Wolf-Fall_1
+  rotate: false
+  xy: 2, 757
+  size: 89, 131
+  orig: 240, 152
+  offset: 42, 14
+  index: -1
+Wolf-Fall_2
+  rotate: true
+  xy: 550, 936
+  size: 86, 131
+  orig: 240, 152
+  offset: 45, 13
+  index: -1
+Wolf-Fall_5
+  rotate: false
+  xy: 90, 225
+  size: 88, 130
+  orig: 240, 152
+  offset: 43, 14
+  index: -1
+Wolf-FlyBack_0
+  rotate: false
+  xy: 487, 398
+  size: 77, 105
+  orig: 240, 152
+  offset: 70, 24
+  index: -1
+Wolf-FlyBack_7
+  rotate: false
+  xy: 487, 398
+  size: 77, 105
+  orig: 240, 152
+  offset: 70, 24
+  index: -1
+Wolf-FlyBack_5
+  rotate: false
+  xy: 566, 393
+  size: 77, 111
+  orig: 240, 152
+  offset: 68, 26
+  index: -1
+Wolf-FlyFront_07
+  rotate: true
+  xy: 181, 620
+  size: 88, 122
+  orig: 240, 152
+  offset: 52, 23
+  index: -1
+Wolf-HitFront_5
+  rotate: false
+  xy: 277, 493
+  size: 77, 125
+  orig: 240, 152
+  offset: 55, 16
+  index: -1
+Wolf-HitFront_6
+  rotate: false
+  xy: 90, 91
+  size: 83, 132
+  orig: 240, 152
+  offset: 61, 11
+  index: -1
+Wolf-Idle3_07
+  rotate: false
+  xy: 92, 490
+  size: 86, 132
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle3_26
+  rotate: false
+  xy: 2, 890
+  size: 89, 132
+  orig: 240, 152
+  offset: 53, 9
+  index: -1
+Wolf-Idle3_27
+  rotate: false
+  xy: 2, 91
+  size: 86, 131
+  orig: 240, 152
+  offset: 54, 9
+  index: -1
+Wolf-Idle5_01
+  rotate: false
+  xy: 93, 891
+  size: 89, 131
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-Idle5_02
+  rotate: false
+  xy: 305, 627
+  size: 86, 130
+  orig: 240, 152
+  offset: 65, 9
+  index: -1
+Wolf-Idle5_06
+  rotate: true
+  xy: 545, 850
+  size: 84, 125
+  orig: 240, 152
+  offset: 71, 9
+  index: -1
+Wolf-Idle5_07
+  rotate: true
+  xy: 672, 849
+  size: 85, 124
+  orig: 240, 152
+  offset: 72, 9
+  index: -1
+Wolf-Idle5_08
+  rotate: true
+  xy: 798, 849
+  size: 85, 123
+  orig: 240, 152
+  offset: 73, 9
+  index: -1
+Wolf-Idle5_09
+  rotate: true
+  xy: 134, 2
+  size: 87, 122
+  orig: 240, 152
+  offset: 73, 9
+  index: -1
+Wolf-Idle5_10
+  rotate: true
+  xy: 764, 762
+  size: 85, 123
+  orig: 240, 152
+  offset: 74, 9
+  index: -1
+Wolf-Idle5_11
+  rotate: false
+  xy: 531, 506
+  size: 82, 124
+  orig: 240, 152
+  offset: 74, 9
+  index: -1
+Wolf-Idle5_12
+  rotate: true
+  xy: 417, 852
+  size: 82, 126
+  orig: 240, 152
+  offset: 72, 9
+  index: -1
+Wolf-Idle5_14
+  rotate: true
+  xy: 356, 419
+  size: 84, 129
+  orig: 240, 152
+  offset: 67, 9
+  index: -1
+Wolf-Idle5_15
+  rotate: true
+  xy: 2, 2
+  size: 87, 130
+  orig: 240, 152
+  offset: 64, 9
+  index: -1
+Wolf-Idle5_16
+  rotate: false
+  xy: 2, 490
+  size: 88, 131
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-Jump_3
+  rotate: false
+  xy: 803, 441
+  size: 95, 97
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-Jump_4
+  rotate: true
+  xy: 182, 710
+  size: 91, 99
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-Landing_1
+  rotate: false
+  xy: 2, 623
+  size: 88, 132
+  orig: 240, 152
+  offset: 49, 9
+  index: -1
+Wolf-Landing_3
+  rotate: true
+  xy: 517, 760
+  size: 88, 121
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Landing_4
+  rotate: false
+  xy: 649, 638
+  size: 87, 120
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-Landing_5
+  rotate: true
+  xy: 258, 2
+  size: 87, 122
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolDieBack_10
+  rotate: true
+  xy: 615, 515
+  size: 120, 85
+  orig: 240, 152
+  offset: 9, 27
+  index: -1
+Wolf-PistolDieBack_11
+  rotate: true
+  xy: 724, 399
+  size: 115, 77
+  orig: 240, 152
+  offset: 7, 14
+  index: -1
+Wolf-PistolDieBack_12
+  rotate: true
+  xy: 645, 393
+  size: 120, 77
+  orig: 240, 152
+  offset: 3, 7
+  index: -1
+Wolf-PistolDieFront_10
+  rotate: false
+  xy: 356, 505
+  size: 94, 120
+  orig: 240, 152
+  offset: 80, 6
+  index: -1
+Wolf-PistolDieFront_11
+  rotate: false
+  xy: 180, 497
+  size: 95, 121
+  orig: 240, 152
+  offset: 81, 5
+  index: -1
+Wolf-PistolFlyBack_0
+  rotate: false
+  xy: 817, 655
+  size: 77, 105
+  orig: 240, 152
+  offset: 70, 24
+  index: -1
+Wolf-PistolFlyBack_5
+  rotate: false
+  xy: 738, 647
+  size: 77, 111
+  orig: 240, 152
+  offset: 68, 26
+  index: -1
+Wolf-PistolFlyBack_7
+  rotate: false
+  xy: 791, 540
+  size: 77, 105
+  orig: 240, 152
+  offset: 70, 24
+  index: -1
+Wolf-PistolHitFront_5
+  rotate: false
+  xy: 480, 632
+  size: 77, 125
+  orig: 240, 152
+  offset: 55, 16
+  index: -1
+Wolf-PistolHitFront_6
+  rotate: false
+  xy: 175, 91
+  size: 83, 132
+  orig: 240, 152
+  offset: 61, 11
+  index: -1
+Wolf-PistolJump_1
+  rotate: false
+  xy: 184, 900
+  size: 98, 122
+  orig: 240, 152
+  offset: 49, 9
+  index: -1
+Wolf-PistolJump_2
+  rotate: false
+  xy: 184, 803
+  size: 98, 95
+  orig: 240, 152
+  offset: 62, 9
+  index: -1
+Wolf-PistolJump_3
+  rotate: false
+  xy: 803, 342
+  size: 95, 97
+  orig: 240, 152
+  offset: 61, 9
+  index: -1
+Wolf-PistolJump_4
+  rotate: true
+  xy: 416, 759
+  size: 91, 99
+  orig: 240, 152
+  offset: 59, 9
+  index: -1
+Wolf-PistolLanding_2
+  rotate: false
+  xy: 393, 627
+  size: 85, 130
+  orig: 240, 152
+  offset: 62, 8
+  index: -1
+Wolf-PistolLanding_3
+  rotate: false
+  xy: 559, 637
+  size: 88, 121
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolLanding_4
+  rotate: false
+  xy: 702, 516
+  size: 87, 120
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
+Wolf-PistolLanding_5
+  rotate: true
+  xy: 640, 760
+  size: 87, 122
+  orig: 240, 152
+  offset: 60, 9
+  index: -1
