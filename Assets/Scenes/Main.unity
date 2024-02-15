@@ -1936,6 +1936,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Berry]'
       objectReference: {fileID: 0}
+    - target: {fileID: 8013927114772816816, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
+        type: 3}
+      propertyPath: _amount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}
       propertyPath: m_RootOrder
@@ -4236,6 +4241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Berry] (1)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013927114772816816, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
+        type: 3}
+      propertyPath: _amount
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9166573729873561301, guid: 2cf3a1d7a2f05e84c82186c4e888254d,
         type: 3}

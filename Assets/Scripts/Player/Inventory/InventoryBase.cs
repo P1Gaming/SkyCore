@@ -17,6 +17,7 @@ namespace Player
         private InventoryBase[] _overflowTo;
 
         private HashSet<ItemStack> _items = new HashSet<ItemStack>(); // unordered. UI code stores positioning in slots.
+        private UI.Inventory.InventoryDragAndDrop _dragAndDrop;
 
         [SerializeField, Tooltip("Designated sort type of inventory section.")]
         private ItemBase.ItemSortType _sortType;
@@ -26,6 +27,8 @@ namespace Player
         public int StacksCapacityResource => _stacksCapacityResource;
 
         public ItemBase.ItemSortType SortType => _sortType;
+
+        public void SetDragAndDrop(UI.Inventory.InventoryDragAndDrop dragAndDrop) => _dragAndDrop = dragAndDrop;
 
         /// <summary>
         /// Creates a new item stack if the items picked up puts the amount over the max for the next open stack.
@@ -40,6 +43,12 @@ namespace Player
                 int overflowAmount = item.amount - item.itemInfo.MaxStack;
                 item.amount -= overflowAmount;
                 TryAddItemAsNewStack(new ItemStack(item.itemInfo, overflowAmount));
+            }
+            //Check if amount is zero or less, if so, remove it from the inventory
+            if (item.amount <= 0)
+            {
+                _items.Remove(item);
+                _dragAndDrop.CheckDraggedStackNowEmpty();
             }
             OnChangeItem?.Invoke(item);
         }
@@ -154,6 +163,7 @@ namespace Player
             }
 
             AddToStack(item, -subtractedAmount);
+
             //PrintHotbar();
 
             return true;
