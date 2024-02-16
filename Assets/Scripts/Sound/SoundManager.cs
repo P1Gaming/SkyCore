@@ -4,6 +4,10 @@ namespace Sound
 {
     public class SoundManager : MonoBehaviour
     {
+        private float _masterVolume;
+        private float _musicVolume;
+        private float _sfxVolume;
+
 
         private static SoundManager _instance;
         public static SoundManager Instance
@@ -32,6 +36,11 @@ namespace Sound
                 _instance = this;
             }
             DontDestroyOnLoad(gameObject);
+
+
+            _masterVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.MasterVolume, 0.75f);
+            _musicVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.MusicVolume, 0.5f);
+            _sfxVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.SfxVolume, 0.75f);
         }
 
         /// <summary>
@@ -40,7 +49,16 @@ namespace Sound
         /// <param name="value">0 - 100</param>
         public void SetMasterVolume(float value)
         {
-            
+            _masterVolume = value;
+        }
+
+        /// <summary>
+        /// Get master bus volume
+        /// </summary>
+        /// <param name="value">0 - 100</param>
+        public float GetMasterVolume()
+        {
+            return _masterVolume;
         }
 
         /// <summary>
@@ -49,7 +67,7 @@ namespace Sound
         /// <param name="value">0 - 100</param>
         public void SetMusicVolume(float value)
         {
-            
+            _musicVolume = value;
         }
 
         /// <summary>
@@ -58,7 +76,7 @@ namespace Sound
         /// <param name="value">0 - 100</param>
         public float GetMusicVolume()
         {
-            return 0;
+            return _musicVolume;
         }
 
         /// <summary>
@@ -67,7 +85,7 @@ namespace Sound
         /// <param name="value">0 - 100</param>
         public void SetSFXVolume(float value)
         {
-            
+            _sfxVolume = value;
         }
 
         /// <summary>
@@ -76,7 +94,7 @@ namespace Sound
         /// <param name="value">0 - 100</param>
         public float GetSFXVolume()
         {
-            return 0;
+            return _sfxVolume;
         }
 
         /// <summary>

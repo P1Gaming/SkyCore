@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Player;
+using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Collections.Specialized;
+using System;
 
 namespace UI.Inventory
 {
@@ -25,6 +29,12 @@ namespace UI.Inventory
             _click = playerInput == null ? null : playerInput.actions.FindAction("ClickForDragAndDrop", true);
             _click.started += OnClickStart;
             _click.canceled += OnClickCancel;
+        }
+
+        public void CheckDraggedStackNowEmpty()
+        {
+            _beingDragged.StopItemDrag();
+            _beingDragged = null;
         }
 
         private void OnClickStart(InputAction.CallbackContext context)
@@ -83,11 +93,18 @@ namespace UI.Inventory
         /// </summary>
         public void OnClickStart(InventorySlotUI slotBelowMouse)
         {
+            //Check if there is a slot, if not toss the item
             if (slotBelowMouse == null)
             {
+                if (!_beingDragged || _beingDragged.ItemStack == null)
+                {
+                    return;
+                }
+                TossItem();
                 return;
             }
 
+            
             if (_beingDragged != null && (_beingDragged.ItemStack.itemInfo.SortType == slotBelowMouse.SlotType || slotBelowMouse.SlotType == ItemBase.ItemSortType.None))
             {
                 // Clicking again after clicking to pick up the item, so the player
@@ -122,6 +139,16 @@ namespace UI.Inventory
                     MoveDraggedItemToSlot(slotBelowMouse);
                 }
             }
+            //If there isn't a slot, toss the item.
+            else
+            {
+                if (!_beingDragged || _beingDragged.ItemStack == null)
+                {
+                    return;
+                }
+                TossItem();
+                return;
+            }
         }
 
         /// <summary>
@@ -135,7 +162,26 @@ namespace UI.Inventory
             }
         }
 
-        
+        /// <summary>
+        /// Toss an item if it is dragged out of the inventory.
+        /// </summary>
+        private void TossItem()
+        {
+            if (_beingDragged.ItemStack.amount > 0)
+            {
+                GameObject droppedItem = _beingDragged.ItemStack.itemInfo.ItemPrefab;
+
+                //Spawn item in front of the player
+                Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
+                Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
+                Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
+                UnityEngine.Object.Instantiate(droppedItem, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+
+                //Decrement Item
+
+                _beingDragged.InventoryOrHotBarUI.InventoryOrHotBar.TrySubtractItemAmount(_beingDragged.ItemStack.itemInfo, 1);
+            }
+        }
 
 
     } 

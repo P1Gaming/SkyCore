@@ -34,6 +34,8 @@ namespace UI.Inventory
 
         }
 
+        public void SetDragAndDrop(InventoryDragAndDrop dragAndDrop) => _inventoryOrHotBarUI.InventoryOrHotBar.SetDragAndDrop(dragAndDrop);
+
         private void OnEnable()
         {
             _inventoryOrHotBarUI.OnEnable();
