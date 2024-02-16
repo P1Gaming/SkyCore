@@ -21,6 +21,8 @@ namespace FiniteStateMachine
         public FSMParameter[] Parameters { get; private set; }
         [field: SerializeField]
         public FSMTransition[] Transitions { get; private set; }
+        [field: SerializeField]
+        public FiniteStateMachineEditor.FSMDefinitionInfoForEditor EditorInfo { get; private set; }
 
         public void CheckValid(Dictionary<FSMParameter, float> floatParameters)
         {
