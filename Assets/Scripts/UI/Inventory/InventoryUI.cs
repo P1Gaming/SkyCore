@@ -16,8 +16,6 @@ namespace UI.Inventory
         private FirstPersonView _firstPersonView;
         [SerializeField]
         private GameObject _jellyInteractVisual;
-        [SerializeField]
-        private HotBarUI _hotBarUI;
 
         [Header("Inventory Components")]
         [SerializeField, Tooltip("adjust this to change where the inventory slots are centered")]
@@ -96,8 +94,6 @@ namespace UI.Inventory
                 = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().InventoryTool;
             _inventoryUIT = new InventoryUIBase(_inventorySlotObject, _inventoryGridTool
                 , inventoryT, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.Tool);
-
-            
         }
 
         private void Start()
@@ -113,11 +109,6 @@ namespace UI.Inventory
 
             _dragAndDrop = new InventoryDragAndDrop();
             _dragAndDrop.DisableInputAndStop();
-
-            _inventoryUIR.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
-            _inventoryUIJ.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
-            _inventoryUIT.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
-            _hotBarUI.SetDragAndDrop(_dragAndDrop);
         }
 
         private void LateUpdate()
