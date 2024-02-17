@@ -17,7 +17,7 @@ using UnityEngine;
 /// <summary>
 /// A way for scripts to register and unregister all of their responses to game event scriptable objects.
 /// </summary>
-public class GameEventsAndResponses
+public class GameEventResponses
 {
     private bool _registered;
     private (GameEventScriptableObject, System.Action)[] _eventsAndResponses = null;

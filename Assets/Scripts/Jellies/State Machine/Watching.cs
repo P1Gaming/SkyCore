@@ -2,38 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Jellies.Behaviors;
-[RequireComponent(typeof(NavMeshAgent))]
-public class Watching : State
+
+public class Watching : MonoBehaviour
 {
-    [SerializeField,Range(0,10),Tooltip("The distance the jelly watches the subject from")]
-    private int _watchDistance;
+    [SerializeField]
     private NavMeshAgent _agent;
+    [SerializeField]
+    private JellyStateMachine _stateMachine;
+    [SerializeField]
+    private GameEventScriptableObject _updateWatching;
+    [SerializeField]
+    private GameEventScriptableObject _exitWatching;
+    [SerializeField, Range(0, 10), Tooltip("The distance the jelly watches the subject from")]
+    private int _watchDistance;
+
     private Transform _player;
+    private GameEventResponses _gameEventResponses = new();
 
     private void Awake()
     {
-        _agent = GetComponent<NavMeshAgent>();
         _player = Player.Motion.PlayerMovement.Instance.transform;
+
+        _gameEventResponses.SetSelectiveResponses(_stateMachine
+            , (_updateWatching, UpdateWatching)
+            , (_exitWatching, ExitWatching)
+            );
     }
 
-    private void Update()
-    {
-        Watch();
-    }
+    private void OnEnable() => _gameEventResponses.Register();
+    private void OnDisable() => _gameEventResponses.Unregister();
 
-    public override void Exit()
-    {
-        _agent.ResetPath();
-        base.Exit();
-    }
-
-    /// <summary>
-    /// Watches the subject from the _watchDistance 
-    /// </summary>
-    private void Watch()
+    private void UpdateWatching()
     {
         _agent.stoppingDistance = _watchDistance;
         _agent.SetDestination(_player.position);
+    }
+
+    private void ExitWatching()
+    {
+        _agent.ResetPath();
     }
 }

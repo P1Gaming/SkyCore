@@ -31,7 +31,7 @@ public class ShowNewlyScannedThing : MonoBehaviour
 
     private bool _showing;
     private Queue<Sprite> _toShow = new();
-    private GameEventsAndResponses _gameEventsAndResponses = new();
+    private GameEventResponses _gameEventResponses = new();
 
 
     private void Awake()
@@ -39,21 +39,14 @@ public class ShowNewlyScannedThing : MonoBehaviour
         _showSomethingTriggerID = Animator.StringToHash(_showSomethingTrigger);
         AnimatorStateEnterEvent.GetEnterEvent(_animator).OnEnter += OnAnimatorEntersIdle;
 
-        _gameEventsAndResponses.SetDataResponses(
+        _gameEventResponses.SetDataResponses(
             (_scannedItemEvent, OnScanItemBeforeCast)
             , (_scannedJellyEvent, OnScanJellyBeforeCast)
             );
     }
 
-    private void OnEnable()
-    {
-        _gameEventsAndResponses.Register();
-    }
-
-    private void OnDisable()
-    {
-        _gameEventsAndResponses.Unregister();
-    }
+    private void OnEnable() => _gameEventResponses.Register();
+    private void OnDisable() => _gameEventResponses.Unregister();
 
     private void OnAnimatorEntersIdle()
     {

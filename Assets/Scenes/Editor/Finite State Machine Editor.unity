@@ -3983,7 +3983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816353bbe51fca84ca90d3c77949e98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateMachineName: 
+  _stateMachineName: Jelly
   _stateMachineDefinition: {fileID: 0}
 --- !u!114 &1152390466
 MonoBehaviour:

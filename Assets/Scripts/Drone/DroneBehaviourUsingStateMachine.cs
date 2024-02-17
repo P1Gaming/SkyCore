@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using FiniteStateMachine;
 
-// Just a way to test FiniteStateMachine. We should use DroneBehaviour, not this.
 public class DroneBehaviourUsingStateMachine : MonoBehaviour
 {
     [SerializeField, Tooltip("Whether to require the player to press a button to finish scanning.")]
@@ -110,7 +109,7 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
     private bool _playerPressedWASD = false;
     private bool _medicalPromptShown = false;
     private float _droneTutorialTimer;
-    private GameEventsAndResponses _gameEventsAndResponses = new();
+    private GameEventResponses _gameEventResponses = new();
 
     private void Awake()
     {
@@ -121,7 +120,7 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
         _stateMachine.SetBool(_finishedTutorialParameter, _settings.SkipTutorial);
 
 
-        _gameEventsAndResponses.SetResponses(
+        _gameEventResponses.SetResponses(
             (_playerLookControlsEvent, PlayerMovedCamera)
             , (_playerMovementWEvent, PlayerMoved)
             , (_playerMovementSEvent, PlayerMoved)
@@ -130,7 +129,7 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
             );
 
         // There's only 1 drone, so don't really need to use selective responses for the drone, but might as well.
-        _gameEventsAndResponses.SetSelectiveResponses(this
+        _gameEventResponses.SetSelectiveResponses(this
             , (_idleUpdate, UpdateIdle)
             , (_tutorialEnter, EnterTutorial)
             , (_tutorialUpdate, UpdateTutorial)
@@ -149,15 +148,8 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
             );
     }
 
-    private void OnEnable()
-    {
-        _gameEventsAndResponses.Register();
-    }
-
-    private void OnDisable()
-    {
-        _gameEventsAndResponses.Unregister();
-    }
+    private void OnEnable() => _gameEventResponses.Register();
+    private void OnDisable() => _gameEventResponses.Unregister();
 
     private void Update()
     {

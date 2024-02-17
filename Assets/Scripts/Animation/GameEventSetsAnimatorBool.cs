@@ -18,23 +18,16 @@ public class GameEventSetsAnimatorBool : MonoBehaviour
 
     private int _boolParameterID;
 
-    private GameEventsAndResponses _eventAndResponse = new();
+    private GameEventResponses _gameEventResponses = new();
 
     private void Awake()
     {
         _boolParameterID = Animator.StringToHash(_boolName);
-        _eventAndResponse.SetResponses((_gameEvent, Set));
+        _gameEventResponses.SetResponses((_gameEvent, Set));
     }
 
-    private void OnEnable()
-    {
-        _eventAndResponse.Register();
-    }
-
-    private void OnDisable()
-    {
-        _eventAndResponse.Unregister();
-    }
+    private void OnEnable() => _gameEventResponses.Register();
+    private void OnDisable() => _gameEventResponses.Unregister();
 
     private void Set()
     {
