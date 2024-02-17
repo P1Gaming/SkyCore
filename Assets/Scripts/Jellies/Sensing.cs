@@ -12,44 +12,36 @@ namespace Jellies
         public event Action<EventArgs> Sensed;
 
 
-        public enum Sensor
-        {
-            Other,
-        }
-
         public class EventArgs : System.EventArgs
         {
-            public Sensor stimulus;
-            public GameObject source;
-            public bool status;
+            public bool closeToPlayer;
         }
-
-
+        
 
         private void OnTriggerEnter(Collider other)
         {
-            if (IsPlayer(other.gameObject))
+            if (!IsPlayer(other.gameObject))
             {
-                Sensed?.Invoke(new EventArgs()
-                {
-                    stimulus = Sensor.Other,
-                    source = other.gameObject,
-                    status = true,
-                });
+                return;
             }
+
+            Sensed?.Invoke(new EventArgs()
+            {
+                closeToPlayer = true,
+            });
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (IsPlayer(other.gameObject))
+            if (!IsPlayer(other.gameObject))
             {
-                Sensed?.Invoke(new EventArgs()
-                {
-                    stimulus = Sensor.Other,
-                    source = other.gameObject,
-                    status = false,
-                });
+                return;
             }
+
+            Sensed?.Invoke(new EventArgs()
+            {
+                closeToPlayer = false,
+            });
         }
 
         private bool IsPlayer(GameObject obj)

@@ -27,8 +27,7 @@ namespace Jellies.Behaviors
         /// <summary>
         /// Enables this state and notifies listeners that the jelly has entered this state
         /// </summary>
-        /// <param name="gameObject">Game Object</param>
-        public virtual void Enter(GameObject gameObject)
+        public virtual void Enter()
         {
             enabled = true;
             if (Entered != null)

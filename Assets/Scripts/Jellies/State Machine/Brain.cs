@@ -36,10 +36,13 @@ namespace Jellies
         {
             if (_currentState == null)
             {
-                if (!TryGetComponent(out Wandering wanderer)) { return; }
+                if (!TryGetComponent(out Wandering wanderer)) 
+                { 
+                    return; 
+                }
                 _currentState = wanderer;
             }
-            _currentState.Enter(gameObject);
+            _currentState.Enter();
         }
 
         /// <summary>
@@ -48,14 +51,15 @@ namespace Jellies
         /// <param name="eventArgs">data from the Jelly's senses</param>
         private void OnSensed(Sensing.EventArgs eventArgs)
         {
-            if (eventArgs.stimulus != Sensing.Sensor.Other) { return; }
-
-            State nextState = eventArgs.status ? GetComponent<Watching>() : GetComponent<Wandering>();
-            if (nextState == null) { return; }
+            State nextState = eventArgs.closeToPlayer ? GetComponent<Watching>() : GetComponent<Wandering>();
+            if (nextState == null) 
+            { 
+                return; 
+            }
 
             _currentState.Exit();
             _currentState = nextState;
-            _currentState.Enter(eventArgs.source);
+            _currentState.Enter();
         }
     }
 }

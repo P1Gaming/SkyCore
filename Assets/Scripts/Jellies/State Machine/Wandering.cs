@@ -4,12 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-/// <remarks>
-/// Requires Jelly to have the NavMeshAgent componement.
-/// </remarks>
 [RequireComponent(typeof(NavMeshAgent))]
-
-
 public class Wandering : State
 {
     /// <summary>
@@ -48,10 +43,6 @@ public class Wandering : State
     /// </summary>
     private NavMeshAgent _meshAgent;
     /// <summary>
-    /// NavMeshPath variable from the jelly's NavMeshAgent.
-    /// </summary>
-    private NavMeshPath _path;
-    /// <summary>
     /// Boolean variable if the jelly can wander or not.
     /// </summary>
     private bool _allowedToWander;
@@ -63,19 +54,6 @@ public class Wandering : State
     {
         _meshAgent = GetComponent<NavMeshAgent>();
         _allowedToWander = true;
-    }
-
-    /// <summary>
-    /// On start, if an Animator Object exist, set the Animator's speed to 1f.
-    /// </summary>
-    void Start()
-    {
-        Animator anim = GetComponent<Animator>();
-        // Checks if an Animator Object exist or not.
-        if(anim != null)
-        {
-            anim.speed = 1f;
-        }
     }
 
     /// <summary>
