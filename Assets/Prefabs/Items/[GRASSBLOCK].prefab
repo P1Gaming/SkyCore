@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8599889517674976643}
   - component: {fileID: 4083773366731029148}
   - component: {fileID: 6902432759847146897}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: '[GRASSBLOCK]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 973209602561125509}
   - component: {fileID: 2132609281998647699}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

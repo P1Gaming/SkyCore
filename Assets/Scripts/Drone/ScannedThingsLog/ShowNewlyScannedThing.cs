@@ -31,23 +31,28 @@ public class ShowNewlyScannedThing : MonoBehaviour
 
     private bool _showing;
     private Queue<Sprite> _toShow = new();
+    private GameEventsAndResponses _gameEventsAndResponses = new();
+
 
     private void Awake()
     {
         _showSomethingTriggerID = Animator.StringToHash(_showSomethingTrigger);
         AnimatorStateEnterEvent.GetEnterEvent(_animator).OnEnter += OnAnimatorEntersIdle;
+
+        _gameEventsAndResponses.SetDataResponses(
+            (_scannedItemEvent, OnScanItemBeforeCast)
+            , (_scannedJellyEvent, OnScanJellyBeforeCast)
+            );
     }
 
     private void OnEnable()
     {
-        _scannedItemEvent.OnRaiseWithData += OnScanItemBeforeCast;
-        _scannedJellyEvent.OnRaiseWithData += OnScanJellyBeforeCast;
+        _gameEventsAndResponses.Register();
     }
 
     private void OnDisable()
     {
-        _scannedItemEvent.OnRaiseWithData -= OnScanItemBeforeCast;
-        _scannedJellyEvent.OnRaiseWithData -= OnScanJellyBeforeCast;
+        _gameEventsAndResponses.Unregister();
     }
 
     private void OnAnimatorEntersIdle()

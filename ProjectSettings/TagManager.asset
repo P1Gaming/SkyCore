@@ -27,9 +27,9 @@ TagManager:
   - 
   - 
   - 
-  - PickupItem
+  - PickupItemTrigger
   - 
-  - 
+  - PickupItemSolid
   - 
   - 
   - 
