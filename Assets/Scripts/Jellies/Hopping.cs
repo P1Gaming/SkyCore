@@ -1,13 +1,11 @@
 using System.Collections;
-
-using Jellies.Behaviors;
 using UnityEngine;
 
-    [RequireComponent(typeof(Wandering))]
+public class Hopping : MonoBehaviour
+{
+    [SerializeField]
+    private Wandering _wandering;
 
-    
-    public class Hopping : MonoBehaviour
-    {
     [SerializeField, Tooltip("We manipulate local position of the model itself so we need a reference to just the model")]
     private GameObject _model;
 
@@ -17,29 +15,30 @@ using UnityEngine;
     [SerializeField, Tooltip("Total Height in Unity units for the Jelly to hop")]
     private float _totalJumpHeight;
 
-    private IEnumerable _jump;
+    [SerializeField]
+    private JellyStateMachine _stateMachine;
+    [SerializeField]
+    private GameEventScriptableObject _wanderExit;
 
-    private bool _isObjectInMotion;
+    private bool _alreadyHopping;
 
-    private bool _isFinished=true;
+    private bool _isFinished = true;
 
-    ///<summary>
-    /// Make use of Awake method to bind private bool setters to event methods in the Wandering script
-    ///</summary>
+    private GameEventResponses _gameEventResponses = new();
+
     private void Awake()
     {
-        Wandering wandering = GetComponent<Wandering>();
-        wandering.OnChangeDirection += SetIsFinished;
-        wandering.Exited += SetIsFinishedWithState;
+        _wandering.OnChangeDirection += SetIsFinished;
+        _gameEventResponses.SetSelectiveResponses(_stateMachine
+            , (_wanderExit, SetIsFinished));
     }
-    
+
+    private void OnEnable() => _gameEventResponses.Register();
+    private void OnDisable() => _gameEventResponses.Unregister();
+
     void Update()
     {
-        if(_isObjectInMotion==true || _isFinished==true)
-        {
-            return;
-        }
-        else 
+        if (!_alreadyHopping && !_isFinished)
         {
             StartCoroutine(PerformTheHop());            
         }
@@ -50,26 +49,26 @@ using UnityEngine;
         _isFinished = newValue;
     }
 
-    private void SetIsFinishedWithState(State stateInfo)
+    private void SetIsFinished()
     {
         _isFinished = true;
     }
 
     private IEnumerator PerformTheHop()
     {
-        _isObjectInMotion = true;
+        _alreadyHopping = true;
         Transform localTransform = _model.transform;
-        float trueHeight = _totalJumpHeight / Mathf.Pow((_durationOfJump/2),2); 
+        float trueHeight = _totalJumpHeight / Mathf.Pow(_durationOfJump / 2, 2); 
 
-        for(float i=0;i<_durationOfJump;i+=Time.deltaTime)
+        for (float i = 0; i < _durationOfJump; i += Time.deltaTime)
         {
             Vector3 localPos = localTransform.localPosition;
-            localTransform.localPosition = new Vector3(localPos.x,i*trueHeight*(_durationOfJump-i), localPos.z);
+            localTransform.localPosition = new Vector3(localPos.x, i * trueHeight * (_durationOfJump - i), localPos.z);
             yield return null;
         }
 
-        _isObjectInMotion = false;
+        _alreadyHopping = false;
     }
 
-    }
+}
 

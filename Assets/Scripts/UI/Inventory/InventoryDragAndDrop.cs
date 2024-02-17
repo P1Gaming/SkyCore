@@ -33,8 +33,11 @@ namespace UI.Inventory
 
         public void CheckDraggedStackNowEmpty()
         {
-            _beingDragged.StopItemDrag();
-            _beingDragged = null;
+            if (_beingDragged != null)
+            {
+                _beingDragged.StopItemDrag();
+                _beingDragged = null;
+            }
         }
 
         private void OnClickStart(InputAction.CallbackContext context)

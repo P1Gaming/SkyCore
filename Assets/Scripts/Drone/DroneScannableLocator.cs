@@ -14,7 +14,7 @@ public class DroneScannableLocator
     public DroneScannableLocator()
     {
         _jellyLayerMask = LayerMask.GetMask("Jellies");
-        _itemLayerMask = LayerMask.GetMask("PickupItem");
+        _itemLayerMask = LayerMask.GetMask("PickupItemTrigger");
     }
 
     public bool AlreadyScanned(MonoBehaviour thing)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using FiniteStateMachine;
 
-// Just a way to test FiniteStateMachine. We should use DroneBehaviour, not this.
 public class DroneBehaviourUsingStateMachine : MonoBehaviour
 {
     [SerializeField, Tooltip("Whether to require the player to press a button to finish scanning.")]
@@ -107,83 +106,60 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
     private DroneScannableLocator _scannableLocator;
 
     private bool _movedCamera = false;
-    private bool _playerPressedW = false;
-    private bool _playerPressedA = false;
-    private bool _playerPressedS = false;
-    private bool _playerPressedD = false;
+    private bool _playerPressedWASD = false;
     private bool _medicalPromptShown = false;
     private float _droneTutorialTimer;
+    private GameEventResponses _gameEventResponses = new();
 
     private void Awake()
     {
         _scannableLocator = new DroneScannableLocator();
-        _stateMachine = new FiniteStateMachineInstance(_stateMachineDefinition, _logStateMachineTransitions);
+        _stateMachine = new FiniteStateMachineInstance(_stateMachineDefinition, this, _logStateMachineTransitions);
         _player = Player.Motion.PlayerMovement.Instance.transform;
         _stateMachine.SetBool(_buttonPressScanningParameter, _buttonPressScanning);
-    }
-
-    private void Start()
-    {
-        // this is in start just to maybe make it easier to load skip tutorial from save data
         _stateMachine.SetBool(_finishedTutorialParameter, _settings.SkipTutorial);
+
+
+        _gameEventResponses.SetResponses(
+            (_playerLookControlsEvent, PlayerMovedCamera)
+            , (_playerMovementWEvent, PlayerMoved)
+            , (_playerMovementSEvent, PlayerMoved)
+            , (_playerMovementAEvent, PlayerMoved)
+            , (_playerMovementDEvent, PlayerMoved)
+            );
+
+        // There's only 1 drone, so don't really need to use selective responses for the drone, but might as well.
+        _gameEventResponses.SetSelectiveResponses(this
+            , (_idleUpdate, UpdateIdle)
+            , (_tutorialEnter, EnterTutorial)
+            , (_tutorialUpdate, UpdateTutorial)
+            , (_tutorialExit, ExitTutorial)
+            , (_followPlayerUpdate, UpdateMoveTowardsPlayer)
+            , (_moveToUnscannedUpdate, UpdateMoveTowardsToScan)
+            , (_scanAttemptingEnter, EnterScanAttempting)
+            , (_scanAttemptingUpdate, UpdateScanAttempting)
+            , (_scanFailedExit, ExitScanFailed)
+            , (_scanSucceededEnter, EnterScanSucceeded)
+            , (_scanSucceededUpdate, UpdateScanSucceeded)
+            , (_scanSucceededExit, ExitScanSucceeded)
+            , (_scanAwaitingButtonEnter, EnterScanAwaitingButton)
+            , (_scanAwaitingButtonUpdate, UpdateScanAwaitingButton)
+            , (_scanAwaitingButtonExit, ExitScanAwaitingButton)
+            );
     }
 
-    private void OnEnable()
-    {
-        _idleUpdate.OnRaise += UpdateIdle;
-        _tutorialEnter.OnRaise += EnterTutorial;
-        _tutorialUpdate.OnRaise += UpdateTutorial;
-        _tutorialExit.OnRaise += ExitTutorial;
-        _followPlayerUpdate.OnRaise += UpdateMoveTowardsPlayer;
-        _moveToUnscannedUpdate.OnRaise += UpdateMoveTowardsToScan;
-        _scanAttemptingEnter.OnRaise += EnterScanAttempting;
-        _scanAttemptingUpdate.OnRaise += UpdateScanAttempting;
-        _scanFailedExit.OnRaise += ExitScanFailed;
-        _scanSucceededEnter.OnRaise += EnterScanSucceeded;
-        _scanSucceededUpdate.OnRaise += UpdateScanSucceeded;
-        _scanSucceededExit.OnRaise += ExitScanSucceeded;
-        _scanAwaitingButtonEnter.OnRaise += EnterScanAwaitingButton;
-        _scanAwaitingButtonUpdate.OnRaise += UpdateScanAwaitingButton;
-        _scanAwaitingButtonExit.OnRaise += ExitScanAwaitingButton;
-
-        _playerLookControlsEvent.OnRaise += PlayerMovedCamera;
-        _playerMovementWEvent.OnRaise += PlayerMoved;
-        _playerMovementSEvent.OnRaise += PlayerMoved;
-        _playerMovementAEvent.OnRaise += PlayerMoved;
-        _playerMovementDEvent.OnRaise += PlayerMoved;
-    }
-
-    private void OnDisable()
-    {
-        _idleUpdate.OnRaise -= UpdateIdle;
-        _tutorialEnter.OnRaise -= EnterTutorial;
-        _tutorialUpdate.OnRaise -= UpdateTutorial;
-        _tutorialExit.OnRaise -= ExitTutorial;
-        _followPlayerUpdate.OnRaise -= UpdateMoveTowardsPlayer;
-        _moveToUnscannedUpdate.OnRaise -= UpdateMoveTowardsToScan;
-        _scanAttemptingEnter.OnRaise -= EnterScanAttempting;
-        _scanAttemptingUpdate.OnRaise -= UpdateScanAttempting;
-        _scanFailedExit.OnRaise -= ExitScanFailed;
-        _scanSucceededEnter.OnRaise -= EnterScanSucceeded;
-        _scanSucceededUpdate.OnRaise -= UpdateScanSucceeded;
-        _scanSucceededExit.OnRaise -= ExitScanSucceeded;
-        _scanAwaitingButtonEnter.OnRaise -= EnterScanAwaitingButton;
-        _scanAwaitingButtonUpdate.OnRaise -= UpdateScanAwaitingButton;
-        _scanAwaitingButtonExit.OnRaise -= ExitScanAwaitingButton;
-
-        _playerLookControlsEvent.OnRaise -= PlayerMovedCamera;
-        _playerMovementWEvent.OnRaise -= PlayerMoved;
-        _playerMovementSEvent.OnRaise -= PlayerMoved;
-        _playerMovementAEvent.OnRaise -= PlayerMoved;
-        _playerMovementDEvent.OnRaise -= PlayerMoved;
-    }
+    private void OnEnable() => _gameEventResponses.Register();
+    private void OnDisable() => _gameEventResponses.Unregister();
 
     private void Update()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         UpdateThingToScan();
-
         _stateMachine.SetFloat(_distanceFromHoverbyPlayerParameter, FromDroneToNear(_player).magnitude);
-
         _stateMachine.Update();
     }
 
@@ -412,7 +388,7 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
             }
             else
             {
-                if (!_playerPressedW && !_playerPressedA && !_playerPressedS && !_playerPressedD)
+                if (!_playerPressedWASD)
                 {
                     _pictogramBehaviour.ChangePictogramImage(_droneMovementControls);
                 }
@@ -441,10 +417,7 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
     {
         if (_movedCamera)
         {
-            _playerPressedW = true;
-            _playerPressedA = true;
-            _playerPressedS = true;
-            _playerPressedD = true;
+            _playerPressedWASD = true;
         }
     }
 }
