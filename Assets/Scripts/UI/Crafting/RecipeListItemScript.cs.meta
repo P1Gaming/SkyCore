@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3b7b0477b71535e4ea9b04a69e691100
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - CraftingUI: {fileID: 470205562434581625, guid: aa2472c0db00a514bba0cfe4d0b1b41b,
+      type: 3}
+  - _itemIcon: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
