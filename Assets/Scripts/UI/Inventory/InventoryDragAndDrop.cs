@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Collections.Specialized;
 using System;
+using System.Runtime.InteropServices;
 
 namespace UI.Inventory
 {
@@ -173,6 +174,30 @@ namespace UI.Inventory
             if (_beingDragged.ItemStack.amount > 0)
             {
                 GameObject droppedItem = _beingDragged.ItemStack.itemInfo.ItemPrefab;
+
+                //Check what the item is
+
+                //Is the Item a Generator?
+                if (_beingDragged.ItemStack.itemInfo.Name == "Generator")
+                {
+                    //If so check to see if the island heart is close by. If not just return and do nothing.
+                    GameObject[] IslandHeartPos = GameObject.FindGameObjectsWithTag("IslandHeart");
+                    float closestIslandHeart = Mathf.Infinity;
+
+                    foreach (GameObject IslandHeart in IslandHeartPos)
+                    {
+                        float distance = (IslandHeart.transform.position - GameObject.FindGameObjectWithTag("Player").transform.position).magnitude;
+                        if (distance < closestIslandHeart)
+                        {
+                            closestIslandHeart = distance;
+                        }
+                    }
+
+                    if (closestIslandHeart > 3)
+                    {
+                        return;
+                    }
+                }
 
                 //Spawn item in front of the player
                 Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
