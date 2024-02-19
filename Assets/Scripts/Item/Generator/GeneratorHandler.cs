@@ -17,11 +17,29 @@ public class GeneratorHandler : MonoBehaviour
     public void AddCharge(float setCharge)
     {
         targetCharge += setCharge;
+
+        if (targetCharge > maxCharge)
+        {
+            targetCharge = maxCharge;
+        }
+        else if (targetCharge < 0)
+        { 
+            targetCharge = 0;
+        }
     }
 
     public void SetCharge(float setCharge)
     {
         targetCharge = setCharge;
+
+        if (targetCharge > maxCharge)
+        {
+            targetCharge = maxCharge;
+        }
+        else if (targetCharge < 0)
+        {
+            targetCharge = 0;
+        }
     }
 
     //Changes the percentage of the text
