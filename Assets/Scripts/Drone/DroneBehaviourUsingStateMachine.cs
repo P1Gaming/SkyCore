@@ -254,7 +254,6 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
 
     private void UpdateIdle()
     {
-        //RotateTowardsTarget(_player);
         float rotateDegrees = _settings.IdleRotationSpeed * Time.deltaTime;
         transform.Rotate(new Vector3(0, rotateDegrees, 0));
     }
@@ -357,7 +356,6 @@ public class DroneBehaviourUsingStateMachine : MonoBehaviour
         // This & exit will happen multiple times if the drone moves to be sufficiently close to the player
         // and then shows the current tutorial step's pictogram.
         _pictogramBehaviour.SetImageActive(true);
-        _pictogramBehaviour.SetBackdropImage();
     }
 
     private void ExitTutorial()
