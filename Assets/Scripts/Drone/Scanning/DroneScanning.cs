@@ -7,15 +7,15 @@ public class DroneScanning : MonoBehaviour
 {
     [SerializeField]
     private DroneStateMachine _drone;
+    [SerializeField]
+    private DroneMovement _movement;
 
+    [SerializeField, Tooltip("Whether to require the player to press a button to finish scanning.")]
+    private bool _buttonPressScanning = true;
     [SerializeField, Tooltip("Max distance from the drone to scan things")]
     private float _detectionRange = 10f;
     [SerializeField, Tooltip("Max distance from the player things can be and still will be scanned")]
     private float _maxDistanceFromPlayerToScan = 10f;
-
-
-    [SerializeField, Tooltip("Whether to require the player to press a button to finish scanning.")]
-    private bool _buttonPressScanning = true;
 
     [Header("Visuals")]
     [SerializeField]
@@ -24,7 +24,6 @@ public class DroneScanning : MonoBehaviour
     private LineRenderer _placeholderScanAttemptingVisual;
     [SerializeField]
     private LineRenderer _placeholderScanSuccessVisual;
-
 
     [Header("Finite State Machine Parameters")]
     [SerializeField]
@@ -70,7 +69,6 @@ public class DroneScanning : MonoBehaviour
 
     private Transform _player;
 
-
     private MonoBehaviour _toScan;
     private DroneScannableLocator _scannableLocator;
 
@@ -86,8 +84,8 @@ public class DroneScanning : MonoBehaviour
 
         _stateMachineInstance.SetBool(_buttonPressScanningParameter, _buttonPressScanning);
 
-        _gameEventResponses.SetSelectiveResponses(_drone
-            , (_moveToUnscannedUpdate, UpdateMoveTowardsToScan)
+        _gameEventResponses.SetResponses(
+            (_moveToUnscannedUpdate, UpdateMoveTowardsToScan)
             , (_scanAttemptingEnter, EnterScanAttempting)
             , (_scanAttemptingUpdate, UpdateScanAttempting)
             , (_scanFailedExit, ExitScanFailed)
@@ -107,21 +105,22 @@ public class DroneScanning : MonoBehaviour
 
     public void OnPreStateMachineInstanceUpdate()
     {
-        UpdateThingToScan();
+        TrackThingToScan();
     }
 
-    private void UpdateThingToScan()
+    private void TrackThingToScan()
     {
         if (_toScan == null || _scannableLocator.AlreadyScanned(_toScan))
         {
             _toScan = _scannableLocator.TryGetThingToScan(transform, _player
                 , _detectionRange, _maxDistanceFromPlayerToScan);
         }
+
         float distanceToThingToScan = float.PositiveInfinity;
         float distanceBetweenThingToScanAndPlayer = float.PositiveInfinity;
         if (_toScan != null)
         {
-            distanceToThingToScan = _drone.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false).magnitude;
+            distanceToThingToScan = _movement.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false).magnitude;
             distanceBetweenThingToScanAndPlayer = (_toScan.transform.position - _player.position).magnitude;
         }
 
@@ -133,8 +132,8 @@ public class DroneScanning : MonoBehaviour
 
     private void UpdateMoveTowardsToScan()
     {
-        _drone.RotateTowardsTarget(_toScan.transform);
-        _drone.MoveDrone(_drone.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
+        _movement.RotateTowardsTarget(_toScan.transform);
+        _movement.MoveDrone(_movement.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
     }
 
     private void EnterScanAttempting()
@@ -174,7 +173,7 @@ public class DroneScanning : MonoBehaviour
     {
         _toScan = null;
         _placeholderScanAttemptingVisual.enabled = false;
-        UpdateThingToScan();
+        TrackThingToScan();
     }
 
     private void EnterScanSucceeded()
@@ -215,7 +214,7 @@ public class DroneScanning : MonoBehaviour
         }
 
         _placeholderScanSuccessVisual.enabled = false;
-        UpdateThingToScan();
+        TrackThingToScan();
     }
 
 

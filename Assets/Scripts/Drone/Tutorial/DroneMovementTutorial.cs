@@ -8,6 +8,8 @@ public class DroneMovementTutorial : MonoBehaviour
     [SerializeField]
     private DroneStateMachine _drone;
     [SerializeField]
+    private DroneMovement _movement;
+    [SerializeField]
     private bool _skipTutorial;
     [Header("Visuals")]
     [SerializeField]
@@ -70,9 +72,6 @@ public class DroneMovementTutorial : MonoBehaviour
             , (_playerMovementSEvent, PlayerMoved)
             , (_playerMovementAEvent, PlayerMoved)
             , (_playerMovementDEvent, PlayerMoved)
-            );
-
-        _gameEventResponses.SetSelectiveResponses(_drone
             , (_tutorialEnter, EnterTutorial)
             , (_tutorialUpdate, UpdateTutorial)
             , (_tutorialExit, ExitTutorial)
@@ -109,7 +108,7 @@ public class DroneMovementTutorial : MonoBehaviour
 
     private void UpdateTutorial()
     {
-        _drone.RotateTowardsTarget(_player); // still might want to make the pictogram directly face the camera
+        _movement.RotateTowardsTarget(_player); // still might want to make the pictogram directly face the camera
 
         if (!_medicalPromptShown)
         {
