@@ -12,60 +12,21 @@ public class DroneStateMachine : MonoBehaviour
     [SerializeField]
     private FSMDefinition _stateMachineDefinition;
 
-    [Header("Visuals")]
-    [SerializeField]
-    private PictogramBehavior _pictogramBehaviour;
-    [SerializeField]
-    private Sprite _droneMedical;
-    [SerializeField]
-    private Sprite _droneCameraControls;
-    [SerializeField]
-    private Sprite _droneMovementControls;
-    [SerializeField]
-    private Sprite _droneTutorialComplete;
-    
-
     [Header("Finite State Machine Parameters")]
     [SerializeField]
     private FSMParameter _distanceFromHoverbyPlayerParameter;
-    [SerializeField]
-    private FSMParameter _finishedTutorialParameter;
 
     [Header("Finite State Machine Events")]
     [SerializeField]
     private GameEventScriptableObject _idleUpdate;
     [SerializeField]
-    private GameEventScriptableObject _tutorialEnter;
-    [SerializeField]
-    private GameEventScriptableObject _tutorialUpdate;
-    [SerializeField]
-    private GameEventScriptableObject _tutorialExit;
-    [SerializeField]
     private GameEventScriptableObject _followPlayerUpdate;
-
-    [Header("Events for Tutorial Detecting Controls")]
-    [SerializeField]
-    private GameEventScriptableObject _playerLookControlsEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementWEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementSEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementAEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementDEvent;
 
     [SerializeField]
     private DroneScanning _scanning;
 
     private FiniteStateMachineInstance _stateMachineInstance;
-
     private Transform _player;
-
-    private bool _movedCamera = false;
-    private bool _playerPressedWASD = false;
-    private bool _medicalPromptShown = false;
-    private float _droneTutorialTimer;
     private GameEventResponses _gameEventResponses = new();
 
     
@@ -78,22 +39,10 @@ public class DroneStateMachine : MonoBehaviour
             _stateMachineInstance = new FiniteStateMachineInstance(_stateMachineDefinition, this, _logStateMachineTransitions);
         }
         _player = Player.Motion.PlayerMovement.Instance.transform;
-        _stateMachineInstance.SetBool(_finishedTutorialParameter, _settings.SkipTutorial);
-
-        _gameEventResponses.SetResponses(
-            (_playerLookControlsEvent, PlayerMovedCamera)
-            , (_playerMovementWEvent, PlayerMoved)
-            , (_playerMovementSEvent, PlayerMoved)
-            , (_playerMovementAEvent, PlayerMoved)
-            , (_playerMovementDEvent, PlayerMoved)
-            );
 
         // There's only 1 drone, so don't really need to use selective responses for the drone, but might as well.
         _gameEventResponses.SetSelectiveResponses(this
             , (_idleUpdate, UpdateIdle)
-            , (_tutorialEnter, EnterTutorial)
-            , (_tutorialUpdate, UpdateTutorial)
-            , (_tutorialExit, ExitTutorial)
             , (_followPlayerUpdate, UpdateMoveTowardsPlayer)
             );
     }
@@ -196,163 +145,7 @@ public class DroneStateMachine : MonoBehaviour
         RotateTowardsTarget(_player);
         MoveDrone(FromDroneToNear(_player));
     }
-
-    //private void UpdateMoveTowardsToScan()
-    //{
-    //    RotateTowardsTarget(_toScan.transform);
-    //    MoveDrone(FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
-    //}
-
-    //private void EnterScanAttempting()
-    //{
-    //    _placeholderScanAttemptingVisual.enabled = true;
-    //}
-
-    //private void UpdateScanAttempting()
-    //{
-    //    _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
-    //    _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
-    //}
-
-    //private void EnterScanAwaitingButton()
-    //{
-    //    _scanButtonUI.SetActive(true);
-    //}
-
-    //private void UpdateScanAwaitingButton()
-    //{
-    //    _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
-    //    _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
-
-    //    if (Input.GetKeyDown(KeyCode.Return))
-    //    {
-    //        _stateMachine.SetBool(_buttonPressedParameter, true);
-    //    }
-    //}
-
-    //private void ExitScanAwaitingButton()
-    //{
-    //    _scanButtonUI.SetActive(false);
-    //    _stateMachine.SetBool(_buttonPressedParameter, false);
-    //}
-
-    //private void ExitScanFailed()
-    //{
-    //    _toScan = null;
-    //    _placeholderScanAttemptingVisual.enabled = false;
-    //    UpdateThingToScan();
-    //}
-
-    //private void EnterScanSucceeded()
-    //{
-    //    _placeholderScanAttemptingVisual.enabled = false;
-    //    _placeholderScanSuccessVisual.enabled = true;
-    //}
-
-    //private void UpdateScanSucceeded()
-    //{
-    //    _placeholderScanSuccessVisual.SetPosition(0, transform.position);
-    //    _placeholderScanSuccessVisual.SetPosition(1, _toScan.transform.position);
-    //}
-
-    //private void ExitScanSucceeded()
-    //{
-    //    // it can be null if it was destroyed (e.g. item picked up)
-    //    // during the time when it's successfully scanning it.
-    //    if (_toScan != null)
-    //    {
-    //        _scannableLocator.MarkAsScanned(_toScan);
-
-    //        PickupItem item = _toScan as PickupItem;
-    //        Jellies.Parameters jelly = _toScan as Jellies.Parameters;
-    //        if (item != null)
-    //        {
-    //            _scannedItemEvent.Raise(item.ItemInfo);
-    //        }
-    //        else if (jelly != null)
-    //        {
-    //            _scannedJellyEvent.Raise(jelly.TypeOfThisJelly());
-    //        }
-    //        else
-    //        {
-    //            Debug.LogError("log for this type isnt implemented (are we scanning" +
-    //                " another thing besides jellies and items?", _toScan);
-    //        }
-    //    }
-
-    //    _placeholderScanSuccessVisual.enabled = false;
-    //    UpdateThingToScan();
-    //}
-
-    private void EnterTutorial()
-    {
-        // This & exit will happen multiple times if the drone moves to be sufficiently close to the player
-        // and then shows the current tutorial step's pictogram.
-        _pictogramBehaviour.SetImageActive(true);
-    }
-
-    private void ExitTutorial()
-    {
-        _pictogramBehaviour.SetImageActive(false);
-    }
-
-    private void UpdateTutorial()
-    {
-        RotateTowardsTarget(_player); // still might want to make the pictogram directly face the camera
-
-        if (!_medicalPromptShown)
-        {
-            _pictogramBehaviour.ChangePictogramImage(_droneMedical);
-            _droneTutorialTimer += Time.deltaTime;
-
-            if (_droneTutorialTimer >= 5f) // If 5 seconds have passed
-            {
-                _medicalPromptShown = true;
-                _droneTutorialTimer = 0f;
-            }
-        }
-        else
-        {
-            if (!_movedCamera)
-            {
-                _pictogramBehaviour.ChangePictogramImage(_droneCameraControls);
-            }
-            else
-            {
-                if (!_playerPressedWASD)
-                {
-                    _pictogramBehaviour.ChangePictogramImage(_droneMovementControls);
-                }
-                else
-                {
-                    _pictogramBehaviour.ChangePictogramImage(_droneTutorialComplete);
-                    _droneTutorialTimer += Time.deltaTime;
-
-                    if (_droneTutorialTimer >= 2f) // If 2 seconds have passed
-                    {
-                        _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
-                    }
-                }
-            }
-        }
-    }
     #endregion
-
-
-    public void PlayerMovedCamera()
-    {
-        _movedCamera = true;
-    }
-
-    public void PlayerMoved()
-    {
-        if (_movedCamera)
-        {
-            _playerPressedWASD = true;
-        }
-    }
-
-
 
     public FiniteStateMachineInstance GetStateMachineInstance()
     {

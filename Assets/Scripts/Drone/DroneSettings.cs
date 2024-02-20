@@ -19,14 +19,4 @@ public class DroneBehaviourSettings
     public float MoveToHorizontalDistanceFromTarget { get; private set; } = 3f;
     [field: SerializeField, Tooltip("How high the drone tries to hover relative to its target")]
     public float HoverHeight { get; private set; } = 2f;
-
-    //[field: Header("Scanning")]
-    //[field: SerializeField, Tooltip("Max distance from the drone to scan things")]
-    //public float DetectionRange { get; private set; } = 10f;
-    //[field: SerializeField, Tooltip("Max distance from the player things can be and still will be scanned")]
-    //public float MaxDistanceFromPlayerToScan { get; private set; } = 10f;
-
-    [field: Header("Misc")]
-    [field: SerializeField]
-    public bool SkipTutorial { get; private set; }
 }

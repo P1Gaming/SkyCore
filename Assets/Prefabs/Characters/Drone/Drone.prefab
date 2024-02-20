@@ -245,6 +245,76 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2106701992538358982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6071993083503952919}
+  - component: {fileID: 2104892025793519153}
+  m_Layer: 0
+  m_Name: Movement Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6071993083503952919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106701992538358982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2026214015679506933}
+  m_Father: {fileID: 4364394114180109594}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2104892025793519153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106701992538358982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92aae68a1ee78ca479970923635e4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _skipTutorial: 0
+  _pictogramBehaviour: {fileID: 1061435318300220196}
+  _droneMedical: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df, type: 3}
+  _droneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
+    type: 3}
+  _droneMovementControls: {fileID: 21300000, guid: 0e838650ac6522740be93b1c8917e635,
+    type: 3}
+  _droneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
+    type: 3}
+  _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
+    type: 2}
+  _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
+  _tutorialUpdate: {fileID: 11400000, guid: 97fef6c26eddcc84b941a0191cefbe81, type: 2}
+  _tutorialExit: {fileID: 11400000, guid: 7054989ae3b103e47903df7202ebfcd8, type: 2}
+  _playerLookControlsEvent: {fileID: 11400000, guid: 69a51e4938c1a42489c2a4ea9df7479d,
+    type: 2}
+  _playerMovementWEvent: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff,
+    type: 2}
+  _playerMovementSEvent: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207,
+    type: 2}
+  _playerMovementAEvent: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0,
+    type: 2}
+  _playerMovementDEvent: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4,
+    type: 2}
 --- !u!1 &2550217315515081578
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +733,7 @@ Transform:
   - {fileID: 8009064511204142873}
   - {fileID: 7617972216034368555}
   m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &557467598811146302
 MonoBehaviour:
@@ -747,7 +817,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6533774167822551470
 MonoBehaviour:
@@ -857,9 +927,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7064711757998131545}
   - {fileID: 4364394113714527215}
-  - {fileID: 2026214015679506933}
+  - {fileID: 7064711757998131545}
+  - {fileID: 6071993083503952919}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -882,40 +952,14 @@ MonoBehaviour:
     <IdleRotationSpeed>k__BackingField: 30
     <MoveToHorizontalDistanceFromTarget>k__BackingField: 3
     <HoverHeight>k__BackingField: 2
-    <SkipTutorial>k__BackingField: 0
   _stateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
     type: 2}
-  _pictogramBehaviour: {fileID: 1061435318300220196}
-  _droneMedical: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df, type: 3}
-  _droneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
-    type: 3}
-  _droneMovementControls: {fileID: 21300000, guid: 0e838650ac6522740be93b1c8917e635,
-    type: 3}
-  _droneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
-    type: 3}
   _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771,
     type: 2}
-  _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
-    type: 2}
   _idleUpdate: {fileID: 11400000, guid: 628e17ce4c75ee34ea23677f4cf1342b, type: 2}
-  _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
-  _tutorialUpdate: {fileID: 11400000, guid: 97fef6c26eddcc84b941a0191cefbe81, type: 2}
-  _tutorialExit: {fileID: 11400000, guid: 7054989ae3b103e47903df7202ebfcd8, type: 2}
   _followPlayerUpdate: {fileID: 11400000, guid: 772b27df93a45f247b1b5e9d42167fda,
     type: 2}
-  _playerLookControlsEvent: {fileID: 11400000, guid: 69a51e4938c1a42489c2a4ea9df7479d,
-    type: 2}
-  _playerMovementWEvent: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff,
-    type: 2}
-  _playerMovementSEvent: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207,
-    type: 2}
-  _playerMovementAEvent: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0,
-    type: 2}
-  _playerMovementDEvent: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4,
-    type: 2}
   _scanning: {fileID: 557467598811146302}
-  seesUnscannedParameterForTest: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
-    type: 2}
 --- !u!114 &1061435318300220196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1456,8 +1500,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1337370598263767490}
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 2
+  m_Father: {fileID: 6071993083503952919}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
