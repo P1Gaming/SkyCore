@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee51aded67c9e1b48b8af0bc0fd30ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneToLoadOnPlayClicked: Main
+  _sceneToLoadOnPlayClicked: WolfPistol
   _panelToShowOnSettingsClicked: {fileID: 2350167102155425290}
 --- !u!222 &1904398641
 CanvasRenderer:
@@ -2006,6 +2006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146821052}
   - component: {fileID: 2146821051}
+  - component: {fileID: 2146821053}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -2040,6 +2041,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2146821053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146821050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a83a1eee76c764094b044c86b537e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2350167102155425290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5918176080054103519, guid: 5a57e14bea6bc234ab41a77bd567f395,

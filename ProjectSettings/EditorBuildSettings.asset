@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 6063efdd28e6f1d4584134d0f0248329
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: ba7dac18c2786bd4ea64602b95035d04
-  - enabled: 1
     path: Assets/Scenes/WolfPistol.unity
     guid: c4fa3311128228e4c8825692d54075d1
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: ba7dac18c2786bd4ea64602b95035d04
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ed5c78f9973ad8c4fabf1389113f03df,
       type: 2}
