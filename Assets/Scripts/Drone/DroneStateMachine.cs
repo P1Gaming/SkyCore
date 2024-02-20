@@ -5,8 +5,6 @@ using FiniteStateMachine;
 
 public class DroneStateMachine : MonoBehaviour
 {
-    [SerializeField, Tooltip("Whether to require the player to press a button to finish scanning.")]
-    private bool _buttonPressScanning;
     [SerializeField]
     private bool _logStateMachineTransitions;
     [SerializeField]
@@ -16,13 +14,7 @@ public class DroneStateMachine : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField]
-    private GameObject _scanButtonUI;
-    [SerializeField]
     private PictogramBehavior _pictogramBehaviour;
-    [SerializeField]
-    private LineRenderer _placeholderScanAttemptingVisual;
-    [SerializeField]
-    private LineRenderer _placeholderScanSuccessVisual;
     [SerializeField]
     private Sprite _droneMedical;
     [SerializeField]
@@ -37,17 +29,7 @@ public class DroneStateMachine : MonoBehaviour
     [SerializeField]
     private FSMParameter _distanceFromHoverbyPlayerParameter;
     [SerializeField]
-    private FSMParameter _distanceFromHoverbyUnscannedParameter;
-    [SerializeField]
-    private FSMParameter _distanceBetweenUnscannedAndPlayerParameter;
-    [SerializeField]
-    private FSMParameter _seesUnscannedParameter;
-    [SerializeField]
-    private FSMParameter _buttonPressedParameter;
-    [SerializeField]
     private FSMParameter _finishedTutorialParameter;
-    [SerializeField]
-    private FSMParameter _buttonPressScanningParameter;
 
     [Header("Finite State Machine Events")]
     [SerializeField]
@@ -60,26 +42,6 @@ public class DroneStateMachine : MonoBehaviour
     private GameEventScriptableObject _tutorialExit;
     [SerializeField]
     private GameEventScriptableObject _followPlayerUpdate;
-    [SerializeField]
-    private GameEventScriptableObject _moveToUnscannedUpdate;
-    [SerializeField]
-    private GameEventScriptableObject _scanAttemptingEnter;
-    [SerializeField]
-    private GameEventScriptableObject _scanAttemptingUpdate;
-    [SerializeField]
-    private GameEventScriptableObject _scanAwaitingButtonEnter;
-    [SerializeField]
-    private GameEventScriptableObject _scanAwaitingButtonUpdate;
-    [SerializeField]
-    private GameEventScriptableObject _scanAwaitingButtonExit;
-    [SerializeField]
-    private GameEventScriptableObject _scanFailedExit;
-    [SerializeField]
-    private GameEventScriptableObject _scanSucceededEnter;
-    [SerializeField]
-    private GameEventScriptableObject _scanSucceededUpdate;
-    [SerializeField]
-    private GameEventScriptableObject _scanSucceededExit;
 
     [Header("Events for Tutorial Detecting Controls")]
     [SerializeField]
@@ -93,17 +55,12 @@ public class DroneStateMachine : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _playerMovementDEvent;
 
-    [Header("Events for When Scanned Something")]
     [SerializeField]
-    private GameEventScriptableObject _scannedItemEvent;
-    [SerializeField]
-    private GameEventScriptableObject _scannedJellyEvent;
+    private DroneScanning _scanning;
 
-    private FiniteStateMachineInstance _stateMachine;
+    private FiniteStateMachineInstance _stateMachineInstance;
+
     private Transform _player;
-
-    private MonoBehaviour _toScan;
-    private DroneScannableLocator _scannableLocator;
 
     private bool _movedCamera = false;
     private bool _playerPressedWASD = false;
@@ -111,14 +68,17 @@ public class DroneStateMachine : MonoBehaviour
     private float _droneTutorialTimer;
     private GameEventResponses _gameEventResponses = new();
 
+    
+
+
     private void Awake()
     {
-        _scannableLocator = new DroneScannableLocator();
-        _stateMachine = new FiniteStateMachineInstance(_stateMachineDefinition, this, _logStateMachineTransitions);
+        if (_stateMachineInstance == null)
+        {
+            _stateMachineInstance = new FiniteStateMachineInstance(_stateMachineDefinition, this, _logStateMachineTransitions);
+        }
         _player = Player.Motion.PlayerMovement.Instance.transform;
-        _stateMachine.SetBool(_buttonPressScanningParameter, _buttonPressScanning);
-        _stateMachine.SetBool(_finishedTutorialParameter, _settings.SkipTutorial);
-
+        _stateMachineInstance.SetBool(_finishedTutorialParameter, _settings.SkipTutorial);
 
         _gameEventResponses.SetResponses(
             (_playerLookControlsEvent, PlayerMovedCamera)
@@ -135,16 +95,6 @@ public class DroneStateMachine : MonoBehaviour
             , (_tutorialUpdate, UpdateTutorial)
             , (_tutorialExit, ExitTutorial)
             , (_followPlayerUpdate, UpdateMoveTowardsPlayer)
-            , (_moveToUnscannedUpdate, UpdateMoveTowardsToScan)
-            , (_scanAttemptingEnter, EnterScanAttempting)
-            , (_scanAttemptingUpdate, UpdateScanAttempting)
-            , (_scanFailedExit, ExitScanFailed)
-            , (_scanSucceededEnter, EnterScanSucceeded)
-            , (_scanSucceededUpdate, UpdateScanSucceeded)
-            , (_scanSucceededExit, ExitScanSucceeded)
-            , (_scanAwaitingButtonEnter, EnterScanAwaitingButton)
-            , (_scanAwaitingButtonUpdate, UpdateScanAwaitingButton)
-            , (_scanAwaitingButtonExit, ExitScanAwaitingButton)
             );
     }
 
@@ -158,28 +108,11 @@ public class DroneStateMachine : MonoBehaviour
             return;
         }
 
-        UpdateThingToScan();
-        _stateMachine.SetFloat(_distanceFromHoverbyPlayerParameter, FromDroneToNear(_player).magnitude);
-        _stateMachine.Update();
-    }
+        _scanning.OnPreStateMachineInstanceUpdate();
 
-    private void UpdateThingToScan()
-    {
-        if (_toScan == null || _scannableLocator.AlreadyScanned(_toScan))
-        {
-            _toScan = _scannableLocator.TryGetThingToScan(transform, _player
-                , _settings.DetectionRange, _settings.MaxDistanceFromPlayerToScan);
-        }
-        float distanceToThingToScan = float.PositiveInfinity;
-        float distanceBetweenThingToScanAndPlayer = float.PositiveInfinity;
-        if (_toScan != null)
-        {
-            distanceToThingToScan = FromDroneToNear(_toScan.transform, backAwayIfTooClose: false).magnitude;
-            distanceBetweenThingToScanAndPlayer = (_toScan.transform.position - _player.position).magnitude;
-        }
-        _stateMachine.SetFloat(_distanceFromHoverbyUnscannedParameter, distanceToThingToScan);
-        _stateMachine.SetFloat(_distanceBetweenUnscannedAndPlayerParameter, distanceBetweenThingToScanAndPlayer);
-        _stateMachine.SetBool(_seesUnscannedParameter, _toScan != null);
+        _stateMachineInstance.SetFloat(_distanceFromHoverbyPlayerParameter, FromDroneToNear(_player).magnitude);
+        _stateMachineInstance.Update();
+
     }
 
     #region Drone Movement
@@ -188,7 +121,7 @@ public class DroneStateMachine : MonoBehaviour
     /// <summary>
     /// Moves the drone along a vector, but not past the end of that vector.
     /// </summary>
-    private void MoveDrone(Vector3 toTarget)
+    public void MoveDrone(Vector3 toTarget)
     {
         float maxMovementDistance = Time.deltaTime * _settings.MovementSpeed;
         transform.position += Vector3.MoveTowards(Vector3.zero, toTarget, maxMovementDistance);
@@ -197,7 +130,7 @@ public class DroneStateMachine : MonoBehaviour
     /// <summary>
     /// Returns a vector from the drone to a point near the target.
     /// </summary>
-    private Vector3 FromDroneToNear(Transform toHoverNear, bool backAwayIfTooClose = true)
+    public Vector3 FromDroneToNear(Transform toHoverNear, bool backAwayIfTooClose = true)
     {
         Vector3 targetPosition = MoveUpAndTowardsDrone(toHoverNear.position, transform.position, _settings.HoverHeight
             , _settings.MoveToHorizontalDistanceFromTarget);
@@ -223,7 +156,7 @@ public class DroneStateMachine : MonoBehaviour
     /// horizontally.) The point is to get a vector near an object, for the drone to hover 
     /// next to.
     /// </summary>
-    private static Vector3 MoveUpAndTowardsDrone(Vector3 toMove, Vector3 dronePosition
+    public static Vector3 MoveUpAndTowardsDrone(Vector3 toMove, Vector3 dronePosition
         , float upDistance, float horizontalDistance)
     {
         Vector3 horizontalDirection = toMove - dronePosition;
@@ -236,7 +169,7 @@ public class DroneStateMachine : MonoBehaviour
     /// <summary>
     /// Rotates the drone towards the provided transform.
     /// </summary>
-    private void RotateTowardsTarget(Transform target)
+    public void RotateTowardsTarget(Transform target)
     {
         Quaternion priorRotation = transform.rotation;
 
@@ -264,92 +197,92 @@ public class DroneStateMachine : MonoBehaviour
         MoveDrone(FromDroneToNear(_player));
     }
 
-    private void UpdateMoveTowardsToScan()
-    {
-        RotateTowardsTarget(_toScan.transform);
-        MoveDrone(FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
-    }
+    //private void UpdateMoveTowardsToScan()
+    //{
+    //    RotateTowardsTarget(_toScan.transform);
+    //    MoveDrone(FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
+    //}
 
-    private void EnterScanAttempting()
-    {
-        _placeholderScanAttemptingVisual.enabled = true;
-    }
+    //private void EnterScanAttempting()
+    //{
+    //    _placeholderScanAttemptingVisual.enabled = true;
+    //}
 
-    private void UpdateScanAttempting()
-    {
-        _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
-        _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
-    }
+    //private void UpdateScanAttempting()
+    //{
+    //    _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
+    //    _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
+    //}
 
-    private void EnterScanAwaitingButton()
-    {
-        _scanButtonUI.SetActive(true);
-    }
+    //private void EnterScanAwaitingButton()
+    //{
+    //    _scanButtonUI.SetActive(true);
+    //}
 
-    private void UpdateScanAwaitingButton()
-    {
-        _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
-        _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
+    //private void UpdateScanAwaitingButton()
+    //{
+    //    _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
+    //    _placeholderScanAttemptingVisual.SetPosition(1, _toScan.transform.position);
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            _stateMachine.SetBool(_buttonPressedParameter, true);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.Return))
+    //    {
+    //        _stateMachine.SetBool(_buttonPressedParameter, true);
+    //    }
+    //}
 
-    private void ExitScanAwaitingButton()
-    {
-        _scanButtonUI.SetActive(false);
-        _stateMachine.SetBool(_buttonPressedParameter, false);
-    }
+    //private void ExitScanAwaitingButton()
+    //{
+    //    _scanButtonUI.SetActive(false);
+    //    _stateMachine.SetBool(_buttonPressedParameter, false);
+    //}
 
-    private void ExitScanFailed()
-    {
-        _toScan = null;
-        _placeholderScanAttemptingVisual.enabled = false;
-        UpdateThingToScan();
-    }
+    //private void ExitScanFailed()
+    //{
+    //    _toScan = null;
+    //    _placeholderScanAttemptingVisual.enabled = false;
+    //    UpdateThingToScan();
+    //}
 
-    private void EnterScanSucceeded()
-    {
-        _placeholderScanAttemptingVisual.enabled = false;
-        _placeholderScanSuccessVisual.enabled = true;
-    }
+    //private void EnterScanSucceeded()
+    //{
+    //    _placeholderScanAttemptingVisual.enabled = false;
+    //    _placeholderScanSuccessVisual.enabled = true;
+    //}
 
-    private void UpdateScanSucceeded()
-    {
-        _placeholderScanSuccessVisual.SetPosition(0, transform.position);
-        _placeholderScanSuccessVisual.SetPosition(1, _toScan.transform.position);
-    }
+    //private void UpdateScanSucceeded()
+    //{
+    //    _placeholderScanSuccessVisual.SetPosition(0, transform.position);
+    //    _placeholderScanSuccessVisual.SetPosition(1, _toScan.transform.position);
+    //}
 
-    private void ExitScanSucceeded()
-    {
-        // it can be null if it was destroyed (e.g. item picked up)
-        // during the time when it's successfully scanning it.
-        if (_toScan != null)
-        {
-            _scannableLocator.MarkAsScanned(_toScan);
+    //private void ExitScanSucceeded()
+    //{
+    //    // it can be null if it was destroyed (e.g. item picked up)
+    //    // during the time when it's successfully scanning it.
+    //    if (_toScan != null)
+    //    {
+    //        _scannableLocator.MarkAsScanned(_toScan);
 
-            PickupItem item = _toScan as PickupItem;
-            Jellies.Parameters jelly = _toScan as Jellies.Parameters;
-            if (item != null)
-            {
-                _scannedItemEvent.Raise(item.ItemInfo);
-            }
-            else if (jelly != null)
-            {
-                _scannedJellyEvent.Raise(jelly.TypeOfThisJelly());
-            }
-            else
-            {
-                Debug.LogError("log for this type isnt implemented (are we scanning" +
-                    " another thing besides jellies and items?", _toScan);
-            }
-        }
+    //        PickupItem item = _toScan as PickupItem;
+    //        Jellies.Parameters jelly = _toScan as Jellies.Parameters;
+    //        if (item != null)
+    //        {
+    //            _scannedItemEvent.Raise(item.ItemInfo);
+    //        }
+    //        else if (jelly != null)
+    //        {
+    //            _scannedJellyEvent.Raise(jelly.TypeOfThisJelly());
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("log for this type isnt implemented (are we scanning" +
+    //                " another thing besides jellies and items?", _toScan);
+    //        }
+    //    }
 
-        _placeholderScanSuccessVisual.enabled = false;
-        UpdateThingToScan();
-    }
+    //    _placeholderScanSuccessVisual.enabled = false;
+    //    UpdateThingToScan();
+    //}
 
     private void EnterTutorial()
     {
@@ -397,7 +330,7 @@ public class DroneStateMachine : MonoBehaviour
 
                     if (_droneTutorialTimer >= 2f) // If 2 seconds have passed
                     {
-                        _stateMachine.SetBool(_finishedTutorialParameter, true);
+                        _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
                     }
                 }
             }
@@ -417,5 +350,17 @@ public class DroneStateMachine : MonoBehaviour
         {
             _playerPressedWASD = true;
         }
+    }
+
+
+
+    public FiniteStateMachineInstance GetStateMachineInstance()
+    {
+        if (_stateMachineInstance == null)
+        {
+            // this script's Awake() hasn't run yet.
+            _stateMachineInstance = new FiniteStateMachineInstance(_stateMachineDefinition, this, _logStateMachineTransitions);
+        }
+        return _stateMachineInstance;
     }
 }

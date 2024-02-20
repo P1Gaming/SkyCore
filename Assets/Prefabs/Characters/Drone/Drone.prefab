@@ -66,8 +66,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 4
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &6722134595557570117
 LineRenderer:
@@ -349,13 +349,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2634343204983761766}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 1
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4133327243741762860
 MonoBehaviour:
@@ -628,6 +628,92 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3714781397846031145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7064711757998131545}
+  - component: {fileID: 557467598811146302}
+  m_Layer: 0
+  m_Name: Scanning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7064711757998131545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714781397846031145}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1814128430626204019}
+  - {fileID: 1494937806388944145}
+  - {fileID: 6807621959178928646}
+  - {fileID: 8009064511204142873}
+  - {fileID: 7617972216034368555}
+  m_Father: {fileID: 4364394114180109594}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &557467598811146302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714781397846031145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527c8e605aff57d46b9df0ad42c7d111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _detectionRange: 10
+  _maxDistanceFromPlayerToScan: 10
+  _buttonPressScanning: 1
+  _scanButtonUI: {fileID: 6418741841836162400}
+  _placeholderScanAttemptingVisual: {fileID: 5625255709096306572}
+  _placeholderScanSuccessVisual: {fileID: 6722134595557570117}
+  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf,
+    type: 2}
+  _distanceBetweenUnscannedAndPlayerParameter: {fileID: 11400000, guid: 974584e25a2c84949934f0e013a8f5f0,
+    type: 2}
+  _seesUnscannedParameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
+    type: 2}
+  _scanButtonPressedParameter: {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe,
+    type: 2}
+  _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
+    type: 2}
+  _moveToUnscannedUpdate: {fileID: 11400000, guid: 97bc683d5c9dbc842ae26ea2e07b2f0a,
+    type: 2}
+  _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
+    type: 2}
+  _scanAttemptingUpdate: {fileID: 11400000, guid: a1942891c105feb49b2c03bbff2e30d2,
+    type: 2}
+  _scanAwaitingButtonEnter: {fileID: 11400000, guid: 8bf3a7deae4dcaf4089988f66a94e23c,
+    type: 2}
+  _scanAwaitingButtonUpdate: {fileID: 11400000, guid: 42c8a7c3eb0bf0f428d06f2d618c4206,
+    type: 2}
+  _scanAwaitingButtonExit: {fileID: 11400000, guid: 328dc15930b9efa43a1a0f59fe361de6,
+    type: 2}
+  _scanFailedExit: {fileID: 11400000, guid: ae7e971dc8014a045a6ff328d010bde3, type: 2}
+  _scanSucceededEnter: {fileID: 11400000, guid: 7f7610afe250e4544bb44a33bce590fc,
+    type: 2}
+  _scanSucceededUpdate: {fileID: 11400000, guid: 99134e767331b824796650df708f3b37,
+    type: 2}
+  _scanSucceededExit: {fileID: 11400000, guid: 4745cfe9e646968438aa50abb9eaf851, type: 2}
+  _scannedItemEvent: {fileID: 11400000, guid: 4f2b14dc54d7f94489a78c16d868ffa1, type: 2}
+  _scannedJellyEvent: {fileID: 11400000, guid: 4574e9dd0e3bdde47aff0a27e061d2a0, type: 2}
 --- !u!1 &4364394113714527214
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +747,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6533774167822551470
 MonoBehaviour:
@@ -771,13 +857,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7064711757998131545}
   - {fileID: 4364394113714527215}
-  - {fileID: 7617972216034368555}
   - {fileID: 2026214015679506933}
-  - {fileID: 1814128430626204019}
-  - {fileID: 1494937806388944145}
-  - {fileID: 6807621959178928646}
-  - {fileID: 8009064511204142873}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -793,7 +875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c829baf021033f540b75113394977bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPressScanning: 1
   _logStateMachineTransitions: 0
   _settings:
     <MovementSpeed>k__BackingField: 3
@@ -801,15 +882,10 @@ MonoBehaviour:
     <IdleRotationSpeed>k__BackingField: 30
     <MoveToHorizontalDistanceFromTarget>k__BackingField: 3
     <HoverHeight>k__BackingField: 2
-    <DetectionRange>k__BackingField: 10
-    <MaxDistanceFromPlayerToScan>k__BackingField: 10
     <SkipTutorial>k__BackingField: 0
   _stateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
     type: 2}
-  _scanButtonUI: {fileID: 6418741841836162400}
   _pictogramBehaviour: {fileID: 1061435318300220196}
-  _placeholderScanAttemptingVisual: {fileID: 5625255709096306572}
-  _placeholderScanSuccessVisual: {fileID: 6722134595557570117}
   _droneMedical: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df, type: 3}
   _droneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
     type: 3}
@@ -819,17 +895,7 @@ MonoBehaviour:
     type: 3}
   _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771,
     type: 2}
-  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf,
-    type: 2}
-  _distanceBetweenUnscannedAndPlayerParameter: {fileID: 11400000, guid: 974584e25a2c84949934f0e013a8f5f0,
-    type: 2}
-  _seesUnscannedParameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
-    type: 2}
-  _buttonPressedParameter: {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe,
-    type: 2}
   _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
-    type: 2}
-  _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
     type: 2}
   _idleUpdate: {fileID: 11400000, guid: 628e17ce4c75ee34ea23677f4cf1342b, type: 2}
   _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
@@ -837,24 +903,6 @@ MonoBehaviour:
   _tutorialExit: {fileID: 11400000, guid: 7054989ae3b103e47903df7202ebfcd8, type: 2}
   _followPlayerUpdate: {fileID: 11400000, guid: 772b27df93a45f247b1b5e9d42167fda,
     type: 2}
-  _moveToUnscannedUpdate: {fileID: 11400000, guid: 97bc683d5c9dbc842ae26ea2e07b2f0a,
-    type: 2}
-  _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
-    type: 2}
-  _scanAttemptingUpdate: {fileID: 11400000, guid: a1942891c105feb49b2c03bbff2e30d2,
-    type: 2}
-  _scanAwaitingButtonEnter: {fileID: 11400000, guid: 8bf3a7deae4dcaf4089988f66a94e23c,
-    type: 2}
-  _scanAwaitingButtonUpdate: {fileID: 11400000, guid: 42c8a7c3eb0bf0f428d06f2d618c4206,
-    type: 2}
-  _scanAwaitingButtonExit: {fileID: 11400000, guid: 328dc15930b9efa43a1a0f59fe361de6,
-    type: 2}
-  _scanFailedExit: {fileID: 11400000, guid: ae7e971dc8014a045a6ff328d010bde3, type: 2}
-  _scanSucceededEnter: {fileID: 11400000, guid: 7f7610afe250e4544bb44a33bce590fc,
-    type: 2}
-  _scanSucceededUpdate: {fileID: 11400000, guid: 99134e767331b824796650df708f3b37,
-    type: 2}
-  _scanSucceededExit: {fileID: 11400000, guid: 4745cfe9e646968438aa50abb9eaf851, type: 2}
   _playerLookControlsEvent: {fileID: 11400000, guid: 69a51e4938c1a42489c2a4ea9df7479d,
     type: 2}
   _playerMovementWEvent: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff,
@@ -865,8 +913,9 @@ MonoBehaviour:
     type: 2}
   _playerMovementDEvent: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4,
     type: 2}
-  _scannedItemEvent: {fileID: 11400000, guid: 4f2b14dc54d7f94489a78c16d868ffa1, type: 2}
-  _scannedJellyEvent: {fileID: 11400000, guid: 4574e9dd0e3bdde47aff0a27e061d2a0, type: 2}
+  _scanning: {fileID: 557467598811146302}
+  seesUnscannedParameterForTest: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
+    type: 2}
 --- !u!114 &1061435318300220196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,8 +986,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7658043824705970784}
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 5
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1286,14 +1335,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6418741841836162400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4907780529093104100}
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 6
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1388,7 +1437,7 @@ GameObject:
   - component: {fileID: 6654089107610741174}
   - component: {fileID: 6321528391128440797}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Pictogram
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1505,8 +1554,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 3
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &5625255709096306572
 LineRenderer:
