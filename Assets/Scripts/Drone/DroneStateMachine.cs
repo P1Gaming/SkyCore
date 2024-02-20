@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FiniteStateMachine;
 
-public class DroneBehaviourUsingStateMachine : MonoBehaviour
+public class DroneStateMachine : MonoBehaviour
 {
     [SerializeField, Tooltip("Whether to require the player to press a button to finish scanning.")]
     private bool _buttonPressScanning;

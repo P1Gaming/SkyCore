@@ -801,16 +801,8 @@ MonoBehaviour:
     <IdleRotationSpeed>k__BackingField: 30
     <MoveToHorizontalDistanceFromTarget>k__BackingField: 3
     <HoverHeight>k__BackingField: 2
-    <MaxDistanceFromTargetPositionToStop>k__BackingField: 0.01
-    MinDistanceFromTargetPositionToResumeMoving: 0.1
-    MinDistanceFromTargetPositionToResumeMovingDuringTutorial: 3
     <DetectionRange>k__BackingField: 10
     <MaxDistanceFromPlayerToScan>k__BackingField: 10
-    <ScanSucceedDuration>k__BackingField: 2
-    <ScanFailAfterDurationParameter>k__BackingField: 5
-    <MaxDistanceFromDroneToHoverbyPlayerToGoScan>k__BackingField: 0.5
-    <MaxDistanceBetweenPlayerAndUnscannedToSuccessfullyScan>k__BackingField: 3
-    <ButtonDeactivationRadius>k__BackingField: 5
     <SkipTutorial>k__BackingField: 0
   _stateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
     type: 2}
@@ -837,23 +829,7 @@ MonoBehaviour:
     type: 2}
   _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
     type: 2}
-  _maxDistanceFromTargetPositionToStopParameter: {fileID: 11400000, guid: 4c5a9aae75a6fe140a420012d9636337,
-    type: 2}
-  _minDistanceFromTargetPositionToResumeMovingParameter: {fileID: 11400000, guid: 704ed6aeacf48a44c8f83e5ecdee3a82,
-    type: 2}
-  _minDistanceFromTargetPositionToResumeMovingDuringTutorialParameter: {fileID: 11400000,
-    guid: 47e1fa356c60244419b8b2bb43b7ad29, type: 2}
-  _maxDistanceFromDroneToHoverbyPlayerToGoScanParameter: {fileID: 11400000, guid: 98153ebd62dce56418ea196c31104a2c,
-    type: 2}
-  _maxDistanceBetweenPlayerAndUnscannedToSuccessfullyScanParameter: {fileID: 11400000,
-    guid: b4a1c580c4ccca643b22e0453efb8479, type: 2}
-  _scanSucceedDurationParameter: {fileID: 11400000, guid: e08cb26e3fbcd3d4fab8f87104cfb74e,
-    type: 2}
-  _scanFailAfterDurationParameter: {fileID: 11400000, guid: d946a9d375ed06241b159741a4613590,
-    type: 2}
   _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
-    type: 2}
-  _buttonDeactivationRadiusParameter: {fileID: 11400000, guid: 98cd348e1de91844c9ea361abae698cd,
     type: 2}
   _idleUpdate: {fileID: 11400000, guid: 628e17ce4c75ee34ea23677f4cf1342b, type: 2}
   _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
