@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FiniteStateMachine;
 
-public class DroneStateMachine : MonoBehaviour
+public class Drone : MonoBehaviour
 {
     [SerializeField]
     private bool _logStateMachineTransitions;
@@ -32,7 +32,7 @@ public class DroneStateMachine : MonoBehaviour
         }
 
         // These MonoBehaviours don't have their own Update() methods because this way, they always set parameters
-        // immediately before _stateMachineInstance.Update() runs, for consistency. Less bug-prone that way.
+        // immediately before _stateMachineInstance.Update() runs, for consistency. Less bug-prone and avoids 1 frame delays.
         _scanning.OnPreStateMachineInstanceUpdate();
         _followPlayer.OnPreStateMachineInstanceUpdate();
 

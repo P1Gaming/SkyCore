@@ -6,7 +6,7 @@ using FiniteStateMachine;
 public class DroneMovementTutorial : MonoBehaviour
 {
     [SerializeField]
-    private DroneStateMachine _drone;
+    private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
     [SerializeField]
@@ -56,8 +56,6 @@ public class DroneMovementTutorial : MonoBehaviour
     private bool _medicalPromptShown = false;
     private float _droneTutorialTimer;
     private GameEventResponses _gameEventResponses = new();
-
-
 
 
     private void Awake()

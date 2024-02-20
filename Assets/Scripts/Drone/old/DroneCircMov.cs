@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Audio;
 using static UnityEngine.CullingGroup;
 
-public class Drone : MonoBehaviour
+public class DroneCircMov : MonoBehaviour
 {
     // Enum to define different states of the drone
 

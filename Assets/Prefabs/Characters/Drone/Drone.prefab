@@ -907,8 +907,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4364394114180109594}
   - component: {fileID: 9117878907213001977}
-  - component: {fileID: 3021005747530959631}
   - component: {fileID: 7605286380065068526}
+  - component: {fileID: 3021005747530959631}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -954,6 +954,23 @@ MonoBehaviour:
   _movement: {fileID: 7605286380065068526}
   _followPlayer: {fileID: 6897214807269276948}
   _scanning: {fileID: 557467598811146302}
+--- !u!114 &7605286380065068526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364394114180109592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98926d2b8aacb54eba798ab2a76c681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 3
+  _turnSpeed: 300
+  _idleSpinSpeed: 30
+  _moveToHorizontalDistanceFromTarget: 3
+  _hoverHeight: 2
 --- !u!95 &3021005747530959631
 Animator:
   serializedVersion: 5
@@ -975,23 +992,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7605286380065068526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4364394114180109592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98926d2b8aacb54eba798ab2a76c681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementSpeed: 3
-  _turnSpeed: 300
-  _idleSpinSpeed: 30
-  _moveToHorizontalDistanceFromTarget: 3
-  _hoverHeight: 2
 --- !u!1 &4546807933443600289
 GameObject:
   m_ObjectHideFlags: 0

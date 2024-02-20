@@ -6,7 +6,7 @@ using FiniteStateMachine;
 public class DroneFollowPlayer : MonoBehaviour
 {
     [SerializeField]
-    private DroneStateMachine _drone;
+    private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
 
