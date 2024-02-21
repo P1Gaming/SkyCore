@@ -308,8 +308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 152596398}
-  canvas2: {fileID: 0}
-  canvas3: {fileID: 0}
   ImageA:
   - {fileID: 528909641}
   - {fileID: 416108657}
@@ -494,7 +492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 439b150cf9b961649a4ea72c0d9bc653, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30f3505253501864a9ef71530bbe38c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -709,7 +707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 30f3505253501864a9ef71530bbe38c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e14869cb0062334880d994c23c09ea6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -739,6 +737,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image
       objectReference: {fileID: 0}
+    - target: {fileID: 6634477320452043912, guid: 5115b825cd81b4c49b6084cbd784df68,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6abb97305c18b04da0b808fb603bdf1,
+        type: 3}
     - target: {fileID: 6634477320452043913, guid: 5115b825cd81b4c49b6084cbd784df68,
         type: 3}
       propertyPath: m_Pivot.x
