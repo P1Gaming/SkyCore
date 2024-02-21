@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Jellies
@@ -95,7 +97,15 @@ namespace Jellies
         /// </summary>
         public void IncreaseFoodSaturation(float amount)
         {
-            FoodSaturation += amount;
+            if(FoodSaturation + amount <= MaxFoodSaturation)
+            {
+                FoodSaturation += amount;
+            }
+            else
+            {
+                FoodSaturation = MaxFoodSaturation;
+            }
+            
 
             // TODO: Come back and make this more dynamic and replace with a event.
             if (_slimeXp == null && transform.GetComponentInChildren<SlimeExperience>())
@@ -131,6 +141,7 @@ namespace Jellies
 
         private void Awake()
         {
+            MaxFoodSaturation = 100;
             FoodSaturation = MaxFoodSaturation;
         }
 
@@ -150,6 +161,7 @@ namespace Jellies
         {
             DecreaseFoodSaturation(_foodSaturationDecrement);
             yield return new WaitForSeconds(_foodSaturationInterval);
+            StartCoroutine(Digest());
         }
     }
 }
