@@ -97,11 +97,14 @@ public class DroneCircMov : MonoBehaviour
     }
     private void linear()
     {
-        line1.SetVertexCount(2);
+        //line1.SetVertexCount(2);
+        line1.positionCount = 2;
 
         line1.enabled = (false);
         //line2.enabled = (true);
-        line1.SetWidth(1f, 1f);
+        line1.startWidth = 1;
+        line1.endWidth = 1;
+        //line1.SetWidth(1f, 1f);
         // _drone.transform.LookAt(_player.transform.position);
         // _player.transform.LookAt(_drone.transform.position);
         line1.SetPosition(0, _drone.transform.position);

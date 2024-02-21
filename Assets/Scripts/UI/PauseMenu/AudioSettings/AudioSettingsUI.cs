@@ -18,6 +18,7 @@ namespace UI.AudioSettings
         [Header("Audio options for when opening game for first time.")]
         [SerializeField]
         private bool _isOpeningScreen;
+        #pragma warning disable
         [SerializeField]
         private int _sceneIndexToLoad = 1;
         [SerializeField]
@@ -32,8 +33,8 @@ namespace UI.AudioSettings
         //private WwEvent _sfxSoundEvent;
         //[SerializeField]
         //private AK.Wwise.CallbackFlags _endOfSoundEvent;
-        
 
+        #pragma warning disable
         private bool _isAudioPlaying = false;
         private bool _isDoneInitalizing = false;
 
