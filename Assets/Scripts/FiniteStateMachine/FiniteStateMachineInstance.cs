@@ -144,6 +144,39 @@ namespace FiniteStateMachine
             _floats[parameter] = setTo;
         }
 
+        public bool GetBool(FSMParameter parameter)
+        {
+            if (!_bools.ContainsKey(parameter))
+            {
+                Debug.LogError("This finite state machine doesn't have the bool parameter.", parameter);
+                return false;
+            }
+
+            return _bools[parameter];
+        }
+
+        public bool GetTrigger(FSMParameter parameter)
+        {
+            if (!_triggers.ContainsKey(parameter))
+            {
+                Debug.LogError("This finite state machine doesn't have the trigger parameter.", parameter);
+                return false;
+            }
+
+            return _triggers[parameter];
+        }
+
+        public float GetFloat(FSMParameter parameter)
+        {
+            if (!_floats.ContainsKey(parameter))
+            {
+                Debug.LogError("This finite state machine doesn't have the float parameter.", parameter);
+                return float.NaN;
+            }
+
+            return _floats[parameter];
+        }
+
         /// <summary>
         /// Updates the state of this finite state machine, and raises events. Generally will be called
         /// once per frame.

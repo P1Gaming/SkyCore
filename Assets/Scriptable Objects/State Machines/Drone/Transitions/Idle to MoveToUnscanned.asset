@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Idle to MoveToUnscanned
   m_EditorClassIdentifier: 
   _disable: 0
+  <LogFailureReason>k__BackingField: 0
   _from: {fileID: 11400000, guid: 6db9edfdc94caba43ae4e46406b94d15, type: 2}
   _to: {fileID: 11400000, guid: 44e6ae0898291984a8a14550a3f7cacb, type: 2}
   _minDurationInFrom: 0
