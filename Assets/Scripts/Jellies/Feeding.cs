@@ -20,9 +20,11 @@ namespace Jellies
 
         private Parameters _parameters;
 
+        private DewInstantiate _dew;
         private void Awake()
         {
             _parameters = GetComponent<Parameters>();
+            _dew = GetComponent<DewInstantiate>();
         }
 
         /// <summary>
@@ -34,6 +36,10 @@ namespace Jellies
             _parameters.IncreaseFoodSaturation(amountToIncrease);
         }
 
+        public void SpawnDew()
+        {
+            _dew.DewSpawn();
+        }
         /// <summary>
         /// Called by the jelly prefab's feed button.
         /// </summary>
@@ -43,6 +49,7 @@ namespace Jellies
             if (hotBar.TrySubtractItemAmount(_berryItem, 1))
             {
                 FeedJelly(_berryItem.SaturationValue);
+                SpawnDew();
             }
         }
     }
