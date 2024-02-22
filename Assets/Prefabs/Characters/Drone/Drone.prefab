@@ -66,8 +66,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 4
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &6722134595557570117
 LineRenderer:
@@ -245,6 +245,76 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2106701992538358982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6071993083503952919}
+  - component: {fileID: 2104892025793519153}
+  m_Layer: 0
+  m_Name: Movement Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6071993083503952919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106701992538358982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4364394114180109594}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2104892025793519153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106701992538358982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92aae68a1ee78ca479970923635e4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _movement: {fileID: 7605286380065068526}
+  _skipTutorial: 0
+  _pictogramBehaviour: {fileID: 6357170253752879243}
+  _droneMedical: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df, type: 3}
+  _droneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
+    type: 3}
+  _droneMovementControls: {fileID: 21300000, guid: 0e838650ac6522740be93b1c8917e635,
+    type: 3}
+  _droneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
+    type: 3}
+  _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
+    type: 2}
+  _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
+  _tutorialUpdate: {fileID: 11400000, guid: 97fef6c26eddcc84b941a0191cefbe81, type: 2}
+  _tutorialExit: {fileID: 11400000, guid: 7054989ae3b103e47903df7202ebfcd8, type: 2}
+  _playerLookControlsEvent: {fileID: 11400000, guid: 69a51e4938c1a42489c2a4ea9df7479d,
+    type: 2}
+  _playerMovementWEvent: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff,
+    type: 2}
+  _playerMovementSEvent: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207,
+    type: 2}
+  _playerMovementAEvent: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0,
+    type: 2}
+  _playerMovementDEvent: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4,
+    type: 2}
 --- !u!1 &2550217315515081578
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,13 +419,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2634343204983761766}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 1
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4133327243741762860
 MonoBehaviour:
@@ -628,6 +698,93 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3714781397846031145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7064711757998131545}
+  - component: {fileID: 557467598811146302}
+  m_Layer: 0
+  m_Name: Scanning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7064711757998131545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714781397846031145}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1814128430626204019}
+  - {fileID: 1494937806388944145}
+  - {fileID: 6807621959178928646}
+  - {fileID: 8009064511204142873}
+  - {fileID: 7617972216034368555}
+  m_Father: {fileID: 4364394114180109594}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &557467598811146302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714781397846031145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527c8e605aff57d46b9df0ad42c7d111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _movement: {fileID: 7605286380065068526}
+  _buttonPressScanning: 1
+  _detectionRange: 10
+  _maxDistanceFromPlayerToScan: 10
+  _scanButtonUI: {fileID: 6418741841836162400}
+  _placeholderScanAttemptingVisual: {fileID: 5625255709096306572}
+  _placeholderScanSuccessVisual: {fileID: 6722134595557570117}
+  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf,
+    type: 2}
+  _distanceBetweenUnscannedAndPlayerParameter: {fileID: 11400000, guid: 974584e25a2c84949934f0e013a8f5f0,
+    type: 2}
+  _seesUnscannedParameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
+    type: 2}
+  _scanButtonPressedParameter: {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe,
+    type: 2}
+  _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
+    type: 2}
+  _moveToUnscannedUpdate: {fileID: 11400000, guid: 97bc683d5c9dbc842ae26ea2e07b2f0a,
+    type: 2}
+  _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
+    type: 2}
+  _scanAttemptingUpdate: {fileID: 11400000, guid: a1942891c105feb49b2c03bbff2e30d2,
+    type: 2}
+  _scanAwaitingButtonEnter: {fileID: 11400000, guid: 8bf3a7deae4dcaf4089988f66a94e23c,
+    type: 2}
+  _scanAwaitingButtonUpdate: {fileID: 11400000, guid: 42c8a7c3eb0bf0f428d06f2d618c4206,
+    type: 2}
+  _scanAwaitingButtonExit: {fileID: 11400000, guid: 328dc15930b9efa43a1a0f59fe361de6,
+    type: 2}
+  _scanFailedExit: {fileID: 11400000, guid: ae7e971dc8014a045a6ff328d010bde3, type: 2}
+  _scanSucceededEnter: {fileID: 11400000, guid: 7f7610afe250e4544bb44a33bce590fc,
+    type: 2}
+  _scanSucceededUpdate: {fileID: 11400000, guid: 99134e767331b824796650df708f3b37,
+    type: 2}
+  _scanSucceededExit: {fileID: 11400000, guid: 4745cfe9e646968438aa50abb9eaf851, type: 2}
+  _scannedItemEvent: {fileID: 11400000, guid: 4f2b14dc54d7f94489a78c16d868ffa1, type: 2}
+  _scannedJellyEvent: {fileID: 11400000, guid: 4574e9dd0e3bdde47aff0a27e061d2a0, type: 2}
 --- !u!1 &4364394113714527214
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4364394114180109594}
   - component: {fileID: 9117878907213001977}
-  - component: {fileID: 1061435318300220196}
+  - component: {fileID: 7605286380065068526}
   - component: {fileID: 3021005747530959631}
   m_Layer: 0
   m_Name: Drone
@@ -772,12 +929,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4364394113714527215}
-  - {fileID: 7617972216034368555}
   - {fileID: 2026214015679506933}
-  - {fileID: 1814128430626204019}
-  - {fileID: 1494937806388944145}
-  - {fileID: 6807621959178928646}
-  - {fileID: 8009064511204142873}
+  - {fileID: 8048724301587607471}
+  - {fileID: 6071993083503952919}
+  - {fileID: 7064711757998131545}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -793,105 +948,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c829baf021033f540b75113394977bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPressScanning: 1
   _logStateMachineTransitions: 0
-  _settings:
-    <MovementSpeed>k__BackingField: 3
-    <RotationSpeed>k__BackingField: 300
-    <IdleRotationSpeed>k__BackingField: 30
-    <MoveToHorizontalDistanceFromTarget>k__BackingField: 3
-    <HoverHeight>k__BackingField: 2
-    <MaxDistanceFromTargetPositionToStop>k__BackingField: 0.01
-    MinDistanceFromTargetPositionToResumeMoving: 0.1
-    MinDistanceFromTargetPositionToResumeMovingDuringTutorial: 3
-    <DetectionRange>k__BackingField: 10
-    <MaxDistanceFromPlayerToScan>k__BackingField: 10
-    <ScanSucceedDuration>k__BackingField: 2
-    <ScanFailAfterDurationParameter>k__BackingField: 5
-    <MaxDistanceFromDroneToHoverbyPlayerToGoScan>k__BackingField: 0.5
-    <MaxDistanceBetweenPlayerAndUnscannedToSuccessfullyScan>k__BackingField: 3
-    <ButtonDeactivationRadius>k__BackingField: 5
-    <SkipTutorial>k__BackingField: 0
   _stateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
     type: 2}
-  _scanButtonUI: {fileID: 6418741841836162400}
-  _pictogramBehaviour: {fileID: 1061435318300220196}
-  _placeholderScanAttemptingVisual: {fileID: 5625255709096306572}
-  _placeholderScanSuccessVisual: {fileID: 6722134595557570117}
-  _droneMedical: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df, type: 3}
-  _droneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
-    type: 3}
-  _droneMovementControls: {fileID: 21300000, guid: 0e838650ac6522740be93b1c8917e635,
-    type: 3}
-  _droneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
-    type: 3}
-  _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771,
-    type: 2}
-  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf,
-    type: 2}
-  _distanceBetweenUnscannedAndPlayerParameter: {fileID: 11400000, guid: 974584e25a2c84949934f0e013a8f5f0,
-    type: 2}
-  _seesUnscannedParameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
-    type: 2}
-  _buttonPressedParameter: {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe,
-    type: 2}
-  _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
-    type: 2}
-  _maxDistanceFromTargetPositionToStopParameter: {fileID: 11400000, guid: 4c5a9aae75a6fe140a420012d9636337,
-    type: 2}
-  _minDistanceFromTargetPositionToResumeMovingParameter: {fileID: 11400000, guid: 704ed6aeacf48a44c8f83e5ecdee3a82,
-    type: 2}
-  _minDistanceFromTargetPositionToResumeMovingDuringTutorialParameter: {fileID: 11400000,
-    guid: 47e1fa356c60244419b8b2bb43b7ad29, type: 2}
-  _maxDistanceFromDroneToHoverbyPlayerToGoScanParameter: {fileID: 11400000, guid: 98153ebd62dce56418ea196c31104a2c,
-    type: 2}
-  _maxDistanceBetweenPlayerAndUnscannedToSuccessfullyScanParameter: {fileID: 11400000,
-    guid: b4a1c580c4ccca643b22e0453efb8479, type: 2}
-  _scanSucceedDurationParameter: {fileID: 11400000, guid: e08cb26e3fbcd3d4fab8f87104cfb74e,
-    type: 2}
-  _scanFailAfterDurationParameter: {fileID: 11400000, guid: d946a9d375ed06241b159741a4613590,
-    type: 2}
-  _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
-    type: 2}
-  _buttonDeactivationRadiusParameter: {fileID: 11400000, guid: 98cd348e1de91844c9ea361abae698cd,
-    type: 2}
-  _idleUpdate: {fileID: 11400000, guid: 628e17ce4c75ee34ea23677f4cf1342b, type: 2}
-  _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
-  _tutorialUpdate: {fileID: 11400000, guid: 97fef6c26eddcc84b941a0191cefbe81, type: 2}
-  _tutorialExit: {fileID: 11400000, guid: 7054989ae3b103e47903df7202ebfcd8, type: 2}
-  _followPlayerUpdate: {fileID: 11400000, guid: 772b27df93a45f247b1b5e9d42167fda,
-    type: 2}
-  _moveToUnscannedUpdate: {fileID: 11400000, guid: 97bc683d5c9dbc842ae26ea2e07b2f0a,
-    type: 2}
-  _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
-    type: 2}
-  _scanAttemptingUpdate: {fileID: 11400000, guid: a1942891c105feb49b2c03bbff2e30d2,
-    type: 2}
-  _scanAwaitingButtonEnter: {fileID: 11400000, guid: 8bf3a7deae4dcaf4089988f66a94e23c,
-    type: 2}
-  _scanAwaitingButtonUpdate: {fileID: 11400000, guid: 42c8a7c3eb0bf0f428d06f2d618c4206,
-    type: 2}
-  _scanAwaitingButtonExit: {fileID: 11400000, guid: 328dc15930b9efa43a1a0f59fe361de6,
-    type: 2}
-  _scanFailedExit: {fileID: 11400000, guid: ae7e971dc8014a045a6ff328d010bde3, type: 2}
-  _scanSucceededEnter: {fileID: 11400000, guid: 7f7610afe250e4544bb44a33bce590fc,
-    type: 2}
-  _scanSucceededUpdate: {fileID: 11400000, guid: 99134e767331b824796650df708f3b37,
-    type: 2}
-  _scanSucceededExit: {fileID: 11400000, guid: 4745cfe9e646968438aa50abb9eaf851, type: 2}
-  _playerLookControlsEvent: {fileID: 11400000, guid: 69a51e4938c1a42489c2a4ea9df7479d,
-    type: 2}
-  _playerMovementWEvent: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff,
-    type: 2}
-  _playerMovementSEvent: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207,
-    type: 2}
-  _playerMovementAEvent: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0,
-    type: 2}
-  _playerMovementDEvent: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4,
-    type: 2}
-  _scannedItemEvent: {fileID: 11400000, guid: 4f2b14dc54d7f94489a78c16d868ffa1, type: 2}
-  _scannedJellyEvent: {fileID: 11400000, guid: 4574e9dd0e3bdde47aff0a27e061d2a0, type: 2}
---- !u!114 &1061435318300220196
+  _movement: {fileID: 7605286380065068526}
+  _followPlayer: {fileID: 6897214807269276948}
+  _scanning: {fileID: 557467598811146302}
+--- !u!114 &7605286380065068526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,12 +963,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4364394114180109592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2283973fe215bbb4e84cdcbeb59959fd, type: 3}
+  m_Script: {fileID: 11500000, guid: f98926d2b8aacb54eba798ab2a76c681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 7357965930079215603}
-  _backdropImage: {fileID: 8137071673733185053}
-  _backdropSprite: {fileID: 21300000, guid: 9cbcf33bd7e3ec5418249ac9ed861e8d, type: 3}
+  _movementSpeed: 3
+  _turnSpeed: 300
+  _idleSpinSpeed: 30
+  _moveToHorizontalDistanceFromTarget: 3
+  _hoverHeight: 2
 --- !u!95 &3021005747530959631
 Animator:
   serializedVersion: 5
@@ -961,8 +1026,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7658043824705970784}
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 5
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1283,6 +1348,57 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6356717938101556557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8048724301587607471}
+  - component: {fileID: 6897214807269276948}
+  m_Layer: 0
+  m_Name: Follow Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8048724301587607471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356717938101556557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4364394114180109594}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6897214807269276948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356717938101556557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0195f4e20958a84bab78e3136ba6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _movement: {fileID: 7605286380065068526}
+  _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771,
+    type: 2}
+  _idleUpdate: {fileID: 11400000, guid: 628e17ce4c75ee34ea23677f4cf1342b, type: 2}
+  _followPlayerUpdate: {fileID: 11400000, guid: 772b27df93a45f247b1b5e9d42167fda,
+    type: 2}
 --- !u!1 &6418741841836162400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,14 +1426,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6418741841836162400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4907780529093104100}
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 6
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1408,11 +1524,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2026214015679506933}
+  - component: {fileID: 6357170253752879243}
   - component: {fileID: 7704804097313586029}
   - component: {fileID: 6654089107610741174}
   - component: {fileID: 6321528391128440797}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Pictogram
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1432,13 +1549,28 @@ RectTransform:
   m_Children:
   - {fileID: 1337370598263767490}
   m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -1.73, y: 1.1900005}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6357170253752879243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583248194517039898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2283973fe215bbb4e84cdcbeb59959fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 7357965930079215603}
+  _backdropImage: {fileID: 8137071673733185053}
+  _backdropSprite: {fileID: 21300000, guid: 9cbcf33bd7e3ec5418249ac9ed861e8d, type: 3}
 --- !u!223 &7704804097313586029
 Canvas:
   m_ObjectHideFlags: 0
@@ -1529,8 +1661,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4364394114180109594}
-  m_RootOrder: 3
+  m_Father: {fileID: 7064711757998131545}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &5625255709096306572
 LineRenderer:

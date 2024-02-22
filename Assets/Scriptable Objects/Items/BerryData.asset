@@ -20,6 +20,7 @@ MonoBehaviour:
   _maxStack: 99
   _isDroppable: 1
   _isStackable: 1
+  _collectionRadius: 0
   _sortType: 2
   _saturationValue: 5
   <Attributes>k__BackingField: 

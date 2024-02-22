@@ -14,13 +14,18 @@ namespace Player
     {
         [SerializeField, Tooltip("Max number of stacks (so the number of inventory slots).")]
         private int _stacksCapacityResource;
+
+        [SerializeField, Tooltip("Designated sort type of inventory section.")]
+        private ItemBase.ItemSortType _sortType;
+
+
+        [NonSerialized] // I added this attribute to stop the following Unity warnings: "Serialization depth limit 10 exceeded at 'Player::InventoryBase._overflowTo'. There may be an object composition cycle in one or more of your serialized classes."
         private InventoryBase[] _overflowTo;
+
 
         private HashSet<ItemStack> _items = new HashSet<ItemStack>(); // unordered. UI code stores positioning in slots.
         private UI.Inventory.InventoryDragAndDrop _dragAndDrop;
 
-        [SerializeField, Tooltip("Designated sort type of inventory section.")]
-        private ItemBase.ItemSortType _sortType;
 
         public event Action<ItemStack> OnChangeItem;
 
@@ -146,6 +151,71 @@ namespace Player
 
             PrintHotbar();
             return successfullyAdded;
+        }
+
+        /// <summary>
+        /// Checks if the specified item stack can fit in this inventory or not.
+        /// </summary>
+        /// <param name="item">The stack of items to check if there is room for.</param>
+        /// <param name="includeOverflowInventories">If true and this inventory does not have enough room, this function will also check if the overflow inventories have room.</param>
+        /// <returns>True if this inventory has enough space for the passed in item stack.</returns>
+        public bool HasRoomForItem(ItemStack item, bool includeOverflowInventories = false)
+        {
+            return HasRoomForItem(item.itemInfo, item.amount, includeOverflowInventories);
+        }
+
+        /// <summary>
+        /// Checks if the specified item stack can fit in this inventory or not.
+        /// </summary>
+        /// <param name="item">The PickupItem to check if there is room for.</param>
+        /// <param name="includeOverflowInventories">If true and this inventory does not have enough room, this function will also check if the overflow inventories have room.</param>
+        /// <returns>True if this inventory has enough space for the passed in PickupItem.</returns>
+        public bool HasRoomForItem(PickupItem item, bool includeOverflowInventories = false)
+        {
+            return HasRoomForItem(item.ItemInfo, item.Amount, includeOverflowInventories);
+        }
+
+        /// <summary>
+        /// Checks if the specified item quantity can fit in this inventory or not.
+        /// </summary>
+        /// <param name="item">The stack of items to check if there is room for.</param>
+        /// <param name="includeOverflowInventories">If true and this inventory does not have enough room, this function will also check if the overflow inventories have room.</param>
+        /// <returns>True if this inventory has enough space for the passed in item stack.</returns>
+        public bool HasRoomForItem(ItemBase itemInfo, float amount, bool includeOverflowInventories = false)
+        {
+            // First check if the items can be added to an existing stack.
+            ItemStack itemHereAlready = GetItem(itemInfo, requireStackNotFull: true);
+            if (itemHereAlready != null &&
+                itemHereAlready.itemInfo.MaxStack - itemHereAlready.amount >= amount)
+            {
+                // The stack we found has enough room for the passed in item stack, so return true.
+                return true;
+            }
+
+            // We couldn't fit the items in an existing stack, so see if we can add them as a new stack.
+            if (_items.Count < _stacksCapacityResource)
+            {
+                // There is at least one empty slot in this inventory, so we know the passed in item stack can fit.
+                return true;
+            }
+
+            // Since this inventory does not have enough room and if includeOverflowInventories is on
+            // we'll check the overflow inventories.
+            if (includeOverflowInventories)
+            {
+                foreach (InventoryBase otherInventory in _overflowTo)
+                {
+                    if (itemInfo.SortType == otherInventory.SortType &&
+                        otherInventory.HasRoomForItem(itemInfo, amount, includeOverflowInventories))
+                    {
+                        return true;
+                    }
+
+                } // end foreach
+            }
+
+
+            return false;
         }
 
         /// <summary>

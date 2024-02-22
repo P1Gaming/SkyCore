@@ -13,10 +13,8 @@ namespace FiniteStateMachine
         [SerializeField]
         private FSMParameter _parameter;
 
-        // to-do: custom inspector to show only the relevant fields, depending on _parameter.Type
-
         [SerializeField]
-        public bool _equalsForBoolParameter;
+        private bool _equalsForBoolParameter;
 
         [SerializeField]
         private FloatComparisonType _comparisonTypeForFloatParameter;
@@ -27,7 +25,15 @@ namespace FiniteStateMachine
         [SerializeField]
         private float _comparedToForFloatParameter;
 
-        private enum FloatComparisonType
+#if UNITY_EDITOR
+        public FSMParameter Parameter => _parameter;
+        public bool EqualsForBoolParameter => _equalsForBoolParameter;
+        public FloatComparisonType ComparisonTypeForFloatParameter => _comparisonTypeForFloatParameter;
+        public FSMParameter OtherFloatParameterToCompareTo => _otherFloatParameterToCompareTo;
+        public float ComparedToForFloatParameter => _comparedToForFloatParameter;
+#endif
+
+        public enum FloatComparisonType
         {
             EqualTo, NotEqualTo, GreaterThan, LessThan, GreaterThanOrEqualTo, LessThanOrEqualTo
         }

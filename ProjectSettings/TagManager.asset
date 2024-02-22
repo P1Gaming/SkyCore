@@ -13,6 +13,7 @@ TagManager:
   - water
   - InteractionUI
   - InventoryUI
+  - IslandHeart
   layers:
   - Default
   - TransparentFX
@@ -27,9 +28,9 @@ TagManager:
   - 
   - 
   - 
-  - PickupItem
+  - PickupItemTrigger
   - 
-  - 
+  - PickupItemSolid
   - 
   - 
   - 

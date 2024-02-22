@@ -13,6 +13,7 @@ public class PauseManagement : MonoBehaviour
     private FirstPersonView _firstPersonView;
     [SerializeField]
     private GameObject _jellyInteractVisual;
+    #pragma warning disable
     [SerializeField, Range(0f,1f)]
     private float _pauseTimeScaleVariance = .001f;
 

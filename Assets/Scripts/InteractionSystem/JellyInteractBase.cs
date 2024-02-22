@@ -1,14 +1,15 @@
 using Jellies;
 using UnityEngine;
-using Jellies.Behaviors;
 using Player.View;
 using Player.Motion;
-using Player;
 using TMPro;
 using UnityEngine.UI;
 
 public class JellyInteractBase : Interactable
 {
+    [SerializeField]
+    private Wandering _wandering;
+
     [Header("Timing")]
     [SerializeField]
     private float _reactivateTime = 1.25f;
@@ -29,7 +30,9 @@ public class JellyInteractBase : Interactable
     private GameObject _inventoryUI;
     private FirstPersonView _firstPersonView;
     private PlayerInteraction _playerInteraction;
-    private Wandering _pathing;
+
+   
+
     private Parameters _jellyParams;
     
     private bool _interacting;
@@ -53,8 +56,6 @@ public class JellyInteractBase : Interactable
 
     private void Awake()
     {
-        _pathing = GetComponent<Wandering>();
-
         _jellyParams = GetComponent<Parameters>();
 
         // Temporary single player reference. These might not work later, e.g. if the inventoryUI
@@ -87,7 +88,6 @@ public class JellyInteractBase : Interactable
     {
         Interacting = interact;
 
-        _pathing.ToggleWanderBool(!interact);
         _jellyVCamera.SetActive(interact);
 
         Cursor.visible = interact;

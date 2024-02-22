@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8013927114772816816}
   - component: {fileID: 6715055194844041023}
   - component: {fileID: 7448747993760946307}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: '[Berry]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemInfo: {fileID: 11400000, guid: ea60c6bcafafb47449f58b1932dda3a8, type: 2}
-  _amount: 10
+  _amount: 1
 --- !u!135 &6715055194844041023
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3216119329767164564}
   - component: {fileID: 1705959039500773130}
   - component: {fileID: 4511594096463016976}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

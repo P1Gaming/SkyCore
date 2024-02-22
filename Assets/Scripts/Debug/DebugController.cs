@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 public class DebugController : MonoBehaviour
 {
     private bool _displayConsole = false;
+    #pragma warning disable
     private bool _showHelp = false;
 
     private string _input = "";
@@ -20,7 +21,6 @@ public class DebugController : MonoBehaviour
 
     public static List<object> commandList;
 
-    private string _previousCommand = "";
 
     private List<string> _previousCommands = new List<string>();
     private int _position = 0;
