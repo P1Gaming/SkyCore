@@ -25,7 +25,7 @@ namespace UI.ControlSettings
         private Toggle _enableShakyCamToggle;
 
 
-
+        #pragma warning disable
         private bool _isDoneInitalizing = false;
 
         private ShakyCamToggle _shakyCamToggle;

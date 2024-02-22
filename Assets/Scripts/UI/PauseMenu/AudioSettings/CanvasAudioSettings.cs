@@ -33,7 +33,7 @@ namespace UI.AudioSettings
         //private WwEvent _sfxSoundEvent;
         //[SerializeField]
         //private AK.Wwise.CallbackFlags _endOfSoundEvent;
-        
+        #pragma warning disable
         private bool _isAudioPlaying = false;
         private bool _isDoneInitalizing = false;
 

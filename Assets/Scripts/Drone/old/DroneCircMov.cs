@@ -65,7 +65,7 @@ public class DroneCircMov : MonoBehaviour
 
             IdlePrime();
             // line1.enabled = false;
-            linear();
+            Linear();
             //Debug.Log("enebling line");
             //line1.enabled = false;
         }
@@ -95,13 +95,14 @@ public class DroneCircMov : MonoBehaviour
 
         _drone.transform.position = _drone.transform.position;
     }
-    private void linear()
+    private void Linear()
     {
-        line1.SetVertexCount(2);
+        line1.positionCount = 2;
 
         line1.enabled = (false);
         //line2.enabled = (true);
-        line1.SetWidth(1f, 1f);
+        line1.startWidth = 1;
+        line1.endWidth = 1;
         // _drone.transform.LookAt(_player.transform.position);
         // _player.transform.LookAt(_drone.transform.position);
         line1.SetPosition(0, _drone.transform.position);
