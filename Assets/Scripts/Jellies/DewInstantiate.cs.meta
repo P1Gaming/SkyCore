@@ -4,8 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - Dew: {fileID: 2916422275461499499, guid: c4d143484380c78428d84c668b9d4ef6, type: 3}
-  - Jelly: {instanceID: 0}
+  - _dewPrefab: {fileID: 2916422275461499499, guid: c4d143484380c78428d84c668b9d4ef6,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

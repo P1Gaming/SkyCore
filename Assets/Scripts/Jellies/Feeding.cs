@@ -36,10 +36,6 @@ namespace Jellies
             _parameters.IncreaseFoodSaturation(amountToIncrease);
         }
 
-        public void SpawnDew()
-        {
-            _dew.DewSpawn();
-        }
         /// <summary>
         /// Called by the jelly prefab's feed button.
         /// </summary>
@@ -48,8 +44,8 @@ namespace Jellies
             InventoryBase hotBar = InventoryScene.Instance.HotBar;
             if (hotBar.TrySubtractItemAmount(_berryItem, 1))
             {
-                FeedJelly(_berryItem.SaturationValue);
-                SpawnDew();
+                FeedJelly(_berryItem.SaturationValue);  
+                _dew.DewSpawn();
             }
         }
     }
