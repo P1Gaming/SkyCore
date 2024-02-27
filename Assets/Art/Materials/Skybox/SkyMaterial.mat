@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StarsMaterial
+  m_Name: SkyMaterial
   m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_ValidKeywords:
   - _ALPHATEST_ON
@@ -31,9 +31,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6fe493f3a7cfc594b8037e1b283c6e35, type: 3}
-        m_Scale: {x: 3, y: 3}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 9fe5d4542b8d3ac40a934dc454d049ee, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
+        m_Offset: {x: 0, y: 1.5}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -71,9 +71,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6fe493f3a7cfc594b8037e1b283c6e35, type: 3}
-        m_Scale: {x: 3, y: 3}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 9fe5d4542b8d3ac40a934dc454d049ee, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
+        m_Offset: {x: 0, y: 1.5}
     - _Mask0:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
