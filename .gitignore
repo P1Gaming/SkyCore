@@ -70,3 +70,29 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+## ---------------- ##
+##   WWise stuff    ##
+## ---------------- ##
+
+# files created when add Wwise Unity integration
+logRunSetup.txt
+WwiseUnityIntegration_Mac_Src.zip
+WwiseUnityIntegration_Windows_Src.zip
+.WwiseLauncherInstallIncomplete
+
+# project stuff
+/skyjellies_WwiseProject/.cache/
+/skyjellies_WwiseProject/*.prof
+/skyjellies_WwiseProject/*_WwiseProject.*.validationcache
+/skyjellies_WwiseProject/*_WwiseProject.*.wsettings
+/skyjellies_WwiseProject/**/*.akd
+
+# Wwise's Unity integration code (we cannot redistribute it). But keep the ScriptableObjects folder and all .meta files.
+/Assets/Wwise/**/*.*
+!/Assets/Wwise/**/*.meta
+!/Assets/Wwise/ScriptableObjects/**
+
+## --------------- ##
+## End WWise Stuff ##
+## --------------- ##
