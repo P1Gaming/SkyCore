@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 12f58e6f40cb3174385976cf974256bc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _dewPrefab: {fileID: 2916422275461499499, guid: c4d143484380c78428d84c668b9d4ef6,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -20,9 +20,11 @@ namespace Jellies
 
         private Parameters _parameters;
 
+        private DewInstantiate _dew;
         private void Awake()
         {
             _parameters = GetComponent<Parameters>();
+            _dew = GetComponent<DewInstantiate>();
         }
 
         /// <summary>
@@ -42,7 +44,8 @@ namespace Jellies
             InventoryBase hotBar = InventoryScene.Instance.HotBar;
             if (hotBar.TrySubtractItemAmount(_berryItem, 1))
             {
-                FeedJelly(_berryItem.SaturationValue);
+                FeedJelly(_berryItem.SaturationValue);  
+                _dew.DewSpawn();
             }
         }
     }
