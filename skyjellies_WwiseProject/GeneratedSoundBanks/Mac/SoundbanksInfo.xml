@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\.cache\Mac\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\GeneratedSoundBanks\Mac\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="133642231" Language="SFX" Hash="1512186643">
+			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
+			<ShortName>General</ShortName>
+			<Path>General.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4000411161" Name="Play_Campfire" ObjectPath="\Events\Default Work Unit\Env\Play_Campfire" DurationType="OneShot" DurationMin="1.2" DurationMax="1.2">
+					<IncludedMemoryFiles>
+						<File Id="115667677" Language="SFX">
+							<ShortName>Env--General-Campfire_01.wav</ShortName>
+							<Path>SFX\Env--General-Campfire_01_10C4C929.wem</Path>
+						</File>
+						<File Id="361147073" Language="SFX">
+							<ShortName>Env--General-CampfireStrike_01.wav</ShortName>
+							<Path>SFX\Env--General-CampfireStrike_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2264789132" Name="Play_Campfire_Extinguish" ObjectPath="\Events\Default Work Unit\Env\Play_Campfire_Extinguish" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="222977208" Language="SFX">
+							<ShortName>Env--General-CampfireExtinguish_01.wav</ShortName>
+							<Path>SFX\Env--General-CampfireExtinguish_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2922412317" Name="Play_Env_Block_Sound" ObjectPath="\Events\Default Work Unit\Env\Play_Env_Block_Sound" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2451341124" Name="Play_Env_Drone_AllSounds" ObjectPath="\Events\Default Work Unit\Env\Play_Env_Drone_AllSounds" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="305956122" Language="SFX">
+							<ShortName>Env--Drone-HighlighterBeam1-Steady.wav</ShortName>
+							<Path>SFX\Env--Drone-HighlighterBeam1-Steady_D79FB2B7.wem</Path>
+						</File>
+						<File Id="392666278" Language="SFX">
+							<ShortName>Drone--RandomBeeps\Env--Drone-RandomBeeps_02.wav</ShortName>
+							<Path>SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_02_10C4C929.wem</Path>
+						</File>
+						<File Id="469642736" Language="SFX">
+							<ShortName>Drone--RandomBeeps\Env--Drone-RandomBeeps_04.wav</ShortName>
+							<Path>SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_04_10C4C929.wem</Path>
+						</File>
+						<File Id="498461969" Language="SFX">
+							<ShortName>Drone--RandomBeeps\Env--Drone-RandomBeeps_03.wav</ShortName>
+							<Path>SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_03_10C4C929.wem</Path>
+						</File>
+						<File Id="670606323" Language="SFX">
+							<ShortName>Env--Drone-Hover.wav</ShortName>
+							<Path>SFX\Env--Drone-Hover_D79FB2B7.wem</Path>
+						</File>
+						<File Id="702448560" Language="SFX">
+							<ShortName>Drone--RandomBeeps\Env--Drone-RandomBeeps_01.wav</ShortName>
+							<Path>SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_01_10C4C929.wem</Path>
+						</File>
+						<File Id="986339846" Language="SFX">
+							<ShortName>Drone--RandomBeeps\Env--Drone-RandomBeeps_05.wav</ShortName>
+							<Path>SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_05_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3487040007" Name="Play_IslandHeart_LevelUp" ObjectPath="\Events\Default Work Unit\Env\Play_IslandHeart_LevelUp" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="322646485" Language="SFX">
+							<ShortName>ENV--General-LvlUpIsland_01.wav</ShortName>
+							<Path>SFX\ENV--General-LvlUpIsland_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="403792184" Name="Play_Jellies_Pet" ObjectPath="\Events\Default Work Unit\Jellies\Play_Jellies_Pet" MaxAttenuation="20." DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="268109012" Language="SFX">
+							<ShortName>Jellies--General-Petting-Happy_03.wav</ShortName>
+							<Path>SFX\Jellies--General-Petting-Happy_03_10C4C929.wem</Path>
+						</File>
+						<File Id="491288057" Language="SFX">
+							<ShortName>Jellies--General-Petting-Happy_02.wav</ShortName>
+							<Path>SFX\Jellies--General-Petting-Happy_02_10C4C929.wem</Path>
+						</File>
+						<File Id="512316781" Language="SFX">
+							<ShortName>Jellies--General-Petting-Happy_01.wav</ShortName>
+							<Path>SFX\Jellies--General-Petting-Happy_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1406322581" Name="Play_Jellies_Roam_Grass" ObjectPath="\Events\Default Work Unit\Jellies\Play_Jellies_Roam_Grass" MaxAttenuation="20." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="23739380" Language="SFX">
+							<ShortName>Jellies--Grass-Roaming_01.wav</ShortName>
+							<Path>SFX\Jellies--Grass-Roaming_01_10C4C929.wem</Path>
+						</File>
+						<File Id="53662747" Language="SFX">
+							<ShortName>Jellies--Grass-Roaming_03.wav</ShortName>
+							<Path>SFX\Jellies--Grass-Roaming_03_10C4C929.wem</Path>
+						</File>
+						<File Id="99406942" Language="SFX">
+							<ShortName>Jellies--Grass-Roaming_02.wav</ShortName>
+							<Path>SFX\Jellies--Grass-Roaming_02_10C4C929.wem</Path>
+						</File>
+						<File Id="116842961" Language="SFX">
+							<ShortName>Jellies--Grass-Roaming_04.wav</ShortName>
+							<Path>SFX\Jellies--Grass-Roaming_04_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="37469952" Name="Play_Jellies_Roam_Stone" ObjectPath="\Events\Default Work Unit\Jellies\Play_Jellies_Roam_Stone" MaxAttenuation="20." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="371825151" Language="SFX">
+							<ShortName>Jellies--Stone-Roaming_02.wav</ShortName>
+							<Path>SFX\Jellies--Stone-Roaming_02_10C4C929.wem</Path>
+						</File>
+						<File Id="531104505" Language="SFX">
+							<ShortName>Jellies--Stone-Roaming_03.wav</ShortName>
+							<Path>SFX\Jellies--Stone-Roaming_03_10C4C929.wem</Path>
+						</File>
+						<File Id="693964253" Language="SFX">
+							<ShortName>Jellies--Stone-Roaming_04.wav</ShortName>
+							<Path>SFX\Jellies--Stone-Roaming_04_10C4C929.wem</Path>
+						</File>
+						<File Id="1060454449" Language="SFX">
+							<ShortName>Jellies--Stone-Roaming_01.wav</ShortName>
+							<Path>SFX\Jellies--Stone-Roaming_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2015355878" Name="Play_Jellies_Roam_Wood" ObjectPath="\Events\Default Work Unit\Jellies\Play_Jellies_Roam_Wood" MaxAttenuation="20." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="93842916" Language="SFX">
+							<ShortName>Jellies--Wood-Roaming_02.wav</ShortName>
+							<Path>SFX\Jellies--Wood-Roaming_02_10C4C929.wem</Path>
+						</File>
+						<File Id="262499635" Language="SFX">
+							<ShortName>Jellies--Wood-Roaming_01.wav</ShortName>
+							<Path>SFX\Jellies--Wood-Roaming_01_10C4C929.wem</Path>
+						</File>
+						<File Id="480533553" Language="SFX">
+							<ShortName>Jellies--Wood-Roaming_04.wav</ShortName>
+							<Path>SFX\Jellies--Wood-Roaming_04_10C4C929.wem</Path>
+						</File>
+						<File Id="1043455567" Language="SFX">
+							<ShortName>Jellies--Wood-Roaming_03.wav</ShortName>
+							<Path>SFX\Jellies--Wood-Roaming_03_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2405070987" Name="Play_Jelly_Eating" ObjectPath="\Events\Default Work Unit\Jellies\Play_Jelly_Eating" MaxAttenuation="20." DurationType="OneShot" DurationMin="0.865537" DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="36526449" Language="SFX">
+							<ShortName>Jellies--General--Eating--SFX_1.wav</ShortName>
+							<Path>SFX\Jellies--General--Eating--SFX_1_10C4C929.wem</Path>
+						</File>
+						<File Id="53939665" Language="SFX">
+							<ShortName>Jellies--General--Eating--chomp_1.wav</ShortName>
+							<Path>SFX\Jellies--General--Eating--chomp_1_10C4C929.wem</Path>
+						</File>
+						<File Id="137681786" Language="SFX">
+							<ShortName>Jellies--General--Eating--chomp_2.wav</ShortName>
+							<Path>SFX\Jellies--General--Eating--chomp_2_10C4C929.wem</Path>
+						</File>
+						<File Id="425362036" Language="SFX">
+							<ShortName>Jellies--General-Eating_01.wav</ShortName>
+							<Path>SFX\Jellies--General-Eating_01_10C4C929.wem</Path>
+						</File>
+						<File Id="427470194" Language="SFX">
+							<ShortName>Jellies--General--Eating--chomp_3.wav</ShortName>
+							<Path>SFX\Jellies--General--Eating--chomp_3_10C4C929.wem</Path>
+						</File>
+						<File Id="614237393" Language="SFX">
+							<ShortName>Jellies--General--Eating--SFX_2.wav</ShortName>
+							<Path>SFX\Jellies--General--Eating--SFX_2_10C4C929.wem</Path>
+						</File>
+						<File Id="777634846" Language="SFX">
+							<ShortName>Jellies--General--Eating--SFX_3.wav</ShortName>
+							<Path>SFX\Jellies--General--Eating--SFX_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3822484859" Name="Play_Jellydue_Pickup" ObjectPath="\Events\Default Work Unit\Jellies\Play_Jellydue_Pickup" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="252772455" Language="SFX">
+							<ShortName>Jellies--General-Pick_up_sound_V3.wav</ShortName>
+							<Path>SFX\Jellies--General-Pick_up_sound_V3_10C4C929.wem</Path>
+						</File>
+						<File Id="546161741" Language="SFX">
+							<ShortName>Jellies--General-Pick_up_sound_V1.wav</ShortName>
+							<Path>SFX\Jellies--General-Pick_up_sound_V1_10C4C929.wem</Path>
+						</File>
+						<File Id="1037554247" Language="SFX">
+							<ShortName>Jellies--General-Pick_up_sound_V2.wav</ShortName>
+							<Path>SFX\Jellies--General-Pick_up_sound_V2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1113491808" Name="Play_Pickup_IslandBlocks" ObjectPath="\Events\Default Work Unit\Player\Play_Pickup_IslandBlocks" DurationType="OneShot" DurationMin="0.798298" DurationMax="1.090508">
+					<IncludedMemoryFiles>
+						<File Id="277896006" Language="SFX">
+							<ShortName>pick_up_sound_3.wav</ShortName>
+							<Path>SFX\pick_up_sound_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1376999814" Name="Play_PickupItem_Berries" ObjectPath="\Events\Default Work Unit\Player\Play_PickupItem_Berries" DurationType="OneShot" DurationMin="0.870551" DurationMax="1.148698">
+					<IncludedMemoryFiles>
+						<File Id="227030784" Language="SFX">
+							<ShortName>Player--PickingBerries-FoleywSound_02.wav</ShortName>
+							<Path>SFX\Player--PickingBerries-FoleywSound_02_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="98439365" Name="Play_Player_Footsteps" ObjectPath="\Events\Default Work Unit\Player\Play_Player_Footsteps" DurationType="OneShot" DurationMin="0.90125" DurationMax="1.109569">
+					<IncludedMemoryFiles>
+						<File Id="4594063" Language="SFX">
+							<ShortName>Player--Footstep-Stone_03.wav</ShortName>
+							<Path>SFX\Player--Footstep-Stone_03_10C4C929.wem</Path>
+						</File>
+						<File Id="37732381" Language="SFX">
+							<ShortName>Player--Footstep-Wood_03.wav</ShortName>
+							<Path>SFX\Player--Footstep-Wood_03_10C4C929.wem</Path>
+						</File>
+						<File Id="163140263" Language="SFX">
+							<ShortName>Player--Footstep-Dirt_02.wav</ShortName>
+							<Path>SFX\Player--Footstep-Dirt_02_10C4C929.wem</Path>
+						</File>
+						<File Id="166886885" Language="SFX">
+							<ShortName>Player--Footstep-Grass_04.wav</ShortName>
+							<Path>SFX\Player--Footstep-Grass_04_10C4C929.wem</Path>
+						</File>
+						<File Id="183949493" Language="SFX">
+							<ShortName>Player--Footstep-Sand_02.wav</ShortName>
+							<Path>SFX\Player--Footstep-Sand_02_10C4C929.wem</Path>
+						</File>
+						<File Id="185770309" Language="SFX">
+							<ShortName>Player--Footstep-Dirt_01.wav</ShortName>
+							<Path>SFX\Player--Footstep-Dirt_01_10C4C929.wem</Path>
+						</File>
+						<File Id="254692847" Language="SFX">
+							<ShortName>Player--Footstep-Stone_01.wav</ShortName>
+							<Path>SFX\Player--Footstep-Stone_01_10C4C929.wem</Path>
+						</File>
+						<File Id="263204134" Language="SFX">
+							<ShortName>Player--Footstep-Stone_04.wav</ShortName>
+							<Path>SFX\Player--Footstep-Stone_04_10C4C929.wem</Path>
+						</File>
+						<File Id="406990423" Language="SFX">
+							<ShortName>Player--Footstep-Grass_01.wav</ShortName>
+							<Path>SFX\Player--Footstep-Grass_01_10C4C929.wem</Path>
+						</File>
+						<File Id="410570610" Language="SFX">
+							<ShortName>Player--Footstep-Stone_02.wav</ShortName>
+							<Path>SFX\Player--Footstep-Stone_02_10C4C929.wem</Path>
+						</File>
+						<File Id="464514656" Language="SFX">
+							<ShortName>Player--Footstep-Wood_02.wav</ShortName>
+							<Path>SFX\Player--Footstep-Wood_02_10C4C929.wem</Path>
+						</File>
+						<File Id="475843626" Language="SFX">
+							<ShortName>Player--Footstep-Wood_04.wav</ShortName>
+							<Path>SFX\Player--Footstep-Wood_04_10C4C929.wem</Path>
+						</File>
+						<File Id="503769497" Language="SFX">
+							<ShortName>Player--Footstep-Dirt_04.wav</ShortName>
+							<Path>SFX\Player--Footstep-Dirt_04_10C4C929.wem</Path>
+						</File>
+						<File Id="552420211" Language="SFX">
+							<ShortName>Player--Footstep-Dirt_03.wav</ShortName>
+							<Path>SFX\Player--Footstep-Dirt_03_10C4C929.wem</Path>
+						</File>
+						<File Id="570713722" Language="SFX">
+							<ShortName>Player--Footstep-Wood_01.wav</ShortName>
+							<Path>SFX\Player--Footstep-Wood_01_10C4C929.wem</Path>
+						</File>
+						<File Id="598447443" Language="SFX">
+							<ShortName>Player--Footstep-Grass_02.wav</ShortName>
+							<Path>SFX\Player--Footstep-Grass_02_10C4C929.wem</Path>
+						</File>
+						<File Id="655326849" Language="SFX">
+							<ShortName>Player--Footstep-Sand_03.wav</ShortName>
+							<Path>SFX\Player--Footstep-Sand_03_10C4C929.wem</Path>
+						</File>
+						<File Id="980419153" Language="SFX">
+							<ShortName>Player--Footstep-Sand_01.wav</ShortName>
+							<Path>SFX\Player--Footstep-Sand_01_10C4C929.wem</Path>
+						</File>
+						<File Id="1004209305" Language="SFX">
+							<ShortName>Player--Footstep-Sand_04.wav</ShortName>
+							<Path>SFX\Player--Footstep-Sand_04_10C4C929.wem</Path>
+						</File>
+						<File Id="1068201216" Language="SFX">
+							<ShortName>Player--Footstep-Grass_03.wav</ShortName>
+							<Path>SFX\Player--Footstep-Grass_03_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<DefaultSwitchValue>{53E5DABC-BE29-4EFA-B9D9-58CAFA9889B1}</DefaultSwitchValue>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{5A476742-3CD9-46B6-8CB0-6F7D4A2EFFF1}">
+							<Media>
+								<File Id="183949493"/>
+								<File Id="655326849"/>
+								<File Id="980419153"/>
+								<File Id="1004209305"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{36E36445-7B78-4A85-A233-DA9D3B7C02E8}">
+							<Media>
+								<File Id="163140263"/>
+								<File Id="185770309"/>
+								<File Id="503769497"/>
+								<File Id="552420211"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F07A717F-20A1-45B0-A7CF-37779018E09E}">
+							<Media>
+								<File Id="37732381"/>
+								<File Id="464514656"/>
+								<File Id="475843626"/>
+								<File Id="570713722"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{53E5DABC-BE29-4EFA-B9D9-58CAFA9889B1}">
+							<Media>
+								<File Id="166886885"/>
+								<File Id="406990423"/>
+								<File Id="598447443"/>
+								<File Id="1068201216"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{2B171FFB-A3EF-490D-A967-724BFC3B653C}">
+							<Media>
+								<File Id="4594063"/>
+								<File Id="254692847"/>
+								<File Id="263204134"/>
+								<File Id="410570610"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="1158385986" Name="Play_UI__CraftingMenu_ClosingCraftingSystem_01" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_ClosingCraftingSystem_01" DurationType="OneShot" DurationMin="0.599391" DurationMax="0.599391">
+					<IncludedMemoryFiles>
+						<File Id="229031904" Language="SFX">
+							<ShortName>UI--CraftingMenu-ClosingCraftingSystem_01.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-ClosingCraftingSystem_01_01C985A7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3079436876" Name="Play_UI__CraftingMenu_Craft_01" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_Craft_01" DurationType="OneShot" DurationMin="0.439655" DurationMax="0.439655">
+					<IncludedMemoryFiles>
+						<File Id="148459336" Language="SFX">
+							<ShortName>UI--CraftingMenu-Craft_01.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-Craft_01_E6706DC6.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1488088378" Name="Play_UI__CraftingMenu_CraftCantDone_01" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_CraftCantDone_01" DurationType="OneShot" DurationMin="0.419878" DurationMax="0.419878">
+					<IncludedMemoryFiles>
+						<File Id="741776741" Language="SFX">
+							<ShortName>UI--CraftingMenu-CraftCantDone_01.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-CraftCantDone_01_671CDC4E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2406796967" Name="Play_UI__CraftingMenu_LeftClickIcon_02" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_LeftClickIcon_02" DurationType="OneShot" DurationMin="0.190796" DurationMax="0.190796">
+					<IncludedMemoryFiles>
+						<File Id="190429514" Language="SFX">
+							<ShortName>UI--CraftingMenu-LeftClickIcon_02.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-LeftClickIcon_02_CB507115.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1848836357" Name="Play_UI__CraftingMenu_ListOfItems_01" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_ListOfItems_01" DurationType="OneShot" DurationMin="0.40568" DurationMax="0.40568">
+					<IncludedMemoryFiles>
+						<File Id="133938429" Language="SFX">
+							<ShortName>UI--CraftingMenu-ListOfItems_01.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-ListOfItems_01_4A9DABCB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2962648104" Name="Play_UI__CraftingMenu_OpeningUpCraftingSystem_01" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_OpeningUpCraftingSystem_01" DurationType="OneShot" DurationMin="0.474645" DurationMax="0.474645">
+					<IncludedMemoryFiles>
+						<File Id="725537460" Language="SFX">
+							<ShortName>UI--CraftingMenu-OpeningUpCraftingSystem_01.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-OpeningUpCraftingSystem_01_6AFB29A9.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2584199242" Name="Play_UI__CraftingMenu_RightClickIcon_02" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_RightClickIcon_02" DurationType="OneShot" DurationMin="0.241379" DurationMax="0.241379">
+					<IncludedMemoryFiles>
+						<File Id="776689844" Language="SFX">
+							<ShortName>UI--CraftingMenu-RightClickIcon_02.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-RightClickIcon_02_2283C119.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3170528434" Name="Play_UI__CraftingMenu_Sorting_01" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_Sorting_01" DurationType="OneShot" DurationMin="0.380325" DurationMax="0.380325">
+					<IncludedMemoryFiles>
+						<File Id="194509088" Language="SFX">
+							<ShortName>UI--CraftingMenu-Sorting_01.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-Sorting_01_5D714EB3.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2013194162" Name="Play_UI__CraftingMenu_Upgrade_01" ObjectPath="\Events\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_Upgrade_01" DurationType="OneShot" DurationMin="0.887424" DurationMax="0.887424">
+					<IncludedMemoryFiles>
+						<File Id="790051336" Language="SFX">
+							<ShortName>UI--CraftingMenu-Upgrade_01.wav</ShortName>
+							<Path>SFX\UI--CraftingMenu-Upgrade_01_9CAFC61F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1572933919" Name="Play_UI_Pause_CloseMenu" ObjectPath="\Events\Default Work Unit\UI\Play_UI_Pause_CloseMenu" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="139991288" Language="SFX">
+							<ShortName>UI--Pause-CloseMenu_01.wav</ShortName>
+							<Path>SFX\UI--Pause-CloseMenu_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2540695190" Name="Play_UI_Pause_InMenuSounds" ObjectPath="\Events\Default Work Unit\UI\Play_UI_Pause_InMenuSounds" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="85280361" Language="SFX">
+							<ShortName>UI--PauseMenu_LeftClick_01.wav</ShortName>
+							<Path>SFX\UI--PauseMenu_LeftClick_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="659570891" Name="Play_UI_Pause_OpenMenu" ObjectPath="\Events\Default Work Unit\UI\Play_UI_Pause_OpenMenu" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="315689274" Language="SFX">
+							<ShortName>UI--Pause-OpenMenu_01.wav</ShortName>
+							<Path>SFX\UI--Pause-OpenMenu_01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4190538351" Name="Play_UI_Pause_TabSounds" ObjectPath="\Events\Default Work Unit\UI\Play_UI_Pause_TabSounds" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="743448906" Language="SFX">
+							<ShortName>UI--PauseMenu-Hover_03.wav</ShortName>
+							<Path>SFX\UI--PauseMenu-Hover_03_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2978452144" Name="Play_UseItem_Block" ObjectPath="\Events\Default Work Unit\Player\Play_UseItem_Block" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="34653539" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_06.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_06_10C4C929.wem</Path>
+						</File>
+						<File Id="135331910" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_08.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_08_10C4C929.wem</Path>
+						</File>
+						<File Id="156418739" Language="SFX">
+							<ShortName>Player--UseItem-BlockGrass_05.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockGrass_05_10C4C929.wem</Path>
+						</File>
+						<File Id="265329481" Language="SFX">
+							<ShortName>Player--UseItem-BlockGrass_01.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockGrass_01_10C4C929.wem</Path>
+						</File>
+						<File Id="315984144" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_07.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_07_10C4C929.wem</Path>
+						</File>
+						<File Id="542118516" Language="SFX">
+							<ShortName>Player--UseItem-BlockWood_03.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockWood_03_10C4C929.wem</Path>
+						</File>
+						<File Id="549206128" Language="SFX">
+							<ShortName>Player--UseItem-BlockGrass_02.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockGrass_02_10C4C929.wem</Path>
+						</File>
+						<File Id="573674466" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_05.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_05_10C4C929.wem</Path>
+						</File>
+						<File Id="704841214" Language="SFX">
+							<ShortName>Player--UseItem-BlockWood_01.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockWood_01_10C4C929.wem</Path>
+						</File>
+						<File Id="722435772" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_01.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_01_10C4C929.wem</Path>
+						</File>
+						<File Id="786056721" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_04.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_04_10C4C929.wem</Path>
+						</File>
+						<File Id="919251293" Language="SFX">
+							<ShortName>Player--UseItem-BlockBroken_01.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockBroken_01_10C4C929.wem</Path>
+						</File>
+						<File Id="924245251" Language="SFX">
+							<ShortName>Player--UseItem-BlockWood_02.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockWood_02_10C4C929.wem</Path>
+						</File>
+						<File Id="928335436" Language="SFX">
+							<ShortName>Player--UseItem-BlockWood_04.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockWood_04_10C4C929.wem</Path>
+						</File>
+						<File Id="963835577" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_03.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_03_10C4C929.wem</Path>
+						</File>
+						<File Id="969727234" Language="SFX">
+							<ShortName>Player--UseItem-BlockGrass_03.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockGrass_03_10C4C929.wem</Path>
+						</File>
+						<File Id="981038802" Language="SFX">
+							<ShortName>Player--UseItem-BlockStone_02.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockStone_02_10C4C929.wem</Path>
+						</File>
+						<File Id="1060669743" Language="SFX">
+							<ShortName>Player--UseItem-BlockGrass_04.wav</ShortName>
+							<Path>SFX\Player--UseItem-BlockGrass_04_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<DefaultSwitchValue>{AB0E44CC-F4F8-4ABD-AA82-F8317DC9D013}</DefaultSwitchValue>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{C1660E2E-7611-435A-9F7E-17D4C1B7EEFA}">
+							<Media>
+								<File Id="542118516"/>
+								<File Id="704841214"/>
+								<File Id="924245251"/>
+								<File Id="928335436"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{8FD80840-7AE1-40DA-A220-8DCBC92D6C54}">
+							<Media>
+								<File Id="156418739"/>
+								<File Id="265329481"/>
+								<File Id="549206128"/>
+								<File Id="969727234"/>
+								<File Id="1060669743"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{2A329599-8E54-406C-9EAD-6D5A94BB4FC9}">
+							<Media>
+								<File Id="34653539"/>
+								<File Id="135331910"/>
+								<File Id="315984144"/>
+								<File Id="573674466"/>
+								<File Id="722435772"/>
+								<File Id="786056721"/>
+								<File Id="963835577"/>
+								<File Id="981038802"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{AB0E44CC-F4F8-4ABD-AA82-F8317DC9D013}">
+							<Media>
+								<File Id="919251293"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="3878502195" Name="Stop_Campfire" ObjectPath="\Events\Default Work Unit\Env\Stop_Campfire" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+			</IncludedEvents>
+			<SwitchGroups>
+				<SwitchGroup Id="3865314626" Name="Material" ObjectPath="\Switches\Default Work Unit\Material" GUID="{3CAAA9C5-058E-4DF2-848F-C240D19E14DB}">
+					<Switches>
+						<Switch Id="2195636714" Name="Dirt" ObjectPath="\Switches\Default Work Unit\Material\Dirt" GUID="{36E36445-7B78-4A85-A233-DA9D3B7C02E8}"/>
+						<Switch Id="4248645337" Name="Grass" ObjectPath="\Switches\Default Work Unit\Material\Grass" GUID="{53E5DABC-BE29-4EFA-B9D9-58CAFA9889B1}"/>
+						<Switch Id="803837735" Name="Sand" ObjectPath="\Switches\Default Work Unit\Material\Sand" GUID="{5A476742-3CD9-46B6-8CB0-6F7D4A2EFFF1}"/>
+						<Switch Id="1216965916" Name="Stone" ObjectPath="\Switches\Default Work Unit\Material\Stone" GUID="{2B171FFB-A3EF-490D-A967-724BFC3B653C}"/>
+						<Switch Id="2058049674" Name="Wood" ObjectPath="\Switches\Default Work Unit\Material\Wood" GUID="{F07A717F-20A1-45B0-A7CF-37779018E09E}"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4247838896" Name="ItemType" ObjectPath="\Switches\Default Work Unit\ItemType" GUID="{0A4AB8A8-6133-4815-924F-54223D488615}">
+					<Switches>
+						<Switch Id="3465160839" Name="BlockBroken" ObjectPath="\Switches\Default Work Unit\ItemType\BlockBroken" GUID="{AB0E44CC-F4F8-4ABD-AA82-F8317DC9D013}"/>
+						<Switch Id="2065309022" Name="BlockGrass" ObjectPath="\Switches\Default Work Unit\ItemType\BlockGrass" GUID="{8FD80840-7AE1-40DA-A220-8DCBC92D6C54}"/>
+						<Switch Id="2903927127" Name="BlockStone" ObjectPath="\Switches\Default Work Unit\ItemType\BlockStone" GUID="{2A329599-8E54-406C-9EAD-6D5A94BB4FC9}"/>
+						<Switch Id="3915253415" Name="BlockWood" ObjectPath="\Switches\Default Work Unit\ItemType\BlockWood" GUID="{C1660E2E-7611-435A-9F7E-17D4C1B7EEFA}"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX" Hash="4172163104">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<GameParameters>
+				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\SFX_Volume"/>
+				<GameParameter Id="1850957680" Name="Game_Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Game_Music_Volume"/>
+				<GameParameter Id="4179668880" Name="Master_Volume" ObjectPath="\Game Parameters\Default Work Unit\Master_Volume"/>
+			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="4091656514" Name="GameState" ObjectPath="\States\Default Work Unit\GameState" GUID="{C05EE549-8991-4FD9-8432-F96CC9BC1C07}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\GameState\None" GUID="{E88748C1-9157-4531-8C7D-9F2EF56CAC55}"/>
+						<State Id="2219001485" Name="Game_On" ObjectPath="\States\Default Work Unit\GameState\Game_On" GUID="{A030FA25-8AAD-4478-9CE7-30EECD46C8D5}"/>
+						<State Id="2772308904" Name="Game_Pause" ObjectPath="\States\Default Work Unit\GameState\Game_Pause" GUID="{88A212A3-F7E4-4AE1-8F68-35CF2A96F72B}"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+		<SoundBank Id="3991942870" Language="SFX" Hash="859592237">
+			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
+			<ShortName>Music</ShortName>
+			<Path>Music.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2124889703" Name="Play_Music__LoadingScreen_01" ObjectPath="\Events\Default Work Unit\Music\Play_Music__LoadingScreen_01" DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<IncludedMemoryFiles>
+						<File Id="246064640" Language="SFX">
+							<ShortName>Music-General-LoadingScreen_60bpm_4-4_L8M_P1M.wav</ShortName>
+							<Path>SFX\Music-General-LoadingScreen_60bpm_4-4_L8M_P1M_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1423477630" Name="Play_Pause_Menu_Music" ObjectPath="\Events\Default Work Unit\Music\Play_Pause_Menu_Music" DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<IncludedMemoryFiles>
+						<File Id="185401154" Language="SFX">
+							<ShortName>Music--General-PauseMenu-Full_101bpm_4-4.wav</ShortName>
+							<Path>SFX\Music--General-PauseMenu-Full_101bpm_4-4_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="375134059" Name="Play_Title_Screen_Music" ObjectPath="\Events\Default Work Unit\Music\Play_Title_Screen_Music" DurationType="OneShot" DurationMin="168." DurationMax="168.">
+					<IncludedMemoryFiles>
+						<File Id="992486245" Language="SFX">
+							<ShortName>Music--SkyJellies_MainTheme-Master1_Sam_Cannon.wav</ShortName>
+							<Path>SFX\Music--SkyJellies_MainTheme-Master1_Sam_Cannon_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4201027921" Name="Stop_Title_Screen_Music" ObjectPath="\Events\Default Work Unit\Music\Stop_Title_Screen_Music" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
