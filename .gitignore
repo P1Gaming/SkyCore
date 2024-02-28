@@ -93,6 +93,14 @@ WwiseUnityIntegration_Windows_Src.zip
 !/Assets/Wwise/**/*.meta
 !/Assets/Wwise/ScriptableObjects/**
 
+# WWise Picker (editor)
+# from https://www.audiokinetic.com/library/edge/?source=Unity&id=unity__troubleshooting.html
+# >> Do not keep AkWwiseProjectData.asset under version control!
+# >> This is a temporary cache file for the Wwise project data,
+# >> so as to avoid having the Wwise Picker continuously parse the Work Unit files.
+/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
+/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset.meta
+
 ## --------------- ##
 ## End WWise Stuff ##
 ## --------------- ##
