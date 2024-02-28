@@ -2,6 +2,8 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,31 +34,21 @@ namespace Player.Motion
         [SerializeField]
         private GameEventScriptableObject _playerMovementD;
 
-        private CharacterController _characterController;
+        private Rigidbody _rigidbody;
         private PlayerVelocityDecider _velocityDecider;
-        private Vector2 _localHorizontalDirection = Vector2.zero;
         private bool _tryJump;
         private bool _wasGrounded;
         private bool _isInteracting;
+        private float _horizontalMovement;
+        private float _verticalMovement;
+        private Vector3 _moveDirection;
 
         private static PlayerMovement _instance;
-        public static PlayerMovement Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<PlayerMovement>();
-                }
-                return _instance;
-            }
-        }
-
-        public float HorizontalMovementInputMagnitude => _localHorizontalDirection.magnitude;
+        public static PlayerMovement Instance;
 
         public PlayerMovementSettings Settings => _settings;
 
-        public bool IsMoving => _characterController.velocity != Vector3.zero;
+        public bool IsMoving => _rigidbody.velocity != Vector3.zero;
 
         public bool isInteracting => _isInteracting;
 
@@ -95,8 +87,6 @@ namespace Player.Motion
             {
                 return;
             }
-
-            RegisterEventHandlers(handler);
         }
 
         /// <summary>
@@ -108,12 +98,12 @@ namespace Player.Motion
         {
             if (isInteracting)
             {
-                _localHorizontalDirection = Vector2.zero;
 
                 // Stop micro movement after interaction from remaining velocity
                 if (_wasGrounded)
                 {
-                    _characterController.Move(Vector3.zero);
+                    //!TODO!
+                    //_characterController.Move(Vector3.zero);
                 }
             }
             if (!TryGetComponent(out PlayerInput handler))
@@ -121,17 +111,13 @@ namespace Player.Motion
                 return;
             }
 
-            UnregisterEventHandlers(handler);
-
         }
 
         private void Awake()
         {
             _settings.Initialize();
             _velocityDecider = new PlayerVelocityDecider(_settings);
-            _characterController = GetComponent<CharacterController>();
-            _groundedDecider.Initialize(_characterController);
-
+            _rigidbody = GetComponent<Rigidbody>();
             _wasGrounded = _groundedDecider.IsGrounded();
         }
 
@@ -139,140 +125,43 @@ namespace Player.Motion
         {
             bool grounded = _groundedDecider.IsGrounded();
 
-            Vector2 targetHorizontalDirection = ConvertLocalHorizontalDirectionToGlobal();
-
-            Vector3 newVelocity = _velocityDecider.UpdateVelocity(grounded, targetHorizontalDirection
-                , _characterController.velocity, _tryJump, out bool jumped);
+            UnityEngine.Debug.Log("test");
 
             _tryJump = false;
-
-            _characterController.Move(newVelocity * Time.deltaTime);
-
-            CheckFireEvents(grounded, newVelocity, jumped);
+            GetInput();
         }
 
-        private void CheckFireEvents(bool grounded, Vector3 newVelocity, bool jumped)
+        private void GetInput()
         {
-            if (grounded && !_wasGrounded)
+            if (_playerMovementW)
             {
-                Landed?.Invoke();
+                _horizontalMovement = 1;
             }
-            if (!grounded && _wasGrounded)
+            if (_playerMovementS)
             {
-                Fallen?.Invoke();
+                _horizontalMovement = -1;
             }
-            _wasGrounded = grounded;
-
-            if (newVelocity.x != 0 || newVelocity.z != 0)
+            if (_playerMovementA)
             {
-                MovedHorizontally?.Invoke();
+                _verticalMovement = 1;
             }
-
-            if (jumped)
+            if (_playerMovementD)
             {
-                Jumped?.Invoke();
+                _verticalMovement = -1;
             }
 
-            UpdateBasedOnGrounded?.Invoke(grounded);
+            _moveDirection = transform.forward * _verticalMovement + transform.right * _horizontalMovement;
         }
 
-        /// <summary>
-        /// Converts the local target horizontal direction to global, so it rotates with the 
-        /// transform as you move the mouse.
-        /// If forward remefernce, the camera target or any other object, is assigned,
-        /// will use that transform to decide forward directions, with rotation of
-        /// the camera.
-        /// </summary>
-        /// <returns>The direction to move in the world on the horizontal plane.</returns>
-        private Vector2 ConvertLocalHorizontalDirectionToGlobal()
-        {
-            if (_localHorizontalDirection == Vector2.zero)
-            {
-                return Vector2.zero;
-            }
-            Vector3 globalDirection;
-            if (_forwardReference != null)
-            {
-                globalDirection = (_forwardReference.forward * _localHorizontalDirection.y)
-                + (_forwardReference.right * _localHorizontalDirection.x);
-            }
-            else
-            {
-                globalDirection = (transform.right * _localHorizontalDirection.x)
-                + (transform.forward * _localHorizontalDirection.y);
-            }
-            
 
-            Vector2 result = new Vector2(globalDirection.x, globalDirection.z);
-            return result.normalized;
+        private void FixedUpdate()
+        {
+            MovePlayer();
         }
 
-        private void OnMove(InputAction.CallbackContext context)
+        private void MovePlayer()
         {
-            if (context.canceled || _isInteracting)
-            {
-                _localHorizontalDirection = Vector2.zero;
-                return;
-            }
-
-            _localHorizontalDirection = context.ReadValue<Vector2>();
-
-            if (_localHorizontalDirection == Vector2.up)
-            {
-                _playerMovementW.Raise();
-            }
-
-            if (_localHorizontalDirection == Vector2.left)
-            {
-                _playerMovementA.Raise();
-            }
-
-            if (_localHorizontalDirection == Vector2.right)
-            {
-                _playerMovementD.Raise();
-            }
-
-            if (_localHorizontalDirection == Vector2.down)
-            {
-                _playerMovementS.Raise();
-            }
-        }
-
-        private void OnJump(InputAction.CallbackContext context)
-        {
-            _tryJump = !_isInteracting;
-        }
-
-        protected void RegisterEventHandlers(PlayerInput input)
-        {
-            InputAction moveAction = input.actions.FindAction("Move");
-            if (moveAction != null)
-            {
-                moveAction.canceled += OnMove;
-                moveAction.performed += OnMove;
-            }
-
-            InputAction jumpAction = input.actions.FindAction("Jump");
-            if (jumpAction != null)
-            {
-                jumpAction.performed += OnJump;
-            }
-        }
-
-        protected void UnregisterEventHandlers(PlayerInput input)
-        {
-            InputAction moveAction = input.actions.FindAction("Move");
-            if (moveAction != null)
-            {
-                moveAction.canceled -= OnMove;
-                moveAction.performed -= OnMove;
-            }
-
-            InputAction jumpAction = input.actions.FindAction("Jump");
-            if (jumpAction != null)
-            {
-                jumpAction.performed -= OnJump;
-            }
+            _rigidbody.AddForce(_moveDirection * 5f, ForceMode.Acceleration);
         }
 
         /// <summary>
@@ -283,9 +172,9 @@ namespace Player.Motion
             // The enable/disable here doesn't seem to be necessary, but some people on unity
             // forums say the character controller overrides transform position, so maybe it's
             // necessary depending on order of execution or something.
-            _characterController.enabled = false;
+            _rigidbody.isKinematic = false;
             transform.position = position;
-            _characterController.enabled = true;
+            _rigidbody.isKinematic = true;
         }
 
         /// <summary>
@@ -299,13 +188,9 @@ namespace Player.Motion
             this.enabled = !isInteracting;            
         }
 
-        /// <summary>
-        /// Sets the direction of player movement.
-        /// </summary>
-        /// <param name="direction"></param>
-        public void SetLocalHorizontalDirection(Vector2 direction)
+        public void SetLocalHorizontalDirection(PlayerMovement temp)
         {
-            _localHorizontalDirection = direction;
+            //This does nothing
         }
     }
 }
