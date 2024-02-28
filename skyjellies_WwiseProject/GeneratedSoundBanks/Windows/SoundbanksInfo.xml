@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\cwals\Documents\GitHub\skyjellies\skyjellies\skyjellies_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
