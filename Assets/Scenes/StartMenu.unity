@@ -2164,6 +2164,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc2f2fdbf1c2df47a43cf40e2792a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _masterVolumeParameter:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1c2493e71c85d2f4499b0039aa3bad48,
+      type: 2}
+  _musicVolumeParameter:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2090c45f93089d244be2578fb46261b3,
+      type: 2}
+  _sfxVolumeParameter:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6cf2905f1be93e04d88038c7a0ab67b8,
+      type: 2}
 --- !u!4 &2146821052
 Transform:
   m_ObjectHideFlags: 0
