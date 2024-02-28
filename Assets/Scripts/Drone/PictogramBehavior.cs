@@ -56,6 +56,14 @@ public class PictogramBehavior : MonoBehaviour
             throw new System.ArgumentException("data must be Sprite: " + data);
         }
     }
+    public void ChangePictogramImage(Sprite data)
+    {
+        if (data != null)
+        {
+            _image.sprite = data;
+        }
+    }
+
 
     public void SetBackdropImage()
     {

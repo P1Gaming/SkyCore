@@ -8,6 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 public class ShowNewlyScannedThing : MonoBehaviour
 {
+    public static ShowNewlyScannedThing instance;
+
     [System.Serializable]
     public class JellyTypeToImage
     {
@@ -34,6 +36,7 @@ public class ShowNewlyScannedThing : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         _showSomethingTriggerID = Animator.StringToHash(_showSomethingTrigger);
         AnimatorStateEnterEvent.GetEnterEvent(_animator).OnEnter += OnAnimatorEntersIdle;
     }
@@ -107,5 +110,10 @@ public class ShowNewlyScannedThing : MonoBehaviour
     {
         _toShow.Enqueue(sprite);
         CheckShowNext();
+    }
+
+    public static void ShowImage(Sprite sprite)
+    {
+        instance.EnqueueThingToShow(sprite);
     }
 }
