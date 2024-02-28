@@ -1,12 +1,46 @@
 using UnityEngine;
+using AK.Wwise;
 
 namespace Sound
 {
     public class SoundManager : MonoBehaviour
     {
-        private float _masterVolume;
-        private float _musicVolume;
-        private float _sfxVolume;
+        [SerializeField]
+        private RTPC _masterVolumeParameter; // rtcp stands for real-time parameter control
+        [SerializeField]
+        private RTPC _musicVolumeParameter;
+        [SerializeField]
+        private RTPC _sfxVolumeParameter;
+
+        /// <summary>
+        /// Master bus volume. 0 - 100
+        /// </summary>
+        public float MasterVolume
+        {
+            get => _masterVolumeParameter.GetGlobalValue();
+            set => _masterVolumeParameter.SetGlobalValue(value);
+        }
+
+        /// <summary>
+        /// Music bus volume. 0 - 100
+        /// </summary>
+        public float MusicVolume
+        {
+            get => _musicVolumeParameter.GetGlobalValue();
+            set => _musicVolumeParameter.SetGlobalValue(value);
+        }
+
+        /// <summary>
+        /// SFX bus volume. 0 - 100
+        /// </summary>
+        public float SFXVolume
+        {
+            get => _sfxVolumeParameter.GetGlobalValue();
+            set => _sfxVolumeParameter.SetGlobalValue(value);
+        }
+
+
+
 
 
         private static SoundManager _instance;
@@ -38,84 +72,10 @@ namespace Sound
             DontDestroyOnLoad(gameObject);
 
 
-            _masterVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.MasterVolume, 0.75f);
-            _musicVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.MusicVolume, 0.5f);
-            _sfxVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.SfxVolume, 0.75f);
+            MasterVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.MasterVolume, 0.75f);
+            MusicVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.MusicVolume, 0.5f);
+            SFXVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.SfxVolume, 0.75f);
         }
-
-        /// <summary>
-        /// Set master bus volume
-        /// </summary>
-        /// <param name="value">0 - 100</param>
-        public void SetMasterVolume(float value)
-        {
-            _masterVolume = value;
-        }
-
-        /// <summary>
-        /// Get master bus volume
-        /// </summary>
-        /// <param name="value">0 - 100</param>
-        public float GetMasterVolume()
-        {
-            return _masterVolume;
-        }
-
-        /// <summary>
-        /// Set music bus volume
-        /// </summary>
-        /// <param name="value">0 - 100</param>
-        public void SetMusicVolume(float value)
-        {
-            _musicVolume = value;
-        }
-
-        /// <summary>
-        /// Get music bus volume
-        /// </summary>
-        /// <param name="value">0 - 100</param>
-        public float GetMusicVolume()
-        {
-            return _musicVolume;
-        }
-
-        /// <summary>
-        /// Set sfx bus volume
-        /// </summary>
-        /// <param name="value">0 - 100</param>
-        public void SetSFXVolume(float value)
-        {
-            _sfxVolume = value;
-        }
-
-        /// <summary>
-        /// Get sfx bus volume
-        /// </summary>
-        /// <param name="value">0 - 100</param>
-        public float GetSFXVolume()
-        {
-            return _sfxVolume;
-        }
-
-        /// <summary>
-        /// Set global Wwise game parameter value.
-        /// </summary>
-        /// <param name="parameter">AK.Wwise.RTPS parameter to change</param>
-        /// <param name="value"></param>
-        //private void SetGlobalSoundParameter(RTPC parameter, float value)
-        //{
-        //    parameter.SetGlobalValue(value);
-        //}
-
-        /// <summary>
-        /// Set global Wwise game parameter value.
-        /// </summary>
-        /// <param name="parameter">AK.Wwise.RTPS parameter to change</param>
-        /// <param name="value"></param>
-        //private float GetGlobalSoundParameter(RTPC parameter)
-        //{
-        //    return parameter.GetValue(this.gameObject);
-        //}
     }
 
 }

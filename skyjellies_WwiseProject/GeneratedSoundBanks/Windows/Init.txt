@@ -1,0 +1,39 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	1043523140	FireState			\Default Work Unit\FireState	
+	4091656514	GameState			\Default Work Unit\GameState	
+
+State	ID	Name	State Group			Notes
+	205898616	FireOff	FireState			
+	307829538	FireOn	FireState			
+	748895195	None	FireState			
+	748895195	None	GameState			
+	2219001485	Game_On	GameState			
+	2772308904	Game_Pause	GameState			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	16506564	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX\Player		
+	60656406	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Music\Game_Music		
+	126104113	Game_On	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Music\Pause_Menu_Music		
+	592350309	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX\Env		
+	819921913	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX\Jellies		
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1564184899	SFX_Volume			\Default Work Unit\SFX_Volume	
+	1850957680	Game_Music_Volume			\Default Work Unit\Game_Music_Volume	
+	4179668880	Master_Volume			\Default Work Unit\Master_Volume	
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	258110631	Game_Music			\Default Work Unit\Master Audio Bus\Music\Game_Music	
+	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
+	529726550	Env			\Default Work Unit\Master Audio Bus\SFX\Env	
+	1069431850	Player			\Default Work Unit\Master Audio Bus\SFX\Player	
+	1551306167	UI			\Default Work Unit\Master Audio Bus\SFX\UI	
+	2095980153	Pause_Menu_Music			\Default Work Unit\Master Audio Bus\Music\Pause_Menu_Music	
+	2607341427	Jellies			\Default Work Unit\Master Audio Bus\SFX\Jellies	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
+
+Audio Devices	ID	Name	Type				Notes
+	2317455096	No_Output	No Output			
+	3859886410	System	System			
+

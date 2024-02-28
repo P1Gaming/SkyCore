@@ -1,10 +1,6 @@
 using Sound;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Cursor = UnityEngine.Cursor;
-//using WwEvent = AK.Wwise.Event;
 
 namespace UI.AudioSettings
 {
@@ -27,15 +23,13 @@ namespace UI.AudioSettings
         private Text _musicText;
         [SerializeField]
         private Text _sfxText;
-        //[SerializeField]
-        //private WwEvent _musicSoundEvent;
-        //[SerializeField]
-        //private WwEvent _sfxSoundEvent;
-        //[SerializeField]
-        //private AK.Wwise.CallbackFlags _endOfSoundEvent;
-        #pragma warning disable
-        private bool _isAudioPlaying = false;
-        private bool _isDoneInitalizing = false;
+        [SerializeField]
+        private AK.Wwise.Event _exampleSoundEvent;
+        [SerializeField]
+        private AK.Wwise.CallbackFlags _endOfSoundEvent;
+
+        private bool _alreadyPlayingExampleSound = false;
+        private bool _finishedAwake;
 
         private void Awake()
         {
@@ -45,8 +39,7 @@ namespace UI.AudioSettings
                                                 DefaultSettingsMenuValues.MusicVolume));
             SetSFXVolume(PlayerPrefs.GetFloat(PlayerPrefsKeys.SfxVolume, 
                                               DefaultSettingsMenuValues.SoundVolume));
-
-            _isDoneInitalizing = true;
+            _finishedAwake = true;
         }
 
         /// <summary>
@@ -62,87 +55,65 @@ namespace UI.AudioSettings
         /// <summary>
         /// Set the master volume.
         /// </summary>
-        /// <param name="value"></param>
         public void SetMasterVolume(float value)
         {
             PlayerPrefs.SetFloat(PlayerPrefsKeys.MasterVolume, value);
 
-            SoundManager.Instance.SetMusicVolume(value);
+            SoundManager.Instance.MasterVolume = value;
             _masterSlider.value = value;
             _masterText.text = $"{value}%";
         }
         /// <summary>
         /// Set the music volumes.
         /// </summary>
-        /// <param name="value"></param>
         public void SetMusicVolume(float value)
         {
             PlayerPrefs.SetFloat(PlayerPrefsKeys.MusicVolume, value);
 
-            SoundManager.Instance.SetMusicVolume(value);
+            SoundManager.Instance.MusicVolume = value;
             _musicSlider.value = value;
             _musicText.text = $"{value}%";
         }
         /// <summary>
         /// Set the sound effects volume.
         /// </summary>
-        /// <param name="value"></param>
         public void SetSFXVolume(float value)
         {
             PlayerPrefs.SetFloat(PlayerPrefsKeys.SfxVolume, value);
 
-            SoundManager.Instance.SetSFXVolume(value);
+            SoundManager.Instance.SFXVolume = value;
             _sfxSlider.value = value;
             _sfxText.text = $"{value}%";
+
+            // I dunno whether this is the right way to do things in terms of the user's experience.
+            // This might've just been for debugging originally, since I've never heard an example sound
+            // with the old implementation.
+            PlayExampleSound();
         }
+
         /// <summary>
         /// Handles playing sound events. Good for single use.
         /// </summary>
-        /// <param name="value"></param>
-        //private void PlayExampleSound(WwEvent eventToPlay)
-        //{
-        //    if (!_isDoneInitalizing)
-        //    {
-        //        return;
-        //    }
-        //    if (_isAudioPlaying)
-        //    {
-        //        return;
-        //    }
-        //    Debug.Log("Playing: " + eventToPlay.ToString());
-        //    _isAudioPlaying = true;
-        //    eventToPlay.Post(gameObject, _endOfSoundEvent, OnFinishPlayingAudio);
-        //}
+        private void PlayExampleSound()
+        {
+            if (!_finishedAwake || _alreadyPlayingExampleSound)
+            {
+                return;
+            }
+            Debug.Log("play example sound");
+            _alreadyPlayingExampleSound = true;
+            _exampleSoundEvent.Post(gameObject, _endOfSoundEvent, OnFinishPlayingAudio);
+        }
+
         /// <summary>
         /// Sends out post events
         /// </summary>
-        /// <param name="value"></param>
-        //private void OnFinishPlayingAudio(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
-        //{
-        //    if (in_type == AkCallbackType.AK_EndOfEvent)
-        //    {
-        //        _isAudioPlaying = false;
-        //    }
-        //}
-        /// <summary>
-        /// Slider Variable for Music
-        /// </summary>
-        /// <param name="value"></param>
-        //public void ChangeMusicVolume(float value)
-        //{
-        //    SoundManager.Instance.SetMusicVolume(value);
-        //    _musicText.text = value.ToString();
-        //    PlayExampleSound(_musicSoundEvent);
-        //}
-        /// <summary>
-        /// Slider Variable for Sounde Effects
-        /// </summary>
-        /// <param name="value"></param>
-        //public void ChangeSFXVolume(float value)
-        //{
-        //    SoundManager.Instance.SetSFXVolume(value);
-        //    _sfxText.text = value.ToString();
-        //    PlayExampleSound(_sfxSoundEvent);
-        //}
+        private void OnFinishPlayingAudio(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info)
+        {
+            if (in_type == AkCallbackType.AK_EndOfEvent)
+            {
+                _alreadyPlayingExampleSound = false;
+            }
+        }
     }
 }

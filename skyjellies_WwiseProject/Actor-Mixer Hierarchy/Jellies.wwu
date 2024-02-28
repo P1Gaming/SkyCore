@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}" SchemaVersion="103">
+	<AudioObjects>
+		<WorkUnit Name="Jellies" ID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="4"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<ActorMixer Name="Roaming" ID="{7291A6A2-E7B4-49BA-9779-D501E7F7B07C}" ShortID="236472463">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="MaxSoundPerInstance" Type="int16">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UseMaxSoundPerInstance" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="Object_Attenuation" ID="{97547B12-9ACF-4A88-ACB4-F9B872DB8ED1}" WorkUnitID="{7B9CC019-3578-4E85-8AD4-6EBEA27C6FB8}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Jellies" ID="{16B8A8D5-8808-4852-BE9C-7EF94D5CEFDB}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="Grass" ID="{9202946A-CC73-42AC-8A2A-8C8DFD1638FA}" ShortID="264201453">
+							<PropertyList>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{97FC66F3-DEFC-4A47-8EA5-24C296F18A06}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="240"/>
+													<Property Name="Min" Type="Real64" Value="-240"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Jellies--Grass-Roaming_01" ID="{BED20D60-B7DD-4D7C-8196-9C7301E635BA}" ShortID="538828968">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Grass-Roaming_01" ID="{1F14C33D-2F29-43D4-AAA7-41D77A0C0826}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Grass-Roaming_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="23739380"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Grass-Roaming_01" ID="{1F14C33D-2F29-43D4-AAA7-41D77A0C0826}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Grass-Roaming_02" ID="{4DF67397-6611-4B59-A7A2-E03781E78CF9}" ShortID="576554717">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Grass-Roaming_02" ID="{B7A8C32F-CF98-425B-BE06-C68AF9C608E9}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Grass-Roaming_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="99406942"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Grass-Roaming_02" ID="{B7A8C32F-CF98-425B-BE06-C68AF9C608E9}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Grass-Roaming_03" ID="{067562F0-C496-4D37-B4FD-C1257DBE6351}" ShortID="47637958">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Grass-Roaming_03" ID="{7E7DD01D-9788-4308-BEBA-3455ED9C0816}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Grass-Roaming_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="53662747"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Grass-Roaming_03" ID="{7E7DD01D-9788-4308-BEBA-3455ED9C0816}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Grass-Roaming_04" ID="{0B6F8C9F-D1A6-480D-A6A2-67315E94F7E5}" ShortID="538249252">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Grass-Roaming_04" ID="{7FF095AC-64CB-4B8A-98C1-C0573DFF4110}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Grass-Roaming_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="116842961"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Grass-Roaming_04" ID="{7FF095AC-64CB-4B8A-98C1-C0573DFF4110}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Wood" ID="{08635DCD-E953-4089-AE1B-0039C0256EA3}" ShortID="943872724">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="2"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{D06246B9-C319-496E-8D67-0C63ED180ED8}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="240"/>
+													<Property Name="Min" Type="Real64" Value="-240"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Object_Attenuation" ID="{97547B12-9ACF-4A88-ACB4-F9B872DB8ED1}" WorkUnitID="{7B9CC019-3578-4E85-8AD4-6EBEA27C6FB8}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Jellies" ID="{16B8A8D5-8808-4852-BE9C-7EF94D5CEFDB}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Jellies--Wood-Roaming_01" ID="{84BFB4C3-AD4C-4112-B0A6-C831BC835CA1}" ShortID="17613625">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Wood-Roaming_01" ID="{16C276B8-4421-409D-8D88-A85CBE2C39BE}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Wood-Roaming_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="262499635"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Wood-Roaming_01" ID="{16C276B8-4421-409D-8D88-A85CBE2C39BE}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Wood-Roaming_02" ID="{4A7FC83B-09ED-4DFB-8867-770DDC868CC7}" ShortID="370411994">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Wood-Roaming_02" ID="{521C4549-B818-4A5D-A593-41073AABD176}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Wood-Roaming_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="93842916"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Wood-Roaming_02" ID="{521C4549-B818-4A5D-A593-41073AABD176}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Wood-Roaming_03" ID="{18111078-3568-44F9-BC53-DCD494CCACD5}" ShortID="500688405">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Wood-Roaming_03" ID="{99BCD69F-126F-43D4-890C-F3DBB8826146}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Wood-Roaming_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1043455567"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Wood-Roaming_03" ID="{99BCD69F-126F-43D4-890C-F3DBB8826146}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Wood-Roaming_04" ID="{613CC913-02E5-4031-A53C-F112A769A177}" ShortID="899266208">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Wood-Roaming_04" ID="{F09877AE-E788-4035-AA37-62F525B8A292}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Wood-Roaming_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="480533553"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Wood-Roaming_04" ID="{F09877AE-E788-4035-AA37-62F525B8A292}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Stone" ID="{A3B87F16-CC40-4569-815A-BA1EEB1AE593}" ShortID="472056180">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="2"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{4D40F6EC-8997-4959-8E32-67E70EA760C4}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="240"/>
+													<Property Name="Min" Type="Real64" Value="-240"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Object_Attenuation" ID="{97547B12-9ACF-4A88-ACB4-F9B872DB8ED1}" WorkUnitID="{7B9CC019-3578-4E85-8AD4-6EBEA27C6FB8}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Jellies" ID="{16B8A8D5-8808-4852-BE9C-7EF94D5CEFDB}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Jellies--Stone-Roaming_01" ID="{54E85282-E297-42F3-9F26-17EA488C73DC}" ShortID="615573923">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Stone-Roaming_01" ID="{AE8E0AA7-13BA-4C24-A41D-BD96A6A156D1}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Stone-Roaming_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1060454449"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Stone-Roaming_01" ID="{AE8E0AA7-13BA-4C24-A41D-BD96A6A156D1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Stone-Roaming_02" ID="{8B4FF888-76E5-4A4A-8A24-8716A891877F}" ShortID="753479025">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Stone-Roaming_02" ID="{9A7950F8-0428-4C1D-AF0A-71D7F593D973}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Stone-Roaming_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="371825151"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Stone-Roaming_02" ID="{9A7950F8-0428-4C1D-AF0A-71D7F593D973}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Stone-Roaming_03" ID="{06328F06-E056-424C-A909-171656E33B6B}" ShortID="702112136">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Stone-Roaming_03" ID="{1C80545C-5E49-495E-8185-ADC87BFD0910}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Stone-Roaming_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="531104505"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Stone-Roaming_03" ID="{1C80545C-5E49-495E-8185-ADC87BFD0910}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Jellies--Stone-Roaming_04" ID="{36B3C002-3B6C-4B16-9431-5D1699D66EC8}" ShortID="667953413">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Jellies--Stone-Roaming_04" ID="{636E6948-C7A4-4B3B-BB49-B841FFCA2F3B}">
+											<Language>SFX</Language>
+											<AudioFile>Jellies--Stone-Roaming_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="693964253"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Jellies--Stone-Roaming_04" ID="{636E6948-C7A4-4B3B-BB49-B841FFCA2F3B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</RandomSequenceContainer>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
+				<RandomSequenceContainer Name="Jellydue Pickup" ID="{7F80DF48-EC7F-4D97-9E51-B7BA7F64B1D0}" ShortID="551378777">
+					<PropertyList>
+						<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+						<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="Object_Attenuation" ID="{97547B12-9ACF-4A88-ACB4-F9B872DB8ED1}" WorkUnitID="{7B9CC019-3578-4E85-8AD4-6EBEA27C6FB8}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Jellies" ID="{16B8A8D5-8808-4852-BE9C-7EF94D5CEFDB}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Jellies--General-Pick_up_sound_V1" ID="{5F5BDB28-9F4D-40DC-B02F-5DCFFE2269E0}" ShortID="35083961">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pick_up_sound_V1" ID="{3CDC9185-8848-4058-B1BB-FC5151FEF603}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pick_up_sound_V1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="546161741"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pick_up_sound_V1" ID="{3CDC9185-8848-4058-B1BB-FC5151FEF603}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Pick_up_sound_V2" ID="{85F3027E-6FB5-4E16-923C-AAA37B998E40}" ShortID="717195083">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pick_up_sound_V2" ID="{679D07B4-D524-415A-8F11-AF9BA7BEF5FB}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pick_up_sound_V2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1037554247"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pick_up_sound_V2" ID="{679D07B4-D524-415A-8F11-AF9BA7BEF5FB}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Pick_up_sound_V3" ID="{98276263-1E6A-46D6-BC7E-97D0A3F7ED62}" ShortID="316387961">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pick_up_sound_V3" ID="{6C501BE9-EE1D-4D4C-90CC-2040A6CE81BD}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pick_up_sound_V3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="252772455"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pick_up_sound_V3" ID="{6C501BE9-EE1D-4D4C-90CC-2040A6CE81BD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Pickup_01" ID="{610D82AA-8E4C-4FB2-9D85-098B8D3BB4AE}" ShortID="656106446">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pickup_01" ID="{736E08F7-5A78-4EAF-8CC3-1E33EEAC511F}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pickup_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="661331997"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pickup_01" ID="{736E08F7-5A78-4EAF-8CC3-1E33EEAC511F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Pickup_02" ID="{1D0F4B3C-647A-4134-B6B1-6CADF904E6D0}" ShortID="73200152">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pickup_02" ID="{363389B7-3AEB-407B-B722-740F6A73ACC4}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pickup_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="586536715"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pickup_02" ID="{363389B7-3AEB-407B-B722-740F6A73ACC4}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Pickup_03" ID="{EFD9EDE8-F3F7-4FE3-8C42-03D4C1AE50ED}" ShortID="746222021">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pickup_03" ID="{53A830CF-614C-465B-BBAC-5FFEB7C862C7}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pickup_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1058401104"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pickup_03" ID="{53A830CF-614C-465B-BBAC-5FFEB7C862C7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Pickup_04" ID="{599B7484-1369-4B71-AF76-FABFD9A9A5CE}" ShortID="236106689">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pickup_04" ID="{3186ACC2-9442-4EEA-A7F4-3AB7B733A629}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pickup_04.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="259138966"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pickup_04" ID="{3186ACC2-9442-4EEA-A7F4-3AB7B733A629}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Pickup_05" ID="{39AF7D38-5ACD-4FE4-8F04-0B4585145DB9}" ShortID="377483040">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Pickup_05" ID="{EC57150E-ADDD-43A3-AA77-F265D4E79904}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Pickup_05.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="892066815"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Pickup_05" ID="{EC57150E-ADDD-43A3-AA77-F265D4E79904}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Jellydue-01" ID="{4D807A86-134C-401E-89C4-E031E41DA9FE}" ShortID="340905718">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Jellydue-01" ID="{2090E706-6DF7-410F-B1AC-D0E362EF9CBC}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Jellydue-01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="545484879"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Jellydue-01" ID="{2090E706-6DF7-410F-B1AC-D0E362EF9CBC}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</RandomSequenceContainer>
+				<RandomSequenceContainer Name="Pet" ID="{2B1C23CF-F52C-4C24-A3EA-2EAC6FBDEB1B}" ShortID="437699299">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="Object_Attenuation" ID="{97547B12-9ACF-4A88-ACB4-F9B872DB8ED1}" WorkUnitID="{7B9CC019-3578-4E85-8AD4-6EBEA27C6FB8}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Jellies" ID="{16B8A8D5-8808-4852-BE9C-7EF94D5CEFDB}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Jellies--General-Petting-Happy_01" ID="{163F28EE-4D49-4C2C-A800-EBB9F7167577}" ShortID="868852293">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Petting-Happy_01" ID="{C540B8B9-6585-4BEF-AD27-43D4EE4F042E}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Petting-Happy_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="512316781"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Petting-Happy_01" ID="{C540B8B9-6585-4BEF-AD27-43D4EE4F042E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Petting-Happy_02" ID="{53E26597-D7ED-4C71-A614-A946FF90B5F4}" ShortID="616134465">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Petting-Happy_02" ID="{7C228E94-3852-41EB-97E8-C071332721D3}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Petting-Happy_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="491288057"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Petting-Happy_02" ID="{7C228E94-3852-41EB-97E8-C071332721D3}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Petting-Happy_03" ID="{84CDEC71-B1F8-4A65-AF3A-A7879314141E}" ShortID="64346002">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Petting-Happy_03" ID="{522A7447-EBDE-49B0-AF4E-F6F5D5F1F2DD}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Petting-Happy_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="268109012"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Petting-Happy_03" ID="{522A7447-EBDE-49B0-AF4E-F6F5D5F1F2DD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</RandomSequenceContainer>
+				<RandomSequenceContainer Name="Eating" ID="{85C98236-AA00-48A6-AD0A-96E82F03B14A}" ShortID="742565650">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="NormalOrShuffle" Type="int16" Value="0"/>
+						<Property Name="Pitch" Type="int32">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{9DB024B3-9F50-4CE0-A793-F1E244D8D81C}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="250"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="Object_Attenuation" ID="{97547B12-9ACF-4A88-ACB4-F9B872DB8ED1}" WorkUnitID="{7B9CC019-3578-4E85-8AD4-6EBEA27C6FB8}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Jellies" ID="{16B8A8D5-8808-4852-BE9C-7EF94D5CEFDB}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Jellies--General--Eating--chomp_1" ID="{D14E4519-B98C-4ED0-AB3F-F39451A8ABBC}" ShortID="582355004">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General--Eating--chomp_1" ID="{C1064D31-1046-4D9E-B7DA-955C11282CD5}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General--Eating--chomp_1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="53939665"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General--Eating--chomp_1" ID="{C1064D31-1046-4D9E-B7DA-955C11282CD5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General--Eating--chomp_2" ID="{57E1B833-BC42-484C-9B2C-35C05C5E5393}" ShortID="768054085">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General--Eating--chomp_2" ID="{366786DB-D131-4B6A-BAB7-E917799318DD}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General--Eating--chomp_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="137681786"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General--Eating--chomp_2" ID="{366786DB-D131-4B6A-BAB7-E917799318DD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General--Eating--chomp_3" ID="{146B6DC2-353E-4EA2-8999-5F2133F7D379}" ShortID="529693505">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General--Eating--chomp_3" ID="{3B86838A-794F-466B-A70E-DE34A81A0872}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General--Eating--chomp_3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="427470194"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General--Eating--chomp_3" ID="{3B86838A-794F-466B-A70E-DE34A81A0872}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General--Eating--SFX_1" ID="{741CD5DA-CB51-4D6B-BE77-CB32E815C948}" ShortID="457309110">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General--Eating--SFX_1" ID="{8FCB06A5-ED5A-46EE-813A-253A1F4042A7}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General--Eating--SFX_1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="36526449"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General--Eating--SFX_1" ID="{8FCB06A5-ED5A-46EE-813A-253A1F4042A7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General--Eating--SFX_2" ID="{E9CFFA51-C812-4872-BD49-7B8A2E3F6AEA}" ShortID="35083872">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General--Eating--SFX_2" ID="{CE7242C3-2221-4DD9-B0BE-1114DA302B35}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General--Eating--SFX_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="614237393"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General--Eating--SFX_2" ID="{CE7242C3-2221-4DD9-B0BE-1114DA302B35}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General--Eating--SFX_3" ID="{2EE3CCF0-08AA-4BB0-B373-583237812F85}" ShortID="508968403">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General--Eating--SFX_3" ID="{F831A9BB-7409-419E-90DE-35C49916A699}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General--Eating--SFX_3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="777634846"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General--Eating--SFX_3" ID="{F831A9BB-7409-419E-90DE-35C49916A699}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jellies--General-Eating_01" ID="{182659AE-9BF1-45C3-BFAA-FAB8864792B4}" ShortID="967065177">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Jellies--General-Eating_01" ID="{C6637170-205A-408D-93C4-BD0BF06BFF45}">
+									<Language>SFX</Language>
+									<AudioFile>Jellies--General-Eating_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="425362036"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Jellies--General-Eating_01" ID="{C6637170-205A-408D-93C4-BD0BF06BFF45}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</RandomSequenceContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
