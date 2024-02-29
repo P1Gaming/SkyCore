@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
-  m_Name: MoveToUnscanned to ScanAttempting
+  m_Name: '[Idle] to [ScanAttempting]'
   m_EditorClassIdentifier: 
   _disable: 0
-  _from: {fileID: 11400000, guid: 44e6ae0898291984a8a14550a3f7cacb, type: 2}
+  <LogFailureReason>k__BackingField: 0
+  _from: {fileID: 11400000, guid: 6db9edfdc94caba43ae4e46406b94d15, type: 2}
   _to: {fileID: 11400000, guid: f70575956cbeef5468b3d83285050946, type: 2}
+  _minDurationInFrom: 0
+  _parameterForMinDurationInFrom: {fileID: 0}
   _conditions:
   - _parameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e, type: 2}
     _equalsForBoolParameter: 1
     _comparisonTypeForFloatParameter: 0
     _otherFloatParameterToCompareTo: {fileID: 0}
     _comparedToForFloatParameter: 0
-  - _parameter: {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf, type: 2}
-    _equalsForBoolParameter: 0
-    _comparisonTypeForFloatParameter: 3
-    _otherFloatParameterToCompareTo: {fileID: 11400000, guid: 4c5a9aae75a6fe140a420012d9636337,
-      type: 2}
-    _comparedToForFloatParameter: NaN
+  - _parameter: {fileID: 11400000, guid: 86e702145a42da240bbea1cdab8defcf, type: 2}
+    _equalsForBoolParameter: 1
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 0
