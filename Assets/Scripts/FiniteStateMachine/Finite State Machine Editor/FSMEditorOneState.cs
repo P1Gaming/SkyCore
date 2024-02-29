@@ -83,6 +83,8 @@ namespace FiniteStateMachineEditor
 
         public void UpdateWhetherDefaultState()
         {
+            if (IsForAnystate)
+                return;
             _border.color = State == _fsmDefinition.DefaultState ? _borderColorForDefaultState : _borderColorForNormalState;
         }
 

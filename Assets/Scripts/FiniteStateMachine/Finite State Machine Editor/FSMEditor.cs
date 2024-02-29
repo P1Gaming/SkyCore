@@ -76,6 +76,7 @@ namespace FiniteStateMachineEditor
             _initialConditionsContentAreaHeight = _refs.ConditionsScrolledContentRect.rect.height;
             _initialParametersContentAreaHeight = _refs.ParametersScrolledContentRect.rect.height;
 
+            AddVisualForState(null); // Anystate
             for (int i = 0; i < _stateMachineDefinition.EditorInfo.States.Length; i++)
                 AddVisualForState(_stateMachineDefinition.EditorInfo.States[i]);
 
@@ -207,7 +208,7 @@ namespace FiniteStateMachineEditor
                 }
                 if (_selectedState != null && !_selectedState.IsForAnystate && _selectedState != _creatingTransitionFrom)
                 {
-                    if (_states.Count == 1)
+                    if (_states.Count == 2) // 2 b/c one is for Anystate
                     {
                         Debug.LogWarning("Cannot delete the last state.");
                     }
@@ -263,9 +264,9 @@ namespace FiniteStateMachineEditor
             // reassign the default state
             if (stateEditor.State == _stateMachineDefinition.DefaultState)
             {
-                FSMEditorOneState newDefaultState = _states[0];
+                FSMEditorOneState newDefaultState = _states[1]; // at index is 0 is the one for Anystate.
                 if (newDefaultState == stateEditor)
-                    newDefaultState = _states[1];
+                    newDefaultState = _states[2];
                 FSMEditorSaveDataChanger.SetFSMDefinitionDefaultState(_stateMachineDefinition, newDefaultState.State);
                 newDefaultState.UpdateWhetherDefaultState();
             }
