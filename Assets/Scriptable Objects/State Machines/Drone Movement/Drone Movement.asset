@@ -23,20 +23,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ba7f734efbc7c0a4ca27a5a502657e2c, type: 2}
   - {fileID: 11400000, guid: 40036101f362b3f4b8f56a40a4587347, type: 2}
   - {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606, type: 2}
+  - {fileID: 11400000, guid: fb0034541946e2d489774a5f2032ed3c, type: 2}
   <Transitions>k__BackingField:
-  - {fileID: 11400000, guid: 2e494a21445fca94b9f307e8856607bb, type: 2}
   - {fileID: 11400000, guid: e72a37aaa894c5e40ab189837fe12ad8, type: 2}
   - {fileID: 11400000, guid: 5b1050496be235945ab5e6aa8ddda75a, type: 2}
   - {fileID: 11400000, guid: 5633832392e61df4586144e284b8d43d, type: 2}
-  - {fileID: 11400000, guid: a36ae162b0fb2c94ca1f9f8f2430aace, type: 2}
-  - {fileID: 11400000, guid: ddc88cfcd1f8a174bbc472a05a791088, type: 2}
+  - {fileID: 11400000, guid: 0d93dcdbe0ad1ca4eb44ae7ce09cf0ed, type: 2}
+  - {fileID: 11400000, guid: 8793cf076699d0749a694b6122fa5dd4, type: 2}
+  - {fileID: 11400000, guid: 36017776f28a5ac43834b68d99fdb486, type: 2}
+  - {fileID: 11400000, guid: a40c3060a459cc84eb1b7d876effe94a, type: 2}
+  - {fileID: 11400000, guid: b554540c8caf32b4d88c1540b575d5f3, type: 2}
   <EditorInfo>k__BackingField:
     <States>k__BackingField:
     - {fileID: 11400000, guid: 7e78d94f94d4cb94eb0ee6324719edc6, type: 2}
     - {fileID: 11400000, guid: f3643b894f7b8d54dae94019a7ea6b0e, type: 2}
     - {fileID: 11400000, guid: 778fe70a551ec3941b52ad19fe1f7722, type: 2}
+    - {fileID: 11400000, guid: 3378ba8420bca6341971abb1f7a8d8a3, type: 2}
+    - {fileID: 11400000, guid: 4eae5a5bff04a1c4092f387ce0d90178, type: 2}
     <StateEditorPositions>k__BackingField:
-    - {x: -199.2453, y: 205.59071}
-    - {x: -203.80215, y: 28.845627}
-    - {x: 106.84592, y: 359.5856}
-    <StateEditorForAnystatePosition>k__BackingField: {x: -390.75864, y: 407.41595}
+    - {x: -218.90381, y: 421.78592}
+    - {x: -200.02512, y: 564.9945}
+    - {x: -618.05096, y: 527.39746}
+    - {x: -233.13791, y: 301.4114}
+    - {x: -640.3359, y: 229.41394}
+    <StateEditorForAnystatePosition>k__BackingField: {x: -227.19113, y: 167.9172}
