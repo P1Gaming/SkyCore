@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c41021c26faba429d52ee001205e4f, type: 3}
+  m_Name: Tumble Evolution Sequence
+  m_EditorClassIdentifier: 
+  _evolutionSequencePrefabs:
+  - {fileID: 564520608544531992, guid: 68eea3fc79eb3494aaa9f78ea6a3f356, type: 3}
+  - {fileID: 5579697148270117430, guid: 540eb936dc526944f835138f18a6f3c1, type: 3}

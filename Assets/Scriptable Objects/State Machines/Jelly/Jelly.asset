@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c8fa47ed0d3d847abe8769a6923df9, type: 3}
+  m_Name: Jelly
+  m_EditorClassIdentifier: 
+  <DefaultState>k__BackingField: {fileID: 11400000, guid: 3e6dbceb3c7b96347926c23c4a308c7a,
+    type: 2}
+  <Parameters>k__BackingField:
+  - {fileID: 11400000, guid: 4a80536da88bbfa469825e221d067bc0, type: 2}
+  <Transitions>k__BackingField:
+  - {fileID: 11400000, guid: 708ac95c4728c12449e2a6891f47f175, type: 2}
+  - {fileID: 11400000, guid: 030aff6e8f473284e8b73ae76bacc8c2, type: 2}
+  <EditorInfo>k__BackingField:
+    <States>k__BackingField:
+    - {fileID: 11400000, guid: 3e6dbceb3c7b96347926c23c4a308c7a, type: 2}
+    - {fileID: 11400000, guid: 9c945131361c20d438a3989e8e1bcc04, type: 2}
+    <StateEditorPositions>k__BackingField:
+    - {x: 0, y: 0}
+    - {x: -11.043831, y: 217.69353}

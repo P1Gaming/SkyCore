@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{5F0A70B5-4CFD-4F47-A45F-35000A121C70}" SchemaVersion="103">
+	<States>
+		<WorkUnit Name="Default Work Unit" ID="{5F0A70B5-4CFD-4F47-A45F-35000A121C70}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="FireState" ID="{F0B25BEC-D4CF-4413-92E2-EF5A09A5AE0D}">
+					<ChildrenList>
+						<State Name="None" ID="{606D4C82-3039-45DE-8076-7DD3BF2E72A0}"/>
+						<State Name="FireOff" ID="{FA1206CF-9963-4F62-8F1E-B05CFFC3D141}"/>
+						<State Name="FireOn" ID="{D6D01088-1387-40FC-9052-B2AA7F76C5DB}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="GameState" ID="{C05EE549-8991-4FD9-8432-F96CC9BC1C07}">
+					<ChildrenList>
+						<State Name="None" ID="{E88748C1-9157-4531-8C7D-9F2EF56CAC55}"/>
+						<State Name="Game_On" ID="{A030FA25-8AAD-4478-9CE7-30EECD46C8D5}"/>
+						<State Name="Game_Pause" ID="{88A212A3-F7E4-4AE1-8F68-35CF2A96F72B}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</States>
+</WwiseDocument>

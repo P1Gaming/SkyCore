@@ -1,0 +1,23 @@
+{
+    "name": "GameCode",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:7937dc16f45c1874482ceec577f32f54",
+        "GUID:9c1192a5d20f5924faf40d6499e6dc4d",
+        "GUID:6e6fe5b3b9cd1494e95f4e744899a4da",
+        "GUID:9242cb42b12f9e244a63f3943de4294e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
