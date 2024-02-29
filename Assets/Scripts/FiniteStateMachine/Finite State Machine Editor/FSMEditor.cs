@@ -839,7 +839,6 @@ namespace FiniteStateMachineEditor
 
             _parameters.Remove(editorToRemove);
             Destroy(editorToRemove.gameObject);
-            AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(editorToRemove.Parameter));
 
             if (_selectedTransition != null)
             {
