@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _disable: 0
   <LogFailureReason>k__BackingField: 0
-  _from: {fileID: 0}
-  _to: {fileID: 0}
+  _from: {fileID: 11400000, guid: 778fe70a551ec3941b52ad19fe1f7722, type: 2}
+  _to: {fileID: 11400000, guid: 7e78d94f94d4cb94eb0ee6324719edc6, type: 2}
   _minDurationInFrom: 0
   _parameterForMinDurationInFrom: {fileID: 0}
-  _conditions: []
+  _conditions:
+  - _parameter: {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606, type: 2}
+    _equalsForBoolParameter: 0
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 0
