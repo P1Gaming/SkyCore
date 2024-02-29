@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
+  m_Name: '[NearPlayer] to [MoveToUnscanned]'
+  m_EditorClassIdentifier: 
+  _disable: 0
+  <LogFailureReason>k__BackingField: 0
+  _from: {fileID: 11400000, guid: 7e78d94f94d4cb94eb0ee6324719edc6, type: 2}
+  _to: {fileID: 11400000, guid: 778fe70a551ec3941b52ad19fe1f7722, type: 2}
+  _minDurationInFrom: 0
+  _parameterForMinDurationInFrom: {fileID: 0}
+  _conditions:
+  - _parameter: {fileID: 11400000, guid: 04b6528ea66382841a77a469e5c25c0b, type: 2}
+    _equalsForBoolParameter: 0
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 0
+  - _parameter: {fileID: 11400000, guid: 40036101f362b3f4b8f56a40a4587347, type: 2}
+    _equalsForBoolParameter: 1
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 0
+  - _parameter: {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606, type: 2}
+    _equalsForBoolParameter: 1
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 0
+  - _parameter: {fileID: 11400000, guid: ba7f734efbc7c0a4ca27a5a502657e2c, type: 2}
+    _equalsForBoolParameter: 0
+    _comparisonTypeForFloatParameter: 3
+    _otherFloatParameterToCompareTo: {fileID: 11400000, guid: b32626912bb9ac345aaf1fc27d3534b9,
+      type: 2}
+    _comparedToForFloatParameter: 0

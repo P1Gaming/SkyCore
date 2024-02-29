@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
-  m_Name: '[Any State] to [Idle]'
+  m_Name: '[DoNothing] to [NearPlayer]'
   m_EditorClassIdentifier: 
   _disable: 0
   <LogFailureReason>k__BackingField: 0
-  _from: {fileID: 0}
+  _from: {fileID: 11400000, guid: 3378ba8420bca6341971abb1f7a8d8a3, type: 2}
   _to: {fileID: 11400000, guid: 7e78d94f94d4cb94eb0ee6324719edc6, type: 2}
   _minDurationInFrom: 0
   _parameterForMinDurationInFrom: {fileID: 0}
   _conditions:
   - _parameter: {fileID: 11400000, guid: 04b6528ea66382841a77a469e5c25c0b, type: 2}
-    _equalsForBoolParameter: 1
+    _equalsForBoolParameter: 0
     _comparisonTypeForFloatParameter: 0
     _otherFloatParameterToCompareTo: {fileID: 0}
     _comparedToForFloatParameter: 0

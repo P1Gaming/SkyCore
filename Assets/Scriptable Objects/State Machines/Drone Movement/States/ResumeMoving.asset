@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9892e131a669bd4081d6ef0bd144757, type: 3}
-  m_Name: Idle
+  m_Name: ResumeMoving
   m_EditorClassIdentifier: 
-  <OnEnter>k__BackingField: {fileID: 11400000, guid: 85bba487799c06b46bee6ec1da5ea75e,
+  <OnEnter>k__BackingField: {fileID: 11400000, guid: 8057f345db44b5146b6208004c6d21e7,
     type: 2}
-  <OnUpdate>k__BackingField: {fileID: 11400000, guid: d620f2e13a754f74c95b4b7c6c27fe23,
+  <OnUpdate>k__BackingField: {fileID: 11400000, guid: 5dea3e27efcaf944396a9bd5b3735b3c,
     type: 2}
-  <OnExit>k__BackingField: {fileID: 11400000, guid: 1a9338493e2b5f04ea06df063b9e0282,
+  <OnExit>k__BackingField: {fileID: 11400000, guid: 43ed68c35a1eae54c97bcaa7d8350d9e,
     type: 2}
