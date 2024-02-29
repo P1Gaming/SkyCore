@@ -205,7 +205,7 @@ namespace FiniteStateMachineEditor
                         _transitions[i].UpdateLine();
                     }
                 }
-                if (_selectedState != null && _selectedState != _creatingTransitionFrom)
+                if (_selectedState != null && !_selectedState.IsForAnystate && _selectedState != _creatingTransitionFrom)
                 {
                     if (_states.Count == 1)
                     {
@@ -379,7 +379,7 @@ namespace FiniteStateMachineEditor
                 }
                 else
                 {
-                    string transitionTitle = $"[{_creatingTransitionFrom.State.name}] to [{_selectedState.State.name}]";
+                    string transitionTitle = $"[{_creatingTransitionFrom.Name}] to [{_selectedState.Name}]";
                     string transitionPath = MakePathForScriptableObject(ref transitionTitle, "Transitions");
                     FSMTransition newTransition = ScriptableObject.CreateInstance<FSMTransition>();
                     AssetDatabase.CreateAsset(newTransition, transitionPath);
@@ -406,7 +406,7 @@ namespace FiniteStateMachineEditor
             if (_selectedTransition != null)
             {
                 _selectedTransition.SetWhetherSelected(true);
-                _refs.TransitionTitleText.text = $"{_selectedTransition.From.State.name} -> {_selectedTransition.To.State.name}";
+                _refs.TransitionTitleText.text = $"{_selectedTransition.From.Name} -> {_selectedTransition.To.Name}";
                 _refs.TransitionMinTimeIn1stStateInputField.SetTextWithoutNotify("" + _selectedTransition.Transition.MinDurationInFrom);
                 _refs.TransitionDisableToggle.SetIsOnWithoutNotify(_selectedTransition.Transition.Disable);
                 _refs.TransitionLogFailureReasonToggle.SetIsOnWithoutNotify(_selectedTransition.Transition.LogFailureReason);
@@ -427,7 +427,7 @@ namespace FiniteStateMachineEditor
         {
             _selectedState.transform.SetAsLastSibling();
             _selectedState.SetSelected(true);
-            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.State.name);
+            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.Name);
             _selectedTransition = null;
         }
 
@@ -695,7 +695,7 @@ namespace FiniteStateMachineEditor
 
         public void OnButtonForSetSelectedStateAsDefault()
         {
-            if (_selectedState != null)
+            if (_selectedState != null && !_selectedState.IsForAnystate)
                 SetDefaultState(_selectedState.State);
         }
 
@@ -714,9 +714,9 @@ namespace FiniteStateMachineEditor
 
             renameTo = renameTo.Trim();
             
-            if (renameTo.Length == 0 || renameTo == _selectedState.State.name)
+            if (renameTo.Length == 0 || renameTo == _selectedState.Name)
             {
-                _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.State.name);
+                _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.Name);
                 return;
             }
 
@@ -732,14 +732,14 @@ namespace FiniteStateMachineEditor
             else
                 _selectedState.UpdateText();
 
-            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.State.name);
+            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.Name);
 
 
             string enterGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnEnter);
             string updateGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnUpdate);
             string exitGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnExit);
 
-            DecideTitlesOfStateGameEvents(_selectedState.State.name, out string enterTitle, out string updateTitle, out string exitTitle);
+            DecideTitlesOfStateGameEvents(_selectedState.Name, out string enterTitle, out string updateTitle, out string exitTitle);
 
             if (enterGameEventPath.Length != 0)
             {

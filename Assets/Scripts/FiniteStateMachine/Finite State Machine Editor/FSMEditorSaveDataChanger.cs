@@ -265,6 +265,10 @@ namespace FiniteStateMachineEditor
 
         public static Vector2 GetPositionOfState(FSMDefinition fsmDefinition, FSMState state)
         {
+            if (state == null)
+            {
+                return fsmDefinition.EditorInfo.StateEditorForAnystatePosition;
+            }
             int index = FindStateIndexInFSMDefinition(fsmDefinition, state);
             return fsmDefinition.EditorInfo.StateEditorPositions[index];
         }
@@ -286,13 +290,22 @@ namespace FiniteStateMachineEditor
         {
             // Essentially _fsmDefinition.EditorInfo.StateEditorPositions[index] = stateRect.transform.position;
 
-            int index = FindStateIndexInFSMDefinition(fsmDefinition, stateEditor.State);
             SerializedObject so = new SerializedObject(fsmDefinition);
 
-            so.FindProperty("<EditorInfo>k__BackingField")
-                .FindPropertyRelative("<StateEditorPositions>k__BackingField")
-                .GetArrayElementAtIndex(index)
-                .vector2Value = stateEditor.transform.position;
+            if (!stateEditor.IsForAnystate)
+            {
+                int index = FindStateIndexInFSMDefinition(fsmDefinition, stateEditor.State);
+                so.FindProperty("<EditorInfo>k__BackingField")
+                    .FindPropertyRelative("<StateEditorPositions>k__BackingField")
+                    .GetArrayElementAtIndex(index)
+                    .vector2Value = stateEditor.transform.position;
+            }
+            else
+            {
+                so.FindProperty("<EditorInfo>k__BackingField")
+                   .FindPropertyRelative("<StateEditorForAnystatePosition>k__BackingField")
+                   .vector2Value = stateEditor.transform.position;
+            }
 
             so.ApplyModifiedPropertiesWithoutUndo();
         }

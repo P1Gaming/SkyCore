@@ -21,6 +21,8 @@ namespace FiniteStateMachineEditor
         private Image _border;
         [SerializeField]
         private Color _borderColorForDefaultState;
+        [SerializeField]
+        private Color _borderColorForAnystate;
 
         private Color _borderColorForNormalState;
 
@@ -29,6 +31,9 @@ namespace FiniteStateMachineEditor
         private Vector3[] _fourCorners = new Vector3[4];
 
         public FSMState State { get; private set; }
+        public bool IsForAnystate => State == null;
+
+        public string Name => IsForAnystate ? "Any State" : State.name;
 
         public List<FSMEditorOneTransition> ConnectedTransitions => _connectedTransitions;
 
@@ -44,11 +49,16 @@ namespace FiniteStateMachineEditor
             _rectTransform.transform.position = FSMEditorSaveDataChanger.GetPositionOfState(_fsmDefinition, State);
 
             UpdateWhetherDefaultState();
+
+            if (state == null)
+            {
+                _border.color = _borderColorForAnystate;
+            }
         }
 
         public void UpdateText()
         {
-            _text.text = State.name;
+            _text.text = Name;
         }
 
         public void AddConnectedTransition(FSMEditorOneTransition transition)
