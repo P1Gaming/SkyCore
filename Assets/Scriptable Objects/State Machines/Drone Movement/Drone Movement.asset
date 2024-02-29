@@ -25,13 +25,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606, type: 2}
   <Transitions>k__BackingField:
   - {fileID: 11400000, guid: 2e494a21445fca94b9f307e8856607bb, type: 2}
+  - {fileID: 11400000, guid: e72a37aaa894c5e40ab189837fe12ad8, type: 2}
+  - {fileID: 11400000, guid: 5b1050496be235945ab5e6aa8ddda75a, type: 2}
+  - {fileID: 11400000, guid: 5633832392e61df4586144e284b8d43d, type: 2}
+  - {fileID: 11400000, guid: a36ae162b0fb2c94ca1f9f8f2430aace, type: 2}
+  - {fileID: 11400000, guid: ddc88cfcd1f8a174bbc472a05a791088, type: 2}
   <EditorInfo>k__BackingField:
     <States>k__BackingField:
     - {fileID: 11400000, guid: 7e78d94f94d4cb94eb0ee6324719edc6, type: 2}
     - {fileID: 11400000, guid: f3643b894f7b8d54dae94019a7ea6b0e, type: 2}
     - {fileID: 11400000, guid: 778fe70a551ec3941b52ad19fe1f7722, type: 2}
     <StateEditorPositions>k__BackingField:
-    - {x: -101.877815, y: 148.40671}
-    - {x: 272.21613, y: 121.57651}
-    - {x: 162.48456, y: 285.40094}
-    <StateEditorForAnystatePosition>k__BackingField: {x: -464.94333, y: 486.23715}
+    - {x: -199.2453, y: 205.59071}
+    - {x: -203.80215, y: 28.845627}
+    - {x: 106.84592, y: 359.5856}
+    <StateEditorForAnystatePosition>k__BackingField: {x: -390.75864, y: 407.41595}
