@@ -1408,6 +1408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4662108598409216592}
+  - component: {fileID: 5118674295441978585}
   m_Layer: 0
   m_Name: rotating thing
   m_TagString: Untagged
@@ -1431,6 +1432,20 @@ Transform:
   m_Father: {fileID: 4364394114180109594}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5118674295441978585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7718049419309388651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2527bccf6e2d54db58d5429d82ec33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandHeartImage: {fileID: 21300000, guid: 1747c09af960d2f42bbbc625c97ce894, type: 3}
+  rotationSpeed: 2
 --- !u!1 &8583248194517039898
 GameObject:
   m_ObjectHideFlags: 0

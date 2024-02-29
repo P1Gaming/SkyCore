@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoticeItem : MonoBehaviour
+public class NoticeJellyDew : MonoBehaviour
 {
+    /// <summary>
+    /// Prompts the drone to show the player jellydew the first time it is encountered
+    /// </summary>
+
     [SerializeField] Sprite theImage;
 
     public static bool noticed { get; private set; }

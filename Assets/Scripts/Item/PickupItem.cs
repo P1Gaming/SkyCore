@@ -17,12 +17,17 @@ public class PickupItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("THE");
-
         if (other.gameObject.TryGetComponent(out Player.InventoryScene inventoryAndHotBar))
         {
             if(inventoryAndHotBar.GoIntoFirst.TryAddItem(new ItemStack(_itemInfo, _amount)))
             {
+                if(_itemInfo.ID == 1)
+                {
+                    if (DroneOnDewPickup.instance.didtheThing == false)
+                    {
+                        DroneOnDewPickup.instance.Activate();
+                    }
+                }
                 Destroy(gameObject);
             }
         }
