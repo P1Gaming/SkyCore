@@ -19,7 +19,6 @@ namespace FiniteStateMachine
         [SerializeField]
         private FSMState _from;
 
-        [Header("To = null means transition to default state.")]
         [SerializeField]
         private FSMState _to;
         
@@ -132,7 +131,7 @@ namespace FiniteStateMachine
             }
             else
             {
-                newState = defaultState;
+                throw new System.Exception("_to is null");
             }
         }
     }
