@@ -17,6 +17,8 @@ public class DroneFollowPlayer : MonoBehaviour
     private GameEventScriptableObject _nearPlayerUpdate;
     [SerializeField]
     private GameEventScriptableObject _followPlayerUpdate;
+    [SerializeField]
+    private GameEventScriptableObject _followPlayerExit;
 
     private FiniteStateMachineInstance _movementStateMachineInstance;
     private Transform _player;
@@ -31,6 +33,7 @@ public class DroneFollowPlayer : MonoBehaviour
         // There's only 1 drone, so don't need to use SetSelectiveResponses.
         _gameEventResponses.SetResponses(
             (_nearPlayerUpdate, UpdateNearPlayer)
+            , (_followPlayerExit, ExitFollowPlayer)
             , (_followPlayerUpdate, UpdateFollowPlayer)
             );
     }
@@ -53,5 +56,10 @@ public class DroneFollowPlayer : MonoBehaviour
     {
         _movement.RotateTowardsTarget(_player);
         _movement.MoveDrone(_movement.FromDroneToNear(_player));
+    }
+
+    private void ExitFollowPlayer()
+    {
+        _movement.StopVelocity();
     }
 }

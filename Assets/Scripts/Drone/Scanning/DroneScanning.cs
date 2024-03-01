@@ -45,6 +45,8 @@ public class DroneScanning : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _moveToUnscannedUpdate;
     [SerializeField]
+    private GameEventScriptableObject _moveToUnscannedExit;
+    [SerializeField]
     private GameEventScriptableObject _scanAttemptingEnter;
     [SerializeField]
     private GameEventScriptableObject _scanAttemptingUpdate;
@@ -100,6 +102,7 @@ public class DroneScanning : MonoBehaviour
 
         _gameEventResponses.SetResponses(
             (_moveToUnscannedUpdate, UpdateMoveTowardsToScan)
+            , (_moveToUnscannedExit, ExitMoveTowardsToScan)
             , (_scanAttemptingEnter, EnterScanAttempting)
             , (_scanAttemptingUpdate, UpdateScanAttempting)
             , (_scanFailedExit, ExitScanFailed)
@@ -166,6 +169,11 @@ public class DroneScanning : MonoBehaviour
     {
         _movement.RotateTowardsTarget(_toScan.transform);
         _movement.MoveDrone(_movement.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
+    }
+
+    private void ExitMoveTowardsToScan()
+    {
+        _movement.StopVelocity();
     }
 
     private void EnterScanAttempting()

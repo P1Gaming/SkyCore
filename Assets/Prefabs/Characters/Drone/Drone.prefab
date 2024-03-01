@@ -771,6 +771,8 @@ MonoBehaviour:
     type: 2}
   _moveToUnscannedUpdate: {fileID: 11400000, guid: c2ce81fe5dcdfda408fa33c135a27b93,
     type: 2}
+  _moveToUnscannedExit: {fileID: 11400000, guid: d26a7719211fdaa4c9c5f0d5759db10b,
+    type: 2}
   _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
     type: 2}
   _scanAttemptingUpdate: {fileID: 11400000, guid: a1942891c105feb49b2c03bbff2e30d2,
@@ -991,6 +993,8 @@ MonoBehaviour:
   _idleSpinSpeed: 30
   _moveToHorizontalDistanceFromTarget: 3
   _hoverHeight: 2
+  _drone: {fileID: 9117878907213001977}
+  _finishedTutorial: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc, type: 2}
 --- !u!54 &3315486025892866724
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1435,6 +1439,7 @@ MonoBehaviour:
   _nearPlayerUpdate: {fileID: 11400000, guid: d620f2e13a754f74c95b4b7c6c27fe23, type: 2}
   _followPlayerUpdate: {fileID: 11400000, guid: 87a4b876bd702854892046a0a5eeb5b0,
     type: 2}
+  _followPlayerExit: {fileID: 11400000, guid: 7db9f2656d8a0f245af3c9f804a29731, type: 2}
 --- !u!1 &6418741841836162400
 GameObject:
   m_ObjectHideFlags: 0

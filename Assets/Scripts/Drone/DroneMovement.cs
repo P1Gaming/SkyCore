@@ -22,14 +22,36 @@ public class DroneMovement : MonoBehaviour
     private float _moveToHorizontalDistanceFromTarget = 3f;
     [SerializeField, Tooltip("How high the drone tries to hover relative to its target")]
     private float _hoverHeight = 2f;
+    [SerializeField]
+    private Drone _drone;
+    [SerializeField]
+    private FiniteStateMachine.FSMParameter _finishedTutorial;
 
+    private Transform _player;
+
+    private void Awake()
+    {
+        _player = Player.Motion.PlayerMovement.Instance.transform;
+    }
+
+    public void StopVelocity()
+    {
+        _rigidbody.velocity = Vector3.zero;
+    }
 
     public void IdleMovement()
     {
-        float rotateDegrees = _idleSpinSpeed * Time.deltaTime;
-        Vector3 newRotation = _rigidbody.rotation.eulerAngles;
-        newRotation.y += rotateDegrees; // Will it confine the rotation properly?
-        _rigidbody.MoveRotation(Quaternion.Euler(newRotation));
+        if (_drone.GetActionStateMachineInstance().GetBool(_finishedTutorial)) // not clean, DroneMovement shouldnt deal w/ fsm stuff.
+        {
+            float rotateDegrees = _idleSpinSpeed * Time.deltaTime;
+            Vector3 newRotation = _rigidbody.rotation.eulerAngles;
+            newRotation.y += rotateDegrees; // Will it confine the rotation properly?
+            _rigidbody.MoveRotation(Quaternion.Euler(newRotation));
+        }
+        else
+        {
+            RotateTowardsTarget(_player);
+        }
     }
 
     /// <summary>

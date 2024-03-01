@@ -111,7 +111,7 @@ public class DroneMovementTutorial : MonoBehaviour
 
     private void UpdateTutorial()
     {
-        _movement.RotateTowardsTarget(_player); // still might want to make the pictogram directly face the camera
+        //_movement.RotateTowardsTarget(_player); // still might want to make the pictogram directly face the camera
 
         if (!_medicalPromptShown)
         {
