@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +34,8 @@ namespace Player.Motion
         private GameEventScriptableObject _playerMovementS;
         [SerializeField]
         private GameEventScriptableObject _playerMovementD;
+        [SerializeField]
+        private LayerMask _groundLayer;
 
         private Rigidbody _rigidbody;
         private PlayerVelocityDecider _velocityDecider;
@@ -51,6 +54,8 @@ namespace Player.Motion
         public bool IsMoving => _rigidbody.velocity != Vector3.zero;
 
         public bool isInteracting => _isInteracting;
+
+        int fixedupdatees = 0;
 
         /// <summary>
         /// Fired when player is no longer grounded.
@@ -118,37 +123,22 @@ namespace Player.Motion
             _settings.Initialize();
             _velocityDecider = new PlayerVelocityDecider(_settings);
             _rigidbody = GetComponent<Rigidbody>();
-            _wasGrounded = _groundedDecider.IsGrounded();
+            Instance = this;
         }
 
         private void Update()
         {
+            UnityEngine.Debug.Log(fixedupdatees);
+            fixedupdatees = 0;
             bool grounded = _groundedDecider.IsGrounded();
 
-            UnityEngine.Debug.Log("test");
-
-            _tryJump = false;
             GetInput();
         }
 
         private void GetInput()
         {
-            if (_playerMovementW)
-            {
-                _horizontalMovement = 1;
-            }
-            if (_playerMovementS)
-            {
-                _horizontalMovement = -1;
-            }
-            if (_playerMovementA)
-            {
-                _verticalMovement = 1;
-            }
-            if (_playerMovementD)
-            {
-                _verticalMovement = -1;
-            }
+            _horizontalMovement = Input.GetAxisRaw("Horizontal");
+            _verticalMovement = Input.GetAxisRaw("Vertical");
 
             _moveDirection = transform.forward * _verticalMovement + transform.right * _horizontalMovement;
         }
@@ -156,12 +146,42 @@ namespace Player.Motion
 
         private void FixedUpdate()
         {
+            fixedupdatees += 1;
             MovePlayer();
+            Jump();
+            FallDetection();
         }
 
         private void MovePlayer()
         {
-            _rigidbody.AddForce(_moveDirection * 5f, ForceMode.Acceleration);
+            _rigidbody.AddForce(_moveDirection.normalized * 50f, ForceMode.Acceleration);
+        }
+
+        private void Jump()
+        {
+            if (Input.GetAxisRaw("Jump") > 0 && _wasGrounded)
+            {
+                _rigidbody.AddForce(Physics.gravity * -30f, ForceMode.Force);
+                _tryJump = true;
+            }
+            else
+            {
+                _rigidbody.AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
+            }
+        }
+
+        private void FallDetection()
+        {
+            UnityEngine.Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(transform.position.x, transform.position.y, transform.position.z), Color.green, 1f);
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.TransformDirection(Vector3.down), 1f, _groundLayer))
+            {
+                _wasGrounded = true;
+            }
+            else
+            {
+                //UnityEngine.Debug.Log();
+                _wasGrounded = false;
+            }
         }
 
         /// <summary>

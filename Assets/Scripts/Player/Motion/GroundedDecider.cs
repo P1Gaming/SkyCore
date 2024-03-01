@@ -33,10 +33,11 @@ namespace Player.Motion
         /// </returns>
         public bool IsGrounded()
         {
-            Vector3 position = _characterController.transform.position;
+            /*Vector3 position = _characterController.transform.position;
             position.y -= _offSet;
 
-            return Physics.CheckSphere(position, _characterController.radius, _groundLayer, QueryTriggerInteraction.Ignore);      
+            return Physics.CheckSphere(position, _characterController.radius, _groundLayer, QueryTriggerInteraction.Ignore);*/
+            return true;
         }
     }
 }

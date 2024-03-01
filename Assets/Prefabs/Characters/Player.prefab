@@ -140,6 +140,9 @@ MonoBehaviour:
   _playerMovementA: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0, type: 2}
   _playerMovementS: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207, type: 2}
   _playerMovementD: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff, type: 2}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &548689562930659569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +234,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &548689563490798967
 GameObject:
@@ -257,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548689563490798967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.375, z: 0}
+  m_LocalPosition: {x: 0, y: 1.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -355,10 +358,10 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4171865345557668876}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1a53b7beda33dc94386b3db71cd0cff9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.02
-  m_Height: 0.08
+  m_Height: 0.021873917
   m_Direction: 1
-  m_Center: {x: 0, y: -0.03, z: 0}
+  m_Center: {x: 0, y: 0.0008708334, z: 0}
