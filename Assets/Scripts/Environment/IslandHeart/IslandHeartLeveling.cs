@@ -34,7 +34,7 @@ public class IslandHeartLeveling : MonoBehaviour
 	[Tooltip("Multiplier to increase the experience threshold to level up the Island Heart")]
 	[Min(1)]
 	[SerializeField]
-	private float _xpMultiplier = 1;
+	private float _xpMultiplier = 2;
 
 	[Tooltip("The experience threshold to level up the Island Heart")]
 	[field: SerializeField]
@@ -42,7 +42,7 @@ public class IslandHeartLeveling : MonoBehaviour
 	{
 		get;
 		private set;
-	} = 1;
+	} = 5;
 
 	[Tooltip("The current amount of experience the Island Heart has")]
     [field: SerializeField]
@@ -61,10 +61,22 @@ public class IslandHeartLeveling : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.tag.Equals("Generator") && _generator == null)
+		if(other.gameObject.GetComponent<GeneratorHandler>() && _generator == null)
 		{
 			GeneratorHandler handler = other.gameObject.GetComponent<GeneratorHandler>();
-			handler.SetCharge(_currentXP);
+			_generator = handler.gameObject;
+			handler.SetCharge((_currentXP/_xpThreshold) *100);
+			_generator.transform.parent = _generatorLocation.transform;
+			_generator.GetComponent<Rigidbody>().isKinematic = true;
+			_generator.transform.localPosition = new Vector3 (0, 0.5f, 0);
+			Debug.Log("Generator has been attached");
+		} else if(other.gameObject.tag.Equals("JellyDew") && !IsMaxLevel())
+		{
+			//TODO: If dropping a large stack of Jelly Dew, we should make a way for that stack to be registered
+			//      as a stack of items with a count that can be put in place of the 1 currently used here. This
+			//		would also help prevent future performance problems due to too many items spawned for the
+			//		game to keep track of.
+			FeedIslandHeart(1);
 		}
 		if(!other.gameObject.tag.Equals("Player"))
 		{
@@ -102,20 +114,23 @@ public class IslandHeartLeveling : MonoBehaviour
 	/// <param name="xpValue"></param>
 	public void FeedIslandHeart(float xpValue)
 	{
-		if (_currentXP + xpValue >= _xpThreshold)
+        if (_generator != null)
+        {
+            _generator.GetComponent<GeneratorHandler>().AddCharge((xpValue / _xpThreshold) * 100);
+        }
+        if (_currentXP + xpValue >= _xpThreshold)
 		{
 			float difference = _currentXP - _xpThreshold;
 			difference += xpValue;
 			_currentXP = difference;
-			LevelUp();
+			/// This should only be a temporary method of setting the charge of the generator. We will need
+			/// to know what the generator does specifically on an Island Heart level up.
+            _generator.GetComponent<GeneratorHandler>().SetCharge((_currentXP / _xpThreshold) * 100);
+            LevelUp();
 		}
 		else
 		{
 			_currentXP += xpValue;
-		}
-		if(_generator != null)
-		{
-			_generator.GetComponent<GeneratorHandler>().AddCharge(xpValue);
 		}
 	}
 

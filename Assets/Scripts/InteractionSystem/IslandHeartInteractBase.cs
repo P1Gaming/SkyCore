@@ -71,7 +71,9 @@ public class IslandHeartInteractBase : Interactable
     /// </summary>
     private void OnInteractionStay()
     {
-        _feedButton.interactable = heart.IsMaxLevel();    // Disable Feed-button when Island Heart is max level
+        //Used to test generator-Island Heart interaction
+        _feedButton.interactable = true;
+        //_feedButton.interactable = heart.IsMaxLevel();    // Disable Feed-button when Island Heart is max level
     }
 
     private void SetInteract(bool interact)
@@ -105,6 +107,7 @@ public class IslandHeartInteractBase : Interactable
     {
         _interactionUI.SetActive(active);
         _firstPersonView.enabled = active;
+        _inventoryUI.SetActive(active);
         PlayerMovement.Instance.SetInteract(!active);
     }
 

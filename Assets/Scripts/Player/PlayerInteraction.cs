@@ -63,8 +63,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!_interactable)
             {
-                if (_closestHit.collider.gameObject.GetComponent<Interactable>())
+                Debug.Log(_closestHit.collider.gameObject.ToString());
+                if (_closestHit.collider.gameObject.GetComponent<IslandHeartInteractBase>() || _closestHit.collider.gameObject.GetComponent<Interactable>())
                 {
+                    Debug.Log("Entering Interaction State");
                     OnInteractionEnter();
                 }
             }
@@ -87,7 +89,7 @@ public class PlayerInteraction : MonoBehaviour
         _interactable = _closestHit.collider.gameObject.GetComponent<Interactable>();
         _interactable.enabled = true;
         _onShowInteractionGUI.Raise();
-        // Debug.Log("Interaction with " + closestHit.collider.gameObject + " enabled.");
+        Debug.Log("Interaction with " + _closestHit.collider.gameObject + " enabled.");
 
         if (_interactable.gameObject.GetComponent<JellyInteractBase>() != null)
         {
@@ -139,7 +141,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if(context.action.name != "Interact")
         {
-            Debug.Log("There was an issue with the Interaction system: "+ context.action.name);
+            //Debug.Log("There was an issue with the Interaction system: "+ context.action.name);
             return;
         }
         if (_jellyCurrent != null)
