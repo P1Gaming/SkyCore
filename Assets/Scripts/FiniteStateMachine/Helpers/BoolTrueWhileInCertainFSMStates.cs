@@ -52,18 +52,10 @@ namespace FiniteStateMachine
             }
         }
 
-        public void Register()
-        {
-            _responses.Register();
-        }
-
-        public void Unregegister()
-        {
-            _responses.Unregister();
-        }
-
         private void SetTrue() => _fsmInstance.SetBool(_bool, true);
-
         private void SetFalse() => _fsmInstance.SetBool(_bool, false);
+
+        public void Register() => _responses.Register();
+        public void Unregister() => _responses.Unregister();
     }
 }

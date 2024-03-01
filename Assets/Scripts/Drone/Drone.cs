@@ -6,9 +6,13 @@ using FiniteStateMachine;
 public class Drone : MonoBehaviour
 {
     [SerializeField]
-    private bool _logStateMachineTransitions;
+    private bool _logMovementStateMachineTransitions;
     [SerializeField]
-    private FSMDefinition _stateMachineDefinition;
+    private bool _logActionStateMachineTransitions;
+    [SerializeField]
+    private FSMDefinition _movementStateMachineDefinition;
+    [SerializeField]
+    private FSMDefinition _actionStateMachineDefinition;
     [SerializeField]
     private DroneMovement _movement;
     [SerializeField]
@@ -16,12 +20,27 @@ public class Drone : MonoBehaviour
     [SerializeField]
     private DroneScanning _scanning;
 
-    private FiniteStateMachineInstance _stateMachineInstance;
-
+    private FiniteStateMachineInstance _movementStateMachineInstance;
+    private FiniteStateMachineInstance _actionStateMachineInstance;
 
     private void Awake()
     {
-        CheckConstructStateMachineInstance();
+        CheckConstructMovementStateMachineInstance();
+        CheckConstructActionStateMachineInstance();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Time.timeScale == 0)
+        {
+            // this shouldn't happen, I think.
+            Debug.LogError("I guess fixed update can run when timescale is 0. Weird.");
+            return;
+        }
+
+        _followPlayer.OnPreStateMachineInstanceUpdate();
+        _scanning.OnPreStateMachineInstanceUpdate();
+        _movementStateMachineInstance.Update();
     }
 
     private void Update()
@@ -34,22 +53,37 @@ public class Drone : MonoBehaviour
         // These MonoBehaviours don't have their own Update() methods because this way, they always set parameters
         // immediately before _stateMachineInstance.Update() runs, for consistency. Less bug-prone and avoids 1 frame delays.
         _scanning.OnPreStateMachineInstanceUpdate();
-        _followPlayer.OnPreStateMachineInstanceUpdate();
 
-        _stateMachineInstance.Update();
+        _actionStateMachineInstance.Update();
     }
 
-    private void CheckConstructStateMachineInstance()
+    private void CheckConstructActionStateMachineInstance()
     {
-        if (_stateMachineInstance == null)
+        if (_actionStateMachineInstance == null)
         {
-            _stateMachineInstance = new FiniteStateMachineInstance(_stateMachineDefinition, this, _logStateMachineTransitions);
+            _actionStateMachineInstance = new FiniteStateMachineInstance(_actionStateMachineDefinition
+                , this, _logActionStateMachineTransitions);
         }
     }
 
-    public FiniteStateMachineInstance GetStateMachineInstance()
+    private void CheckConstructMovementStateMachineInstance()
     {
-        CheckConstructStateMachineInstance();
-        return _stateMachineInstance;
+        if (_movementStateMachineInstance == null)
+        {
+            _movementStateMachineInstance = new FiniteStateMachineInstance(_movementStateMachineDefinition
+                , this, _logMovementStateMachineTransitions);
+        }
+    }
+
+    public FiniteStateMachineInstance GetActionStateMachineInstance()
+    {
+        CheckConstructActionStateMachineInstance();
+        return _actionStateMachineInstance;
+    }
+
+    public FiniteStateMachineInstance GetMovementStateMachineInstance()
+    {
+        CheckConstructMovementStateMachineInstance();
+        return _movementStateMachineInstance;
     }
 }

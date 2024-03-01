@@ -25,7 +25,9 @@ public class DroneMovementTutorial : MonoBehaviour
 
     [Header("Finite State Machine Parameters")]
     [SerializeField]
-    private FSMParameter _finishedTutorialParameter;
+    private FSMParameter _finishedTutorialParameterInActionFSM;
+    [SerializeField]
+    private FSMParameter _finishedTutorialParameterInMovementFSM;
 
     [Header("Finite State Machine Events")]
     [SerializeField]
@@ -47,7 +49,8 @@ public class DroneMovementTutorial : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _playerMovementDEvent;
 
-    private FiniteStateMachineInstance _stateMachineInstance;
+    private FiniteStateMachineInstance _actionStateMachineInstance;
+    private FiniteStateMachineInstance _movementStateMachineInstance;
 
     private Transform _player;
 
@@ -60,9 +63,11 @@ public class DroneMovementTutorial : MonoBehaviour
 
     private void Awake()
     {
-        _stateMachineInstance = _drone.GetStateMachineInstance();
+        _actionStateMachineInstance = _drone.GetActionStateMachineInstance();
+        _movementStateMachineInstance = _drone.GetMovementStateMachineInstance();
         _player = Player.Motion.PlayerMovement.Instance.transform;
-        _stateMachineInstance.SetBool(_finishedTutorialParameter, _skipTutorial);
+        _actionStateMachineInstance.SetBool(_finishedTutorialParameterInActionFSM, _skipTutorial);
+        _movementStateMachineInstance.SetBool(_finishedTutorialParameterInMovementFSM, _skipTutorial);
 
         _gameEventResponses.SetResponses(
             (_playerLookControlsEvent, PlayerMovedCamera)
@@ -138,7 +143,8 @@ public class DroneMovementTutorial : MonoBehaviour
 
                     if (_droneTutorialTimer >= 2f) // If 2 seconds have passed
                     {
-                        _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
+                        _actionStateMachineInstance.SetBool(_finishedTutorialParameterInActionFSM, true);
+                        _movementStateMachineInstance.SetBool(_finishedTutorialParameterInMovementFSM, true);
                     }
                 }
             }

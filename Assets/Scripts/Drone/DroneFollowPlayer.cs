@@ -14,24 +14,24 @@ public class DroneFollowPlayer : MonoBehaviour
     private FSMParameter _distanceFromHoverbyPlayerParameter;
 
     [SerializeField]
-    private GameEventScriptableObject _idleUpdate;
+    private GameEventScriptableObject _nearPlayerUpdate;
     [SerializeField]
     private GameEventScriptableObject _followPlayerUpdate;
 
-    private FiniteStateMachineInstance _stateMachineInstance;
+    private FiniteStateMachineInstance _movementStateMachineInstance;
     private Transform _player;
     private GameEventResponses _gameEventResponses = new();
 
 
     private void Awake()
     {
-        _stateMachineInstance = _drone.GetStateMachineInstance();
+        _movementStateMachineInstance = _drone.GetMovementStateMachineInstance();
         _player = Player.Motion.PlayerMovement.Instance.transform;
 
         // There's only 1 drone, so don't need to use SetSelectiveResponses.
         _gameEventResponses.SetResponses(
-            (_idleUpdate, UpdateIdle)
-            , (_followPlayerUpdate, UpdateMoveTowardsPlayer)
+            (_nearPlayerUpdate, UpdateNearPlayer)
+            , (_followPlayerUpdate, UpdateFollowPlayer)
             );
     }
 
@@ -41,15 +41,15 @@ public class DroneFollowPlayer : MonoBehaviour
     public void OnPreStateMachineInstanceUpdate()
     {
         float distance = _movement.FromDroneToNear(_player).magnitude;
-        _stateMachineInstance.SetFloat(_distanceFromHoverbyPlayerParameter, distance);
+        _movementStateMachineInstance.SetFloat(_distanceFromHoverbyPlayerParameter, distance);
     }
 
-    private void UpdateIdle()
+    private void UpdateNearPlayer()
     {
         _movement.IdleMovement();
     }
 
-    private void UpdateMoveTowardsPlayer()
+    private void UpdateFollowPlayer()
     {
         _movement.RotateTowardsTarget(_player);
         _movement.MoveDrone(_movement.FromDroneToNear(_player));

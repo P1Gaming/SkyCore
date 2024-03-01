@@ -300,7 +300,9 @@ MonoBehaviour:
     type: 3}
   _droneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
     type: 3}
-  _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
+  _finishedTutorialParameterInActionFSM: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
+    type: 2}
+  _finishedTutorialParameterInMovementFSM: {fileID: 11400000, guid: 40036101f362b3f4b8f56a40a4587347,
     type: 2}
   _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
   _tutorialUpdate: {fileID: 11400000, guid: 97fef6c26eddcc84b941a0191cefbe81, type: 2}
@@ -755,17 +757,19 @@ MonoBehaviour:
   _scanButtonUI: {fileID: 6418741841836162400}
   _placeholderScanAttemptingVisual: {fileID: 5625255709096306572}
   _placeholderScanSuccessVisual: {fileID: 6722134595557570117}
-  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf,
+  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: fb0034541946e2d489774a5f2032ed3c,
     type: 2}
   _distanceBetweenUnscannedAndPlayerParameter: {fileID: 11400000, guid: 974584e25a2c84949934f0e013a8f5f0,
     type: 2}
-  _seesUnscannedParameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
+  _seesUnscannedParameterInActionFSM: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
+    type: 2}
+  _seesUnscannedParameterInMovementFSM: {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606,
     type: 2}
   _scanButtonPressedParameter: {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe,
     type: 2}
   _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
     type: 2}
-  _moveToUnscannedUpdate: {fileID: 11400000, guid: 97bc683d5c9dbc842ae26ea2e07b2f0a,
+  _moveToUnscannedUpdate: {fileID: 11400000, guid: c2ce81fe5dcdfda408fa33c135a27b93,
     type: 2}
   _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
     type: 2}
@@ -785,6 +789,17 @@ MonoBehaviour:
   _scanSucceededExit: {fileID: 11400000, guid: 4745cfe9e646968438aa50abb9eaf851, type: 2}
   _scannedItemEvent: {fileID: 11400000, guid: 4f2b14dc54d7f94489a78c16d868ffa1, type: 2}
   _scannedJellyEvent: {fileID: 11400000, guid: 4574e9dd0e3bdde47aff0a27e061d2a0, type: 2}
+  _tellActionFSMWhetherNearUnscanned:
+    _bool: {fileID: 11400000, guid: 86e702145a42da240bbea1cdab8defcf, type: 2}
+    _trueInStates:
+    - {fileID: 11400000, guid: 4eae5a5bff04a1c4092f387ce0d90178, type: 2}
+  _tellMovementFSMWhetherToDoNothing:
+    _bool: {fileID: 11400000, guid: 04b6528ea66382841a77a469e5c25c0b, type: 2}
+    _trueInStates:
+    - {fileID: 11400000, guid: f70575956cbeef5468b3d83285050946, type: 2}
+    - {fileID: 11400000, guid: c24ce9145aba520499c78bf9d3acb3ba, type: 2}
+    - {fileID: 11400000, guid: 79b72d783a2b82b47aa14d02f4d4a538, type: 2}
+    - {fileID: 11400000, guid: 3340a6f798a99934abf91fee90387efe, type: 2}
 --- !u!1 &4364394113714527214
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,8 +963,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c829baf021033f540b75113394977bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _logStateMachineTransitions: 0
-  _stateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
+  _logMovementStateMachineTransitions: 0
+  _logActionStateMachineTransitions: 0
+  _movementStateMachineDefinition: {fileID: 11400000, guid: fbb04febb861bed4caedb7a627c77434,
+    type: 2}
+  _actionStateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
     type: 2}
   _movement: {fileID: 7605286380065068526}
   _followPlayer: {fileID: 6897214807269276948}
@@ -1394,10 +1412,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
-  _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771,
+  _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: ba7f734efbc7c0a4ca27a5a502657e2c,
     type: 2}
-  _idleUpdate: {fileID: 11400000, guid: 628e17ce4c75ee34ea23677f4cf1342b, type: 2}
-  _followPlayerUpdate: {fileID: 11400000, guid: 772b27df93a45f247b1b5e9d42167fda,
+  _nearPlayerUpdate: {fileID: 11400000, guid: d620f2e13a754f74c95b4b7c6c27fe23, type: 2}
+  _followPlayerUpdate: {fileID: 11400000, guid: 87a4b876bd702854892046a0a5eeb5b0,
     type: 2}
 --- !u!1 &6418741841836162400
 GameObject:
