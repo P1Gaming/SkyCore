@@ -23,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - Character
+  - Player
   - Ground
   - 
   - 
@@ -34,7 +34,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Drone
   - 
   - 
   - 

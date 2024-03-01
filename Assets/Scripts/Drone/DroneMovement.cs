@@ -10,6 +10,8 @@ using UnityEngine;
 
 public class DroneMovement : MonoBehaviour
 {
+    [SerializeField]
+    private Rigidbody _rigidbody;
     [SerializeField, Tooltip("How fast the drone moves.")]
     private float _movementSpeed = 3f;
     [SerializeField, Tooltip("How fast the drone rotates towards something, in degrees/sec")]
@@ -25,7 +27,9 @@ public class DroneMovement : MonoBehaviour
     public void IdleMovement()
     {
         float rotateDegrees = _idleSpinSpeed * Time.deltaTime;
-        transform.Rotate(new Vector3(0, rotateDegrees, 0));
+        Vector3 newRotation = _rigidbody.rotation.eulerAngles;
+        newRotation.y += rotateDegrees; // Will it confine the rotation properly?
+        _rigidbody.MoveRotation(Quaternion.Euler(newRotation));
     }
 
     /// <summary>
@@ -34,7 +38,8 @@ public class DroneMovement : MonoBehaviour
     public void MoveDrone(Vector3 toTarget)
     {
         float maxMovementDistance = Time.deltaTime * _movementSpeed;
-        transform.position += Vector3.MoveTowards(Vector3.zero, toTarget, maxMovementDistance);
+        Vector3 positionChange = Vector3.MoveTowards(Vector3.zero, toTarget, maxMovementDistance);
+        _rigidbody.velocity = positionChange / Time.deltaTime;
     }
 
     /// <summary>
@@ -81,12 +86,9 @@ public class DroneMovement : MonoBehaviour
     /// </summary>
     public void RotateTowardsTarget(Transform target)
     {
-        Quaternion priorRotation = transform.rotation;
-
-        // is there a way to get this rotation w/o changing the transform's rotation?
-        transform.LookAt(target);
-        Quaternion rotateTowards = transform.rotation;
-
-        transform.rotation = Quaternion.RotateTowards(priorRotation, rotateTowards, _turnSpeed * Time.deltaTime);
+        Vector3 displacement = target.position - _rigidbody.position;
+        Quaternion rotateTowards = Quaternion.LookRotation(displacement);
+        Quaternion nextRotation = Quaternion.RotateTowards(transform.rotation, rotateTowards, _turnSpeed * Time.deltaTime);
+        _rigidbody.MoveRotation(nextRotation);
     }
 }

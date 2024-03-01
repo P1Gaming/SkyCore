@@ -47,7 +47,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494937806388944145}
   - component: {fileID: 6722134595557570117}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Placeholder scan succeeded visual (linerenderer)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6071993083503952919}
   - component: {fileID: 2104892025793519153}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Movement Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 3934803929659103043}
   - component: {fileID: 6239169900005832746}
   - component: {fileID: 3272708757783095980}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: FSM Game Events Set Animator Bools
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,7 +710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7064711757998131545}
   - component: {fileID: 557467598811146302}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Scanning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,17 +757,17 @@ MonoBehaviour:
   _scanButtonUI: {fileID: 6418741841836162400}
   _placeholderScanAttemptingVisual: {fileID: 5625255709096306572}
   _placeholderScanSuccessVisual: {fileID: 6722134595557570117}
-  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: fb0034541946e2d489774a5f2032ed3c,
-    type: 2}
   _distanceBetweenUnscannedAndPlayerParameter: {fileID: 11400000, guid: 974584e25a2c84949934f0e013a8f5f0,
     type: 2}
   _seesUnscannedParameterInActionFSM: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
     type: 2}
-  _seesUnscannedParameterInMovementFSM: {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606,
-    type: 2}
   _scanButtonPressedParameter: {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe,
     type: 2}
   _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
+    type: 2}
+  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: fb0034541946e2d489774a5f2032ed3c,
+    type: 2}
+  _seesUnscannedParameterInMovementFSM: {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606,
     type: 2}
   _moveToUnscannedUpdate: {fileID: 11400000, guid: c2ce81fe5dcdfda408fa33c135a27b93,
     type: 2}
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 4364394113714527202}
   - component: {fileID: 4364394113714527201}
   - component: {fileID: 4364394113714527200}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,8 +923,9 @@ GameObject:
   - component: {fileID: 4364394114180109594}
   - component: {fileID: 9117878907213001977}
   - component: {fileID: 7605286380065068526}
+  - component: {fileID: 3315486025892866724}
   - component: {fileID: 3021005747530959631}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,11 +985,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98926d2b8aacb54eba798ab2a76c681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 3315486025892866724}
   _movementSpeed: 3
   _turnSpeed: 300
   _idleSpinSpeed: 30
   _moveToHorizontalDistanceFromTarget: 3
   _hoverHeight: 2
+--- !u!54 &3315486025892866724
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364394114180109592}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!95 &3021005747530959631
 Animator:
   serializedVersion: 5
@@ -1376,7 +1394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8048724301587607471}
   - component: {fileID: 6897214807269276948}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Follow Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1660,7 +1678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1814128430626204019}
   - component: {fileID: 5625255709096306572}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Placeholder scan attempting visual (linerenderer)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
