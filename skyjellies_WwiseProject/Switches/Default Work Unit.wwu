@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{9A2C129A-1233-48FE-A60A-6FA404D045FD}" SchemaVersion="103">
+	<Switches>
+		<WorkUnit Name="Default Work Unit" ID="{9A2C129A-1233-48FE-A60A-6FA404D045FD}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="Material" ID="{3CAAA9C5-058E-4DF2-848F-C240D19E14DB}">
+					<ChildrenList>
+						<Switch Name="Dirt" ID="{36E36445-7B78-4A85-A233-DA9D3B7C02E8}"/>
+						<Switch Name="Grass" ID="{53E5DABC-BE29-4EFA-B9D9-58CAFA9889B1}"/>
+						<Switch Name="Sand" ID="{5A476742-3CD9-46B6-8CB0-6F7D4A2EFFF1}"/>
+						<Switch Name="Stone" ID="{2B171FFB-A3EF-490D-A967-724BFC3B653C}"/>
+						<Switch Name="Wood" ID="{F07A717F-20A1-45B0-A7CF-37779018E09E}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="ItemType" ID="{0A4AB8A8-6133-4815-924F-54223D488615}">
+					<ChildrenList>
+						<Switch Name="BlockBroken" ID="{AB0E44CC-F4F8-4ABD-AA82-F8317DC9D013}"/>
+						<Switch Name="BlockGrass" ID="{8FD80840-7AE1-40DA-A220-8DCBC92D6C54}"/>
+						<Switch Name="BlockStone" ID="{2A329599-8E54-406C-9EAD-6D5A94BB4FC9}"/>
+						<Switch Name="BlockWood" ID="{C1660E2E-7611-435A-9F7E-17D4C1B7EEFA}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

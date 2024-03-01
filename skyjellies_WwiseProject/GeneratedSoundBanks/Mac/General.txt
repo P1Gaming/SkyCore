@@ -1,0 +1,152 @@
+Event	ID	Name			Wwise Object Path	Notes
+	37469952	Play_Jellies_Roam_Stone			\Default Work Unit\Jellies\Play_Jellies_Roam_Stone	
+	98439365	Play_Player_Footsteps			\Default Work Unit\Player\Play_Player_Footsteps	
+	403792184	Play_Jellies_Pet			\Default Work Unit\Jellies\Play_Jellies_Pet	
+	659570891	Play_UI_Pause_OpenMenu			\Default Work Unit\UI\Play_UI_Pause_OpenMenu	
+	1113491808	Play_Pickup_IslandBlocks			\Default Work Unit\Player\Play_Pickup_IslandBlocks	
+	1158385986	Play_UI__CraftingMenu_ClosingCraftingSystem_01			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_ClosingCraftingSystem_01	
+	1376999814	Play_PickupItem_Berries			\Default Work Unit\Player\Play_PickupItem_Berries	
+	1406322581	Play_Jellies_Roam_Grass			\Default Work Unit\Jellies\Play_Jellies_Roam_Grass	
+	1488088378	Play_UI__CraftingMenu_CraftCantDone_01			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_CraftCantDone_01	
+	1572933919	Play_UI_Pause_CloseMenu			\Default Work Unit\UI\Play_UI_Pause_CloseMenu	
+	1848836357	Play_UI__CraftingMenu_ListOfItems_01			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_ListOfItems_01	
+	2013194162	Play_UI__CraftingMenu_Upgrade_01			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_Upgrade_01	
+	2015355878	Play_Jellies_Roam_Wood			\Default Work Unit\Jellies\Play_Jellies_Roam_Wood	
+	2264789132	Play_Campfire_Extinguish			\Default Work Unit\Env\Play_Campfire_Extinguish	
+	2405070987	Play_Jelly_Eating			\Default Work Unit\Jellies\Play_Jelly_Eating	
+	2406796967	Play_UI__CraftingMenu_LeftClickIcon_02			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_LeftClickIcon_02	
+	2451341124	Play_Env_Drone_AllSounds			\Default Work Unit\Env\Play_Env_Drone_AllSounds	
+	2540695190	Play_UI_Pause_InMenuSounds			\Default Work Unit\UI\Play_UI_Pause_InMenuSounds	
+	2584199242	Play_UI__CraftingMenu_RightClickIcon_02			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_RightClickIcon_02	
+	2922412317	Play_Env_Block_Sound			\Default Work Unit\Env\Play_Env_Block_Sound	
+	2962648104	Play_UI__CraftingMenu_OpeningUpCraftingSystem_01			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_OpeningUpCraftingSystem_01	
+	2978452144	Play_UseItem_Block			\Default Work Unit\Player\Play_UseItem_Block	
+	3079436876	Play_UI__CraftingMenu_Craft_01			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_Craft_01	
+	3170528434	Play_UI__CraftingMenu_Sorting_01			\Default Work Unit\UI\Crafting UI\Play_UI__CraftingMenu_Sorting_01	
+	3487040007	Play_IslandHeart_LevelUp			\Default Work Unit\Env\Play_IslandHeart_LevelUp	
+	3822484859	Play_Jellydue_Pickup			\Default Work Unit\Jellies\Play_Jellydue_Pickup	
+	3878502195	Stop_Campfire			\Default Work Unit\Env\Stop_Campfire	
+	4000411161	Play_Campfire			\Default Work Unit\Env\Play_Campfire	
+	4190538351	Play_UI_Pause_TabSounds			\Default Work Unit\UI\Play_UI_Pause_TabSounds	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	3865314626	Material			\Default Work Unit\Material	
+	4247838896	ItemType			\Default Work Unit\ItemType	
+
+Switch	ID	Name	Switch Group			Notes
+	803837735	Sand	Material			
+	1216965916	Stone	Material			
+	2058049674	Wood	Material			
+	2195636714	Dirt	Material			
+	4248645337	Grass	Material			
+	2065309022	BlockGrass	ItemType			
+	2903927127	BlockStone	ItemType			
+	3465160839	BlockBroken	ItemType			
+	3915253415	BlockWood	ItemType			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	1043523140	FireState			\Default Work Unit\FireState	
+	4091656514	GameState			\Default Work Unit\GameState	
+
+State	ID	Name	State Group			Notes
+	205898616	FireOff	FireState			
+	307829538	FireOn	FireState			
+	748895195	None	FireState			
+	748895195	None	GameState			
+	2219001485	Game_On	GameState			
+	2772308904	Game_Pause	GameState			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	900628022	FireOff	FireState	\Actor-Mixer Hierarchy\Env\Enviroment\Env--General-Campfire_01		
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	4594063	Player--Footstep-Stone_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Stone_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Stone\Player--Footstep-Stone_03		88264
+	23739380	Jellies--Grass-Roaming_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_01		88264
+	34653539	Player--UseItem-BlockStone_06	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_06_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_06		88264
+	36526449	Jellies--General--Eating--SFX_1	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--SFX_1_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--SFX_1		88264
+	37732381	Player--Footstep-Wood_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Wood_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Wood\Player--Footstep-Wood_03		88264
+	53662747	Jellies--Grass-Roaming_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_03_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_03		88264
+	53939665	Jellies--General--Eating--chomp_1	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--chomp_1_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--chomp_1		88264
+	85280361	UI--Pause-InMenuSounds	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--PauseMenu_LeftClick_01_10C4C929.wem		\Actor-Mixer Hierarchy\UI\UI--Pause-InMenuSounds		88264
+	93842916	Jellies--Wood-Roaming_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Wood-Roaming_02_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Wood\Jellies--Wood-Roaming_02		88264
+	99406942	Jellies--Grass-Roaming_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_02_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_02		88264
+	115667677	Env--General-Campfire_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Env--General-Campfire_01_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--General-Campfire_01		88264
+	116842961	Jellies--Grass-Roaming_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_04_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_04		88264
+	133938429	UI--CraftingMenu-ListOfItems_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-ListOfItems_01_4A9DABCB.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-ListOfItems_01		35844
+	135331910	Player--UseItem-BlockStone_08	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_08_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_08		88264
+	137681786	Jellies--General--Eating--chomp_2	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--chomp_2_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--chomp_2		88264
+	139991288	UI--Pause-CloseMenu_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--Pause-CloseMenu_01_10C4C929.wem		\Actor-Mixer Hierarchy\UI\UI--Pause-CloseMenu_01		88264
+	148459336	UI--CraftingMenu-Craft_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-Craft_01_E6706DC6.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-Craft_01		38840
+	156418739	Player--UseItem-BlockGrass_05	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockGrass_05_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockGrass\Player--UseItem-BlockGrass_05		88264
+	163140263	Player--Footstep-Dirt_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Dirt_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Dirt\Player--Footstep-Dirt_02		88264
+	166886885	Player--Footstep-Grass_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Grass_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Grass\Player--Footstep-Grass_04		88264
+	183949493	Player--Footstep-Sand_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Sand_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Sand\Player--Footstep-Sand_02		88264
+	185770309	Player--Footstep-Dirt_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Dirt_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Dirt\Player--Footstep-Dirt_01		88264
+	190429514	UI--CraftingMenu-LeftClickIcon_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-LeftClickIcon_02_CB507115.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-LeftClickIcon_02		16892
+	194509088	UI--CraftingMenu-Sorting_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-Sorting_01_5D714EB3.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-Sorting_01		33608
+	222977208	Env--General-CampfireExtinguish_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Env--General-CampfireExtinguish_01_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--General-CampfireExtinguish_01		88264
+	227030784	Player--PickingBerries-FoleywSound_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--PickingBerries-FoleywSound_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\PickUpItem\Berries\Player--PickingBerries-FoleywSound_02		88264
+	229031904	UI--CraftingMenu-ClosingCraftingSystem_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-ClosingCraftingSystem_01_01C985A7.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-ClosingCraftingSystem_01		52930
+	252772455	Jellies--General-Pick_up_sound_V3	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Pick_up_sound_V3_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Jellydue Pickup\Jellies--General-Pick_up_sound_V3		88264
+	254692847	Player--Footstep-Stone_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Stone_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Stone\Player--Footstep-Stone_01		88264
+	262499635	Jellies--Wood-Roaming_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Wood-Roaming_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Wood\Jellies--Wood-Roaming_01		88264
+	263204134	Player--Footstep-Stone_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Stone_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Stone\Player--Footstep-Stone_04		88264
+	265329481	Player--UseItem-BlockGrass_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockGrass_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockGrass\Player--UseItem-BlockGrass_01		88264
+	268109012	Jellies--General-Petting-Happy_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Petting-Happy_03_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Pet\Jellies--General-Petting-Happy_03		88264
+	277896006	pick_up_sound_3	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\pick_up_sound_3_10C4C929.wem		\Actor-Mixer Hierarchy\Player\PickUpItem\IslandBlocks\pick_up_sound_3		88264
+	305956122	Env--Drone-HighlighterBeam1-Steady	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Env--Drone-HighlighterBeam1-Steady_D79FB2B7.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--DroneSounds_01\Env--Drone-HighlighterBeam1-Steady		88264
+	315689274	UI--Pause-OpenMenu_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--Pause-OpenMenu_01_10C4C929.wem		\Actor-Mixer Hierarchy\UI\UI--Pause-OpenMenu_01		88264
+	315984144	Player--UseItem-BlockStone_07	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_07_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_07		88264
+	322646485	Env--General-LvlUpIsland_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\ENV--General-LvlUpIsland_01_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--General-LvlUpIsland_01		88264
+	361147073	Env--General-CampfireStrike_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Env--General-CampfireStrike_01_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--General-CampfireStrike_01		88264
+	371825151	Jellies--Stone-Roaming_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Stone-Roaming_02_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Stone\Jellies--Stone-Roaming_02		88264
+	392666278	Env--Drone-RandomBeeps_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_02_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--DroneSounds_01\Drone--RandomBeeps\Env--Drone-RandomBeeps_02		88264
+	406990423	Player--Footstep-Grass_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Grass_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Grass\Player--Footstep-Grass_01		88264
+	410570610	Player--Footstep-Stone_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Stone_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Stone\Player--Footstep-Stone_02		88264
+	425362036	Jellies--General-Eating_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Eating_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General-Eating_01		88264
+	427470194	Jellies--General--Eating--chomp_3	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--chomp_3_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--chomp_3		88264
+	464514656	Player--Footstep-Wood_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Wood_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Wood\Player--Footstep-Wood_02		88264
+	469642736	Env--Drone-RandomBeeps_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_04_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--DroneSounds_01\Drone--RandomBeeps\Env--Drone-RandomBeeps_04		88264
+	475843626	Player--Footstep-Wood_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Wood_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Wood\Player--Footstep-Wood_04		88264
+	480533553	Jellies--Wood-Roaming_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Wood-Roaming_04_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Wood\Jellies--Wood-Roaming_04		88264
+	491288057	Jellies--General-Petting-Happy_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Petting-Happy_02_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Pet\Jellies--General-Petting-Happy_02		88264
+	498461969	Env--Drone-RandomBeeps_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_03_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--DroneSounds_01\Drone--RandomBeeps\Env--Drone-RandomBeeps_03		88264
+	503769497	Player--Footstep-Dirt_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Dirt_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Dirt\Player--Footstep-Dirt_04		88264
+	512316781	Jellies--General-Petting-Happy_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Petting-Happy_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Pet\Jellies--General-Petting-Happy_01		88264
+	531104505	Jellies--Stone-Roaming_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Stone-Roaming_03_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Stone\Jellies--Stone-Roaming_03		88264
+	542118516	Player--UseItem-BlockWood_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockWood_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockWood\Player--UseItem-BlockWood_03		88264
+	546161741	Jellies--General-Pick_up_sound_V1	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Pick_up_sound_V1_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Jellydue Pickup\Jellies--General-Pick_up_sound_V1		88264
+	549206128	Player--UseItem-BlockGrass_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockGrass_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockGrass\Player--UseItem-BlockGrass_02		88264
+	552420211	Player--Footstep-Dirt_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Dirt_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Dirt\Player--Footstep-Dirt_03		88264
+	570713722	Player--Footstep-Wood_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Wood_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Wood\Player--Footstep-Wood_01		88264
+	573674466	Player--UseItem-BlockStone_05	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_05_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_05		88264
+	598447443	Player--Footstep-Grass_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Grass_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Grass\Player--Footstep-Grass_02		88264
+	614237393	Jellies--General--Eating--SFX_2	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--SFX_2_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--SFX_2		88264
+	655326849	Player--Footstep-Sand_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Sand_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Sand\Player--Footstep-Sand_03		88264
+	670606323	Env--Drone-Hover	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Env--Drone-Hover_D79FB2B7.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--DroneSounds_01\Env--Drone-Hover		88264
+	693964253	Jellies--Stone-Roaming_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Stone-Roaming_04_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Stone\Jellies--Stone-Roaming_04		88264
+	702448560	Env--Drone-RandomBeeps_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_01_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--DroneSounds_01\Drone--RandomBeeps\Env--Drone-RandomBeeps_01		88264
+	704841214	Player--UseItem-BlockWood_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockWood_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockWood\Player--UseItem-BlockWood_01		88264
+	722435772	Player--UseItem-BlockStone_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_01		88264
+	725537460	UI--CraftingMenu-OpeningUpCraftingSystem_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-OpeningUpCraftingSystem_01_6AFB29A9.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-OpeningUpCraftingSystem_01		41928
+	741776741	UI--CraftingMenu-CraftCantDone_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-CraftCantDone_01_671CDC4E.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-CraftCantDone_01		37096
+	743448906	UI--Pause-TabSounds	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--PauseMenu-Hover_03_10C4C929.wem		\Actor-Mixer Hierarchy\UI\UI--Pause-TabSounds		88264
+	776689844	UI--CraftingMenu-RightClickIcon_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-RightClickIcon_02_2283C119.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-RightClickIcon_02		21354
+	777634846	Jellies--General--Eating--SFX_3	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--SFX_3_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--SFX_3		88264
+	786056721	Player--UseItem-BlockStone_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_04		88264
+	790051336	UI--CraftingMenu-Upgrade_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI--CraftingMenu-Upgrade_01_9CAFC61F.wem		\Actor-Mixer Hierarchy\UI\Crafting UI\UI--CraftingMenu-Upgrade_01		78334
+	919251293	Player--UseItem-BlockBroken_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockBroken_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockBroken\Player--UseItem-BlockBroken_01		88264
+	924245251	Player--UseItem-BlockWood_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockWood_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockWood\Player--UseItem-BlockWood_02		88264
+	928335436	Player--UseItem-BlockWood_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockWood_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockWood\Player--UseItem-BlockWood_04		88264
+	963835577	Player--UseItem-BlockStone_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_03		88264
+	969727234	Player--UseItem-BlockGrass_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockGrass_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockGrass\Player--UseItem-BlockGrass_03		88264
+	980419153	Player--Footstep-Sand_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Sand_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Sand\Player--Footstep-Sand_01		88264
+	981038802	Player--UseItem-BlockStone_02	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockStone_02_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockStone\Player--UseItem-BlockStone_02		88264
+	986339846	Env--Drone-RandomBeeps_05	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Drone--RandomBeeps\Env--Drone-RandomBeeps_05_10C4C929.wem		\Actor-Mixer Hierarchy\Env\Enviroment\Env--DroneSounds_01\Drone--RandomBeeps\Env--Drone-RandomBeeps_05		88264
+	1004209305	Player--Footstep-Sand_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Sand_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Sand\Player--Footstep-Sand_04		88264
+	1037554247	Jellies--General-Pick_up_sound_V2	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Pick_up_sound_V2_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Jellydue Pickup\Jellies--General-Pick_up_sound_V2		88264
+	1043455567	Jellies--Wood-Roaming_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Wood-Roaming_03_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Wood\Jellies--Wood-Roaming_03		88264
+	1060454449	Jellies--Stone-Roaming_01	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Stone-Roaming_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Stone\Jellies--Stone-Roaming_01		88264
+	1060669743	Player--UseItem-BlockGrass_04	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--UseItem-BlockGrass_04_10C4C929.wem		\Actor-Mixer Hierarchy\Player\UseItem\Block\BlockGrass\Player--UseItem-BlockGrass_04		88264
+	1068201216	Player--Footstep-Grass_03	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player--Footstep-Grass_03_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Footsteps\Grass\Player--Footstep-Grass_03		88264
+

@@ -61,7 +61,7 @@ namespace UI.ControlSettings
         {
             PlayerPrefs.SetFloat(PlayerPrefsKeys.FirstPersonViewSensitivity, value);
 
-            SoundManager.Instance.SetMusicVolume(value);
+            SoundManager.Instance.MusicVolume = value;
             _viewSensitivitySlider.value = value;
 
             // This line has to convert the slider's range into a percentage. So we subtract its minValue from both value and maxValue and then divide.
