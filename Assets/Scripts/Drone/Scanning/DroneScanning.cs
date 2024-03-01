@@ -41,11 +41,17 @@ public class DroneScanning : MonoBehaviour
     [SerializeField]
     private FSMParameter _seesUnscannedParameterInMovementFSM;
 
-    [Header("Finite State Machine Events")]
+    [Header("Movement FSM Events")]
     [SerializeField]
     private GameEventScriptableObject _moveToUnscannedUpdate;
     [SerializeField]
+    private GameEventScriptableObject _moveToUnscannedEnter;
+    [SerializeField]
     private GameEventScriptableObject _moveToUnscannedExit;
+    [SerializeField]
+    private GameEventScriptableObject _forgetScanTargetEnter;
+
+    [Header("Action FSM Events")]
     [SerializeField]
     private GameEventScriptableObject _scanAttemptingEnter;
     [SerializeField]
@@ -103,6 +109,8 @@ public class DroneScanning : MonoBehaviour
         _gameEventResponses.SetResponses(
             (_moveToUnscannedUpdate, UpdateMoveTowardsToScan)
             , (_moveToUnscannedExit, ExitMoveTowardsToScan)
+            , (_moveToUnscannedEnter, EnterMoveTowardsToScan)
+            , (_forgetScanTargetEnter, EnterForgetScanTarget)
             , (_scanAttemptingEnter, EnterScanAttempting)
             , (_scanAttemptingUpdate, UpdateScanAttempting)
             , (_scanFailedExit, ExitScanFailed)
@@ -174,6 +182,18 @@ public class DroneScanning : MonoBehaviour
     private void ExitMoveTowardsToScan()
     {
         _movement.StopVelocity();
+    }
+
+    private void EnterMoveTowardsToScan()
+    {
+        // make it null so it finds the closest thing again, once close enough to the player.
+        _toScan = null;
+        TrackThingToScan();
+    }
+
+    private void EnterForgetScanTarget()
+    {
+        _toScan = null;
     }
 
     private void EnterScanAttempting()

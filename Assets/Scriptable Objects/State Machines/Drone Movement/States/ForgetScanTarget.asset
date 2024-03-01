@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9892e131a669bd4081d6ef0bd144757, type: 3}
+  m_Name: ForgetScanTarget
+  m_EditorClassIdentifier: 
+  <OnEnter>k__BackingField: {fileID: 11400000, guid: 612b2acfb11277541bf6bdd06e725469,
+    type: 2}
+  <OnUpdate>k__BackingField: {fileID: 11400000, guid: 3fd1ef8fe85bc7a43a2bf3ad530a9da1,
+    type: 2}
+  <OnExit>k__BackingField: {fileID: 11400000, guid: 88ca19ea9f04e814fb40d1dbfb8d1bbf,
+    type: 2}

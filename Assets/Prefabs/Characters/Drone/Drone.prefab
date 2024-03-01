@@ -771,7 +771,11 @@ MonoBehaviour:
     type: 2}
   _moveToUnscannedUpdate: {fileID: 11400000, guid: c2ce81fe5dcdfda408fa33c135a27b93,
     type: 2}
+  _moveToUnscannedEnter: {fileID: 11400000, guid: 820735600cbbd874bb7acf2819dce788,
+    type: 2}
   _moveToUnscannedExit: {fileID: 11400000, guid: d26a7719211fdaa4c9c5f0d5759db10b,
+    type: 2}
+  _forgetScanTargetEnter: {fileID: 11400000, guid: 612b2acfb11277541bf6bdd06e725469,
     type: 2}
   _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
     type: 2}
