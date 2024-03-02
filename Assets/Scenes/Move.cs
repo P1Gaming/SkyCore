@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.SearchService;
 public class Move : MonoBehaviour
 {
 
     public Canvas canvas;
     int index;
-    float speed = 12f;
-    float speed1 =12f;
-    float speed2 =12f;
-    float time = 30f;
-   
+    float speed = 25f;
+
+    float time = 6f;
+
     // Start is called before the first frame update
     public Image[] ImageA;
+    float fiveSec = 25f;
     public Sprite[] S;
     public GameObject Wolf;
     public GameObject Pistol;
@@ -23,91 +24,72 @@ public class Move : MonoBehaviour
     bool _two = true;
     bool _three = true;
     bool _four = true;
+    bool _five =true;
     void Start()
     {
-       
+        for (int i = 0; i < S.Length; i++)
+        {
+            S[i] = Resources.LoadAll<Sprite>("ImageA")[i];
+
+        }
+
     }
+
     public void moveNext()
     {
-        if (time <= 30 && _four)
+        if (time >= 0 && _four)
         {
+            ImageA[2].enabled = false;
             ImageA[0].enabled = false;
-
+            ImageA[1].enabled = false;
+            time -= Time.deltaTime;
             _four = false;
-
-            ImageA[1].enabled = false;
-            ImageA[2].enabled = false;  
         }
-        time -= Time.deltaTime; 
+
     }
-    public void moveNext1()
+
+    public void MoveNext1()
     {
-        if (time <= 25 && _two)
+
+        if (fiveSec <= 20 && _one && _two && _three)
         {
+
             ImageA[0].enabled = true;
-
-            _two = false;
-
-            ImageA[1].enabled = false;
-            ImageA[2].enabled = false;
-
-            
-
-            //  yield return new WaitForSeconds(3f);
-        }
-        speed -= Time.deltaTime;
-    }
-    public void moveNext2()
-    {
-        if (time <= 20 && _one)
-        {
-
             _one = false;
-            ImageA[1].enabled = true;
-            ImageA[0].enabled = false;
-            ImageA[2].enabled = false;
-            
-            //  yield return new WaitForSeconds(3f);
         }
-        time -= Time.deltaTime;
-
-    }
-
-
-
-    public void moveNext3()
-
-    {
-
-        if (time <= 15 && _three)
+        else if (fiveSec <= 15 && _two)
         {
-            ImageA[2].enabled = true;
+            ImageA[2].enabled = false;
+            ImageA[0].enabled = false;
+            ImageA[1].enabled = true;
+            _two = false;
+        }
+        else if (fiveSec <= 10 && _three)
+        {
             ImageA[0].enabled = false;
             ImageA[1].enabled = false;
-            // 
+            ImageA[2].enabled = true;
+            _three = false;
         }
-        time -= Time.deltaTime;
-    }
-    public void moveNext4()
-
-    {
-
-        if (time <= 10 && _three)
+        else if (fiveSec <= 5 && _five)
         {
             ImageA[2].enabled = false;
-            SceneManager.LoadScene("Main"); 
+            ImageA[0].enabled = false;
+            ImageA[1].enabled = false;
+           SceneManager.LoadScene("Main");
+            _five = false;
         }
-        
+    
+        fiveSec -= Time.deltaTime;
+        int i = 0; i += 1;
     }
     // Update is called once per frame
     void Update()
-    {   moveNext();
-        moveNext1();
-        moveNext2();
-        moveNext3();
-        moveNext4();
+    {
+        moveNext();
+        MoveNext1();
+
 
     }
-       
 }
-    
+
