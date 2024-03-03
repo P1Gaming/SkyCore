@@ -4,6 +4,7 @@ using Player.Motion;
 using TMPro;
 using UnityEngine.UI;
 using Jellies;
+using UI.Inventory;
 
 public class IslandHeartInteractBase : Interactable
 {
@@ -22,7 +23,6 @@ public class IslandHeartInteractBase : Interactable
     private IslandHeartLeveling heart;
 
     private GameObject _interactionUI;
-    private GameObject _inventoryUI;
     private FirstPersonView _firstPersonView;
     private PlayerInteraction _playerInteraction;
 
@@ -53,7 +53,6 @@ public class IslandHeartInteractBase : Interactable
         // Temporary single player reference. These might not work later, e.g. if the inventoryUI
         // starts inactivate b/c FindWithTag wont work.
         _interactionUI = InteractionUI.Instance.gameObject;
-        _inventoryUI = GameObject.FindWithTag("InventoryUI");
         _firstPersonView = FindObjectOfType<FirstPersonView>();
         _playerInteraction = _firstPersonView?.GetComponent<PlayerInteraction>();
     }
@@ -71,9 +70,8 @@ public class IslandHeartInteractBase : Interactable
     /// </summary>
     private void OnInteractionStay()
     {
-        //Used to test generator-Island Heart interaction
-        _feedButton.interactable = true;
-        //_feedButton.interactable = heart.IsMaxLevel();    // Disable Feed-button when Island Heart is max level
+        
+        _feedButton.interactable = !heart.IsMaxLevel();
     }
 
     private void SetInteract(bool interact)
@@ -107,7 +105,6 @@ public class IslandHeartInteractBase : Interactable
     {
         _interactionUI.SetActive(active);
         _firstPersonView.enabled = active;
-        _inventoryUI.SetActive(active);
         PlayerMovement.Instance.SetInteract(!active);
     }
 

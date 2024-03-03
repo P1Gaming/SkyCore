@@ -63,10 +63,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!_interactable)
             {
-                Debug.Log(_closestHit.collider.gameObject.ToString());
                 if (_closestHit.collider.gameObject.GetComponent<IslandHeartInteractBase>() || _closestHit.collider.gameObject.GetComponent<Interactable>())
                 {
-                    Debug.Log("Entering Interaction State");
                     OnInteractionEnter();
                 }
             }
@@ -89,7 +87,6 @@ public class PlayerInteraction : MonoBehaviour
         _interactable = _closestHit.collider.gameObject.GetComponent<Interactable>();
         _interactable.enabled = true;
         _onShowInteractionGUI.Raise();
-        Debug.Log("Interaction with " + _closestHit.collider.gameObject + " enabled.");
 
         if (_interactable.gameObject.GetComponent<JellyInteractBase>() != null)
         {
@@ -97,6 +94,7 @@ public class PlayerInteraction : MonoBehaviour
         } else if(_interactable.gameObject.GetComponent<IslandHeartInteractBase>() != null)
         {
             _islandHeartCurrent = _interactable.gameObject.GetComponent<IslandHeartInteractBase>();
+            //TODO: Show inventory here
         }
     }
 
@@ -152,7 +150,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         } else if( _islandHeartCurrent != null)
         {
-            if (!_islandHeartCurrent.Interacting && !_inventoryOpen)
+            if (!_islandHeartCurrent.Interacting)
             {
                 _islandHeartCurrent.InteractStart();
             }

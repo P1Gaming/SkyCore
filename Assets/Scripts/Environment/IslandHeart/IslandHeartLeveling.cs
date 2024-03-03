@@ -68,8 +68,6 @@ public class IslandHeartLeveling : MonoBehaviour
 			handler.SetCharge((_currentXP/_xpThreshold) *100);
 			_generator.transform.parent = _generatorLocation.transform;
 			_generator.GetComponent<Rigidbody>().isKinematic = true;
-			_generator.transform.localPosition = new Vector3 (0, 0.5f, 0);
-			Debug.Log("Generator has been attached");
 		} else if(other.gameObject.tag.Equals("JellyDew") && !IsMaxLevel())
 		{
 			//TODO: If dropping a large stack of Jelly Dew, we should make a way for that stack to be registered
@@ -114,25 +112,30 @@ public class IslandHeartLeveling : MonoBehaviour
 	/// <param name="xpValue"></param>
 	public void FeedIslandHeart(float xpValue)
 	{
-        if (_generator != null)
-        {
-            _generator.GetComponent<GeneratorHandler>().AddCharge((xpValue / _xpThreshold) * 100);
-        }
         if (_currentXP + xpValue >= _xpThreshold)
 		{
 			float difference = _currentXP - _xpThreshold;
 			difference += xpValue;
 			_currentXP = difference;
-			/// This should only be a temporary method of setting the charge of the generator. We will need
-			/// to know what the generator does specifically on an Island Heart level up.
-            _generator.GetComponent<GeneratorHandler>().SetCharge((_currentXP / _xpThreshold) * 100);
+            /// This should only be a temporary method of setting the charge of the generator. We will need
+            /// to know what the generator does specifically on an Island Heart level up.
             LevelUp();
-		}
-		else
+			if (IsMaxLevel()) {
+				_currentXP = _xpThreshold;
+            }
+            if (_generator != null)
+            {
+                _generator.GetComponent<GeneratorHandler>().SetCharge(_currentXP * 100);
+            }
+        } else
 		{
 			_currentXP += xpValue;
-		}
-	}
+            if (_generator != null)
+            {
+                _generator.GetComponent<GeneratorHandler>().AddCharge((xpValue / _xpThreshold) * 100);
+            }
+        }
+    }
 
 	public bool IsMaxLevel()
 	{
