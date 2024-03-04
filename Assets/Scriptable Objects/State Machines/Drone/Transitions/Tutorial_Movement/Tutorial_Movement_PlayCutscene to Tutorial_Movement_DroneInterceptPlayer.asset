@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
-  m_Name: Tutorial to FollowPlayer
+  m_Name: Tutorial_Movement_PlayCutscene to Tutorial_Movement_DroneInterceptPlayer
   m_EditorClassIdentifier: 
   _disable: 0
+  <LogFailureReason>k__BackingField: 0
   _from: {fileID: 11400000, guid: 7f611553cc7352a479d5c1cc3536a0b8, type: 2}
-  _to: {fileID: 11400000, guid: 4c315bf5e45427e4c8846ef931e59e40, type: 2}
+  _to: {fileID: 11400000, guid: b33320edead6f7d4083bbae2c7677948, type: 2}
+  _minDurationInFrom: 0
+  _parameterForMinDurationInFrom: {fileID: 0}
   _conditions:
-  - _parameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771, type: 2}
+  - _parameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75, type: 2}
     _equalsForBoolParameter: 0
-    _comparisonTypeForFloatParameter: 2
-    _otherFloatParameterToCompareTo: {fileID: 11400000, guid: 47e1fa356c60244419b8b2bb43b7ad29,
-      type: 2}
-    _comparedToForFloatParameter: NaN
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 1

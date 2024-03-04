@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9892e131a669bd4081d6ef0bd144757, type: 3}
-  m_Name: Tutorial
+  m_Name: Tutorial_Movement01_PlayCutscene
   m_EditorClassIdentifier: 
   <OnEnter>k__BackingField: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0,
     type: 2}

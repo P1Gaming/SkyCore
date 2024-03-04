@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 /// This class handles the use of the target of a cinemachine camera
 /// to rotate said target, thus rotating the camera. Dampening is used
 /// on the cinemachine virtual camera to remove jitters from this script,
-/// making the cmaera turn smoother.
+/// making the camera turn smoother.
 ///</summary>
 namespace Player.View
 {
@@ -124,23 +124,23 @@ namespace Player.View
 
         private void RegisterEventHandlers(PlayerInput input)
         {
-            InputAction moveAction = input.actions.FindAction("Look");
-            if (moveAction != null)
+            InputAction lookAction = input.actions.FindAction("Look");
+            if (lookAction != null)
             {
-                moveAction.started += OnLook;
-                moveAction.performed += OnLook;
-                moveAction.canceled += OnLook;
+                lookAction.started += OnLook;
+                lookAction.performed += OnLook;
+                lookAction.canceled += OnLook;
             }
         }
 
         private void UnregisterEventHandlers(PlayerInput input)
         {
-            InputAction moveAction = input.actions.FindAction("Look");
-            if (moveAction != null)
+            InputAction lookAction = input.actions.FindAction("Look");
+            if (lookAction != null)
             {
-                moveAction.started -= OnLook;
-                moveAction.performed -= OnLook;
-                moveAction.canceled -= OnLook;
+                lookAction.started -= OnLook;
+                lookAction.performed -= OnLook;
+                lookAction.canceled -= OnLook;
             }
         }
 
