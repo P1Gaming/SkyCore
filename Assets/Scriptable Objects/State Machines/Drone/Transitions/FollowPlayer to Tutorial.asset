@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
   m_Name: FollowPlayer to Tutorial
   m_EditorClassIdentifier: 
-  _disable: 0
+  _disable: 1
+  <LogFailureReason>k__BackingField: 0
   _from: {fileID: 11400000, guid: 4c315bf5e45427e4c8846ef931e59e40, type: 2}
   _to: {fileID: 11400000, guid: 7f611553cc7352a479d5c1cc3536a0b8, type: 2}
+  _minDurationInFrom: 0
+  _parameterForMinDurationInFrom: {fileID: 0}
   _conditions:
   - _parameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771, type: 2}
     _equalsForBoolParameter: 0

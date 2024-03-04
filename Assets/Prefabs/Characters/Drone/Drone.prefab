@@ -255,6 +255,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6071993083503952919}
   - component: {fileID: 2104892025793519153}
+  - component: {fileID: 1518349964}
+  - component: {fileID: 1518349965}
+  - component: {fileID: 1518349966}
   m_Layer: 0
   m_Name: Movement Tutorial
   m_TagString: Untagged
@@ -292,21 +295,112 @@ MonoBehaviour:
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
   _skipTutorial: 0
+  _droneDistanceToStopInFrontOfPlayer: 3
+  _droneInterceptDelay: 3
   _pictogramBehaviour: {fileID: 6357170253752879243}
-  _droneMedical: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df, type: 3}
-  _droneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
+  _playerMovementAction: {fileID: 3772474531761166920, guid: c0d8178b5f09e324ab7d0a0918e94a52,
     type: 3}
-  _droneMovementControls: {fileID: 21300000, guid: 0e838650ac6522740be93b1c8917e635,
+  _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
     type: 3}
-  _droneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
-    type: 3}
+  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+    type: 2}
   _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
     type: 2}
-  _tutorialEnter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0, type: 2}
-  _tutorialUpdate: {fileID: 11400000, guid: 97fef6c26eddcc84b941a0191cefbe81, type: 2}
-  _tutorialExit: {fileID: 11400000, guid: 7054989ae3b103e47903df7202ebfcd8, type: 2}
+  _tutorialStage01_Enter: {fileID: 11400000, guid: eaae5d148f019c0458f79822a3112be0,
+    type: 2}
+  _tutorialStage01_Update: {fileID: 11400000, guid: 97fef6c26eddcc84b941a0191cefbe81,
+    type: 2}
+  _tutorialStage01_Exit: {fileID: 11400000, guid: 7054989ae3b103e47903df7202ebfcd8,
+    type: 2}
+--- !u!114 &1518349964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106701992538358982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba2f6ceadcfa044c87ebe68b43a33f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _movement: {fileID: 7605286380065068526}
+  _tutorialCamera: {fileID: 0}
+  _droneDistanceToStopInFrontOfPlayer: 3
+  _cameraLookAtDroneDelay: 1
+  _medicalAssistanceDuration: 3
+  _pictogramBehaviour: {fileID: 6357170253752879243}
+  _sprite_DroneMedicalAssistance: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df,
+    type: 3}
+  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+    type: 2}
+  _Enter: {fileID: 11400000, guid: 72b0d26662878e141abadea1448cba06, type: 2}
+  _Update: {fileID: 11400000, guid: 0868a1f6b64404441b15f49db76bec92, type: 2}
+  _Exit: {fileID: 11400000, guid: 57d9660963665f6489ad906727039527, type: 2}
+--- !u!114 &1518349965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106701992538358982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200e685f78c736b468f5736307ae2bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _movement: {fileID: 7605286380065068526}
+  _playerCamera: {fileID: 0}
+  _tutorialCamera: {fileID: 0}
+  _VisionTestSuccessDelay: 2
+  _pictogramBehaviour: {fileID: 6357170253752879243}
+  _sprite_DroneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
+    type: 3}
+  _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
+    type: 3}
+  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+    type: 2}
+  _Enter: {fileID: 11400000, guid: ebe4c99aded107847b7e1b8fca68e327, type: 2}
+  _Update: {fileID: 11400000, guid: 66bdcc1aba677ab4a8f094abaf25b250, type: 2}
+  _Exit: {fileID: 11400000, guid: e31eee03cd2420c43bd33a6a7b3cea35, type: 2}
   _playerLookControlsEvent: {fileID: 11400000, guid: 69a51e4938c1a42489c2a4ea9df7479d,
     type: 2}
+--- !u!114 &1518349966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106701992538358982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842d71d200e97374a950fbf1c7c0b51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drone: {fileID: 9117878907213001977}
+  _movement: {fileID: 7605286380065068526}
+  _playerCamera: {fileID: 0}
+  _tutorialCamera: {fileID: 0}
+  _RequireAll4MovementKeysPressed: 1
+  _droneTutorialCompleteDisplayDuration: 3
+  _pictogramBehaviour: {fileID: 6357170253752879243}
+  _sprite_DroneMovementControls: {fileID: 21300000, guid: 0e838650ac6522740be93b1c8917e635,
+    type: 3}
+  _sprite_DroneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
+    type: 3}
+  _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
+    type: 3}
+  _playerMovementAction: {fileID: 3772474531761166920, guid: c0d8178b5f09e324ab7d0a0918e94a52,
+    type: 3}
+  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+    type: 2}
+  _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
+    type: 2}
+  _Enter: {fileID: 11400000, guid: e0c02f75513784c4497a20c2f3d12350, type: 2}
+  _Update: {fileID: 11400000, guid: 39f51ea94bffa2f46b58be2c85ee56ce, type: 2}
+  _Exit: {fileID: 11400000, guid: 3e30795ec823bc847a0c685a5f6a6faa, type: 2}
   _playerMovementWEvent: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff,
     type: 2}
   _playerMovementSEvent: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207,

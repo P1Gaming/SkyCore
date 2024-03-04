@@ -30,6 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe, type: 2}
   - {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf, type: 2}
   - {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e, type: 2}
+  - {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75, type: 2}
   <Transitions>k__BackingField:
   - {fileID: 11400000, guid: 8592d82280e9ab0478a14da2da3904b0, type: 2}
   - {fileID: 11400000, guid: 1c13af2382feada49ac19a341e19e52f, type: 2}
@@ -50,6 +51,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1493be6f026fc7442848061fcc6dd70d, type: 2}
   - {fileID: 11400000, guid: 5b8d0a1114613a145a0dfce69735d94d, type: 2}
   - {fileID: 11400000, guid: 0d4540c4239f5854181eb02df01d339c, type: 2}
+  - {fileID: 11400000, guid: ffeafd6bd95dd3f45a397c1d2c46d2aa, type: 2}
+  - {fileID: 11400000, guid: c2e35218109e6dc4ba875bec37f6c674, type: 2}
+  - {fileID: 11400000, guid: 724b8fe7a99d683419654ef5e002eadc, type: 2}
+  - {fileID: 11400000, guid: 31bf8d06b371c6d40aaddbd165c1af8a, type: 2}
   <EditorInfo>k__BackingField:
     <States>k__BackingField:
     - {fileID: 11400000, guid: 4c315bf5e45427e4c8846ef931e59e40, type: 2}
@@ -60,12 +65,18 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 79b72d783a2b82b47aa14d02f4d4a538, type: 2}
     - {fileID: 11400000, guid: 3340a6f798a99934abf91fee90387efe, type: 2}
     - {fileID: 11400000, guid: 7f611553cc7352a479d5c1cc3536a0b8, type: 2}
+    - {fileID: 11400000, guid: b33320edead6f7d4083bbae2c7677948, type: 2}
+    - {fileID: 11400000, guid: bc7dc86491d959d459202a8df94b6715, type: 2}
+    - {fileID: 11400000, guid: 65ce1772ec0bf864bbc586bd9326e44d, type: 2}
     <StateEditorPositions>k__BackingField:
-    - {x: 695.061, y: -243.54779}
+    - {x: 708.3935, y: -252.43613}
     - {x: 464.24792, y: -106.05844}
-    - {x: 623.35205, y: 35.34336}
-    - {x: 5.1474915, y: 239.82681}
+    - {x: 639.64734, y: 136.07843}
+    - {x: 67.36623, y: 300.56412}
     - {x: -180.59373, y: 141.37415}
-    - {x: 167.92804, y: 13.0270405}
+    - {x: 185.70496, y: 26.35962}
     - {x: -13.275444, y: -319.9357}
-    - {x: 535.6871, y: -376.5211}
+    - {x: 325.72284, y: -701.10034}
+    - {x: 326.4214, y: -886.03735}
+    - {x: 315.69583, y: -1052.2825}
+    - {x: 503.39194, y: -1225.6779}

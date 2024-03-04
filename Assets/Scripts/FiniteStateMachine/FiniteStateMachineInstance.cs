@@ -40,7 +40,6 @@ namespace FiniteStateMachine
         private FSMDefinition _definition;
         private FSMState _currentState;
         private float _timeEnteredCurrentState;
-        private bool _logTransitions;
 
         // names and values of parameters (like in Unity's animator)
         private Dictionary<FSMParameter, bool> _bools = new();
@@ -53,7 +52,7 @@ namespace FiniteStateMachine
         {
             _definition = definition;
             _identifierForSelectiveListeners = identifierForSelectiveListeners;
-            _logTransitions = logTransitions;
+            LogTransitions = logTransitions;
 
             foreach (FSMParameter x in _definition.Parameters)
             {
@@ -97,10 +96,11 @@ namespace FiniteStateMachine
                         }
                     }
 
-                    if (_logTransitions)
+                    if (LogTransitions)
                     {
                         Debug.Log($"Transition at frame #{Time.frameCount}: \"{_currentState.name}\" --> \"{newState.name}\"");
                     }
+
                     _currentState.OnExit?.Raise(_identifierForSelectiveListeners);
                     _currentState = newState;
                     _timeEnteredCurrentState = Time.time;
@@ -205,5 +205,9 @@ namespace FiniteStateMachine
 
             _currentState.OnUpdate?.Raise(_identifierForSelectiveListeners);
         }
+
+
+
+        public bool LogTransitions { get; set; }
     }
 }

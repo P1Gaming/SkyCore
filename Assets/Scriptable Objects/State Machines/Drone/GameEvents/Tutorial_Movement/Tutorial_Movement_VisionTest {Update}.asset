@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2910864d0735de64cbd2c229c08f3ae7, type: 3}
-  m_Name: FinishedTutorial
+  m_Script: {fileID: 11500000, guid: f236bec092e4d4f509e1c36f507ccd6a, type: 3}
+  m_Name: Tutorial_Movement_VisionTest {Update}
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 0
-  <InitialBool>k__BackingField: 0
-  <InitialTrigger>k__BackingField: 0
-  <InitialFloat>k__BackingField: 0
