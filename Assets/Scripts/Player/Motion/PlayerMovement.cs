@@ -55,7 +55,7 @@ namespace Player.Motion
 
         public bool isInteracting => _isInteracting;
 
-        int fixedupdatees = 0;
+        private float _timeSinceLastGrounded = Mathf.Infinity;
 
         /// <summary>
         /// Fired when player is no longer grounded.
@@ -101,16 +101,6 @@ namespace Player.Motion
 
         private void OnDisable()
         {
-            if (isInteracting)
-            {
-
-                // Stop micro movement after interaction from remaining velocity
-                if (_wasGrounded)
-                {
-                    //!TODO!
-                    //_characterController.Move(Vector3.zero);
-                }
-            }
             if (!TryGetComponent(out PlayerInput handler))
             {
                 return;
@@ -128,13 +118,14 @@ namespace Player.Motion
 
         private void Update()
         {
-            UnityEngine.Debug.Log(fixedupdatees);
-            fixedupdatees = 0;
             bool grounded = _groundedDecider.IsGrounded();
 
             GetInput();
         }
 
+        /// <summary>
+        /// This determines which direction the player is going, but does not actually move the player.
+        /// </summary>
         private void GetInput()
         {
             _horizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -146,40 +137,70 @@ namespace Player.Motion
 
         private void FixedUpdate()
         {
-            fixedupdatees += 1;
             MovePlayer();
             Jump();
             FallDetection();
+            CapMovementVelocity();
         }
 
+        private void CapMovementVelocity()
+        {
+            if (_rigidbody.velocity.magnitude > _settings.MaxHorizontalSpeed)
+            {
+                _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _settings.MaxHorizontalSpeed);
+            }
+        }
+
+        /// <summary>
+        /// This moves the player, but does not determine which direction the player goes.
+        /// </summary>
         private void MovePlayer()
         {
-            _rigidbody.AddForce(_moveDirection.normalized * 50f, ForceMode.Acceleration);
+            _rigidbody.AddForce(_moveDirection.normalized * _settings.GroundedHorizontalMovementSettings.AccelToSpeedUp, ForceMode.Acceleration);
         }
 
+        /// <summary>
+        /// If the player gets the jump input, add upwards force.
+        /// </summary>
         private void Jump()
         {
-            if (Input.GetAxisRaw("Jump") > 0 && _wasGrounded)
+            _tryJump = false;
+            if (_timeSinceLastGrounded < _settings.CoyoteTime)
             {
-                _rigidbody.AddForce(Physics.gravity * -30f, ForceMode.Force);
                 _tryJump = true;
             }
-            else
+
+            if (Input.GetAxisRaw("Jump") > 0 && _tryJump)
             {
-                _rigidbody.AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
+                _rigidbody.AddForce(Physics.gravity * _settings.JumpVelocity * -1f, ForceMode.Acceleration);
+                _wasGrounded = false;
+                StartCoroutine(ResetCoyote());
+            }
+            else if (!_wasGrounded)
+            {
+                _rigidbody.AddForce(Physics.gravity * _settings.FallDragForceConstant, ForceMode.Acceleration);
             }
         }
 
+        IEnumerator ResetCoyote()
+        {
+            yield return new WaitForSeconds(.1f);
+            _timeSinceLastGrounded = Mathf.Infinity;
+        }
+
+        /// <summary>
+        /// Checks if the player is falling.
+        /// </summary>
         private void FallDetection()
         {
-            UnityEngine.Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(transform.position.x, transform.position.y, transform.position.z), Color.green, 1f);
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.TransformDirection(Vector3.down), 1f, _groundLayer))
             {
+                _timeSinceLastGrounded = 0.0f;
                 _wasGrounded = true;
             }
-            else
+            else if (_timeSinceLastGrounded < _settings.CoyoteTime)
             {
-                //UnityEngine.Debug.Log();
+                _timeSinceLastGrounded += Time.deltaTime;
                 _wasGrounded = false;
             }
         }
@@ -192,9 +213,9 @@ namespace Player.Motion
             // The enable/disable here doesn't seem to be necessary, but some people on unity
             // forums say the character controller overrides transform position, so maybe it's
             // necessary depending on order of execution or something.
-            _rigidbody.isKinematic = false;
+            //_rigidbody.isKinematic = false;
             transform.position = position;
-            _rigidbody.isKinematic = true;
+            //_rigidbody.isKinematic = true;
         }
 
         /// <summary>
