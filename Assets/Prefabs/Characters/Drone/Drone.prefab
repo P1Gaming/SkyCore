@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
-  _skipTutorial: 0
+  _skipTutorial: 1
   _droneDistanceToStopInFrontOfPlayer: 3
   _droneInterceptDelay: 3
   _pictogramBehaviour: {fileID: 6357170253752879243}
