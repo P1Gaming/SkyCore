@@ -19,12 +19,6 @@ namespace Player.Motion
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
-        private Transform _forwardReference;
-        [SerializeField, Tooltip("Point where the raycast is fired to ground the player for interactions.")]
-        private Transform _forceGround;
-        [SerializeField, Tooltip("Decides whether the player is on the ground.")]
-        private GroundedDecider _groundedDecider;
-        [SerializeField]
         private PlayerMovementSettings _settings;
         [SerializeField] 
         private GameEventScriptableObject _playerMovementW;
@@ -38,8 +32,6 @@ namespace Player.Motion
         private LayerMask _groundLayer;
 
         private Rigidbody _rigidbody;
-        private PlayerVelocityDecider _velocityDecider;
-        private bool _tryJump;
         private bool _wasGrounded;
         private bool _isInteracting;
         private float _horizontalMovement;
@@ -57,25 +49,10 @@ namespace Player.Motion
 
         private float _timeSinceLastGrounded = Mathf.Infinity;
 
-        /// <summary>
-        /// Fired when player is no longer grounded.
-        /// </summary>
-        public event Action Fallen;
+        private float _timeSinceJumpInput = Mathf.Infinity;
 
-        /// <summary>
-        /// Fired when player becomes grounded.
-        /// </summary>
-        public event Action Landed;
-
-        /// <summary>
-        /// Fired when player moves, disregarding vertical.
-        /// </summary>
-        public event Action MovedHorizontally;
-
-        /// <summary>
-        // Fired when player executes a jump (not always the same as when the button is pressed.)
-        /// </summary>
-        public event Action Jumped;
+        private Vector2 HorizontalVelocity { get => new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z); set => _rigidbody.velocity = new Vector3(value.x, _rigidbody.velocity.y, value.y); }
+        private float VerticalVelocity { get => _rigidbody.velocity.y; set => _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, value, _rigidbody.velocity.z); }
 
         /// <summary>
         /// Fired every frame and sends whether grounded.
@@ -111,15 +88,12 @@ namespace Player.Motion
         private void Awake()
         {
             _settings.Initialize();
-            _velocityDecider = new PlayerVelocityDecider(_settings);
             _rigidbody = GetComponent<Rigidbody>();
             Instance = this;
         }
 
         private void Update()
         {
-            bool grounded = _groundedDecider.IsGrounded();
-
             GetInput();
         }
 
@@ -130,6 +104,23 @@ namespace Player.Motion
         {
             _horizontalMovement = Input.GetAxisRaw("Horizontal");
             _verticalMovement = Input.GetAxisRaw("Vertical");
+
+            if (_horizontalMovement > 0)
+            {
+                _playerMovementA.Raise();
+            }
+            if (_horizontalMovement < 0)
+            {
+                _playerMovementD.Raise();
+            }
+            if (_verticalMovement > 0)
+            {
+                _playerMovementW.Raise();
+            }
+            if (_verticalMovement < 0)
+            {
+                _playerMovementS.Raise();
+            }
 
             _moveDirection = transform.forward * _verticalMovement + transform.right * _horizontalMovement;
         }
@@ -145,9 +136,11 @@ namespace Player.Motion
 
         private void CapMovementVelocity()
         {
-            if (_rigidbody.velocity.magnitude > _settings.MaxHorizontalSpeed)
+            Vector2 playerVelocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z);
+            if (HorizontalVelocity.magnitude > _settings.MaxHorizontalSpeed)
             {
-                _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _settings.MaxHorizontalSpeed);
+                playerVelocity.Normalize();
+                HorizontalVelocity = _settings.MaxHorizontalSpeed * playerVelocity;
             }
         }
 
@@ -156,7 +149,18 @@ namespace Player.Motion
         /// </summary>
         private void MovePlayer()
         {
-            _rigidbody.AddForce(_moveDirection.normalized * _settings.GroundedHorizontalMovementSettings.AccelToSpeedUp, ForceMode.Acceleration);
+            //Move Speed Power
+            _rigidbody.velocity += Time.deltaTime * _settings.GroundedHorizontalMovementSettings.AccelToSpeedUp * _moveDirection;
+
+            if (_moveDirection.magnitude < 0.1f)
+            {
+                Vector2 playerVelocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z);
+                HorizontalVelocity -= Time.deltaTime * _settings.GroundedHorizontalMovementSettings.AccelToStop * playerVelocity.normalized;
+                if (Vector2.Dot(playerVelocity, HorizontalVelocity) < 0)
+                {
+                    HorizontalVelocity = Vector2.zero;
+                }
+            }
         }
 
         /// <summary>
@@ -164,21 +168,36 @@ namespace Player.Motion
         /// </summary>
         private void Jump()
         {
-            _tryJump = false;
+            float gravityAccel = _settings.GravityAccel;
+            bool canJump = false;
+
             if (_timeSinceLastGrounded < _settings.CoyoteTime)
             {
-                _tryJump = true;
+                canJump = true;
             }
 
-            if (Input.GetAxisRaw("Jump") > 0 && _tryJump)
+            if (_rigidbody.velocity.y < 0 && (canJump || _settings.SameGravityWhenFallOffEdgeAsWhenFallDuringJump))
             {
-                _rigidbody.AddForce(Physics.gravity * _settings.JumpVelocity * -1f, ForceMode.Acceleration);
+                gravityAccel = _settings.GravityAccelWhileFallingDuringJump;
+            }
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                _timeSinceJumpInput = Time.deltaTime;
+            }
+
+            if (canJump && _timeSinceJumpInput < _settings.JumpBufferTime)
+            {
+                //Jump Power
+                VerticalVelocity = _settings.JumpVelocity;
                 _wasGrounded = false;
                 StartCoroutine(ResetCoyote());
+                _timeSinceJumpInput = Mathf.Infinity;
             }
-            else if (!_wasGrounded)
+            else
             {
-                _rigidbody.AddForce(Physics.gravity * _settings.FallDragForceConstant, ForceMode.Acceleration);
+                //Gravity Power
+                VerticalVelocity -= gravityAccel * Time.deltaTime;
             }
         }
 
@@ -193,12 +212,13 @@ namespace Player.Motion
         /// </summary>
         private void FallDetection()
         {
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.TransformDirection(Vector3.down), 1f, _groundLayer))
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), transform.TransformDirection(Vector3.down), 1f, _groundLayer))
             {
                 _timeSinceLastGrounded = 0.0f;
                 _wasGrounded = true;
             }
-            else if (_timeSinceLastGrounded < _settings.CoyoteTime)
+            //else if (_timeSinceLastGrounded < _settings.CoyoteTime)
+            else
             {
                 _timeSinceLastGrounded += Time.deltaTime;
                 _wasGrounded = false;
