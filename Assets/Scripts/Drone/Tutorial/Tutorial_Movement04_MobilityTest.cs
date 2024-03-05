@@ -45,9 +45,9 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
-    private FSMParameter _tutorialProgressParameter;
+    private FSMParameter _triggerForNextPartOfTutorial;
     [SerializeField]
-    private FSMParameter _finishedTutorialParameter;
+    private FSMParameter _finishedMovementTutorial;
 
     [Header("Tutorial State Machine Events - Stage 04 - Mobility Test")]
     [SerializeField]
@@ -173,7 +173,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
         _cameraLookAction.action.Enable();
     }
 
-    private bool CheckIfPlayerHasPassedMobilityTest()
+    private void CheckIfPlayerHasPassedMobilityTest()
     {
         if (_RequireAll4MovementKeysPressed &&        
             _keysPressed == MovementKeysPressed.All)
@@ -187,8 +187,6 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
             _mobilityTestPassed = true;
         }
         
-
-        return false;
     }
 
     private IEnumerator WaitForTutorialDonePictureDisplayTimeToEnd()
@@ -203,7 +201,8 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
         }
 
 
-        _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
+        _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial);
+        _stateMachineInstance.SetBool(_finishedMovementTutorial, true);
 
         _pictogramBehaviour.SetImageActive(false);
 

@@ -115,7 +115,7 @@ namespace FiniteStateMachine
         {
             if (!_bools.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the bool parameter being set.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the bool parameter being set: ({parameter.name})", parameter);
                 return;
             }
 
@@ -126,7 +126,7 @@ namespace FiniteStateMachine
         {
             if (!_triggers.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the trigger parameter being set.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the trigger parameter being set: ({parameter.name})", parameter);
                 return;
             }
 
@@ -137,7 +137,7 @@ namespace FiniteStateMachine
         {
             if (!_floats.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the float parameter being set.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the float parameter being set: ({parameter.name})", parameter);
                 return;
             }
 
@@ -148,7 +148,7 @@ namespace FiniteStateMachine
         {
             if (!_bools.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the bool parameter.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the bool parameter: ({parameter.name})", parameter);
                 return false;
             }
 
@@ -159,7 +159,7 @@ namespace FiniteStateMachine
         {
             if (!_triggers.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the trigger parameter.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the trigger parameter: ({parameter.name})", parameter);
                 return false;
             }
 
@@ -170,7 +170,7 @@ namespace FiniteStateMachine
         {
             if (!_floats.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the float parameter.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the float parameter: ({parameter.name})", parameter);
                 return float.NaN;
             }
 

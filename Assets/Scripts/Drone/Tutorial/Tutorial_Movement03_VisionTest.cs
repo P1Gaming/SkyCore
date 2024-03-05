@@ -38,7 +38,7 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
-    private FSMParameter _tutorialProgressParameter;
+    private FSMParameter _triggerForNextPartOfTutorial;
 
     [Header("Tutorial State Machine Events - Stage 03 - Vision Test")]
     [SerializeField]
@@ -112,7 +112,7 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
         if (_visionTestPassed && 
             Time.time - _firstCameraMoveTime >= _VisionTestSuccessDelay)
         {
-            _stateMachineInstance.SetFloat(_tutorialProgressParameter, 3);
+            _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial);
         }
     }
 
