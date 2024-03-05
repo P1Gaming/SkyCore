@@ -17,6 +17,9 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     [SerializeField]
     private bool _skipTutorial;
     [SerializeField]
+    private bool _skipCutscene;
+
+    [SerializeField]
     private float _droneDistanceToStopInFrontOfPlayer;
     [Tooltip("This specifies how long of a delay between the end of the cutscene and when the drone flies onto the screen to help the player.")]
     [SerializeField, Min(0)]
@@ -38,7 +41,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
-    private FSMParameter _tutorialProgressParameter;
+    private FSMParameter _triggerForNextPartOfTutorial;
     [SerializeField]
     private FSMParameter _finishedTutorialParameter;
 
@@ -54,6 +57,9 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
 
     private FiniteStateMachineInstance _stateMachineInstance;
+    private CutScenePlayer _cutScenePlayer;
+
+    private bool _cutSceneHasFinished;
 
     private Transform _player;
 
@@ -66,6 +72,8 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
     private void Awake()
     {
+        _cutScenePlayer = FindObjectOfType<CutScenePlayer>();
+
         _stateMachineInstance = _drone.GetStateMachineInstance();
         _stateMachineInstance.SetBool(_finishedTutorialParameter, _skipTutorial);
 
@@ -77,6 +85,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
 
         //_stateMachineInstance.LogTransitions = true;
+
 
         _player = Player.Motion.PlayerMovement.Instance.transform;
 
@@ -98,17 +107,37 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
         _cameraLookAction.action.Disable();
         _playerMovementAction.action.Disable();
 
-        // Trigger cutscene.
-        // CALL CUTSCENEPLAYER HERE WHEN ITS DONE.
+        if (!_skipCutscene)
+        {
+            // Trigger cutscene.
+            _cutScenePlayer.OnCutSceneStopped += OnCutSceneEnded;
+            _cutScenePlayer.PlayCutScene("TestCutScene"); // There is an overload of this function that lets you pass in the index of the cutscene in the CutScenePlayer's list if you have multiple in its list.
+        }
+        else
+        {
+            _cutSceneHasFinished = true;
+        }
     }
 
     private void UpdateTutorial()
     {
-        _timer += Time.deltaTime;
-        if (_timer >= _droneInterceptDelay)
+        if (_cutSceneHasFinished)
         {
-            _stateMachineInstance.SetFloat(_tutorialProgressParameter, 1); // Trigger transition to next part of the tutorial.
+            _timer += Time.deltaTime;
+
+            if (_timer >= _droneInterceptDelay)
+            {
+                _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial); // Trigger transition to next part of the tutorial.
+            }
         }
+
     }
    
+    private void OnCutSceneEnded(object sender, CutScenePlayerEventArgs e)
+    {
+        _cutSceneHasFinished = true;
+
+        _cutScenePlayer.OnCutSceneStopped -= OnCutSceneEnded;
+    }
+
 }

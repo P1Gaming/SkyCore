@@ -35,7 +35,7 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
-    private FSMParameter _tutorialProgressParameter;
+    private FSMParameter _triggerForNextPartOfTutorial;
 
     [Header("Tutorial State Machine Events - Stage 02 - Drone Intercepts Player")]
     [SerializeField]
@@ -107,7 +107,7 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
         if (_medicalAssistanceComplete)
         {
             // Trigger transition to next part of the tutorial.
-            _stateMachineInstance.SetFloat(_tutorialProgressParameter, 2);
+            _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial);
         }
 
     }

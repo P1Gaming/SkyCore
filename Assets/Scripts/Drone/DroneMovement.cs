@@ -52,8 +52,7 @@ public class DroneMovement : MonoBehaviour
     {
         float maxMovementDistance = Time.deltaTime * _movementSpeed;
 
-        float distance = Vector3.Distance(transform.position, transform.position + toTarget);
-        if (distance < _hasArrivedDistanceThreshold)
+        if (toTarget.magnitude < _hasArrivedDistanceThreshold)
         {
             return true;
         }
@@ -105,8 +104,7 @@ public class DroneMovement : MonoBehaviour
 
         //Debug.DrawLine(transform.position, transform.position + direction, Color.green, 1f);
 
-        if (direction.magnitude > -_hasArrivedDistanceThreshold &&
-            direction.magnitude < _hasArrivedDistanceThreshold)
+        if (direction.magnitude <= _hasArrivedDistanceThreshold)
         {
             return true;
         }
