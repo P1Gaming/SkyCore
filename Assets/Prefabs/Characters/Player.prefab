@@ -157,7 +157,7 @@ MonoBehaviour:
   _playerMovementW: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff, type: 2}
   _playerMovementA: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0, type: 2}
   _playerMovementS: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207, type: 2}
-  _playerMovementD: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff, type: 2}
+  _playerMovementD: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4, type: 2}
 --- !u!114 &548689562930659569
 MonoBehaviour:
   m_ObjectHideFlags: 0
