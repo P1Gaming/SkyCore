@@ -15,7 +15,7 @@ namespace UI.Inventory
         [SerializeField]
         private FirstPersonView _firstPersonView;
         [SerializeField]
-        private GameObject _jellyInteractVisual;
+        private GameObject _interactableVisual;
         [SerializeField]
         private HotBarUI _hotBarUI;
 
@@ -189,6 +189,12 @@ namespace UI.Inventory
                 Debug.Log("Cancel pressing inventory because of jelly Interaction");
                 return;
             }
+            else if (becomeInBackpackMode && IslandHeartInteractBase.AnyInteracting)
+            {
+                //the player has the game paused
+                Debug.Log("Cancel pressing inventory because of island heart Interaction");
+                return;
+            }
 
             
 
@@ -198,7 +204,7 @@ namespace UI.Inventory
             Cursor.lockState = becomeInBackpackMode ? CursorLockMode.None : CursorLockMode.Locked;
 
             _firstPersonView.enabled = !becomeInBackpackMode;
-            _jellyInteractVisual.SetActive(!becomeInBackpackMode);
+            _interactableVisual.SetActive(!becomeInBackpackMode);
 
             PlayerInteraction.InventoryState(becomeInBackpackMode);
 
