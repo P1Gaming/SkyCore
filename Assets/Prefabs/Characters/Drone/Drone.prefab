@@ -295,6 +295,7 @@ MonoBehaviour:
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
   _skipTutorial: 1
+  _skipCutscene: 0
   _droneDistanceToStopInFrontOfPlayer: 3
   _droneInterceptDelay: 3
   _pictogramBehaviour: {fileID: 6357170253752879243}
@@ -302,7 +303,7 @@ MonoBehaviour:
     type: 3}
   _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
     type: 3}
-  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+  _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 384924b84b4d0564680cd88e0dc27d20,
     type: 2}
   _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
     type: 2}
@@ -333,7 +334,7 @@ MonoBehaviour:
   _pictogramBehaviour: {fileID: 6357170253752879243}
   _sprite_DroneMedicalAssistance: {fileID: 21300000, guid: 7b2467994431f284ab443296f15cc3df,
     type: 3}
-  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+  _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 9e2a6b2596faf7a4f8b8cf772d631260,
     type: 2}
   _Enter: {fileID: 11400000, guid: 72b0d26662878e141abadea1448cba06, type: 2}
   _Update: {fileID: 11400000, guid: 0868a1f6b64404441b15f49db76bec92, type: 2}
@@ -360,7 +361,7 @@ MonoBehaviour:
     type: 3}
   _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
     type: 3}
-  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+  _triggerForNextPartOfTutorial: {fileID: 11400000, guid: cdb5bbdaf836e5c45be91aa75f4dcfe8,
     type: 2}
   _Enter: {fileID: 11400000, guid: ebe4c99aded107847b7e1b8fca68e327, type: 2}
   _Update: {fileID: 11400000, guid: 66bdcc1aba677ab4a8f094abaf25b250, type: 2}
@@ -394,9 +395,9 @@ MonoBehaviour:
     type: 3}
   _playerMovementAction: {fileID: 3772474531761166920, guid: c0d8178b5f09e324ab7d0a0918e94a52,
     type: 3}
-  _tutorialProgressParameter: {fileID: 11400000, guid: 07dff527f02c5254e942db6d6441ec75,
+  _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 8ffffa81d328f194a84b93c3fd3825a7,
     type: 2}
-  _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
+  _finishedMovementTutorial: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
     type: 2}
   _Enter: {fileID: 11400000, guid: e0c02f75513784c4497a20c2f3d12350, type: 2}
   _Update: {fileID: 11400000, guid: 39f51ea94bffa2f46b58be2c85ee56ce, type: 2}
