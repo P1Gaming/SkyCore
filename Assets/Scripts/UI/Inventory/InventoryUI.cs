@@ -211,12 +211,12 @@ namespace UI.Inventory
             if (becomeInBackpackMode)
             {
                 _dragAndDrop.EnableInput();
-                Time.timeScale = 0;
+                PlayerMovement.Instance.enabled = false;
             }
             else
             {
                 _dragAndDrop.DisableInputAndStop();
-                Time.timeScale = 1;
+                PlayerMovement.Instance.enabled = true;
             }
         }
     }
