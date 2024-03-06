@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Class managing detection of interactble objects by the player
+/// Class managing detection of interactable objects by the player
 /// </summary>
 public class PlayerInteraction : MonoBehaviour
 {
@@ -43,6 +43,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private JellyInteractBase _jellyCurrent;
 
+    private IslandHeartInteractBase _islandHeartCurrent;
+
     private static bool _inventoryOpen;
 
     /// <summary>
@@ -61,7 +63,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!_interactable)
             {
-                if (_closestHit.collider.gameObject.GetComponent<Interactable>())
+                if (_closestHit.collider.gameObject.GetComponent<IslandHeartInteractBase>() || _closestHit.collider.gameObject.GetComponent<Interactable>())
                 {
                     OnInteractionEnter();
                 }
@@ -85,11 +87,14 @@ public class PlayerInteraction : MonoBehaviour
         _interactable = _closestHit.collider.gameObject.GetComponent<Interactable>();
         _interactable.enabled = true;
         _onShowInteractionGUI.Raise();
-        // Debug.Log("Interaction with " + closestHit.collider.gameObject + " enabled.");
 
         if (_interactable.gameObject.GetComponent<JellyInteractBase>() != null)
         {
             _jellyCurrent = _interactable.gameObject.GetComponent<JellyInteractBase>();
+        } else if(_interactable.gameObject.GetComponent<IslandHeartInteractBase>() != null)
+        {
+            _islandHeartCurrent = _interactable.gameObject.GetComponent<IslandHeartInteractBase>();
+            //TODO: Show inventory here
         }
     }
 
@@ -116,6 +121,7 @@ public class PlayerInteraction : MonoBehaviour
         // Debug.Log("Interaction with " + interactable.gameObject + " disabled.");
         _interactable = null;
         _jellyCurrent = null;
+        _islandHeartCurrent = null;
     }
 
     /// <summary>
@@ -131,11 +137,22 @@ public class PlayerInteraction : MonoBehaviour
 
     private void HandleAction(InputAction.CallbackContext context)
     {
-        if (context.action.name == "Interact" && _jellyCurrent != null)
+        if(context.action.name != "Interact")
+        {
+            //Debug.Log("There was an issue with the Interaction system: "+ context.action.name);
+            return;
+        }
+        if (_jellyCurrent != null)
         {
             if (!_jellyCurrent.Interacting && !_inventoryOpen)
             {
                 _jellyCurrent.InteractStart();
+            }
+        } else if( _islandHeartCurrent != null)
+        {
+            if (!_islandHeartCurrent.Interacting)
+            {
+                _islandHeartCurrent.InteractStart();
             }
         }
     }

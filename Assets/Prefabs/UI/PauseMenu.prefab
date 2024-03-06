@@ -2628,6 +2628,13 @@ MonoBehaviour:
   _masterText: {fileID: 1076228265321796220}
   _musicText: {fileID: 8383380171975710572}
   _sfxText: {fileID: 1187420414895496133}
+  _exampleSoundEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5eaf9ea8d2c3f71438f1b77d4431870a,
+      type: 2}
+  _endOfSoundEvent:
+    value: 1
 --- !u!114 &8267743939220351937
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8867D66A-3BA1-4A14-96EF-2C23C9572C24}" SchemaVersion="103">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{8867D66A-3BA1-4A14-96EF-2C23C9572C24}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="General" ID="{51D1364F-F392-4807-B492-060D98765E86}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Default Work Unit" ID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_CraftCantDone_01" ID="{24A5BED6-40C4-4511-A818-748E904CAAC5}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_RightClickIcon_02" ID="{83937938-6863-45E6-BC61-3EF357371E09}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_Upgrade_01" ID="{27145F25-7874-4839-A89A-E1AFE6BFD9FF}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_LeftClickIcon_02" ID="{78622637-DD7E-4B44-B8E3-3CA3FF482E41}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_ListOfItems_01" ID="{2616D991-4BB7-4BCC-BEB9-04F59B080F60}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_OpeningUpCraftingSystem_01" ID="{1EF68F9B-1896-4BFC-AAB6-D8ECFA3594F1}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_Craft_01" ID="{88762BFA-3158-4E01-8ADF-C670CA759D23}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_Sorting_01" ID="{29BED591-191C-4EAA-93ED-3C43DDB23195}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_UI__CraftingMenu_ClosingCraftingSystem_01" ID="{AA39883F-52C1-4F3C-A342-26D01F04D39D}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList>
+						<ObjectRef Name="Play_Title_Screen_Music" ID="{51B6F1FA-6047-40A5-B6F9-41C058BF734C}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Stop_Title_Screen_Music" ID="{EB4F5E9C-CC05-4142-83FA-13DF6E91BC46}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Play_Music__LoadingScreen_01" ID="{F4195FC1-4189-4569-80D7-35163B88AE09}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Play_Snow_Biome_Music" ID="{41287586-119E-486B-AFC8-713AE0F7F0EE}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Play_Swamp_Biome_Music" ID="{2A008C28-FCA6-4898-AD7E-B492DAB81F42}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Play_Taiga_Biome_Music" ID="{BA9EC0B3-266C-4B04-940A-B49AC4769909}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Play_Desert_Biome_Music" ID="{306EA9EA-EC9E-4D7B-B704-375136677742}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Play_Crystal_Biome_Music" ID="{663753D9-1C4E-4DC2-AEE3-822C0DC7FCEA}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+						<ObjectRef Name="Play_Pause_Menu_Music" ID="{B1693379-B8A7-4FB9-9B5F-3778774ACAF8}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}"/>
+					</ObjectExclusionList>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="Music" ID="{1E6680A6-B1EB-4A79-8C11-EFD0A42079D5}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_Title_Screen_Music" ID="{51B6F1FA-6047-40A5-B6F9-41C058BF734C}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stop_Title_Screen_Music" ID="{EB4F5E9C-CC05-4142-83FA-13DF6E91BC46}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Music__LoadingScreen_01" ID="{F4195FC1-4189-4569-80D7-35163B88AE09}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Pause_Menu_Music" ID="{B1693379-B8A7-4FB9-9B5F-3778774ACAF8}" WorkUnitID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

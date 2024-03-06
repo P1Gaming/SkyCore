@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}" SchemaVersion="103">
+	<AudioObjects>
+		<WorkUnit Name="UI" ID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="21"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Sound Name="UI--Pause-OpenMenu_01" ID="{F7B50863-061F-463B-8144-10CC85F1AAFB}" ShortID="344020243">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-3</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="UI--Pause-OpenMenu_01" ID="{29B49323-3CF2-4B17-AF5C-35C57CFF1DB1}">
+							<Language>SFX</Language>
+							<AudioFile>UI--Pause-OpenMenu_01.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="315689274"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="UI--Pause-OpenMenu_01" ID="{29B49323-3CF2-4B17-AF5C-35C57CFF1DB1}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="UI--Pause-CloseMenu_01" ID="{B4E7B708-C1BC-48BA-8F2D-7AD69E5DE457}" ShortID="572794155">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="UI--Pause-CloseMenu_01" ID="{6B1A5809-916E-461F-9380-08AE2C1ACFE5}">
+							<Language>SFX</Language>
+							<AudioFile>UI--Pause-CloseMenu_01.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="139991288"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="UI--Pause-CloseMenu_01" ID="{6B1A5809-916E-461F-9380-08AE2C1ACFE5}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="UI--Pause-TabSounds" ID="{2AB2ADCF-B042-41F1-9C57-D99FC0CF172C}" ShortID="890644881">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="UI--PauseMenu-Hover_03" ID="{2EEBE46C-1F09-4549-843F-A0E3FB993FC4}">
+							<Language>SFX</Language>
+							<AudioFile>UI--PauseMenu-Hover_03.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="743448906"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="UI--PauseMenu-Hover_03" ID="{2EEBE46C-1F09-4549-843F-A0E3FB993FC4}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="UI--Pause-InMenuSounds" ID="{1DF96E07-67B1-4CBE-82C4-D228DAA6E567}" ShortID="878317669">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="UI--PauseMenu_LeftClick_01" ID="{3B6635FB-3EF6-4A73-97DB-5C66F52914A1}">
+							<Language>SFX</Language>
+							<AudioFile>UI--PauseMenu_LeftClick_01.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="85280361"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="UI--PauseMenu_LeftClick_01" ID="{3B6635FB-3EF6-4A73-97DB-5C66F52914A1}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Folder Name="Crafting UI" ID="{E31CE3AF-B2B4-441E-A649-86EDE9615D7E}" ShortID="406056019">
+					<ChildrenList>
+						<Sound Name="UI--CraftingMenu-ClosingCraftingSystem_01" ID="{6CE50FDC-DE26-4640-95B1-0C0C8962F5E6}" ShortID="211366165">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-ClosingCraftingSystem_01" ID="{C27CE0EA-52FD-4466-8AE7-F4FC092E6D21}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0476673427991887"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.119675456389452"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.719066937119676"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-ClosingCraftingSystem_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="229031904"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-ClosingCraftingSystem_01" ID="{C27CE0EA-52FD-4466-8AE7-F4FC092E6D21}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-Craft_01" ID="{4CD43965-FFD5-46DF-88E7-EA668B1D8F58}" ShortID="183797688">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-Craft_01" ID="{4BD35912-E8C2-4AEB-9D51-2FDE1A092E4C}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0425963488843813"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.112576064908722"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.552231237322516"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-Craft_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="148459336"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-Craft_01" ID="{4BD35912-E8C2-4AEB-9D51-2FDE1A092E4C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-CraftCantDone_01" ID="{7E97F3E3-3077-40DC-AB8D-43190933B49E}" ShortID="769471200">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-CraftCantDone_01" ID="{5B722250-B4EC-4A71-AA16-15AE6A395046}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0466531440162272"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.119675456389452"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.539553752535497"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-CraftCantDone_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="741776741"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-CraftCantDone_01" ID="{5B722250-B4EC-4A71-AA16-15AE6A395046}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-LeftClickIcon_02" ID="{9835460C-7E75-4550-847B-9F5C133324B3}" ShortID="520929183">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-LeftClickIcon_02" ID="{D6039F8A-DB44-4692-A4B5-BFF9D6569306}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0301724137931034"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.237829614604463"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.428625760649087"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-LeftClickIcon_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="190429514"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-LeftClickIcon_02" ID="{D6039F8A-DB44-4692-A4B5-BFF9D6569306}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-ListOfItems_01" ID="{3C1F5C8C-87C3-44C3-8335-20DCEEE5C4A3}" ShortID="7305880">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-ListOfItems_01" ID="{4BA1FAC0-AA2A-495E-B316-CBA676EDC573}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0385395537525355"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.116632860040568"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.522312373225152"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-ListOfItems_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="133938429"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-ListOfItems_01" ID="{4BA1FAC0-AA2A-495E-B316-CBA676EDC573}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-OpeningUpCraftingSystem_01" ID="{2A92D19B-9CE7-44A5-BD7F-07F2953D3ECD}" ShortID="281828467">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-OpeningUpCraftingSystem_01" ID="{6CE3D621-D6C5-4FD5-98BD-544156F95E5E}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0496957403651116"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.118661257606491"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.593306288032454"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-OpeningUpCraftingSystem_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="725537460"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-OpeningUpCraftingSystem_01" ID="{6CE3D621-D6C5-4FD5-98BD-544156F95E5E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-RightClickIcon_02" ID="{266726F8-2E76-48F7-AAB4-B24B80A90A38}" ShortID="391302266">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-RightClickIcon_02" ID="{444AB14E-4F30-4597-A4EC-89E728950D04}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0346095334685598"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.236942190669371"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.478321501014199"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-RightClickIcon_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="776689844"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-RightClickIcon_02" ID="{444AB14E-4F30-4597-A4EC-89E728950D04}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-Sorting_01" ID="{4F980B86-850A-440E-96EF-C54E7278E21C}" ShortID="456115983">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-Sorting_01" ID="{9472C5F3-7BF7-40FC-8F91-7FA801CFC4F9}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0354969574036511"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.115618661257607"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.495943204868154"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-Sorting_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="194509088"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-Sorting_01" ID="{9472C5F3-7BF7-40FC-8F91-7FA801CFC4F9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="UI--CraftingMenu-Upgrade_01" ID="{AB542512-B138-4C0D-ABC7-BE374E14CEC3}" ShortID="172971136">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{47B5B937-BFA4-4565-8652-12F68D5C9E74}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="UI" ID="{D6763F23-7F52-40D9-A8A6-888D2B2848C9}" WorkUnitID="{15EDDDFB-E268-4B43-BBAD-DDEE4AA347C2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="UI--CraftingMenu-Upgrade_01" ID="{118C046A-8EBA-4613-8940-2CEAE9FD666A}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0289046653144016"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.112576064908722"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.11206896551724"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>UI--CraftingMenu-Upgrade_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="790051336"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="UI--CraftingMenu-Upgrade_01" ID="{118C046A-8EBA-4613-8940-2CEAE9FD666A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

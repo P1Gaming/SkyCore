@@ -1,0 +1,11 @@
+Event	ID	Name			Wwise Object Path	Notes
+	375134059	Play_Title_Screen_Music			\Default Work Unit\Music\Play_Title_Screen_Music	
+	1423477630	Play_Pause_Menu_Music			\Default Work Unit\Music\Play_Pause_Menu_Music	
+	2124889703	Play_Music__LoadingScreen_01			\Default Work Unit\Music\Play_Music__LoadingScreen_01	
+	4201027921	Stop_Title_Screen_Music			\Default Work Unit\Music\Stop_Title_Screen_Music	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	185401154	Music--General-PauseMenu-Full_101bpm_4-4	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Windows\SFX\Music--General-PauseMenu-Full_101bpm_4-4_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Pause Menu Music\Music--General-PauseMenu-Full_101bpm_4-4\Music--General-PauseMenu-Full_101bpm_4-4		9479916
+	246064640	Music-General-LoadingScreen_60bpm_4-4_L8M_P1M	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Windows\SFX\Music-General-LoadingScreen_60bpm_4-4_L8M_P1M_D79FB2B7.wem		\Interactive Music Hierarchy\Music\LoadingScreenMusic\Music-General-LoadingScreen_60bpm_4-4_L8M_P1M\Music-General-LoadingScreen_60bpm_4-4_L8M_P1M		7910588
+	992486245	Music--SkyJellies_MainTheme-Master1_Sam_Cannon	C:\Users\cwals\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Windows\SFX\Music--SkyJellies_MainTheme-Master1_Sam_Cannon_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Title Screen Music\Music--SkyJellies_MainTheme-Master1_Sam_Cannon\Music--SkyJellies_MainTheme-Master1_Sam_Cannon		32256064
+

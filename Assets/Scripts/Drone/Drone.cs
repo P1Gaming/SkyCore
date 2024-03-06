@@ -52,4 +52,8 @@ public class Drone : MonoBehaviour
         CheckConstructStateMachineInstance();
         return _stateMachineInstance;
     }
+
+
+    public DroneMovement DroneMovement { get { return _movement; } }
+    
 }
