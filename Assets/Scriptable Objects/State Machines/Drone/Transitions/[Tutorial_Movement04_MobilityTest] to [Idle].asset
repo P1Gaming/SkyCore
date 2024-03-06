@@ -10,12 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
-  m_Name: MoveToUnscanned to Idle
+  m_Name: '[Tutorial_Movement04_MobilityTest] to [Idle]'
   m_EditorClassIdentifier: 
-  _from: {fileID: 11400000, guid: 44e6ae0898291984a8a14550a3f7cacb, type: 2}
+  _disable: 0
+  <LogFailureReason>k__BackingField: 0
+  _from: {fileID: 11400000, guid: 65ce1772ec0bf864bbc586bd9326e44d, type: 2}
   _to: {fileID: 11400000, guid: 6db9edfdc94caba43ae4e46406b94d15, type: 2}
+  _minDurationInFrom: 0
+  _parameterForMinDurationInFrom: {fileID: 0}
   _conditions:
-  - _parameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e, type: 2}
-    _equalsForBoolParameter: 0
+  - _parameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc, type: 2}
+    _equalsForBoolParameter: 1
     _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
     _comparedToForFloatParameter: 0

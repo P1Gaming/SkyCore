@@ -815,7 +815,7 @@ namespace FiniteStateMachineEditor
                 if (_transitions[i].Transition.ParameterForMinDurationInFrom == parameterToRemove)
                 {
                     Debug.LogWarning($"Cannot remove the parameter {parameterToRemove.name} because it's used by a transition's " +
-                        $"Min Duration in Prior State.");
+                        $"Min Duration in Prior State. Transition is: {_transitions[i].From.Name} -> {_transitions[i].To.Name}");
                     return;
                 }
 
@@ -828,7 +828,8 @@ namespace FiniteStateMachineEditor
 
                     if (condition.Parameter == parameterToRemove || parameterIsComparedToIt)
                     {
-                        Debug.LogWarning($"Cannot remove the parameter {parameterToRemove.name} because it's used by a transition.");
+                        Debug.LogWarning($"Cannot remove the parameter {parameterToRemove.name} because it's used by a transition." +
+                            $" Transition is: {_transitions[i].From.Name} -> {_transitions[i].To.Name}");
                         return;
                     }
                 }
