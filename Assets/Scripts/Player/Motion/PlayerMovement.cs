@@ -49,7 +49,9 @@ namespace Player.Motion
 
         private float _timeSinceLastGrounded = Mathf.Infinity;
 
-        private float _timeSinceJumpInput = Mathf.Infinity;
+        private float _jumpInputTime = -1f;
+
+        private PlayerHorizontalMovementSettings _currentHorizontalMovement;
 
         private Vector2 HorizontalVelocity { get => new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z); set => _rigidbody.velocity = new Vector3(value.x, _rigidbody.velocity.y, value.y); }
         private float VerticalVelocity { get => _rigidbody.velocity.y; set => _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, value, _rigidbody.velocity.z); }
@@ -89,6 +91,7 @@ namespace Player.Motion
         {
             _settings.Initialize();
             _rigidbody = GetComponent<Rigidbody>();
+            _currentHorizontalMovement = _settings.GroundedHorizontalMovementSettings;
             Instance = this;
         }
 
@@ -150,12 +153,12 @@ namespace Player.Motion
         private void MovePlayer()
         {
             //Move Speed Power
-            _rigidbody.velocity += Time.deltaTime * _settings.GroundedHorizontalMovementSettings.AccelToSpeedUp * _moveDirection;
+            _rigidbody.velocity += Time.deltaTime * _currentHorizontalMovement.AccelToSpeedUp * _moveDirection;
 
             if (_moveDirection.magnitude < 0.1f)
             {
                 Vector2 playerVelocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z);
-                HorizontalVelocity -= Time.deltaTime * _settings.GroundedHorizontalMovementSettings.AccelToStop * playerVelocity.normalized;
+                HorizontalVelocity -= Time.deltaTime * _currentHorizontalMovement.AccelToStop * playerVelocity.normalized;
                 if (Vector2.Dot(playerVelocity, HorizontalVelocity) < 0)
                 {
                     HorizontalVelocity = Vector2.zero;
@@ -183,16 +186,16 @@ namespace Player.Motion
 
             if (Input.GetButtonDown("Jump"))
             {
-                _timeSinceJumpInput = Time.deltaTime;
+                _jumpInputTime = Time.time;
             }
 
-            if (canJump && _timeSinceJumpInput < _settings.JumpBufferTime)
+            if (canJump && Time.time < _jumpInputTime + _settings.JumpBufferTime)
             {
                 //Jump Power
                 VerticalVelocity = _settings.JumpVelocity;
                 _wasGrounded = false;
                 StartCoroutine(ResetCoyote());
-                _timeSinceJumpInput = Mathf.Infinity;
+                _jumpInputTime = 0f;
             }
             else
             {
@@ -216,12 +219,13 @@ namespace Player.Motion
             {
                 _timeSinceLastGrounded = 0.0f;
                 _wasGrounded = true;
+                _currentHorizontalMovement = _settings.GroundedHorizontalMovementSettings;
             }
-            //else if (_timeSinceLastGrounded < _settings.CoyoteTime)
             else
             {
                 _timeSinceLastGrounded += Time.deltaTime;
                 _wasGrounded = false;
+                _currentHorizontalMovement = _settings.NonGroundedHorizontalMovementSettings;
             }
         }
 
@@ -230,12 +234,7 @@ namespace Player.Motion
         /// </summary>
         public void Teleport(Vector3 position)
         {
-            // The enable/disable here doesn't seem to be necessary, but some people on unity
-            // forums say the character controller overrides transform position, so maybe it's
-            // necessary depending on order of execution or something.
-            //_rigidbody.isKinematic = false;
             transform.position = position;
-            //_rigidbody.isKinematic = true;
         }
 
         /// <summary>
@@ -251,7 +250,7 @@ namespace Player.Motion
 
         public void SetLocalHorizontalDirection(PlayerMovement temp)
         {
-            //This does nothing
+            //This does nothing, but is tied to a script.
         }
     }
 }
