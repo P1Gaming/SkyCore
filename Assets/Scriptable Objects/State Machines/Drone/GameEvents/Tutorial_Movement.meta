@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Environment/IslandHeart.prefab.meta
+guid: 4a8336b5e95a3834ca46cf59553feca1
+PrefabImporter:
+========
+guid: c5fd0c0f18d1c494388364c1a199980a
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> 4c8374a (Implemented the movement tutorial):Assets/Scriptable Objects/State Machines/Drone/GameEvents/Tutorial_Movement.meta
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa209644a9691ac4daedd3a848ed55dd, type: 3}
-  m_Name: ScanSucceeded to Idle 1
+  m_Name: Tutorial_Movement_DroneInterceptPlayer to Tutorial_Movement_VisionTest
   m_EditorClassIdentifier: 
   _disable: 0
   <LogFailureReason>k__BackingField: 0
-  _from: {fileID: 11400000, guid: 3340a6f798a99934abf91fee90387efe, type: 2}
-  _to: {fileID: 11400000, guid: 6db9edfdc94caba43ae4e46406b94d15, type: 2}
+  _from: {fileID: 11400000, guid: b33320edead6f7d4083bbae2c7677948, type: 2}
+  _to: {fileID: 11400000, guid: bc7dc86491d959d459202a8df94b6715, type: 2}
   _minDurationInFrom: 0
-  _parameterForMinDurationInFrom: {fileID: 11400000, guid: 4c5a9aae75a6fe140a420012d9636337,
-    type: 2}
+  _parameterForMinDurationInFrom: {fileID: 0}
   _conditions:
-  - _parameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e, type: 2}
-    _equalsForBoolParameter: 1
+  - _parameter: {fileID: 11400000, guid: 9e2a6b2596faf7a4f8b8cf772d631260, type: 2}
+    _equalsForBoolParameter: 0
     _comparisonTypeForFloatParameter: 0
     _otherFloatParameterToCompareTo: {fileID: 0}
     _comparedToForFloatParameter: 0
