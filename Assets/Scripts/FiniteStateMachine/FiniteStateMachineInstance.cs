@@ -82,8 +82,8 @@ namespace FiniteStateMachine
             FSMState newState = null;
             for (int i = 0; i < _definition.Transitions.Length; i++)
             {
-                _definition.Transitions[i].Check(_currentState, _definition.DefaultState
-                    , durationInCurrentState, _bools, _triggers, _floats, ref newState);
+                _definition.Transitions[i].Check(_currentState, durationInCurrentState
+                    , _bools, _triggers, _floats, ref newState);
 
                 if (newState != null)
                 {
