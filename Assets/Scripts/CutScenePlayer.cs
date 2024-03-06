@@ -183,7 +183,6 @@ public class CutScenePlayer : MonoBehaviour
 
     private bool PlayCutScene(PlayableDirector cutScene)
     {
-        Debug.Log("PLAY");
         if (!(cutScene.state == PlayState.Playing))
         {
             ConnectCutSceneEvents(cutScene);

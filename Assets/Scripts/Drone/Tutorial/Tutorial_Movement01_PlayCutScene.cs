@@ -81,7 +81,10 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
         // Skip the rest of this function if _skipTutorial is enabled.
         if (_skipTutorial)
+        {
+            _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
             return;
+        }
 
 
         //_stateMachineInstance.LogTransitions = true;

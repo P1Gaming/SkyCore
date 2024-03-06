@@ -78,11 +78,11 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
 
     private void EnterTutorial()
     {
-        // Switch to the tutorial camera.
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
-
         _medicalAssistanceComplete = false;
         _startedMedicalAssistance = false;
+
+        // Switch to the tutorial camera.
+        _tutorialCamera.MoveToTopOfPrioritySubqueue();
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneMedicalAssistance);
 
