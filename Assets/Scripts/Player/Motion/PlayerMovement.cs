@@ -32,7 +32,6 @@ namespace Player.Motion
         private LayerMask _groundLayer;
 
         private Rigidbody _rigidbody;
-        private bool _wasGrounded;
         private bool _isInteracting;
         private float _horizontalMovement;
         private float _verticalMovement;
@@ -55,11 +54,6 @@ namespace Player.Motion
 
         private Vector2 HorizontalVelocity { get => new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z); set => _rigidbody.velocity = new Vector3(value.x, _rigidbody.velocity.y, value.y); }
         private float VerticalVelocity { get => _rigidbody.velocity.y; set => _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, value, _rigidbody.velocity.z); }
-
-        /// <summary>
-        /// Fired every frame and sends whether grounded.
-        /// </summary>
-        public event Action<bool> UpdateBasedOnGrounded;
 
         /// <summary>
         /// Trigger on enable to setup movement.
@@ -193,7 +187,6 @@ namespace Player.Motion
             {
                 //Jump Power
                 VerticalVelocity = _settings.JumpVelocity;
-                _wasGrounded = false;
                 StartCoroutine(ResetCoyote());
                 _jumpInputTime = 0f;
             }
@@ -218,13 +211,11 @@ namespace Player.Motion
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), transform.TransformDirection(Vector3.down), 1f, _groundLayer))
             {
                 _timeSinceLastGrounded = 0.0f;
-                _wasGrounded = true;
                 _currentHorizontalMovement = _settings.GroundedHorizontalMovementSettings;
             }
             else
             {
                 _timeSinceLastGrounded += Time.deltaTime;
-                _wasGrounded = false;
                 _currentHorizontalMovement = _settings.NonGroundedHorizontalMovementSettings;
             }
         }
@@ -246,11 +237,6 @@ namespace Player.Motion
             // Game Design advised keep pause/disabled player during interaction
             _isInteracting = isInteracting;
             this.enabled = !isInteracting;            
-        }
-
-        public void SetLocalHorizontalDirection(PlayerMovement temp)
-        {
-            //This does nothing, but is tied to a script.
         }
     }
 }

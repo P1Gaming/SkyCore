@@ -15,7 +15,7 @@ namespace Player
 
         private void Awake()
         {
-            PlayerMovement.Instance.UpdateBasedOnGrounded += UpdateBasedOnPlayerGrounded;
+            //PlayerMovement.Instance.UpdateBasedOnGrounded += UpdateBasedOnPlayerGrounded;
 
             _recentGroundedPosition = PlayerMovement.Instance.transform.position;
             _lastTimeUpdatedRecentGroundedPosition = Time.time;
