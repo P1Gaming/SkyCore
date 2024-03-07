@@ -1,21 +1,12 @@
-using JetBrains.Annotations;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player.Motion
 {
     /// <summary>
     /// Controls the players movement.
     /// </summary>
-
-    [RequireComponent(typeof(PlayerInput))]
-
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
@@ -28,12 +19,16 @@ namespace Player.Motion
         private GameEventScriptableObject _playerMovementS;
         [SerializeField]
         private GameEventScriptableObject _playerMovementD;
-        [SerializeField]
-        private LayerMask _groundLayer;
 
         private Rigidbody _rigidbody;
-        private bool _isInteracting;
-        private Vector3 _moveDirection;
+
+        private float _groundingSurfaceSlope;
+        private ContactPoint[] _collisionContacts = new ContactPoint[100];
+
+        public bool GroundedEnoughToJump { get; private set; }
+        public bool GroundedEnoughForNoGravity { get; private set; }
+        public bool GroundedEnoughForNormalAccelerationSettings { get; private set; }
+
 
         public static PlayerMovement Instance { get; private set; }
 
@@ -41,11 +36,11 @@ namespace Player.Motion
 
         public bool IsMoving => _rigidbody.velocity != Vector3.zero;
 
-        public bool isInteracting => _isInteracting;
-
-        private float _timeSinceLastGrounded = Mathf.Infinity;
+        private float _timeSinceGroundedEnoughToJump = Mathf.Infinity;
 
         private float _jumpInputTime = float.NegativeInfinity;
+        private bool _fixedUpdateRanThisFrame;
+        private bool _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun;
 
         private PlayerHorizontalMovementSettings _currentHorizontalMovementSettings;
 
@@ -64,58 +59,50 @@ namespace Player.Motion
         {
             _settings.Initialize();
             _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.sleepThreshold = -1; // don't sleep
             _currentHorizontalMovementSettings = _settings.GroundedHorizontalMovementSettings;
             Instance = this;
         }
 
-        private void Update()
-        {
-            GetInput();
-        }
-
-        /// <summary>
-        /// This determines which direction the player is going, but does not actually move the player.
-        /// </summary>
-        private void GetInput()
-        {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-            _moveDirection = transform.forward * vertical + transform.right * horizontal;
-
-            if (horizontal > 0)
-            {
-                _playerMovementA.Raise();
-            }
-            if (horizontal < 0)
-            {
-                _playerMovementD.Raise();
-            }
-            if (vertical > 0)
-            {
-                _playerMovementW.Raise();
-            }
-            if (vertical < 0)
-            {
-                _playerMovementS.Raise();
-            }
-        }
-
-
         private void FixedUpdate()
         {
+            GroundedDetection();
             MovePlayer();
             Jump();
-            FallDetection();
             CapMovementVelocity();
+            _fixedUpdateRanThisFrame = true;
+            _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = false;
+        }
+
+        private void OnCollisionEnter(Collision collision) => CheckGrounded(collision);
+        private void OnCollisionStay(Collision collision) => CheckGrounded(collision);
+
+        private void Update()
+        {
+            if (!_fixedUpdateRanThisFrame && GetJumpInput())
+            {
+                _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = true;
+            }
+            CheckRaiseWASDEvents();
+            _fixedUpdateRanThisFrame = false;
+        }
+       
+
+        private void CheckGrounded(Collision collision)
+        {
+            int numContacts = collision.GetContacts(_collisionContacts);
+            for (int i = 0; i < numContacts; i++)
+            {
+                float angle = Vector3.Angle(_collisionContacts[i].normal, Vector3.up);
+                _groundingSurfaceSlope = Mathf.Min(_groundingSurfaceSlope, angle);
+            }
         }
 
         private void CapMovementVelocity()
         {
-            Vector2 playerVelocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z);
             if (HorizontalVelocity.magnitude > _settings.MaxHorizontalSpeed)
             {
-                playerVelocity.Normalize();
-                HorizontalVelocity = _settings.MaxHorizontalSpeed * playerVelocity;
+                HorizontalVelocity = HorizontalVelocity.normalized * _settings.MaxHorizontalSpeed;
             }
         }
 
@@ -125,6 +112,11 @@ namespace Player.Motion
         private void MovePlayer()
         {
             //Move Speed Power
+
+            GetWASDInputAxes(out float horizontal, out float vertical);
+            Vector3 _moveDirection = transform.forward * vertical + transform.right * horizontal;
+
+
             _rigidbody.velocity += Time.deltaTime * _currentHorizontalMovementSettings.AccelToSpeedUp * _moveDirection;
 
             if (_moveDirection.magnitude == 0)
@@ -146,26 +138,28 @@ namespace Player.Motion
         private void Jump()
         {
             float gravityAccel = _settings.GravityAccel;
-            bool canJump = _timeSinceLastGrounded < _settings.CoyoteTime;
+            
 
-            if (_rigidbody.velocity.y < 0 && (canJump || _settings.SameGravityWhenFallOffEdgeAsWhenFallDuringJump))
+            if (_rigidbody.velocity.y < 0)
             {
                 gravityAccel = _settings.GravityAccelWhileFallingDuringJump;
             }
 
-            if (Input.GetButtonDown("Jump"))
+            if (GetJumpInput() || _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun)
             {
                 _jumpInputTime = Time.time;
             }
 
-            if (canJump && Time.time <= _jumpInputTime + _settings.JumpBufferTime)
+            bool canJump = _timeSinceGroundedEnoughToJump < _settings.CoyoteTime;
+            bool recentJumpInput = Time.time <= _jumpInputTime + _settings.JumpBufferTime;
+            if (canJump && recentJumpInput)
             {
                 // Jump Power
                 VerticalVelocity = _settings.JumpVelocity;
                 _jumpInputTime = float.NegativeInfinity;
-                _timeSinceLastGrounded = float.PositiveInfinity;
+                _timeSinceGroundedEnoughToJump = float.PositiveInfinity;
             }
-            else if (_timeSinceLastGrounded != 0)
+            else if (!GroundedEnoughForNoGravity)
             {
                 // Gravity Power
                 VerticalVelocity -= gravityAccel * Time.deltaTime;
@@ -175,20 +169,60 @@ namespace Player.Motion
         /// <summary>
         /// Checks if the player is falling.
         /// </summary>
-        private void FallDetection()
+        private void GroundedDetection()
         {
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z)
-                , transform.TransformDirection(Vector3.down), 1f, _groundLayer))
+            GroundedEnoughForNoGravity = _groundingSurfaceSlope < 5f;
+            GroundedEnoughForNormalAccelerationSettings = _groundingSurfaceSlope < 90f;
+            GroundedEnoughToJump = _groundingSurfaceSlope < 60f;
+
+            // Do this so will get the minimum slope angle when the physics engine updates after FixedUpdates run.
+            _groundingSurfaceSlope = float.PositiveInfinity; 
+
+            if (GroundedEnoughToJump)
             {
-                _timeSinceLastGrounded = 0.0f;
-                _currentHorizontalMovementSettings = _settings.GroundedHorizontalMovementSettings;
+                _timeSinceGroundedEnoughToJump = 0.0f;
             }
             else
             {
-                _timeSinceLastGrounded += Time.deltaTime;
-                _currentHorizontalMovementSettings = _settings.NonGroundedHorizontalMovementSettings;
+                _timeSinceGroundedEnoughToJump += Time.deltaTime;
+            }
+
+            _currentHorizontalMovementSettings = GroundedEnoughForNormalAccelerationSettings
+                ? _settings.GroundedHorizontalMovementSettings : _settings.NonGroundedHorizontalMovementSettings;
+        }
+
+        private void GetWASDInputAxes(out float horizontal, out float vertical)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+        }
+
+        private bool GetJumpInput()
+        {
+            return Input.GetButtonDown("Jump");
+        }
+
+        private void CheckRaiseWASDEvents()
+        {
+            GetWASDInputAxes(out float horizontal, out float vertical);
+            if (horizontal < 0)
+            {
+                _playerMovementA.Raise();
+            }
+            if (horizontal > 0)
+            {
+                _playerMovementD.Raise();
+            }
+            if (vertical > 0)
+            {
+                _playerMovementW.Raise();
+            }
+            if (vertical < 0)
+            {
+                _playerMovementS.Raise();
             }
         }
+
 
         /// <summary>
         /// Moves the player to the position.
@@ -199,6 +233,8 @@ namespace Player.Motion
             transform.position = position;
         }
 
+
+
         /// <summary>
         /// Sets Interacting state and toggles enabled
         /// </summary>
@@ -208,7 +244,6 @@ namespace Player.Motion
             // We might need a combined way for disabling this script, since it'll also
             // be disabled during inventory and will be able to open inventory while interacting.
             // E.g. an int for the number of reasons to disable this script.
-            _isInteracting = isInteracting;
             enabled = !isInteracting;            
         }
     }

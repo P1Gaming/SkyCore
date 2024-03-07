@@ -37,9 +37,6 @@ namespace Player.Motion
         private float _coyoteTime = 0f;
         [SerializeField, Tooltip("How long a jump while non-grounded is remembered, to be executed upon reaching the ground")]
         private float _jumpBufferTime = 0f;
-        [SerializeField, Tooltip("Whether to use the gravity based on Jump Downwards Time, rather than the gravity" +
-            " based on Jump Upwards Time, after walking off an edge.")]
-        private bool _sameGravityWhenFallOffEdgeAsWhenFallDuringJump;
 
         // Properties for horizontal movement
         public float MaxHorizontalSpeed => _maxSpeed;
@@ -57,7 +54,6 @@ namespace Player.Motion
         public float FallDragProportionalityExponent => _fallDragProportionalityExponent;
         public float FallDragForceConstant { get; private set; }
         public float JumpBufferTime => _jumpBufferTime;
-        public bool SameGravityWhenFallOffEdgeAsWhenFallDuringJump => _sameGravityWhenFallOffEdgeAsWhenFallDuringJump;
 
         public void Initialize()
         {
