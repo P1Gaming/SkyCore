@@ -52,33 +52,15 @@ namespace Player.Motion
 
         private PlayerHorizontalMovementSettings _currentHorizontalMovement;
 
-        private Vector2 HorizontalVelocity { get => new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z); set => _rigidbody.velocity = new Vector3(value.x, _rigidbody.velocity.y, value.y); }
-        private float VerticalVelocity { get => _rigidbody.velocity.y; set => _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, value, _rigidbody.velocity.z); }
-
-        /// <summary>
-        /// Trigger on enable to setup movement.
-        /// </summary> 
-
-        private void OnEnable()
-        {
-            if (!TryGetComponent(out PlayerInput handler))
-            {
-                return;
-            }
+        private Vector2 HorizontalVelocity 
+        { 
+            get => new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z); 
+            set => _rigidbody.velocity = new Vector3(value.x, _rigidbody.velocity.y, value.y); 
         }
-
-        /// <summary>
-        /// Trigger on disable to clear movement.
-        /// Bug where key up is missed when disabled for interaction
-        /// </summary> 
-
-        private void OnDisable()
-        {
-            if (!TryGetComponent(out PlayerInput handler))
-            {
-                return;
-            }
-
+        private float VerticalVelocity 
+        { 
+            get => _rigidbody.velocity.y; 
+            set => _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, value, _rigidbody.velocity.z); 
         }
 
         private void Awake()
