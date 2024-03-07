@@ -11,6 +11,8 @@ namespace Player.Motion
     {
         [SerializeField]
         private PlayerMovementSettings _settings;
+        [SerializeField]
+        private LayerMask _groundLayer;
         [SerializeField] 
         private GameEventScriptableObject _playerMovementW;
         [SerializeField]
@@ -33,6 +35,8 @@ namespace Player.Motion
         public static PlayerMovement Instance { get; private set; }
 
         public PlayerMovementSettings Settings => _settings;
+
+        public bool StandingOnGroundLayer => Physics.Raycast(transform.position + Vector3.up, Vector3.down, 1f, _groundLayer);
 
         public bool IsMoving => _rigidbody.velocity.magnitude > .001f;
 
@@ -283,7 +287,8 @@ namespace Player.Motion
             // We might need a combined way for disabling this script, since it'll also
             // be disabled during inventory and will be able to open inventory while interacting.
             // E.g. an int for the number of reasons to disable this script.
-            enabled = !isInteracting;            
+            enabled = !isInteracting;
+            _rigidbody.isKinematic = isInteracting;
         }
     }
 }
