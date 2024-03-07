@@ -27,10 +27,6 @@ public class DroneMovement : MonoBehaviour
     private Transform _player;
 
 
-    // This specifies how close the drone must be to the target point to consider itself to have arrived.
-    private const float _hasArrivedDistanceThreshold = 0.1f;
-
-
 
     private void Awake()
     {
@@ -50,16 +46,9 @@ public class DroneMovement : MonoBehaviour
     /// <returns>True if the drone has arrived at its destination, or false otherwise.</returns>
     public bool MoveDrone(Vector3 toTarget)
     {
-        float maxMovementDistance = Time.deltaTime * _movementSpeed;
-
-        if (toTarget.magnitude < _hasArrivedDistanceThreshold)
-        {
-            return true;
-        }
-
-        transform.position += Vector3.MoveTowards(Vector3.zero, toTarget, maxMovementDistance);
-
-        return false;
+        Vector3 movement = Vector3.MoveTowards(Vector3.zero, toTarget, Time.deltaTime * _movementSpeed);
+        transform.position += movement;
+        return movement == toTarget;
     }
 
     /// <summary>
@@ -102,21 +91,14 @@ public class DroneMovement : MonoBehaviour
         // Calculate vector from drone to target point in front of the player.
         Vector3 direction = targetPosition - transform.position;
 
-        //Debug.DrawLine(transform.position, transform.position + direction, Color.green, 1f);
+        bool arrived = MoveDrone(direction);
 
-        if (direction.magnitude <= _hasArrivedDistanceThreshold)
-        {
-            return true;
-        }
-
-        MoveDrone(direction);
-
-        if (keepFacingPlayer) 
+        if (keepFacingPlayer && !arrived) // dunno if the 2nd part of the && is necessary 
         {
             RotateTowardsTarget(_player.transform.position);
         }
 
-        return false;
+        return arrived;
     }
 
     /// <summary>
