@@ -23,10 +23,10 @@ TagManager:
   - UI
   - 
   - 
-  - Character
+  - Player
   - Ground
   - 
-  - 
+  - Drone
   - 
   - PickupItemTrigger
   - 

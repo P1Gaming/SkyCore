@@ -47,7 +47,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494937806388944145}
   - component: {fileID: 6722134595557570117}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Placeholder scan succeeded visual (linerenderer)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 1518349964}
   - component: {fileID: 1518349965}
   - component: {fileID: 1518349966}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Movement Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 3934803929659103043}
   - component: {fileID: 6239169900005832746}
   - component: {fileID: 3272708757783095980}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FSM Game Events Set Animator Bools
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7064711757998131545}
   - component: {fileID: 557467598811146302}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Scanning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 4364394113714527202}
   - component: {fileID: 4364394113714527201}
   - component: {fileID: 4364394113714527200}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1004,7 +1004,7 @@ GameObject:
   - component: {fileID: 9117878907213001977}
   - component: {fileID: 7605286380065068526}
   - component: {fileID: 3021005747530959631}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1453,7 +1453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8048724301587607471}
   - component: {fileID: 6897214807269276948}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Follow Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1737,7 +1737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1814128430626204019}
   - component: {fileID: 5625255709096306572}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Placeholder scan attempting visual (linerenderer)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
