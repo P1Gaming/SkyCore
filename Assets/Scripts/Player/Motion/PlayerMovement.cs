@@ -165,7 +165,7 @@ namespace Player.Motion
                 _jumpInputTime = float.NegativeInfinity;
                 _timeSinceLastGrounded = float.PositiveInfinity;
             }
-            else
+            else if (_timeSinceLastGrounded != 0)
             {
                 // Gravity Power
                 VerticalVelocity -= gravityAccel * Time.deltaTime;
