@@ -25,21 +25,33 @@ public class DroneScanning : MonoBehaviour
     [SerializeField]
     private LineRenderer _placeholderScanSuccessVisual;
 
-    [Header("Finite State Machine Parameters")]
-    [SerializeField]
-    private FSMParameter _distanceFromHoverbyUnscannedParameter;
+    [Header("Action FSM Parameters")]
     [SerializeField]
     private FSMParameter _distanceBetweenUnscannedAndPlayerParameter;
     [SerializeField]
-    private FSMParameter _seesUnscannedParameter;
+    private FSMParameter _seesUnscannedParameterInActionFSM;
     [SerializeField]
     private FSMParameter _scanButtonPressedParameter;
     [SerializeField]
     private FSMParameter _buttonPressScanningParameter;
 
-    [Header("Finite State Machine Events")]
+    [Header("Movement FSM Parameters")]
+    [SerializeField]
+    private FSMParameter _distanceFromHoverbyUnscannedParameter;
+    [SerializeField]
+    private FSMParameter _seesUnscannedParameterInMovementFSM;
+
+    [Header("Movement FSM Events")]
     [SerializeField]
     private GameEventScriptableObject _moveToUnscannedUpdate;
+    [SerializeField]
+    private GameEventScriptableObject _moveToUnscannedEnter;
+    [SerializeField]
+    private GameEventScriptableObject _moveToUnscannedExit;
+    [SerializeField]
+    private GameEventScriptableObject _forgetScanTargetEnter;
+
+    [Header("Action FSM Events")]
     [SerializeField]
     private GameEventScriptableObject _scanAttemptingEnter;
     [SerializeField]
@@ -65,7 +77,12 @@ public class DroneScanning : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _scannedJellyEvent;
 
-    private FiniteStateMachineInstance _stateMachineInstance;
+    [Header("Communication Between the Action FSM and Movement FSM")]
+    [SerializeField]
+    private BoolTrueWhileInCertainFSMStates _tellActionFSMWhetherMovementIsInNearUnscannedState;
+
+    private FiniteStateMachineInstance _actionStateMachineInstance;
+    private FiniteStateMachineInstance _movementStateMachineInstance;
 
     private Transform _player;
 
@@ -74,18 +91,24 @@ public class DroneScanning : MonoBehaviour
 
     private GameEventResponses _gameEventResponses = new();
 
+    private bool _inScanSucceeded;
+
 
     private void Awake()
     {
-        _stateMachineInstance = _drone.GetStateMachineInstance();
+        _actionStateMachineInstance = _drone.GetActionStateMachineInstance();
+        _movementStateMachineInstance = _drone.GetMovementStateMachineInstance();
         _scannableLocator = new DroneScannableLocator();
 
         _player = Player.Motion.PlayerMovement.Instance.transform;
 
-        _stateMachineInstance.SetBool(_buttonPressScanningParameter, _buttonPressScanning);
+        _actionStateMachineInstance.SetBool(_buttonPressScanningParameter, _buttonPressScanning);
 
         _gameEventResponses.SetResponses(
             (_moveToUnscannedUpdate, UpdateMoveTowardsToScan)
+            , (_moveToUnscannedExit, ExitMoveTowardsToScan)
+            , (_moveToUnscannedEnter, EnterMoveTowardsToScan)
+            , (_forgetScanTargetEnter, EnterForgetScanTarget)
             , (_scanAttemptingEnter, EnterScanAttempting)
             , (_scanAttemptingUpdate, UpdateScanAttempting)
             , (_scanFailedExit, ExitScanFailed)
@@ -96,12 +119,22 @@ public class DroneScanning : MonoBehaviour
             , (_scanAwaitingButtonUpdate, UpdateScanAwaitingButton)
             , (_scanAwaitingButtonExit, ExitScanAwaitingButton)
             );
+
+        _tellActionFSMWhetherMovementIsInNearUnscannedState.Initialize(_actionStateMachineInstance, null);
+        
     }
 
-    private void OnEnable() => _gameEventResponses.Register();
-    private void OnDisable() => _gameEventResponses.Unregister();
+    private void OnEnable()
+    {
+        _gameEventResponses.Register();
+        _tellActionFSMWhetherMovementIsInNearUnscannedState.Register();
+    }
 
-
+    private void OnDisable()
+    {
+        _gameEventResponses.Unregister();
+        _tellActionFSMWhetherMovementIsInNearUnscannedState.Unregister();
+    }
 
     public void OnPreStateMachineInstanceUpdate()
     {
@@ -112,8 +145,13 @@ public class DroneScanning : MonoBehaviour
     {
         if (_toScan == null || _scannableLocator.AlreadyScanned(_toScan))
         {
-            _toScan = _scannableLocator.TryGetThingToScan(transform, _player
-                , _detectionRange, _maxDistanceFromPlayerToScan);
+            // Don't see something else to scan while it's in scan succeeded, because 
+            // otherwise it can scan anything nearby instantly, at least if you pick up the item which is about to finish scanning.
+            if (!_inScanSucceeded)
+            {
+                _toScan = _scannableLocator.TryGetThingToScan(transform, _player
+                    , _detectionRange, _maxDistanceFromPlayerToScan);
+            }
         }
 
         float distanceToThingToScan = float.PositiveInfinity;
@@ -124,9 +162,10 @@ public class DroneScanning : MonoBehaviour
             distanceBetweenThingToScanAndPlayer = (_toScan.transform.position - _player.position).magnitude;
         }
 
-        _stateMachineInstance.SetFloat(_distanceFromHoverbyUnscannedParameter, distanceToThingToScan);
-        _stateMachineInstance.SetFloat(_distanceBetweenUnscannedAndPlayerParameter, distanceBetweenThingToScanAndPlayer);
-        _stateMachineInstance.SetBool(_seesUnscannedParameter, _toScan != null);
+        _movementStateMachineInstance.SetFloat(_distanceFromHoverbyUnscannedParameter, distanceToThingToScan);
+        _actionStateMachineInstance.SetFloat(_distanceBetweenUnscannedAndPlayerParameter, distanceBetweenThingToScanAndPlayer);
+        _actionStateMachineInstance.SetBool(_seesUnscannedParameterInActionFSM, _toScan != null);
+        _movementStateMachineInstance.SetBool(_seesUnscannedParameterInMovementFSM, _toScan != null);
     }
 
 
@@ -134,6 +173,23 @@ public class DroneScanning : MonoBehaviour
     {
         _movement.RotateTowardsTarget(_toScan.transform);
         _movement.MoveDrone(_movement.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
+    }
+
+    private void ExitMoveTowardsToScan()
+    {
+        _movement.StopVelocity();
+    }
+
+    private void EnterMoveTowardsToScan()
+    {
+        // make it null so it finds the closest thing again, once close enough to the player.
+        _toScan = null;
+        TrackThingToScan();
+    }
+
+    private void EnterForgetScanTarget()
+    {
+        _toScan = null;
     }
 
     private void EnterScanAttempting()
@@ -159,14 +215,14 @@ public class DroneScanning : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            _stateMachineInstance.SetBool(_scanButtonPressedParameter, true);
+            _actionStateMachineInstance.SetBool(_scanButtonPressedParameter, true);
         }
     }
 
     private void ExitScanAwaitingButton()
     {
         _scanButtonUI.SetActive(false);
-        _stateMachineInstance.SetBool(_scanButtonPressedParameter, false);
+        _actionStateMachineInstance.SetBool(_scanButtonPressedParameter, false);
     }
 
     private void ExitScanFailed()
@@ -178,6 +234,8 @@ public class DroneScanning : MonoBehaviour
 
     private void EnterScanSucceeded()
     {
+        _inScanSucceeded = true;
+
         _placeholderScanAttemptingVisual.enabled = false;
         _placeholderScanSuccessVisual.enabled = true;
     }
@@ -190,6 +248,8 @@ public class DroneScanning : MonoBehaviour
 
     private void ExitScanSucceeded()
     {
+        _inScanSucceeded = false;
+
         // it can be null if it was destroyed (e.g. item picked up)
         // during the time when it's successfully scanning it.
         if (_toScan != null)

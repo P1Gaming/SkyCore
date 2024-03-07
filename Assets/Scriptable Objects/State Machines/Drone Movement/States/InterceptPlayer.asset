@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9892e131a669bd4081d6ef0bd144757, type: 3}
-  m_Name: FollowPlayer
+  m_Name: InterceptPlayer
   m_EditorClassIdentifier: 
-  <OnEnter>k__BackingField: {fileID: 11400000, guid: cc374c3d85a4e604a8c8f6eccfa1f64f,
+  <OnEnter>k__BackingField: {fileID: 11400000, guid: 6186138816db8ad4b87a5837e0b89b52,
     type: 2}
-  <OnUpdate>k__BackingField: {fileID: 11400000, guid: 772b27df93a45f247b1b5e9d42167fda,
+  <OnUpdate>k__BackingField: {fileID: 11400000, guid: 4a3a5889f91ec7446b5d86bb20be5b2d,
     type: 2}
-  <OnExit>k__BackingField: {fileID: 11400000, guid: fcf682586388cd9428829014516cf8cc,
+  <OnExit>k__BackingField: {fileID: 11400000, guid: d67068b54ef0faf41a5b743ae051e45f,
     type: 2}

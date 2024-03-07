@@ -32,10 +32,13 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     [SerializeField]
     private Sprite _sprite_DroneMedicalAssistance;
 
-    [Header("Finite State Machine Parameters")]
-    [Tooltip("This parameter tracks what step the tutorial is currently in.")]
+    [Header("Action Finite State Machine Parameters")]
     [SerializeField]
     private FSMParameter _triggerForNextPartOfTutorial;
+
+    [Header("Movement Finite State Machine Parameters")]
+    [SerializeField]
+    private FSMParameter _interceptPlayer;
 
     [Header("Tutorial State Machine Events - Stage 02 - Drone Intercepts Player")]
     [SerializeField]
@@ -45,9 +48,14 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _Exit;
 
+    [Header("Events in the Movement State Machine")]
+    [SerializeField]
+    private GameEventScriptableObject _UpdateInterceptPlayer;
 
 
-    private FiniteStateMachineInstance _stateMachineInstance;
+
+    private FiniteStateMachineInstance _actionStateMachineInstance;
+    private FiniteStateMachineInstance _movementStateMachineInstance;
 
     private Transform _player;
 
@@ -57,18 +65,22 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     private bool _startedMedicalAssistance;
     private bool _medicalAssistanceComplete;
 
+    private bool _finishedInterceptingPlayer;
+
 
 
     private void Awake()
     {
-        _stateMachineInstance = _drone.GetStateMachineInstance();
+        _actionStateMachineInstance = _drone.GetActionStateMachineInstance();
+        _movementStateMachineInstance = _drone.GetMovementStateMachineInstance();
 
         _player = Player.Motion.PlayerMovement.Instance.transform;
 
         _gameEventResponses.SetResponses(
             (_Enter, EnterTutorial),
             (_Update, UpdateTutorial),
-            (_Exit, ExitTutorial)
+            (_Exit, ExitTutorial),
+            (_UpdateInterceptPlayer, UpdateInterceptPlayer)
             );
     }
 
@@ -78,6 +90,8 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
 
     private void EnterTutorial()
     {
+        _movementStateMachineInstance.SetBool(_interceptPlayer, true);
+
         _medicalAssistanceComplete = false;
         _startedMedicalAssistance = false;
 
@@ -89,11 +103,18 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
         StartCoroutine(WaitToFocusCamera());
     }
 
+    private void UpdateInterceptPlayer()
+    {
+        // This runs from FixedUpdate
+        _finishedInterceptingPlayer = _movement.MoveDroneInFrontOfPlayer(_droneDistanceToStopInFrontOfPlayer, true);
+    }
+
     private void UpdateTutorial()
     {
-        // Make the drone move into view until it is right in front of the player.
-        if (!_startedMedicalAssistance &&
-            _movement.MoveDroneInFrontOfPlayer(_droneDistanceToStopInFrontOfPlayer, true))
+        // This currently runs from Update
+
+        // The drone moves into view until it is right in front of the player.
+        if (!_startedMedicalAssistance && _finishedInterceptingPlayer)
         {
             // The drone has reached the player, so display the health image.
             _pictogramBehaviour.SetImageActive(true);
@@ -107,7 +128,7 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
         if (_medicalAssistanceComplete)
         {
             // Trigger transition to next part of the tutorial.
-            _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial);
+            _actionStateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial);
         }
 
     }
@@ -138,6 +159,8 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
 
     private void ExitTutorial()
     {
+        _movementStateMachineInstance.SetBool(_interceptPlayer, false);
+
         _tutorialCamera.LookAt = null;
     }
 

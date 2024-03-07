@@ -74,7 +74,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     {
         _cutScenePlayer = FindObjectOfType<CutScenePlayer>();
 
-        _stateMachineInstance = _drone.GetStateMachineInstance();
+        _stateMachineInstance = _drone.GetActionStateMachineInstance();
         _stateMachineInstance.SetBool(_finishedTutorialParameter, _skipTutorial);
 
         _pictogramBehaviour.SetImageActive(false);

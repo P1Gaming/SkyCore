@@ -70,7 +70,7 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
 
     private void Awake()
     {
-        _stateMachineInstance = _drone.GetStateMachineInstance();
+        _stateMachineInstance = _drone.GetActionStateMachineInstance();
 
         _player = Player.Motion.PlayerMovement.Instance.transform;
 

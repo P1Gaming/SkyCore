@@ -24,3 +24,8 @@ MonoBehaviour:
     _comparisonTypeForFloatParameter: 0
     _otherFloatParameterToCompareTo: {fileID: 0}
     _comparedToForFloatParameter: 0
+  - _parameter: {fileID: 11400000, guid: 77b7baad2d58d9849beebf76d978b89f, type: 2}
+    _equalsForBoolParameter: 0
+    _comparisonTypeForFloatParameter: 0
+    _otherFloatParameterToCompareTo: {fileID: 0}
+    _comparedToForFloatParameter: 0

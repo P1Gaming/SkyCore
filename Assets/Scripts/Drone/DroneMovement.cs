@@ -1,17 +1,12 @@
-using Codice.CM.Common.Merge;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-// This is placeholder movement. The drone will pass through blocks.
-// We can either make it looks like the drone is super sci-fi and can pass thru blocks
-// or do something like navmesh so it flies around obstacles.
-// We might need to do our own navigation implementation if Unity's navmesh doesn't
-// support 3d. Or look into other options.
 
 public class DroneMovement : MonoBehaviour
 {
+    [SerializeField]
+    private Rigidbody _rigidbody;
     [SerializeField, Tooltip("How fast the drone moves.")]
     private float _movementSpeed = 3f;
     [SerializeField, Tooltip("How fast the drone rotates towards something, in degrees/sec")]
@@ -23,9 +18,7 @@ public class DroneMovement : MonoBehaviour
     [SerializeField, Tooltip("How high the drone tries to hover relative to its target")]
     private float _hoverHeight = 2f;
 
-
     private Transform _player;
-
 
 
     private void Awake()
@@ -33,22 +26,30 @@ public class DroneMovement : MonoBehaviour
         _player = Player.Motion.PlayerMovement.Instance.transform;
     }
 
+    public void StopVelocity()
+    {
+        _rigidbody.velocity = Vector3.zero;
+    }
+
     public void IdleMovement()
     {
         float rotateDegrees = _idleSpinSpeed * Time.deltaTime;
-        transform.Rotate(new Vector3(0, rotateDegrees, 0));
+        Vector3 newRotation = _rigidbody.rotation.eulerAngles;
+        newRotation.y += rotateDegrees;
+        _rigidbody.MoveRotation(Quaternion.Euler(newRotation));
     }
 
     /// <summary>
     /// Moves the drone along a vector, but not past the end of that vector.
-    /// Should be called from an update method until the drone reaches his destination.
+    /// (Not instantly. The physics tick must finish first. Also, there could be an obstacle.)
+    /// Should be called from a FixedUpdate method until the drone reaches his destination.
     /// </summary>
-    /// <returns>True if the drone has arrived at its destination, or false otherwise.</returns>
+    /// <returns>True if the drone will arrive at its destination once this physics tick completes, or false otherwise.</returns>
     public bool MoveDrone(Vector3 toTarget)
     {
-        Vector3 movement = Vector3.MoveTowards(Vector3.zero, toTarget, Time.deltaTime * _movementSpeed);
-        transform.position += movement;
-        return movement == toTarget;
+        Vector3 positionChange = Vector3.MoveTowards(Vector3.zero, toTarget, Time.deltaTime * _movementSpeed);
+        _rigidbody.velocity = positionChange / Time.deltaTime;
+        return positionChange == toTarget;
     }
 
     /// <summary>
@@ -117,7 +118,8 @@ public class DroneMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Rotates the drone towards the provided transform.
+    /// Rotates the drone towards the provided transform. 
+    /// (Not instantly. The physics tick must finish first. Also, there could be an obstacle.)
     /// </summary>
     /// <param name="target">The transform to look at.</param>
     public void RotateTowardsTarget(Transform target)
@@ -126,19 +128,15 @@ public class DroneMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Rotates the drone towards the specified point in world space.
+    /// Rotates the drone towards the specified point in world space. 
+    /// (Not instantly. The physics tick must finish first. Also, there could be an obstacle.)
     /// </summary>
     /// <param name="target">The point to look at.</param>
     public void RotateTowardsTarget(Vector3 target)
     {
-        Quaternion priorRotation = transform.rotation;
-
-        // is there a way to get this rotation w/o changing the transform's rotation?
-        // Answer: We could calculate the vector from drone to target, and then calculate its horizontal angle. That's not hard, but I'm not sure if it's worth it, though.
-        transform.LookAt(target);
-        Quaternion rotateTowards = transform.rotation;
-
-        transform.rotation = Quaternion.RotateTowards(priorRotation, rotateTowards, _turnSpeed * Time.deltaTime);
+        Vector3 displacement = target - _rigidbody.position;
+        Quaternion rotateTowards = Quaternion.LookRotation(displacement);
+        Quaternion nextRotation = Quaternion.RotateTowards(transform.rotation, rotateTowards, _turnSpeed * Time.deltaTime);
+        _rigidbody.MoveRotation(nextRotation);
     }
-
 }

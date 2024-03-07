@@ -336,9 +336,12 @@ MonoBehaviour:
     type: 3}
   _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 9e2a6b2596faf7a4f8b8cf772d631260,
     type: 2}
+  _interceptPlayer: {fileID: 11400000, guid: 77b7baad2d58d9849beebf76d978b89f, type: 2}
   _Enter: {fileID: 11400000, guid: 72b0d26662878e141abadea1448cba06, type: 2}
   _Update: {fileID: 11400000, guid: 0868a1f6b64404441b15f49db76bec92, type: 2}
   _Exit: {fileID: 11400000, guid: 57d9660963665f6489ad906727039527, type: 2}
+  _UpdateInterceptPlayer: {fileID: 11400000, guid: 4a3a5889f91ec7446b5d86bb20be5b2d,
+    type: 2}
 --- !u!114 &1518349965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,17 +853,25 @@ MonoBehaviour:
   _scanButtonUI: {fileID: 6418741841836162400}
   _placeholderScanAttemptingVisual: {fileID: 5625255709096306572}
   _placeholderScanSuccessVisual: {fileID: 6722134595557570117}
-  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: 5ecbe110088f7c945974e248513977bf,
-    type: 2}
   _distanceBetweenUnscannedAndPlayerParameter: {fileID: 11400000, guid: 974584e25a2c84949934f0e013a8f5f0,
     type: 2}
-  _seesUnscannedParameter: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
+  _seesUnscannedParameterInActionFSM: {fileID: 11400000, guid: cbd6295055372514a967e2a2e5c3f96e,
     type: 2}
   _scanButtonPressedParameter: {fileID: 11400000, guid: 7abd3c74b07c5a043bb2a132f3b461fe,
     type: 2}
   _buttonPressScanningParameter: {fileID: 11400000, guid: f0edce584f813614388f6fc6acd08373,
     type: 2}
-  _moveToUnscannedUpdate: {fileID: 11400000, guid: 97bc683d5c9dbc842ae26ea2e07b2f0a,
+  _distanceFromHoverbyUnscannedParameter: {fileID: 11400000, guid: fb0034541946e2d489774a5f2032ed3c,
+    type: 2}
+  _seesUnscannedParameterInMovementFSM: {fileID: 11400000, guid: 321049342e3108344b4a07d0d3d83606,
+    type: 2}
+  _moveToUnscannedUpdate: {fileID: 11400000, guid: c2ce81fe5dcdfda408fa33c135a27b93,
+    type: 2}
+  _moveToUnscannedEnter: {fileID: 11400000, guid: 820735600cbbd874bb7acf2819dce788,
+    type: 2}
+  _moveToUnscannedExit: {fileID: 11400000, guid: d26a7719211fdaa4c9c5f0d5759db10b,
+    type: 2}
+  _forgetScanTargetEnter: {fileID: 11400000, guid: eadd3b4a5e4c1b948be9f9d0fa21a26a,
     type: 2}
   _scanAttemptingEnter: {fileID: 11400000, guid: ffa4d13cee4dea34eae27bbc820663db,
     type: 2}
@@ -880,6 +891,10 @@ MonoBehaviour:
   _scanSucceededExit: {fileID: 11400000, guid: 4745cfe9e646968438aa50abb9eaf851, type: 2}
   _scannedItemEvent: {fileID: 11400000, guid: 4f2b14dc54d7f94489a78c16d868ffa1, type: 2}
   _scannedJellyEvent: {fileID: 11400000, guid: 4574e9dd0e3bdde47aff0a27e061d2a0, type: 2}
+  _tellActionFSMWhetherMovementIsInNearUnscannedState:
+    _bool: {fileID: 11400000, guid: d101da44c75a9d54abbeb4c8f70f09f7, type: 2}
+    _trueInStates:
+    - {fileID: 11400000, guid: 4eae5a5bff04a1c4092f387ce0d90178, type: 2}
 --- !u!1 &4364394113714527214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1018,7 @@ GameObject:
   - component: {fileID: 4364394114180109594}
   - component: {fileID: 9117878907213001977}
   - component: {fileID: 7605286380065068526}
+  - component: {fileID: 843046984382702895}
   - component: {fileID: 3021005747530959631}
   m_Layer: 11
   m_Name: Drone
@@ -1043,12 +1059,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c829baf021033f540b75113394977bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _logStateMachineTransitions: 0
-  _stateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
+  _logMovementStateMachineTransitions: 0
+  _logActionStateMachineTransitions: 0
+  _movementStateMachineDefinition: {fileID: 11400000, guid: fbb04febb861bed4caedb7a627c77434,
+    type: 2}
+  _actionStateMachineDefinition: {fileID: 11400000, guid: c06e7f7174e8a7d4bbbeebbd332e0b29,
     type: 2}
   _movement: {fileID: 7605286380065068526}
   _followPlayer: {fileID: 6897214807269276948}
   _scanning: {fileID: 557467598811146302}
+  _tellMovementFSMWhetherToDoNothing:
+    _bool: {fileID: 11400000, guid: 04b6528ea66382841a77a469e5c25c0b, type: 2}
+    _trueInStates:
+    - {fileID: 11400000, guid: f70575956cbeef5468b3d83285050946, type: 2}
+    - {fileID: 11400000, guid: c24ce9145aba520499c78bf9d3acb3ba, type: 2}
+    - {fileID: 11400000, guid: 79b72d783a2b82b47aa14d02f4d4a538, type: 2}
+    - {fileID: 11400000, guid: 3340a6f798a99934abf91fee90387efe, type: 2}
+    - {fileID: 11400000, guid: 7f611553cc7352a479d5c1cc3536a0b8, type: 2}
+    - {fileID: 11400000, guid: bc7dc86491d959d459202a8df94b6715, type: 2}
+    - {fileID: 11400000, guid: 65ce1772ec0bf864bbc586bd9326e44d, type: 2}
 --- !u!114 &7605286380065068526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,11 +1090,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98926d2b8aacb54eba798ab2a76c681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 843046984382702895}
   _movementSpeed: 3
   _turnSpeed: 300
   _idleSpinSpeed: 30
   _moveToHorizontalDistanceFromTarget: 3
   _hoverHeight: 2
+--- !u!54 &843046984382702895
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364394114180109592}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!95 &3021005747530959631
 Animator:
   serializedVersion: 5
@@ -1489,11 +1535,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
-  _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: 598ce633afdabd549971037975c12771,
+  _distanceFromHoverbyPlayerParameter: {fileID: 11400000, guid: ba7f734efbc7c0a4ca27a5a502657e2c,
     type: 2}
-  _idleUpdate: {fileID: 11400000, guid: 628e17ce4c75ee34ea23677f4cf1342b, type: 2}
-  _followPlayerUpdate: {fileID: 11400000, guid: 772b27df93a45f247b1b5e9d42167fda,
+  _nearPlayerUpdate: {fileID: 11400000, guid: d620f2e13a754f74c95b4b7c6c27fe23, type: 2}
+  _followPlayerUpdate: {fileID: 11400000, guid: 87a4b876bd702854892046a0a5eeb5b0,
     type: 2}
+  _followPlayerExit: {fileID: 11400000, guid: 7db9f2656d8a0f245af3c9f804a29731, type: 2}
 --- !u!1 &6418741841836162400
 GameObject:
   m_ObjectHideFlags: 0
