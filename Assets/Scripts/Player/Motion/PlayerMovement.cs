@@ -109,27 +109,30 @@ namespace Player.Motion
             //Move Speed Power
 
             GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
-            Vector3 moveDirection = transform.forward * forwardsBackwards + transform.right * rightLeft;
+            Vector3 targetMoveDirection = transform.forward * forwardsBackwards + transform.right * rightLeft;
 
+            Vector2 targetVelocity = _settings.MaxHorizontalSpeed * new Vector2(targetMoveDirection.x, targetMoveDirection.z);
+            Vector2 currentVelocity = HorizontalVelocity;
+            Vector2 velocityChangeDirection = (targetVelocity - currentVelocity).normalized;
 
-            _rigidbody.velocity += Time.deltaTime * _currentHorizontalMovementSettings.AccelToSpeedUp * moveDirection;
+            float accel = targetMoveDirection.magnitude != 0 ? _currentHorizontalMovementSettings.AccelToSpeedUp
+                : _currentHorizontalMovementSettings.AccelToStop;
 
-            if (moveDirection.magnitude == 0)
+            Vector2 newVelocity = currentVelocity + Time.deltaTime * accel * velocityChangeDirection;
+            if (newVelocity.magnitude > _settings.MaxHorizontalSpeed)
             {
-                Vector2 priorHorizontalVelocity = HorizontalVelocity;
-                HorizontalVelocity -= Time.deltaTime * _currentHorizontalMovementSettings.AccelToStop * priorHorizontalVelocity.normalized;
-                if (Vector2.Dot(priorHorizontalVelocity, HorizontalVelocity) < 0)
-                {
-                    // If the dot product is negative, the velocity has changed direction. It's trying to stop,
-                    // so it overshot 0. So just make it 0, so it doesn't jitter.
-                    HorizontalVelocity = Vector2.zero;
-                }
+                newVelocity = newVelocity.normalized * _settings.MaxHorizontalSpeed;
             }
 
-            if (HorizontalVelocity.magnitude > _settings.MaxHorizontalSpeed)
+            Vector2 currentVelocityError = currentVelocity - targetVelocity;
+            Vector2 newVelocityError = newVelocity - targetVelocity;
+            if (Vector2.Dot(currentVelocityError, newVelocityError) < 0)
             {
-                HorizontalVelocity = HorizontalVelocity.normalized * _settings.MaxHorizontalSpeed;
+                // It overshot the target velocity, so do this to avoid jittering around targetVelocity.
+                newVelocity = targetVelocity;
             }
+
+            HorizontalVelocity = newVelocity;
         }
 
         /// <summary>
