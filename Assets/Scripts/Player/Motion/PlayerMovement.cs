@@ -33,12 +33,9 @@ namespace Player.Motion
 
         private Rigidbody _rigidbody;
         private bool _isInteracting;
-        private float _horizontalMovement;
-        private float _verticalMovement;
         private Vector3 _moveDirection;
 
-        private static PlayerMovement _instance;
-        public static PlayerMovement Instance;
+        public static PlayerMovement Instance { get; private set; }
 
         public PlayerMovementSettings Settings => _settings;
 
@@ -48,9 +45,9 @@ namespace Player.Motion
 
         private float _timeSinceLastGrounded = Mathf.Infinity;
 
-        private float _jumpInputTime = -1f;
+        private float _jumpInputTime = float.NegativeInfinity;
 
-        private PlayerHorizontalMovementSettings _currentHorizontalMovement;
+        private PlayerHorizontalMovementSettings _currentHorizontalMovementSettings;
 
         private Vector2 HorizontalVelocity 
         { 
@@ -67,7 +64,7 @@ namespace Player.Motion
         {
             _settings.Initialize();
             _rigidbody = GetComponent<Rigidbody>();
-            _currentHorizontalMovement = _settings.GroundedHorizontalMovementSettings;
+            _currentHorizontalMovementSettings = _settings.GroundedHorizontalMovementSettings;
             Instance = this;
         }
 
@@ -81,27 +78,26 @@ namespace Player.Motion
         /// </summary>
         private void GetInput()
         {
-            _horizontalMovement = Input.GetAxisRaw("Horizontal");
-            _verticalMovement = Input.GetAxisRaw("Vertical");
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+            _moveDirection = transform.forward * vertical + transform.right * horizontal;
 
-            if (_horizontalMovement > 0)
+            if (horizontal > 0)
             {
                 _playerMovementA.Raise();
             }
-            if (_horizontalMovement < 0)
+            if (horizontal < 0)
             {
                 _playerMovementD.Raise();
             }
-            if (_verticalMovement > 0)
+            if (vertical > 0)
             {
                 _playerMovementW.Raise();
             }
-            if (_verticalMovement < 0)
+            if (vertical < 0)
             {
                 _playerMovementS.Raise();
             }
-
-            _moveDirection = transform.forward * _verticalMovement + transform.right * _horizontalMovement;
         }
 
 
@@ -129,14 +125,16 @@ namespace Player.Motion
         private void MovePlayer()
         {
             //Move Speed Power
-            _rigidbody.velocity += Time.deltaTime * _currentHorizontalMovement.AccelToSpeedUp * _moveDirection;
+            _rigidbody.velocity += Time.deltaTime * _currentHorizontalMovementSettings.AccelToSpeedUp * _moveDirection;
 
-            if (_moveDirection.magnitude < 0.1f)
+            if (_moveDirection.magnitude == 0)
             {
-                Vector2 playerVelocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z);
-                HorizontalVelocity -= Time.deltaTime * _currentHorizontalMovement.AccelToStop * playerVelocity.normalized;
-                if (Vector2.Dot(playerVelocity, HorizontalVelocity) < 0)
+                Vector2 priorHorizontalVelocity = HorizontalVelocity;
+                HorizontalVelocity -= Time.deltaTime * _currentHorizontalMovementSettings.AccelToStop * priorHorizontalVelocity.normalized;
+                if (Vector2.Dot(priorHorizontalVelocity, HorizontalVelocity) < 0)
                 {
+                    // If the dot product is negative, the velocity has changed direction. It's trying to stop,
+                    // so it overshot 0. So just make it 0, so it doesn't jitter.
                     HorizontalVelocity = Vector2.zero;
                 }
             }
@@ -148,12 +146,7 @@ namespace Player.Motion
         private void Jump()
         {
             float gravityAccel = _settings.GravityAccel;
-            bool canJump = false;
-
-            if (_timeSinceLastGrounded < _settings.CoyoteTime)
-            {
-                canJump = true;
-            }
+            bool canJump = _timeSinceLastGrounded < _settings.CoyoteTime;
 
             if (_rigidbody.velocity.y < 0 && (canJump || _settings.SameGravityWhenFallOffEdgeAsWhenFallDuringJump))
             {
@@ -165,24 +158,18 @@ namespace Player.Motion
                 _jumpInputTime = Time.time;
             }
 
-            if (canJump && Time.time < _jumpInputTime + _settings.JumpBufferTime)
+            if (canJump && Time.time <= _jumpInputTime + _settings.JumpBufferTime)
             {
-                //Jump Power
+                // Jump Power
                 VerticalVelocity = _settings.JumpVelocity;
-                StartCoroutine(ResetCoyote());
-                _jumpInputTime = 0f;
+                _jumpInputTime = float.NegativeInfinity;
+                _timeSinceLastGrounded = float.PositiveInfinity;
             }
             else
             {
-                //Gravity Power
+                // Gravity Power
                 VerticalVelocity -= gravityAccel * Time.deltaTime;
             }
-        }
-
-        IEnumerator ResetCoyote()
-        {
-            yield return new WaitForSeconds(.1f);
-            _timeSinceLastGrounded = Mathf.Infinity;
         }
 
         /// <summary>
@@ -190,15 +177,16 @@ namespace Player.Motion
         /// </summary>
         private void FallDetection()
         {
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), transform.TransformDirection(Vector3.down), 1f, _groundLayer))
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z)
+                , transform.TransformDirection(Vector3.down), 1f, _groundLayer))
             {
                 _timeSinceLastGrounded = 0.0f;
-                _currentHorizontalMovement = _settings.GroundedHorizontalMovementSettings;
+                _currentHorizontalMovementSettings = _settings.GroundedHorizontalMovementSettings;
             }
             else
             {
                 _timeSinceLastGrounded += Time.deltaTime;
-                _currentHorizontalMovement = _settings.NonGroundedHorizontalMovementSettings;
+                _currentHorizontalMovementSettings = _settings.NonGroundedHorizontalMovementSettings;
             }
         }
 
@@ -207,6 +195,7 @@ namespace Player.Motion
         /// </summary>
         public void Teleport(Vector3 position)
         {
+            _rigidbody.position = position;
             transform.position = position;
         }
 
@@ -216,9 +205,11 @@ namespace Player.Motion
         /// <param name="isInteracting"></param>
         public void SetInteract(bool isInteracting)
         {
-            // Game Design advised keep pause/disabled player during interaction
+            // We might need a combined way for disabling this script, since it'll also
+            // be disabled during inventory and will be able to open inventory while interacting.
+            // E.g. an int for the number of reasons to disable this script.
             _isInteracting = isInteracting;
-            this.enabled = !isInteracting;            
+            enabled = !isInteracting;            
         }
     }
 }
