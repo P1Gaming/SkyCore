@@ -34,13 +34,17 @@ namespace Player.Motion
 
         public PlayerMovementSettings Settings => _settings;
 
-        public bool IsMoving => _rigidbody.velocity != Vector3.zero;
+        public bool IsMoving => _rigidbody.velocity.magnitude > .001f;
 
         private float _timeSinceGroundedEnoughToJump = Mathf.Infinity;
 
         private float _jumpInputTime = float.NegativeInfinity;
         private bool _fixedUpdateRanThisFrame;
         private bool _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun;
+
+        private bool _jumping;
+        private bool _jumpedInPriorFixedUpdate;
+        private int _frameWhenGotJumpInputInFixedUpdate = -1;
 
         private PlayerHorizontalMovementSettings _currentHorizontalMovementSettings;
 
@@ -67,9 +71,8 @@ namespace Player.Motion
         private void FixedUpdate()
         {
             GroundedDetection();
-            MovePlayer();
-            Jump();
-            CapMovementVelocity();
+            UpdateHorizontalVelocity();
+            UpdateVerticalVelocity();
             _fixedUpdateRanThisFrame = true;
             _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = false;
         }
@@ -98,28 +101,20 @@ namespace Player.Motion
             }
         }
 
-        private void CapMovementVelocity()
-        {
-            if (HorizontalVelocity.magnitude > _settings.MaxHorizontalSpeed)
-            {
-                HorizontalVelocity = HorizontalVelocity.normalized * _settings.MaxHorizontalSpeed;
-            }
-        }
-
         /// <summary>
         /// This moves the player, but does not determine which direction the player goes.
         /// </summary>
-        private void MovePlayer()
+        private void UpdateHorizontalVelocity()
         {
             //Move Speed Power
 
-            GetWASDInputAxes(out float horizontal, out float vertical);
-            Vector3 _moveDirection = transform.forward * vertical + transform.right * horizontal;
+            GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
+            Vector3 moveDirection = transform.forward * forwardsBackwards + transform.right * rightLeft;
 
 
-            _rigidbody.velocity += Time.deltaTime * _currentHorizontalMovementSettings.AccelToSpeedUp * _moveDirection;
+            _rigidbody.velocity += Time.deltaTime * _currentHorizontalMovementSettings.AccelToSpeedUp * moveDirection;
 
-            if (_moveDirection.magnitude == 0)
+            if (moveDirection.magnitude == 0)
             {
                 Vector2 priorHorizontalVelocity = HorizontalVelocity;
                 HorizontalVelocity -= Time.deltaTime * _currentHorizontalMovementSettings.AccelToStop * priorHorizontalVelocity.normalized;
@@ -130,27 +125,34 @@ namespace Player.Motion
                     HorizontalVelocity = Vector2.zero;
                 }
             }
+
+            if (HorizontalVelocity.magnitude > _settings.MaxHorizontalSpeed)
+            {
+                HorizontalVelocity = HorizontalVelocity.normalized * _settings.MaxHorizontalSpeed;
+            }
         }
 
         /// <summary>
         /// If the player gets the jump input, add upwards force.
         /// </summary>
-        private void Jump()
+        private void UpdateVerticalVelocity()
         {
             float gravityAccel = _settings.GravityAccel;
-            
 
-            if (_rigidbody.velocity.y < 0)
+            if (_rigidbody.velocity.y > 0 && _jumping)
             {
-                gravityAccel = _settings.GravityAccelWhileFallingDuringJump;
+                gravityAccel = _settings.GravityAccelWhileJumpingUp;
             }
 
-            if (GetJumpInput() || _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun)
+            bool getJumpInputFirstTimeThisFrame = GetJumpInput() && Time.frameCount != _frameWhenGotJumpInputInFixedUpdate;
+
+            if (getJumpInputFirstTimeThisFrame || _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun)
             {
+                _frameWhenGotJumpInputInFixedUpdate = Time.frameCount;
                 _jumpInputTime = Time.time;
             }
 
-            bool canJump = _timeSinceGroundedEnoughToJump < _settings.CoyoteTime;
+            bool canJump = _timeSinceGroundedEnoughToJump < _settings.CoyoteTime && !_jumping;
             bool recentJumpInput = Time.time <= _jumpInputTime + _settings.JumpBufferTime;
             if (canJump && recentJumpInput)
             {
@@ -158,11 +160,26 @@ namespace Player.Motion
                 VerticalVelocity = _settings.JumpVelocity;
                 _jumpInputTime = float.NegativeInfinity;
                 _timeSinceGroundedEnoughToJump = float.PositiveInfinity;
+                _jumping = true;
+                _jumpedInPriorFixedUpdate = true;
             }
             else if (!GroundedEnoughForNoGravity)
             {
-                // Gravity Power
-                VerticalVelocity -= gravityAccel * Time.deltaTime;
+                // Gravity Power and drag for terminal velocity
+                float totalAccel = -gravityAccel;
+
+                if (VerticalVelocity < -_settings.DownwardsVelocityAtEndOfJump)
+                {
+                    // E.g. if it falls at 2m/s at the end of a jump on a flat surface, and it's falling at 3m/s,
+                    // then this would equal 1.
+                    float fallSpeedBeyondThreshold = -VerticalVelocity - _settings.DownwardsVelocityAtEndOfJump;
+
+                    float dragAccel = _settings.FallDragForceConstant
+                        * Mathf.Pow(fallSpeedBeyondThreshold, PlayerMovementSettings._fallDragProportionalityExponent);
+                    totalAccel += dragAccel;
+                }
+
+                VerticalVelocity += totalAccel * Time.deltaTime;
             }
         }
 
@@ -171,16 +188,35 @@ namespace Player.Motion
         /// </summary>
         private void GroundedDetection()
         {
-            GroundedEnoughForNoGravity = _groundingSurfaceSlope < 5f;
-            GroundedEnoughForNormalAccelerationSettings = _groundingSurfaceSlope < 90f;
-            GroundedEnoughToJump = _groundingSurfaceSlope < 60f;
+            if (_jumpedInPriorFixedUpdate)
+            {
+                // For some reason, in this case it incorrectly thinks it's grounded. Maybe the OnCollisionStay is called
+                // before the velocity moves it.
 
-            // Do this so will get the minimum slope angle when the physics engine updates after FixedUpdates run.
+                // Without doing this, with a jump height setting of 2.25, it jumps 2.34 units (with monitor refresh rate of 60.
+                // It'd be closer to 2.25 with a faster monitor because we set Time.fixedDeltaTime based on that.)
+
+                // With this check, it jumps 2.28 units, which is probably small enough error to be from physics innaccuracy.
+
+                GroundedEnoughForNoGravity = false;
+                GroundedEnoughForNormalAccelerationSettings = false;
+                GroundedEnoughToJump = false;
+            }
+            else
+            {
+                GroundedEnoughForNoGravity = _groundingSurfaceSlope < PlayerMovementSettings._slopeDegreesForNoGravity;
+                GroundedEnoughForNormalAccelerationSettings = _groundingSurfaceSlope < PlayerMovementSettings._slopeDegreesToNotBeFalling;
+                GroundedEnoughToJump = _groundingSurfaceSlope < PlayerMovementSettings._slopeDegreesToJump;
+            }
+            _jumpedInPriorFixedUpdate = false;
+
+            // Do this so will get the minimum slope angle when the physics engine updates after FixedUpdate runs.
             _groundingSurfaceSlope = float.PositiveInfinity; 
 
             if (GroundedEnoughToJump)
             {
                 _timeSinceGroundedEnoughToJump = 0.0f;
+                _jumping = false;
             }
             else
             {
@@ -191,10 +227,10 @@ namespace Player.Motion
                 ? _settings.GroundedHorizontalMovementSettings : _settings.NonGroundedHorizontalMovementSettings;
         }
 
-        private void GetWASDInputAxes(out float horizontal, out float vertical)
+        private void GetWASDInputAxes(out float rightLeft, out float forwardsBackwards)
         {
-            horizontal = Input.GetAxisRaw("Horizontal");
-            vertical = Input.GetAxisRaw("Vertical");
+            rightLeft = Input.GetAxisRaw("Horizontal");
+            forwardsBackwards = Input.GetAxisRaw("Vertical");
         }
 
         private bool GetJumpInput()
@@ -204,20 +240,20 @@ namespace Player.Motion
 
         private void CheckRaiseWASDEvents()
         {
-            GetWASDInputAxes(out float horizontal, out float vertical);
-            if (horizontal < 0)
+            GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
+            if (rightLeft < 0)
             {
                 _playerMovementA.Raise();
             }
-            if (horizontal > 0)
+            if (rightLeft > 0)
             {
                 _playerMovementD.Raise();
             }
-            if (vertical > 0)
+            if (forwardsBackwards > 0)
             {
                 _playerMovementW.Raise();
             }
-            if (vertical < 0)
+            if (forwardsBackwards < 0)
             {
                 _playerMovementS.Raise();
             }

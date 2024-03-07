@@ -10,6 +10,12 @@ namespace Player.Motion
     [System.Serializable] // to show in inspector
     public class PlayerMovementSettings
     {
+        public const float _fallDragProportionalityExponent = 2f;
+
+        public const float _slopeDegreesForNoGravity = 5f;
+        public const float _slopeDegreesToNotBeFalling = 90f; // 90 means the player would be touching a vertical cliff
+        public const float _slopeDegreesToJump = 60f;
+
         [Header("Running")]
         [SerializeField, Tooltip("Maximum speed, ignoring the vertical component")]
         private float _maxSpeed = 1f;
@@ -28,11 +34,6 @@ namespace Player.Motion
         private float _jumpDownwardsTime = 1f;
         [SerializeField, Tooltip("The maximum speed in the vertical downwards direction")]
         private float _terminalVelocity = float.PositiveInfinity;
-        [SerializeField, Tooltip("The drag force while falling is proportional to fall speed to this power")]
-        private float _fallDragProportionalityExponent = 2f;
-        [SerializeField, Range(0, 1), Tooltip("While falling, drag makes the player stop accelerating at Terminal Velocity." +
-            " The force is multiplied by this, but fall speed is still capped to terminal velocity.")]
-        private float _fallDragForceMultiplier = 1f;
         [SerializeField, Tooltip("How long after running off an edge the player can still jump")]
         private float _coyoteTime = 0f;
         [SerializeField, Tooltip("How long a jump while non-grounded is remembered, to be executed upon reaching the ground")]
@@ -46,13 +47,13 @@ namespace Player.Motion
             => _nonGroundedHorizontalMovementSettings;
 
         // Properties for vertical movement
+        public float GravityAccelWhileJumpingUp { get; private set; }
         public float GravityAccel { get; private set; }
-        public float GravityAccelWhileFallingDuringJump { get; private set; }
         public float JumpVelocity { get; private set; }
         public float CoyoteTime => _coyoteTime;
         public float TerminalVelocity => _terminalVelocity;
-        public float FallDragProportionalityExponent => _fallDragProportionalityExponent;
         public float FallDragForceConstant { get; private set; }
+        public float DownwardsVelocityAtEndOfJump { get; private set; }
         public float JumpBufferTime => _jumpBufferTime;
 
         public void Initialize()
@@ -61,16 +62,23 @@ namespace Player.Motion
             _nonGroundedHorizontalMovementSettings.Initialize(_maxSpeed);
 
             // jump velocity = sqrt(height * 2 g) = _jumpUpwardsTime * g, where g is gravity acceleration
-            GravityAccel = 2 * _jumpHeight / (_jumpUpwardsTime * _jumpUpwardsTime);
-            GravityAccelWhileFallingDuringJump = 2 * _jumpHeight / (_jumpDownwardsTime * _jumpDownwardsTime);
+            GravityAccelWhileJumpingUp = 2 * _jumpHeight / (_jumpUpwardsTime * _jumpUpwardsTime);
+            GravityAccel = 2 * _jumpHeight / (_jumpDownwardsTime * _jumpDownwardsTime);
 
-            JumpVelocity = _jumpUpwardsTime * GravityAccel;
+            JumpVelocity = _jumpUpwardsTime * GravityAccelWhileJumpingUp;
+
+            
+            DownwardsVelocityAtEndOfJump = _jumpDownwardsTime * GravityAccel;
+            if (DownwardsVelocityAtEndOfJump >= _terminalVelocity)
+            {
+                throw new System.Exception("Invalid settings. Make the terminal velocity larger than " + DownwardsVelocityAtEndOfJump);
+            }
 
             // At terminal velocity, gravity accel = drag accel = constant * velocity ^ _fallDragProportionalityExponent
-            // GravityAccel varies based on whether jumping or just walked off an edge, so will multiply the drag
-            // accel by gravity accel.
-            FallDragForceConstant = 1f / Mathf.Pow(_terminalVelocity, _fallDragProportionalityExponent);
-            FallDragForceConstant *= _fallDragForceMultiplier;
+            // Also, no drag is applied until the fall speed is higher than the speed at the end of a jump, to avoid affecting
+            // that. So the terminal velocity is adjusted.
+            FallDragForceConstant = GravityAccel 
+                / Mathf.Pow(_terminalVelocity - DownwardsVelocityAtEndOfJump, _fallDragProportionalityExponent);
         }
     }
 }
