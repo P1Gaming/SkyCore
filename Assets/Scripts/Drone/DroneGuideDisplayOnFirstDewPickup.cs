@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroneOnDewPickup : MonoBehaviour
+public class DroneGuideDisplayOnFirstDewPickup : MonoBehaviour
 {
-    public static DroneOnDewPickup instance;
+    public static DroneGuideDisplayOnFirstDewPickup instance { get; private set; }
 
     /// <summary>
     /// Makes the drone rotate in a around the y axis and display the island heart when jellyDew is picked up the first time
     /// </summary>
 
-    public bool didtheThing { get; private set; } = false;
+    public bool guidewasdisplayed { get; private set; } = false;
     [SerializeField] Sprite islandHeartImage;
     [SerializeField] float rotationSpeed;
     bool currentlyRotating = false;
@@ -25,6 +25,7 @@ public class DroneOnDewPickup : MonoBehaviour
     {
         if (currentlyRotating)
         {
+            //TODO: Use the drone's state machine as the source of this movement.
             transform.Rotate(0, -rotationSpeed * 0.5f * Time.deltaTime, 0);
             counter += Time.deltaTime * rotationSpeed;
             Debug.LogWarning(counter);
@@ -32,7 +33,7 @@ public class DroneOnDewPickup : MonoBehaviour
             {
                 currentlyRotating = false;
                 ShowNewlyScannedThing.ShowImage(islandHeartImage);
-                didtheThing = true;
+                guidewasdisplayed = true;
             }
         }
     }

@@ -31,9 +31,9 @@ public class PickupItem : MonoBehaviour
             {
                 if(_itemInfo.ID == 1)
                 {
-                    if (DroneOnDewPickup.instance.didtheThing == false)
+                    if (DroneGuideDisplayOnFirstDewPickup.instance.guidewasdisplayed == false)
                     {
-                        DroneOnDewPickup.instance.Activate();
+                        DroneGuideDisplayOnFirstDewPickup.instance.Activate();
                     }
                 }
                 Destroy(gameObject);
