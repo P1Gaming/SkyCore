@@ -196,6 +196,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <jellyType>k__BackingField: 0
+  <NumOfDewSpawnedAtLevel>k__BackingField: 01000000
+  <RequiredExpForNextLevel>k__BackingField:
+  - 10
   <MaxFoodSaturation>k__BackingField: 100
   _minFoodSaturation: 20
   _foodSaturationInterval: 10
@@ -218,7 +221,6 @@ MonoBehaviour:
   _durationOfJump: 1.38
   _totalJumpHeight: 0.76
   _stateMachine: {fileID: 7924440530794558401}
-  _wanderEnter: {fileID: 11400000, guid: 95b03d51f3856b845bd4d3427e16ba2f, type: 2}
   _wanderExit: {fileID: 11400000, guid: 4bf60e81b010f214ab34282889a31737, type: 2}
 --- !u!1 &421980575205785031
 GameObject:

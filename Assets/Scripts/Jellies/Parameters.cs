@@ -26,7 +26,29 @@ namespace Jellies
         /// </summary>
         [Tooltip("What type of jelly is it.")]
         [field: SerializeField]
-        public JellyType jellyType 
+        public JellyType jellyType
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The number of dew spawned per interaction.
+        /// </summary>
+        [Tooltip("The number of dew spawned per interaction. Index 0 is assumed to be level 1, index 1 level 2 and so on.")]
+        [field: SerializeField]
+        public int[] NumOfDewSpawnedAtLevel
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The required experience per level
+        /// </summary>
+        [Tooltip("The required experience per level. Index 0 is assumed to be level 1, index 1 level 2 and so on.")]
+        [field: SerializeField]
+        public float[] RequiredExpForNextLevel
         {
             get;
             private set;
