@@ -36,20 +36,23 @@ namespace FiniteStateMachine
     /// </summary>
     public class FiniteStateMachineInstance
     {
+        private MonoBehaviour _identifierForSelectiveListeners;
         private FSMDefinition _definition;
         private FSMState _currentState;
         private float _timeEnteredCurrentState;
-        private bool _logTransitions;
 
         // names and values of parameters (like in Unity's animator)
         private Dictionary<FSMParameter, bool> _bools = new();
         private Dictionary<FSMParameter, bool> _triggers = new();
         private Dictionary<FSMParameter, float> _floats = new();
 
-        public FiniteStateMachineInstance(FSMDefinition definition, bool logTransitions)
+        public FiniteStateMachineInstance(FSMDefinition definition
+            , MonoBehaviour identifierForSelectiveListeners
+            , bool logTransitions)
         {
             _definition = definition;
-            _logTransitions = logTransitions;
+            _identifierForSelectiveListeners = identifierForSelectiveListeners;
+            LogTransitions = logTransitions;
 
             foreach (FSMParameter x in _definition.Parameters)
             {
@@ -93,16 +96,15 @@ namespace FiniteStateMachine
                         }
                     }
 
-                    if (_logTransitions)
+                    if (LogTransitions)
                     {
                         Debug.Log($"Transition at frame #{Time.frameCount}: \"{_currentState.name}\" --> \"{newState.name}\"");
                     }
-                    _currentState.OnExit?.Raise();
-                    _currentState.OnExit?.Raise(this);
+
+                    _currentState.OnExit?.Raise(_identifierForSelectiveListeners);
                     _currentState = newState;
                     _timeEnteredCurrentState = Time.time;
-                    _currentState.OnEnter?.Raise();
-                    _currentState.OnEnter?.Raise(this);
+                    _currentState.OnEnter?.Raise(_identifierForSelectiveListeners);
                     return true;
                 }
             }
@@ -113,7 +115,7 @@ namespace FiniteStateMachine
         {
             if (!_bools.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the bool parameter being set.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the bool parameter being set: ({parameter.name})", parameter);
                 return;
             }
 
@@ -124,7 +126,7 @@ namespace FiniteStateMachine
         {
             if (!_triggers.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the trigger parameter being set.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the trigger parameter being set: ({parameter.name})", parameter);
                 return;
             }
 
@@ -135,11 +137,44 @@ namespace FiniteStateMachine
         {
             if (!_floats.ContainsKey(parameter))
             {
-                Debug.LogError("This finite state machine doesn't have the float parameter being set.", parameter);
+                Debug.LogError($"This finite state machine doesn't have the float parameter being set: ({parameter.name})", parameter);
                 return;
             }
 
             _floats[parameter] = setTo;
+        }
+
+        public bool GetBool(FSMParameter parameter)
+        {
+            if (!_bools.ContainsKey(parameter))
+            {
+                Debug.LogError($"This finite state machine doesn't have the bool parameter: ({parameter.name})", parameter);
+                return false;
+            }
+
+            return _bools[parameter];
+        }
+
+        public bool GetTrigger(FSMParameter parameter)
+        {
+            if (!_triggers.ContainsKey(parameter))
+            {
+                Debug.LogError($"This finite state machine doesn't have the trigger parameter: ({parameter.name})", parameter);
+                return false;
+            }
+
+            return _triggers[parameter];
+        }
+
+        public float GetFloat(FSMParameter parameter)
+        {
+            if (!_floats.ContainsKey(parameter))
+            {
+                Debug.LogError($"This finite state machine doesn't have the float parameter: ({parameter.name})", parameter);
+                return float.NaN;
+            }
+
+            return _floats[parameter];
         }
 
         /// <summary>
@@ -153,8 +188,7 @@ namespace FiniteStateMachine
                 // Will only happen the 1st time this method runs.
                 _currentState = _definition.DefaultState;
                 _timeEnteredCurrentState = Time.time;
-                _currentState.OnEnter?.Raise();
-                _currentState.OnEnter?.Raise(this);
+                _currentState.OnEnter?.Raise(_identifierForSelectiveListeners);
             }
 
             // Check transitions until no transition happens. Don't allow infinite loop.
@@ -169,8 +203,11 @@ namespace FiniteStateMachine
                 }
             }
 
-            _currentState.OnUpdate?.Raise();
-            _currentState.OnUpdate?.Raise(this);
+            _currentState.OnUpdate?.Raise(_identifierForSelectiveListeners);
         }
+
+
+
+        public bool LogTransitions { get; set; }
     }
 }

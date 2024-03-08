@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 548689562930659569}
   - component: {fileID: 548689562930659582}
   - component: {fileID: 548689562930659571}
+  - component: {fileID: 1732815361}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -156,7 +157,7 @@ MonoBehaviour:
   _playerMovementW: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff, type: 2}
   _playerMovementA: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0, type: 2}
   _playerMovementS: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207, type: 2}
-  _playerMovementD: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff, type: 2}
+  _playerMovementD: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4, type: 2}
 --- !u!114 &548689562930659569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +220,21 @@ MonoBehaviour:
   _inventoryTool:
     _stacksCapacityResource: 9
     _sortType: 1
+--- !u!114 &1732815361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548689562930659578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910fb477aa5dd844ba837784a1a9eeb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attractionForce: 10
+  _maxAttractionSpeed: 32
+  _HomingPower: 0.75
 --- !u!1 &548689563490798967
 GameObject:
   m_ObjectHideFlags: 0

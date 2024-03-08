@@ -1,22 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 /// <summary>
 /// Handles evolution of a jelly.
 /// </summary>
 public class JellyEvolver : MonoBehaviour
 {
-    [Header("Don't revert this in prefab mode on a\nprefab variant, as it's likely\noverriding a hidden field")]
     [SerializeField, Tooltip("The root gameObject of the jelly.")]
     private GameObject _root;
 
-    [SerializeField, HideInInspector]
+    [SerializeField]
     private GameObject _evolutionPrefab;
-    // ^ if you change the name of this, change the string in SetEvolutionPrefab to match
 
     private List<ICopierWhenJellyEvolves> _copiers = new List<ICopierWhenJellyEvolves>();
     
@@ -61,14 +56,4 @@ public class JellyEvolver : MonoBehaviour
     {
         _copiers.Add(copier);
     }
-
-#if UNITY_EDITOR
-    public void SetEvolutionPrefab(GameObject evolutionPrefab)
-    {
-        // Setting _evolutionPrefab directly doesn't seem to save properly, so do this.
-        SerializedObject so = new SerializedObject(this);
-        so.FindProperty("_evolutionPrefab").objectReferenceValue = evolutionPrefab;
-        so.ApplyModifiedPropertiesWithoutUndo();
-    }
-#endif
 }

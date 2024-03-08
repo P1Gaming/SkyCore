@@ -3,7 +3,6 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Jellies.Behaviors;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 

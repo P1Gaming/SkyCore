@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{F05F9159-AF21-423D-8F81-903A3D83D93B}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Env" ID="{A85D8407-21F7-4E28-8000-572F18445E1D}" ShortID="993657168">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="24"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="Play_Campfire" ID="{DC9775C0-AAE6-407F-927F-8127F76FC9D3}">
+							<ChildrenList>
+								<Action Name="" ID="{74603A6B-0FF5-4DB7-94CC-EFB8B0BD802F}" ShortID="483177665">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Env--General-CampfireStrike_01" ID="{696D59D4-D773-475A-AECF-93F0356A2E20}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{C30E59D7-A242-4372-98C8-DF1A85F3D3A2}" ShortID="145701292">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Env--General-Campfire_01" ID="{42DF840B-68FE-46D6-BACE-1722438C0ECE}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Campfire_Extinguish" ID="{9E50D1B6-A1B7-4718-835D-F29F319E28C1}">
+							<ChildrenList>
+								<Action Name="" ID="{3A173FAB-69B0-4693-AABC-906218CEFCD2}" ShortID="569529549">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Env--General-CampfireExtinguish_01" ID="{1421166F-CD30-4A75-9E84-EFEBA5FC3CA6}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Env_Block_Sound" ID="{18183D8F-0830-46DC-93AD-FAD15D66D5E3}"/>
+						<Event Name="Play_Env_Drone_AllSounds" ID="{7C17650D-395A-49E2-B41C-564210A1C989}">
+							<ChildrenList>
+								<Action Name="" ID="{D2DEBC3C-19DA-46F7-BDFD-E3AEDBF00499}" ShortID="785749748">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Env--DroneSounds_01" ID="{21F330D3-1A27-4C50-B84D-5FF045A8DB97}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_IslandHeart_LevelUp" ID="{FF5B3492-13FE-4431-B2C2-6D5964FADB0C}">
+							<ChildrenList>
+								<Action Name="" ID="{5A5B2416-3D9F-48D1-87F9-5BDD1A9EB268}" ShortID="797966581">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Env--General-LvlUpIsland_01" ID="{5B6253F8-9BE1-4DFF-8822-DDADF683A74C}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Campfire" ID="{E48D9A63-20ED-4FE6-9A29-3F9CD7B5F483}">
+							<ChildrenList>
+								<Action Name="" ID="{6D06F473-B8E1-46D4-A62F-69811CB9595D}" ShortID="219045697">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Env--General-Campfire_01" ID="{42DF840B-68FE-46D6-BACE-1722438C0ECE}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Jellies" ID="{E70280B1-EFA4-4565-94E6-D5A36AD40D1B}" ShortID="286346830">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="Play_Jellies_Roam_Grass" ID="{90BDD99E-014D-46D0-B468-83C395277A4F}">
+							<ChildrenList>
+								<Action Name="" ID="{612EF460-26C8-4D2D-891B-6846EFBC66A2}" ShortID="527045854">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Grass" ID="{9202946A-CC73-42AC-8A2A-8C8DFD1638FA}" WorkUnitID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Jellies_Roam_Wood" ID="{CAD1BA03-A6D8-45C0-B528-824F03D32307}">
+							<ChildrenList>
+								<Action Name="" ID="{9A79F5D0-4D39-4384-A986-37FC4F2B6DC5}" ShortID="1002538251">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Wood" ID="{08635DCD-E953-4089-AE1B-0039C0256EA3}" WorkUnitID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Jellies_Roam_Stone" ID="{2EEC8116-5FB3-4568-8508-2674BB79D440}">
+							<ChildrenList>
+								<Action Name="" ID="{D470A265-9F89-436D-AFFD-996FA8B6F317}" ShortID="869830249">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Stone" ID="{A3B87F16-CC40-4569-815A-BA1EEB1AE593}" WorkUnitID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Jellydue_Pickup" ID="{9D80AF23-569B-47FF-835E-628B05B15584}">
+							<ChildrenList>
+								<Action Name="" ID="{F29EA5C9-6980-4650-8367-C76F42EA3A8A}" ShortID="1044293159">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Jellydue Pickup" ID="{7F80DF48-EC7F-4D97-9E51-B7BA7F64B1D0}" WorkUnitID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Jellies_Pet" ID="{1F730E90-1ABF-4902-B3A9-0436675487F1}">
+							<ChildrenList>
+								<Action Name="" ID="{922C6EF3-054F-417B-A71D-0872AA9C3241}" ShortID="322698674">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Pet" ID="{2B1C23CF-F52C-4C24-A3EA-2EAC6FBDEB1B}" WorkUnitID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Jelly_Eating" ID="{A876C744-0E3B-4AC5-98CE-898E9FC623F4}">
+							<ChildrenList>
+								<Action Name="" ID="{180FDCAC-8613-4BEB-B27C-912D33A463D9}" ShortID="202966623">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Eating" ID="{85C98236-AA00-48A6-AD0A-96E82F03B14A}" WorkUnitID="{BBEDBBEE-68A2-4E6F-9970-A9AE20DA1F5B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Player" ID="{63CD83BE-137E-40E1-8DC2-96CDC2F7A966}" ShortID="216800835">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="2"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="Play_Pickup_IslandBlocks" ID="{FEF4B0BE-6F7A-4F64-92AD-AC310B8A6B95}">
+							<ChildrenList>
+								<Action Name="" ID="{5B86CB1A-DCEB-47E0-8901-CB0C035CEA4A}" ShortID="566983975">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="IslandBlocks" ID="{07B21C26-C57D-444D-9DD6-85EA606E5BFB}" WorkUnitID="{77E6AF40-97DC-4391-B713-B4353111E069}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_UseItem_Block" ID="{0C2BF879-D58A-4667-8DF5-DC35755363C8}">
+							<ChildrenList>
+								<Action Name="" ID="{816C8687-CC43-4EE0-B156-F4F86E67FB88}" ShortID="953751324">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Block" ID="{A85AB589-6414-4527-919E-B7AB121DF258}" WorkUnitID="{77E6AF40-97DC-4391-B713-B4353111E069}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player_Footsteps" ID="{FEF7B0FF-B8BA-4216-A1D0-87D279D60B96}">
+							<ChildrenList>
+								<Action Name="" ID="{2E57547F-0F2D-4680-A8D6-F06E77FAF29A}" ShortID="837578459">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Footsteps" ID="{375DF73B-757F-4E81-B399-62A7530C5168}" WorkUnitID="{77E6AF40-97DC-4391-B713-B4353111E069}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_PickupItem_Berries" ID="{89B47D2C-D4A2-4206-8677-652FADC29B6D}">
+							<ChildrenList>
+								<Action Name="" ID="{DAD7EDAC-AC59-4A80-B461-3F8389F2A179}" ShortID="114723791">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Berries" ID="{57A93684-1ADE-4DE7-8EAC-46762313585C}" WorkUnitID="{77E6AF40-97DC-4391-B713-B4353111E069}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="UI" ID="{7820401A-A16D-4ED6-B3E7-5CE6B63EA617}" ShortID="784880071">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="Play_UI_Pause_OpenMenu" ID="{0CC1EB3F-F403-44F7-BC77-7D9D682C3890}">
+							<ChildrenList>
+								<Action Name="" ID="{C8009856-8EE6-4C69-84EC-E9E634D071FF}" ShortID="651527014">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI--Pause-OpenMenu_01" ID="{F7B50863-061F-463B-8144-10CC85F1AAFB}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_UI_Pause_TabSounds" ID="{5845A7E0-965A-4FCB-BAD3-32DC63F2A5EF}">
+							<ChildrenList>
+								<Action Name="" ID="{7B4F5771-8619-4064-8FC8-F358AC16605D}" ShortID="38467442">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI--Pause-TabSounds" ID="{2AB2ADCF-B042-41F1-9C57-D99FC0CF172C}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_UI_Pause_InMenuSounds" ID="{DC176035-044C-4860-B9A0-D10BCBA49512}">
+							<ChildrenList>
+								<Action Name="" ID="{BAFD4429-F2A3-4748-9AB9-FF62655F33B1}" ShortID="257505108">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI--Pause-InMenuSounds" ID="{1DF96E07-67B1-4CBE-82C4-D228DAA6E567}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_UI_Pause_CloseMenu" ID="{57C8BA0E-D742-40F1-85F0-9A03DA5AEBF3}">
+							<ChildrenList>
+								<Action Name="" ID="{50CEA53F-1424-4054-8678-BB4F25DD3E0D}" ShortID="487824852">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI--Pause-CloseMenu_01" ID="{B4E7B708-C1BC-48BA-8F2D-7AD69E5DE457}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="Crafting UI" ID="{60C2D3BA-4A74-4DF0-AA9F-51EE344AC448}" ShortID="986785291">
+							<ChildrenList>
+								<Event Name="Play_UI__CraftingMenu_OpeningUpCraftingSystem_01" ID="{1EF68F9B-1896-4BFC-AAB6-D8ECFA3594F1}">
+									<ChildrenList>
+										<Action Name="" ID="{84341C53-A4FD-4EC1-932D-C095EEB5BC87}" ShortID="441556697">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-OpeningUpCraftingSystem_01" ID="{2A92D19B-9CE7-44A5-BD7F-07F2953D3ECD}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_Sorting_01" ID="{29BED591-191C-4EAA-93ED-3C43DDB23195}">
+									<ChildrenList>
+										<Action Name="" ID="{DB8C8F80-D34B-4828-9E7E-3197C777A8E3}" ShortID="938782670">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-Sorting_01" ID="{4F980B86-850A-440E-96EF-C54E7278E21C}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_Craft_01" ID="{88762BFA-3158-4E01-8ADF-C670CA759D23}">
+									<ChildrenList>
+										<Action Name="" ID="{57578B19-2B4A-478F-B112-93AB1326D0BF}" ShortID="667522986">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-Craft_01" ID="{4CD43965-FFD5-46DF-88E7-EA668B1D8F58}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_Upgrade_01" ID="{27145F25-7874-4839-A89A-E1AFE6BFD9FF}">
+									<ChildrenList>
+										<Action Name="" ID="{7FEA3A26-DDE6-47D4-AD47-464E9C491E8A}" ShortID="47170158">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-Upgrade_01" ID="{AB542512-B138-4C0D-ABC7-BE374E14CEC3}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_ClosingCraftingSystem_01" ID="{AA39883F-52C1-4F3C-A342-26D01F04D39D}">
+									<ChildrenList>
+										<Action Name="" ID="{012EC1BF-EEC1-440A-8369-46480B75EE1F}" ShortID="18657670">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-ClosingCraftingSystem_01" ID="{6CE50FDC-DE26-4640-95B1-0C0C8962F5E6}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_RightClickIcon_02" ID="{83937938-6863-45E6-BC61-3EF357371E09}">
+									<ChildrenList>
+										<Action Name="" ID="{65BE6F84-4AED-43EC-93A7-E06F7FACADC6}" ShortID="572214951">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-RightClickIcon_02" ID="{266726F8-2E76-48F7-AAB4-B24B80A90A38}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_ListOfItems_01" ID="{2616D991-4BB7-4BCC-BEB9-04F59B080F60}">
+									<ChildrenList>
+										<Action Name="" ID="{F607DA92-EF0E-4FFD-9A24-37004B22A6FE}" ShortID="12175994">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-ListOfItems_01" ID="{3C1F5C8C-87C3-44C3-8335-20DCEEE5C4A3}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_LeftClickIcon_02" ID="{78622637-DD7E-4B44-B8E3-3CA3FF482E41}">
+									<ChildrenList>
+										<Action Name="" ID="{88C8D583-4C55-43EB-8F77-DD15F04F71DF}" ShortID="552328926">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-LeftClickIcon_02" ID="{9835460C-7E75-4550-847B-9F5C133324B3}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_UI__CraftingMenu_CraftCantDone_01" ID="{24A5BED6-40C4-4511-A818-748E904CAAC5}">
+									<ChildrenList>
+										<Action Name="" ID="{58434010-5DB2-47D2-A33D-B2AAB63E25C6}" ShortID="258179359">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UI--CraftingMenu-CraftCantDone_01" ID="{7E97F3E3-3077-40DC-AB8D-43190933B49E}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Music" ID="{F06287B6-83CA-452C-BEC6-361659C9658F}" ShortID="805651971">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="Play_Swamp_Biome_Music" ID="{2A008C28-FCA6-4898-AD7E-B492DAB81F42}">
+							<ChildrenList>
+								<Action Name="" ID="{BCE7C5AB-1205-4F18-B3B6-971F3A39C6C7}" ShortID="948535700">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Swamp Biome Music" ID="{FB8564F4-31B4-4EA5-948F-49594AFC29D7}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Pause_Menu_Music" ID="{B1693379-B8A7-4FB9-9B5F-3778774ACAF8}">
+							<ChildrenList>
+								<Action Name="" ID="{FA2D576D-6F57-44D8-A0B3-F5E24211004A}" ShortID="426619043">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Pause Menu Music" ID="{7506BD35-0B17-4A35-A1E0-5AEB6C83214C}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Crystal_Biome_Music" ID="{663753D9-1C4E-4DC2-AEE3-822C0DC7FCEA}">
+							<ChildrenList>
+								<Action Name="" ID="{21041ACC-538D-42E4-AD83-4BD2FD0F6A40}" ShortID="538076597">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Crystal Biome Music" ID="{AA1515C2-8E1D-4E00-84D1-5C6A6FF8A78E}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Music__LoadingScreen_01" ID="{F4195FC1-4189-4569-80D7-35163B88AE09}">
+							<ChildrenList>
+								<Action Name="" ID="{C9F4AECE-EFF8-45F1-9968-14B259E9C424}" ShortID="6191467">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LoadingScreenMusic" ID="{533FD766-948A-4FFD-9B17-F063118237A1}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Desert_Biome_Music" ID="{306EA9EA-EC9E-4D7B-B704-375136677742}">
+							<ChildrenList>
+								<Action Name="" ID="{ADDFEDBD-68B8-43EF-BBCA-D77CAFB6C5E0}" ShortID="687878027">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Desert Biome Music" ID="{B4B8D68C-6AE4-46A1-A02C-D8D0CC1C1B87}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Title_Screen_Music" ID="{EB4F5E9C-CC05-4142-83FA-13DF6E91BC46}">
+							<ChildrenList>
+								<Action Name="" ID="{10ED8440-8454-49E1-8806-5D439507F39A}" ShortID="332686032">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Title Screen Music" ID="{AB438F41-B456-4970-8154-BB952CA2E668}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Snow_Biome_Music" ID="{41287586-119E-486B-AFC8-713AE0F7F0EE}">
+							<ChildrenList>
+								<Action Name="" ID="{FB81E8D2-4377-4249-A665-55D3737B518D}" ShortID="784666926">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Snow Biome Music" ID="{0346ED8B-79D3-4771-BDB5-C0FFB1D728ED}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Taiga_Biome_Music" ID="{BA9EC0B3-266C-4B04-940A-B49AC4769909}">
+							<ChildrenList>
+								<Action Name="" ID="{BC16A821-94E8-4142-8DC4-1DCE2E69CDEA}" ShortID="28535232">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Taiga Biome Music" ID="{2B9BE5AE-DDB6-43A5-89B9-2C91AF8D41A7}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Title_Screen_Music" ID="{51B6F1FA-6047-40A5-B6F9-41C058BF734C}">
+							<ChildrenList>
+								<Action Name="" ID="{5A37922C-B88C-4262-A2F4-07F84BC61E51}" ShortID="106050874">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Title Screen Music" ID="{AB438F41-B456-4970-8154-BB952CA2E668}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
