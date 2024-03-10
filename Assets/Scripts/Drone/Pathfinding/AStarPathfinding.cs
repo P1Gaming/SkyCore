@@ -6,9 +6,10 @@ namespace CustomPathfinding
 {
     public class AStarPathfinding
     {
-        private const int MAX_NODES_TO_CLOSE = 100;
+        private const int GRID_SPACING = 1; // nodes are separated by this much space
 
-        private const int GRID_SPACING = 1;
+        private const int MAX_NODES_TO_CLOSE = 100; // check neighbors around up to this many nodes
+
 
         private float _agentMinRadius;
         private float _agentMaxRadius;
@@ -44,8 +45,6 @@ namespace CustomPathfinding
         {
             _visualization?.Reset();
 
-            // Add a physics check at the start where if it can go straight to the target, it does
-
             _open.Clear();
             _closed.Clear();
 
@@ -57,7 +56,7 @@ namespace CustomPathfinding
                 return end - start;
             }
 
-            _open.Insert(new Node(Vector3Int.zero, 0, (end - start).magnitude, Vector3Int.zero));
+            _open.Insert(new Node(Vector3Int.zero, Vector3Int.zero, 0, (end - start).magnitude));
 
             bool firstIteration = true;
 
@@ -65,8 +64,20 @@ namespace CustomPathfinding
             {
                 Node current = _open.ExtractNodeWithMinCost();
 
+                // Normally the A* algorithm checks if the current node is at the end, but don't do that.
+                // The end isn't going to be at a node's location (it'll be e.g. .23 units offset for example)
+                // and will find the closest node to the end when stop.
+
+                // Stopping this loop will be because open.Count == 0 (like in the normal
+                // algorithm) or because have checked neighbors around MAX_NODES_TO_CLOSE nodes. If we let
+                // it check as many nodes as it wants, it could take way too long to run. FixedUpdate needs to run
+                // a specific number of times per second, so if it takes longer than that to run, the fps will plummet.
+
+
+
                 _visualization?.ShowClosed(current.coords + _start);
                 _closed.Add(current.coords, current);
+
 
                 ConsiderNeighbor(ref current, GRID_SPACING * new Vector3Int(0, 0, 1), out bool obstructed1);
                 ConsiderNeighbor(ref current, GRID_SPACING * new Vector3Int(0, 0, -1), out bool obstructed2);
@@ -126,7 +137,8 @@ namespace CustomPathfinding
             Vector3 neighborPosition = neighborCoords + _start;
             Vector3 nodePosition = node.coords + _start;
 
-            // Could check CanTravelBetween first, but performance is better this way.
+            // Could check CanTravelBetween first to make this more concise, but performance is better this way
+            // because CanTravelBetween is relatively expensive.
 
             if (!_open.Contains(neighborCoords))
             {
@@ -135,25 +147,26 @@ namespace CustomPathfinding
                 {
                     if (!CanTravelBetween(nodePosition, neighborPosition, useGenerousCheckForCanTravelBetween))
                     {
-                        
-                        failedBecauseObstructed = true;
                         // Cannot go from the node to this neighbor.
+                        failedBecauseObstructed = true;
                         _visualization?.ShowObstructed(neighborPosition);
                         return;
                     }
 
                     Vector3 position = neighborCoords + _start;
                     float h = (_end - position).magnitude;
-                    _open.Insert(new Node(neighborCoords, g, h, node.coords));
+                    _open.Insert(new Node(neighborCoords, node.coords, g, h));
                 }
             }
             else
             {
                 if (!CanTravelBetween(nodePosition, neighborPosition, useGenerousCheckForCanTravelBetween))
                 {
-                    // don't need to set failedBecauseObstructed true here, I think.
-
                     // Cannot go from the node to this neighbor.
+
+                    // don't need to set failedBecauseObstructed true here, I think, because that's just for the 1st 
+                    // iteration (i.e. checking the neighbors of the start node) so this won't run when it'd matter.
+
                     _visualization?.ShowObstructed(neighborPosition);
                     return;
                 }
@@ -189,27 +202,31 @@ namespace CustomPathfinding
 
         private Vector3 StraightLineFromStartToPointAlongPath(Vector3 start)
         {
-            // maybe check some points in between the steps of the path.
-
             // Go straight towards one of the nodes in the path, prefering the ones closer to the end.
-            // _path sorts the path backwards (index 0 is closest to the end position) so iterate forwards.
 
-            int betweenPointsPerPathNode = 100 / _path.Count;
+            // _path sorts the path backwards (index 0 is closest to the end position) so iterate forwards
+            // and pick the 1st one which it can directly move to.
+
+            int pointsToCheckBetweenEachNode = 100 / _path.Count;
 
             Vector3 targetPosition = _path[_path.Count - 1]; // by default, target the start of the path
             for (int i = 0; i < _path.Count; i++)
             {
                 if (i == _path.Count - 1)
                 {
+                    // can't check points between this and the next node because this is the last one,
+                    // and this is already the default targetPosition
                     break;
                 }
 
                 bool foundTargetPosition = false;
 
-                for (int j = 0; j < betweenPointsPerPathNode + 1; j++)
+                // Check some points between each node in the path, so the movement feels a bit more natural.
+
+                for (int j = 0; j < pointsToCheckBetweenEachNode + 1; j++)
                 {
-                    // e.g. if there's 2 points between nodes, check at 1/3 and 2/3 between.
-                    float t = ((float)j) / (1 + betweenPointsPerPathNode);
+                    // e.g. if there's 2 points between nodes, check at 1/3, and 2/3 between
+                    float t = ((float)j) / (1 + pointsToCheckBetweenEachNode);
 
                     Vector3 point = Vector3.Lerp(_path[i], _path[i + 1], t);
                     if (CanTravelBetween(start, point))
@@ -231,8 +248,6 @@ namespace CustomPathfinding
 
         private bool CanTravelBetween(Vector3 a, Vector3 b, bool beGenerous = false)
         {
-            // hopefully we can just use a sphere collider for the drone, so there aren't as many issues with it thinking
-            // its obstructed when it isn't.
             float agentRadius = beGenerous ? _agentMinRadius : _agentMaxRadius;
             return !Physics.CheckCapsule(a, b, agentRadius, _obstacleLayers, QueryTriggerInteraction.Ignore);
         }

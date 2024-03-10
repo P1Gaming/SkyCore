@@ -16,12 +16,12 @@ namespace CustomPathfinding
         public float F => g + h; // Total cost.
 
 
-        public Node(Vector3Int coords, float g, float h, Vector3Int cameFrom)
+        public Node(Vector3Int coords, Vector3Int cameFrom, float g, float h)
         {
             this.coords = coords;
+            this.cameFrom = cameFrom;
             this.g = g;
             this.h = h;
-            this.cameFrom = cameFrom;
         }
 
         public override string ToString()
