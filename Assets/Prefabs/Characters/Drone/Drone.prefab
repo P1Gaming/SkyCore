@@ -845,6 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527c8e605aff57d46b9df0ad42c7d111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disable: 0
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
   _buttonPressScanning: 1
@@ -1091,11 +1092,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 843046984382702895}
+  _pathfindingAgentRadius: 0.9
   _movementSpeed: 3
   _turnSpeed: 300
   _idleSpinSpeed: 30
   _moveToHorizontalDistanceFromTarget: 3
   _hoverHeight: 2
+  _visualizePathfinding: 0
+  _pathNodeVisual: {fileID: 8726787470738554620, guid: 7e4e1a3f8cd13584fa58692c55914afe,
+    type: 3}
+  _closedNodeVisual: {fileID: 644031442746407870, guid: bed83bc81c409ea4fa535d89e3c69215,
+    type: 3}
+  _obstructedNodeVisual: {fileID: 2010657149313119949, guid: 8fbaa2a67806e524f8b9269628c8f979,
+    type: 3}
 --- !u!54 &843046984382702895
 Rigidbody:
   m_ObjectHideFlags: 0

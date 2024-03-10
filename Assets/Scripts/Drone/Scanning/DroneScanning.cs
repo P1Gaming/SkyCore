@@ -6,6 +6,8 @@ using FiniteStateMachine;
 public class DroneScanning : MonoBehaviour
 {
     [SerializeField]
+    private bool _disable;
+    [SerializeField]
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
@@ -143,7 +145,11 @@ public class DroneScanning : MonoBehaviour
 
     private void TrackThingToScan()
     {
-        if (_toScan == null || _scannableLocator.AlreadyScanned(_toScan))
+        if (_disable)
+        {
+            _toScan = null;
+        }
+        else if (_toScan == null || _scannableLocator.AlreadyScanned(_toScan))
         {
             // Don't see something else to scan while it's in scan succeeded, because 
             // otherwise it can scan anything nearby instantly, at least if you pick up the item which is about to finish scanning.
@@ -172,7 +178,7 @@ public class DroneScanning : MonoBehaviour
     private void UpdateMoveTowardsToScan()
     {
         _movement.RotateTowardsTarget(_toScan.transform);
-        _movement.MoveDrone(_movement.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false));
+        _movement.MoveDrone(_movement.FromDroneToNear(_toScan.transform, backAwayIfTooClose: false) + transform.position);
     }
 
     private void ExitMoveTowardsToScan()

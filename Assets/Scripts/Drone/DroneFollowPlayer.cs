@@ -55,7 +55,7 @@ public class DroneFollowPlayer : MonoBehaviour
     private void UpdateFollowPlayer()
     {
         _movement.RotateTowardsTarget(_player);
-        _movement.MoveDrone(_movement.FromDroneToNear(_player));
+        _movement.MoveDrone(_movement.FromDroneToNear(_player) + transform.position);
     }
 
     private void ExitFollowPlayer()

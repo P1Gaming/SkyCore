@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomPathfinding;
 
 
 public class DroneMovement : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody _rigidbody;
+    [SerializeField]
+    private float _pathfindingAgentRadius = 1f;
     [SerializeField, Tooltip("How fast the drone moves.")]
     private float _movementSpeed = 3f;
     [SerializeField, Tooltip("How fast the drone rotates towards something, in degrees/sec")]
@@ -18,12 +21,25 @@ public class DroneMovement : MonoBehaviour
     [SerializeField, Tooltip("How high the drone tries to hover relative to its target")]
     private float _hoverHeight = 2f;
 
+    [Header("Pathfinding Visualization")]
+    [SerializeField]
+    private bool _visualizePathfinding;
+    [SerializeField]
+    private GameObject _pathNodeVisual;
+    [SerializeField]
+    private GameObject _closedNodeVisual;
+    [SerializeField]
+    private GameObject _obstructedNodeVisual;
+
     private Transform _player;
+    private AStarPathfinding _pathfinding;
 
 
     private void Awake()
     {
         _player = Player.Motion.PlayerMovement.Instance.transform;
+        _pathfinding = new AStarPathfinding(gameObject.layer, _pathfindingAgentRadius
+            , _visualizePathfinding, _pathNodeVisual, _closedNodeVisual, _obstructedNodeVisual);
     }
 
     public void StopVelocity()
@@ -45,11 +61,13 @@ public class DroneMovement : MonoBehaviour
     /// Should be called from a FixedUpdate method until the drone reaches his destination.
     /// </summary>
     /// <returns>True if the drone will arrive at its destination once this physics tick completes, or false otherwise.</returns>
-    public bool MoveDrone(Vector3 toTarget)
+    public bool MoveDrone(Vector3 targetPosition)
     {
+        Vector3 toTarget = _pathfinding.CalcPathAndGetVectorToSomewhereOnIt(_rigidbody.position, targetPosition);
+
         Vector3 positionChange = Vector3.MoveTowards(Vector3.zero, toTarget, Time.deltaTime * _movementSpeed);
         _rigidbody.velocity = positionChange / Time.deltaTime;
-        return positionChange == toTarget;
+        return positionChange == toTarget && toTarget == targetPosition - _rigidbody.position;
     }
 
     /// <summary>
@@ -89,10 +107,7 @@ public class DroneMovement : MonoBehaviour
         Vector3 targetPosition = _player.transform.position + (_player.transform.forward * distanceFromPlayer);
         targetPosition.y = _player.transform.position.y + height;
 
-        // Calculate vector from drone to target point in front of the player.
-        Vector3 direction = targetPosition - transform.position;
-
-        bool arrived = MoveDrone(direction);
+        bool arrived = MoveDrone(targetPosition);
 
         if (keepFacingPlayer && !arrived) // dunno if the 2nd part of the && is necessary 
         {
