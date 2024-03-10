@@ -9,7 +9,9 @@ public class DroneMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody _rigidbody;
     [SerializeField]
-    private float _pathfindingAgentRadius = 1f;
+    private float _pathfindingAgentMinRadius = .48f;
+    [SerializeField]
+    private float _pathfindingAgentMaxRadius = .88f;
     [SerializeField, Tooltip("How fast the drone moves.")]
     private float _movementSpeed = 3f;
     [SerializeField, Tooltip("How fast the drone rotates towards something, in degrees/sec")]
@@ -38,7 +40,7 @@ public class DroneMovement : MonoBehaviour
     private void Awake()
     {
         _player = Player.Motion.PlayerMovement.Instance.transform;
-        _pathfinding = new AStarPathfinding(gameObject.layer, _pathfindingAgentRadius
+        _pathfinding = new AStarPathfinding(gameObject.layer, _pathfindingAgentMinRadius, _pathfindingAgentMaxRadius
             , _visualizePathfinding, _pathNodeVisual, _closedNodeVisual, _obstructedNodeVisual);
     }
 
