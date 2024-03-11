@@ -77,11 +77,12 @@ public class CutScenePlayer : MonoBehaviour
     public event EventHandler<CutScenePlayerEventArgs> OnCutSceneStopped;
 
 
+    [Tooltip("This field is optional. It lets you specify a cutscene to be played immediately on scene load. See the comments in CutScenePlayer.cs for info on creating cutscenes.")]
+    [SerializeField] private PlayableDirector _cutSceneToPlayOnStart;
+
     [Tooltip("This list lets you specify all of the cutscenes in this scene. See the comments in CutScenePlayer.cs for info on creating cutscenes.")]
     [SerializeField] private List<PlayableDirector> _CutScenes = new List<PlayableDirector>();
 
-    [Tooltip("This field is optional. It lets you specify a cutscene to be played immediately on scene load. See the comments in CutScenePlayer.cs for info on creating cutscenes.")]
-    [SerializeField] private PlayableDirector _cutSceneToPlayOnStart;
 
 
     // This holds a reference to the currently playing cut scene. It will be null if there isn't one playing.
@@ -194,7 +195,7 @@ public class CutScenePlayer : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Could not play the cut scene \"cutScene.Name\", as it is already playing!");
+            Debug.LogError($"Could not play the cut scene \"{cutScene.name}\", as it is already playing!");
             return false;
         }
     }
@@ -248,7 +249,7 @@ public class CutScenePlayer : MonoBehaviour
     /// Called when a cut scene starts playing.
     /// </summary>
     /// <param name="cutScene">The cutscene that started playing.</param>
-    private void CutSceneStarted(PlayableDirector cutScene)
+    private void FireCutSceneStartedEvent(PlayableDirector cutScene)
     {
         OnCutSceneStarted?.Invoke(this, new CutScenePlayerEventArgs() { CutScene = cutScene });
     }
@@ -257,7 +258,7 @@ public class CutScenePlayer : MonoBehaviour
     /// Called when a cut scene gets paused.
     /// </summary>
     /// <param name="cutScene">The cutscene that was paused.</param>
-    private void CutScenePaused(PlayableDirector cutScene)
+    private void FireCutScenePausedEvent(PlayableDirector cutScene)
     {
         OnCutScenePaused?.Invoke(this, new CutScenePlayerEventArgs() { CutScene = cutScene });
     }
@@ -266,7 +267,7 @@ public class CutScenePlayer : MonoBehaviour
     /// Called when a cut scene is stopped via Stop() or playback finishes.
     /// </summary>
     /// <param name="cutScene">The cutscene that stopped playing.</param>
-    private void CutSceneStopped(PlayableDirector cutScene)
+    private void FireCutSceneStoppedEvent(PlayableDirector cutScene)
     {
         DisconnectCutSceneEvents(cutScene);
 
@@ -276,16 +277,16 @@ public class CutScenePlayer : MonoBehaviour
 
     private void ConnectCutSceneEvents(PlayableDirector cutScene)
     {
-        cutScene.played += CutSceneStarted;
-        cutScene.paused += CutScenePaused;
-        cutScene.stopped += CutSceneStopped;
+        cutScene.played += FireCutSceneStartedEvent;
+        cutScene.paused += FireCutScenePausedEvent;
+        cutScene.stopped += FireCutSceneStoppedEvent;
     }
 
     private void DisconnectCutSceneEvents(PlayableDirector cutScene)
     {
-        cutScene.played -= CutSceneStarted;
-        cutScene.paused -= CutScenePaused;
-        cutScene.stopped -= CutSceneStopped;
+        cutScene.played -= FireCutSceneStartedEvent;
+        cutScene.paused -= FireCutScenePausedEvent;
+        cutScene.stopped -= FireCutSceneStoppedEvent;
     }
 
 
