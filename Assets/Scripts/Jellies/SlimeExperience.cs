@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Jellies;
+
 ///<summary>
 /// Script: SlimeExperience.cs
 /// Author: Michael Spangenberg (m_spangenberg)
@@ -14,6 +16,7 @@ using UnityEngine;
 /// </summary>
 public class SlimeExperience : MonoBehaviour
 {
+    private Parameters _parameters;
     [Tooltip("The max level of the jelly")]
     [SerializeField]
     private int _maxLevel;
@@ -51,6 +54,18 @@ public class SlimeExperience : MonoBehaviour
     
     private string _previousEXPsource = "";
 
+    public int LevelNum
+    {
+        get => _levelNum;
+    }
+
+    private void Awake()
+    {
+        _parameters = GetComponent<Parameters>();
+        
+        _expThreshold = _parameters.RequiredExpForNextLevel.Length > 0 ? _parameters.RequiredExpForNextLevel[_levelNum] : _expThreshold;
+    }
+
     ///<summary>
     /// Timer that resets _consectuctiveInteractionCounter after EXP has not been gained in a while
     /// </summary>
@@ -79,12 +94,28 @@ public class SlimeExperience : MonoBehaviour
         float _extraEXP = _currentEXP - _expThreshold; //The extra EXP after a level up
         if(_levelNum < _maxLevel)
         {
-            _levelNum++; 
+            _levelNum++;
+
+            // Used to handle if the array is empty or outside of range for the slimes current level
+            try
+            {
+                _expThreshold = _parameters.RequiredExpForNextLevel[_levelNum - 1];
+            } catch (System.IndexOutOfRangeException)
+            {
+                // Uses the highest level requirement if the slimes current level is outside of range
+                Debug.LogWarning("Property value \"RequiredExpForNextLevel\" array is either empty or outside of range for level num. " +
+                    "Using highest level requirement (" + _parameters.RequiredExpForNextLevel[_parameters.RequiredExpForNextLevel.Length - 1] + 
+                    ")");
+                _expThreshold = _parameters.RequiredExpForNextLevel[_parameters.RequiredExpForNextLevel.Length - 1];
+            }
+
+            // Placeholder for notifying if the player has reached another level
+            Debug.Log("Your jelly has reached level " + _levelNum + "!");
         }
         
         _currentEXP = _extraEXP;
         _expThreshold *= _expMultiplier; 
-        _expToNextLevel = GetEXPtoNextLevel(); 
+        _expToNextLevel = GetEXPtoNextLevel();
     }
     /// <summary>
     /// Calculates the EXP that the jelly needs in order to get to the next level

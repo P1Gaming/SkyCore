@@ -21,10 +21,13 @@ namespace Jellies
         private Parameters _parameters;
 
         private DewInstantiate _dew;
+
+        private SlimeExperience _slimeExp;
         private void Awake()
         {
             _parameters = GetComponent<Parameters>();
             _dew = GetComponent<DewInstantiate>();
+            _slimeExp = GetComponent<SlimeExperience>();
         }
 
         /// <summary>
@@ -44,8 +47,20 @@ namespace Jellies
             InventoryBase hotBar = InventoryScene.Instance.HotBar;
             if (hotBar.TrySubtractItemAmount(_berryItem, 1))
             {
-                FeedJelly(_berryItem.SaturationValue);  
-                _dew.DewSpawn();
+                FeedJelly(_berryItem.SaturationValue);
+
+                // Used to handle if the array is empty or outside of range for the slimes current level
+                try
+                {
+                    _dew.DewSpawn(_parameters.NumOfDewSpawnedAtLevel[_slimeExp.LevelNum - 1]);
+                } catch (System.IndexOutOfRangeException)
+                {
+                    // Uses the highest level requirement if the slimes current level is outside of range
+                    Debug.LogWarning("Property value \"NumOfDewSpawnedAtLevel\" array is either empty or outside of range for level num." +
+                        "Using highest level requirement (" + _parameters.NumOfDewSpawnedAtLevel[_parameters.NumOfDewSpawnedAtLevel.Length - 1] +
+                        ")");
+                    _dew.DewSpawn(_parameters.NumOfDewSpawnedAtLevel[_parameters.NumOfDewSpawnedAtLevel.Length - 1]);
+                }
             }
         }
     }
