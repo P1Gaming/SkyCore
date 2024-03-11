@@ -207,6 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dewPrefab: {fileID: 2916422275461499499, guid: c4d143484380c78428d84c668b9d4ef6,
     type: 3}
+  minXSpawnRange: -5
+  maxXSpawnRange: 5
 --- !u!4 &711068664972694185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1106465352066037874, guid: 33c867d60e0514d40b5d18506242c367,
