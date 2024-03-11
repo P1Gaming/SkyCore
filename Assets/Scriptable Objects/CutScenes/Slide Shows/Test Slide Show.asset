@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11de09fcc572514980e99381947260d, type: 3}
+  m_Name: Test Slide Show
+  m_EditorClassIdentifier: 
+  _defaultFadeInTime: 1.5
+  _defaultFadeOutTime: 1.5
+  _defaultTransitionDuration: 3
+  _fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  _slides:
+  - _displayTime: 5
+    _backgroundColor: {r: 1, g: 0, b: 0, a: 1}
+    _image: {fileID: 21300000, guid: 0a0eb3592c2b31a4cad81f05d274a6c1, type: 3}
+    _ImageScreenAlignment: 4
+    _imageDisplayMode: 1
+    _preserveAspectRatio: 0
+    _customImageDisplaySize: {x: 512, y: 256}
+    _transitionType: 1
+    _transitionDurationOverride: -1
+    _fadeInTimeOverride: -1
+    _fadeOutTimeOverride: -1
+  - _displayTime: 5
+    _backgroundColor: {r: 0, g: 1, b: 0, a: 1}
+    _image: {fileID: 21300000, guid: 0a0eb3592c2b31a4cad81f05d274a6c1, type: 3}
+    _ImageScreenAlignment: 4
+    _imageDisplayMode: 1
+    _preserveAspectRatio: 1
+    _customImageDisplaySize: {x: 512, y: 256}
+    _transitionType: 1
+    _transitionDurationOverride: -1
+    _fadeInTimeOverride: -1
+    _fadeOutTimeOverride: -1
+  - _displayTime: 5
+    _backgroundColor: {r: 0, g: 0, b: 1, a: 1}
+    _image: {fileID: 21300000, guid: 9c20544c751f6c540ac84b0e1dc4b9e3, type: 3}
+    _ImageScreenAlignment: 0
+    _imageDisplayMode: 0
+    _preserveAspectRatio: 1
+    _customImageDisplaySize: {x: 512, y: 256}
+    _transitionType: 0
+    _transitionDurationOverride: -1
+    _fadeInTimeOverride: -1
+    _fadeOutTimeOverride: -1
+  - _displayTime: 5
+    _backgroundColor: {r: 1, g: 1, b: 0, a: 1}
+    _image: {fileID: 21300000, guid: 9c20544c751f6c540ac84b0e1dc4b9e3, type: 3}
+    _ImageScreenAlignment: 7
+    _imageDisplayMode: 2
+    _preserveAspectRatio: 0
+    _customImageDisplaySize: {x: 512, y: 256}
+    _transitionType: 1
+    _transitionDurationOverride: -1
+    _fadeInTimeOverride: -1
+    _fadeOutTimeOverride: -1
+  - _displayTime: 5
+    _backgroundColor: {r: 1, g: 0, b: 1, a: 1}
+    _image: {fileID: 21300000, guid: 0a0eb3592c2b31a4cad81f05d274a6c1, type: 3}
+    _ImageScreenAlignment: 8
+    _imageDisplayMode: 1
+    _preserveAspectRatio: 0
+    _customImageDisplaySize: {x: 256, y: 512}
+    _transitionType: 1
+    _transitionDurationOverride: -1
+    _fadeInTimeOverride: -1
+    _fadeOutTimeOverride: -1
