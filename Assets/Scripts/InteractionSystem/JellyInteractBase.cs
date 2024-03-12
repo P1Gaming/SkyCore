@@ -44,7 +44,14 @@ public class JellyInteractBase : Interactable
             if (value != _interacting)
             {
                 _interacting = value;
-
+                if(value)
+                {
+                    InteractingJelly = this;
+                }
+                else
+                {
+                    InteractingJelly = null;
+                }
                 // Only 1 can interact at a time, so we can determine whether
                 // any are interacting like this. Need the static one, but also
                 // need to know whether this specific one is interacting.
@@ -53,7 +60,7 @@ public class JellyInteractBase : Interactable
         }
     }
     public static bool AnyInteracting { get; private set; }
-
+    public static JellyInteractBase InteractingJelly { get; private set; }
     private void Awake()
     {
         _jellyParams = GetComponent<Parameters>();

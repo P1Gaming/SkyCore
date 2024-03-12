@@ -22,7 +22,17 @@ namespace UI.Inventory
         private bool _clickHappeningAndHoveringOverOriginalSlot;
         private InventorySlotUI _beingDragged;
 
-        public InventoryDragAndDrop()
+        
+        private ItemBase _berryItem;
+        
+        
+        public void FeedJelly(float amountToIncrease)
+        {
+            JellyInteractBase.InteractingJelly.GetComponent<Jellies.Parameters>()
+                .IncreaseFoodSaturation(amountToIncrease);
+        }
+
+        public InventoryDragAndDrop(ItemBase berryItem)
         {
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -30,6 +40,8 @@ namespace UI.Inventory
             _click = playerInput == null ? null : playerInput.actions.FindAction("ClickForDragAndDrop", true);
             _click.started += OnClickStart;
             _click.canceled += OnClickCancel;
+
+            _berryItem = berryItem;
         }
 
         public void CheckDraggedStackNowEmpty()
@@ -104,11 +116,31 @@ namespace UI.Inventory
                 {
                     return;
                 }
+                if (_beingDragged.ItemStack.itemInfo.Name == "Red Berry")
+                {
+                    Ray ray;
+                    int layerMask = 1 << 3;
+
+                    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out _, 100, layerMask))
+                    {
+                        InventoryBase hotBar = InventoryScene.Instance.HotBar;
+                        if (hotBar.TrySubtractItemAmount(_berryItem, 1))
+                        {
+                            FeedJelly(_berryItem.SaturationValue);
+                            JellyInteractBase.InteractingJelly.GetComponent<DewInstantiate>().DewSpawn();
+                        }
+                    }
+                }
                 TossItem();
+                
+
                 return;
             }
 
             
+
+
             if (_beingDragged != null && (_beingDragged.ItemStack.itemInfo.SortType == slotBelowMouse.SlotType || slotBelowMouse.SlotType == ItemBase.ItemSortType.None))
             {
                 // Clicking again after clicking to pick up the item, so the player
@@ -165,7 +197,7 @@ namespace UI.Inventory
                 MoveDraggedItemToSlot(_beingDragged);
             }
         }
-
+        
         /// <summary>
         /// Toss an item if it is dragged out of the inventory.
         /// </summary>
@@ -198,6 +230,8 @@ namespace UI.Inventory
                         return;
                     }
                 }
+
+                
 
                 //Spawn item in front of the player
                 Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;

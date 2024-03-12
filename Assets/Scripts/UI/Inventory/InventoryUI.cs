@@ -71,7 +71,8 @@ namespace UI.Inventory
         private InventoryUIBase _inventoryUIT;
 
         private InventoryDragAndDrop _dragAndDrop;
-
+        [SerializeField]
+        private ItemBase _berryItem;
 
         private PauseManagement _pauseManager;
 
@@ -111,12 +112,12 @@ namespace UI.Inventory
                 _backpackAction.performed += OnBackpack;
             }
 
-            _dragAndDrop = new InventoryDragAndDrop();
+            _dragAndDrop = new InventoryDragAndDrop(_berryItem);
             _dragAndDrop.DisableInputAndStop();
 
-            _inventoryUIR.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
-            _inventoryUIJ.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
-            _inventoryUIT.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
+            _inventoryUIR.InventoryOrHotBar.Initialize(_dragAndDrop);
+            _inventoryUIJ.InventoryOrHotBar.Initialize(_dragAndDrop);
+            _inventoryUIT.InventoryOrHotBar.Initialize(_dragAndDrop);
             _hotBarUI.SetDragAndDrop(_dragAndDrop);
         }
 
@@ -183,12 +184,12 @@ namespace UI.Inventory
                 Debug.Log("Cancel pressing inventory because of pause game.");
                 return;
             }
-            else if (becomeInBackpackMode && JellyInteractBase.AnyInteracting)
+            /*else if (becomeInBackpackMode && JellyInteractBase.AnyInteracting)
             {
                 //the player has the game pause
                 Debug.Log("Cancel pressing inventory because of jelly Interaction");
                 return;
-            }
+            }*/
             else if (becomeInBackpackMode && IslandHeartInteractBase.AnyInteracting)
             {
                 //the player has the game paused

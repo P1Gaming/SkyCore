@@ -27,14 +27,19 @@ namespace Player
         private UI.Inventory.InventoryDragAndDrop _dragAndDrop;
 
 
+
         public event Action<ItemStack> OnChangeItem;
 
         public int StacksCapacityResource => _stacksCapacityResource;
 
         public ItemBase.ItemSortType SortType => _sortType;
 
-        public void SetDragAndDrop(UI.Inventory.InventoryDragAndDrop dragAndDrop) => _dragAndDrop = dragAndDrop;
 
+        public void Initialize(UI.Inventory.InventoryDragAndDrop dragAndDrop)
+        {
+            _dragAndDrop = dragAndDrop;
+        }
+        
         /// <summary>
         /// Creates a new item stack if the items picked up puts the amount over the max for the next open stack.
         /// </summary>
