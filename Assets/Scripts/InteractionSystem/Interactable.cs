@@ -38,14 +38,14 @@ public class Interactable : MonoBehaviour
         {
             case 0: //taking berries from a berry bush
                 {
-                    if (!false)//GetComponent<BerryBush>())
+                    if (!GetComponent<BerryBush>())//GetComponent<BerryBush>())
                     {
                         Debug.LogError("trying to do the berry bush interaction with no bush component");
                     }
-                    //else
-                    //{
-                    //    GetComponent<BerryBush>().TakeABerry(LastInteractedWith);
-                    //}
+                    else
+                    {
+                        GetComponent<BerryBush>().Harvest(LastInteractedWith);
+                    }
                 }
                 break;
             case 1: //the next interaction to be implemented should go here
