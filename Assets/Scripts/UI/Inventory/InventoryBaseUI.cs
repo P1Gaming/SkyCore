@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Player;
 using System.Diagnostics;
+using static UnityEditor.Progress;
 
 
 namespace UI.Inventory
@@ -176,6 +177,8 @@ namespace UI.Inventory
 
             from.ShowItem(from.ItemStack);
             to.ShowItem(to.ItemStack);
+
+            GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>().UpdateHeldItem();
         }
 
         public override string ToString()
@@ -195,6 +198,22 @@ namespace UI.Inventory
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Get what an item is relative to an index.
+        /// </summary>
+        public ItemStack GetItemIndex(int index)
+        {
+
+            foreach (ItemStack item in _itemsInSlotIndexes.Keys)
+            {
+                if (index == _itemsInSlotIndexes[item])
+                {
+                    return item;
+                }
+            }
+            return null;
         }
     }
 }

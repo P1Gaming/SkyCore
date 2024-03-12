@@ -69,6 +69,7 @@ namespace UI.Inventory
         private InventoryUIBase _inventoryUIR;
         private InventoryUIBase _inventoryUIJ;
         private InventoryUIBase _inventoryUIT;
+        public HotBarUI Hotbar => _hotBarUI;
 
         private InventoryDragAndDrop _dragAndDrop;
 
@@ -78,6 +79,20 @@ namespace UI.Inventory
         //Issue to fix, able to start interaction when inventory is open. Cannot call this script since
         //the namespace UI.Inventory is nt being recognized as a using namespace. Need some way to notify jelly that
         //the backpack is currently open. Cause Time.timescale soft lock.
+
+        private static InventoryUI _instance;
+        public static InventoryUI Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = GameObject.FindGameObjectWithTag("InventoryUI")?
+                        .GetComponent<InventoryUI>();
+                }
+                return _instance;
+            }
+        }
 
         private void Awake()
         {

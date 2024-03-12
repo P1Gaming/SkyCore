@@ -56,6 +56,7 @@ namespace Player
                 _dragAndDrop.CheckDraggedStackNowEmpty();
             }
             OnChangeItem?.Invoke(item);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>().UpdateHeldItem();
         }
 
         /// <summary>
