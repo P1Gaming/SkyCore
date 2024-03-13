@@ -76,6 +76,7 @@ namespace FiniteStateMachineEditor
             _initialConditionsContentAreaHeight = _refs.ConditionsScrolledContentRect.rect.height;
             _initialParametersContentAreaHeight = _refs.ParametersScrolledContentRect.rect.height;
 
+            AddVisualForState(null); // Anystate
             for (int i = 0; i < _stateMachineDefinition.EditorInfo.States.Length; i++)
                 AddVisualForState(_stateMachineDefinition.EditorInfo.States[i]);
 
@@ -205,9 +206,9 @@ namespace FiniteStateMachineEditor
                         _transitions[i].UpdateLine();
                     }
                 }
-                if (_selectedState != null && _selectedState != _creatingTransitionFrom)
+                if (_selectedState != null && !_selectedState.IsForAnystate && _selectedState != _creatingTransitionFrom)
                 {
-                    if (_states.Count == 1)
+                    if (_states.Count == 2) // 2 b/c one is for Anystate
                     {
                         Debug.LogWarning("Cannot delete the last state.");
                     }
@@ -263,9 +264,9 @@ namespace FiniteStateMachineEditor
             // reassign the default state
             if (stateEditor.State == _stateMachineDefinition.DefaultState)
             {
-                FSMEditorOneState newDefaultState = _states[0];
+                FSMEditorOneState newDefaultState = _states[1]; // at index is 0 is the one for Anystate.
                 if (newDefaultState == stateEditor)
-                    newDefaultState = _states[1];
+                    newDefaultState = _states[2];
                 FSMEditorSaveDataChanger.SetFSMDefinitionDefaultState(_stateMachineDefinition, newDefaultState.State);
                 newDefaultState.UpdateWhetherDefaultState();
             }
@@ -379,7 +380,7 @@ namespace FiniteStateMachineEditor
                 }
                 else
                 {
-                    string transitionTitle = $"[{_creatingTransitionFrom.State.name}] to [{_selectedState.State.name}]";
+                    string transitionTitle = $"[{_creatingTransitionFrom.Name}] to [{_selectedState.Name}]";
                     string transitionPath = MakePathForScriptableObject(ref transitionTitle, "Transitions");
                     FSMTransition newTransition = ScriptableObject.CreateInstance<FSMTransition>();
                     AssetDatabase.CreateAsset(newTransition, transitionPath);
@@ -406,7 +407,7 @@ namespace FiniteStateMachineEditor
             if (_selectedTransition != null)
             {
                 _selectedTransition.SetWhetherSelected(true);
-                _refs.TransitionTitleText.text = $"{_selectedTransition.From.State.name} -> {_selectedTransition.To.State.name}";
+                _refs.TransitionTitleText.text = $"{_selectedTransition.From.Name} -> {_selectedTransition.To.Name}";
                 _refs.TransitionMinTimeIn1stStateInputField.SetTextWithoutNotify("" + _selectedTransition.Transition.MinDurationInFrom);
                 _refs.TransitionDisableToggle.SetIsOnWithoutNotify(_selectedTransition.Transition.Disable);
                 _refs.TransitionLogFailureReasonToggle.SetIsOnWithoutNotify(_selectedTransition.Transition.LogFailureReason);
@@ -427,7 +428,7 @@ namespace FiniteStateMachineEditor
         {
             _selectedState.transform.SetAsLastSibling();
             _selectedState.SetSelected(true);
-            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.State.name);
+            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.Name);
             _selectedTransition = null;
         }
 
@@ -695,7 +696,7 @@ namespace FiniteStateMachineEditor
 
         public void OnButtonForSetSelectedStateAsDefault()
         {
-            if (_selectedState != null)
+            if (_selectedState != null && !_selectedState.IsForAnystate)
                 SetDefaultState(_selectedState.State);
         }
 
@@ -714,9 +715,9 @@ namespace FiniteStateMachineEditor
 
             renameTo = renameTo.Trim();
             
-            if (renameTo.Length == 0 || renameTo == _selectedState.State.name)
+            if (renameTo.Length == 0 || renameTo == _selectedState.Name)
             {
-                _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.State.name);
+                _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.Name);
                 return;
             }
 
@@ -732,14 +733,14 @@ namespace FiniteStateMachineEditor
             else
                 _selectedState.UpdateText();
 
-            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.State.name);
+            _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.Name);
 
 
             string enterGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnEnter);
             string updateGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnUpdate);
             string exitGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnExit);
 
-            DecideTitlesOfStateGameEvents(_selectedState.State.name, out string enterTitle, out string updateTitle, out string exitTitle);
+            DecideTitlesOfStateGameEvents(_selectedState.Name, out string enterTitle, out string updateTitle, out string exitTitle);
 
             if (enterGameEventPath.Length != 0)
             {
@@ -814,7 +815,7 @@ namespace FiniteStateMachineEditor
                 if (_transitions[i].Transition.ParameterForMinDurationInFrom == parameterToRemove)
                 {
                     Debug.LogWarning($"Cannot remove the parameter {parameterToRemove.name} because it's used by a transition's " +
-                        $"Min Duration in Prior State.");
+                        $"Min Duration in Prior State. Transition is: {_transitions[i].From.Name} -> {_transitions[i].To.Name}");
                     return;
                 }
 
@@ -827,7 +828,8 @@ namespace FiniteStateMachineEditor
 
                     if (condition.Parameter == parameterToRemove || parameterIsComparedToIt)
                     {
-                        Debug.LogWarning($"Cannot remove the parameter {parameterToRemove.name} because it's used by a transition.");
+                        Debug.LogWarning($"Cannot remove the parameter {parameterToRemove.name} because it's used by a transition." +
+                            $" Transition is: {_transitions[i].From.Name} -> {_transitions[i].To.Name}");
                         return;
                     }
                 }
@@ -838,7 +840,7 @@ namespace FiniteStateMachineEditor
 
             _parameters.Remove(editorToRemove);
             Destroy(editorToRemove.gameObject);
-            
+
             if (_selectedTransition != null)
             {
                 UpdateShownMinDuration();

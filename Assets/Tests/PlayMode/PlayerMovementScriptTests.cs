@@ -58,11 +58,11 @@ namespace PlayerMovementTest
             var startTime = Time.time;
 
             // Have player walk in the test direction
-            _playerMovement.SetLocalHorizontalDirection(testInfo.TestValue);
+            //_playerMovement.SetLocalHorizontalDirection(testInfo.TestValue);
             //_rectilinearMovement.Go(testInfo.TestValue);
             yield return new WaitForSeconds(PlayerMovementTestConstants.WAIT_TIME);
             //_rectilinearMovement.Stop();
-            _playerMovement.SetLocalHorizontalDirection(Vector2.zero);
+            //_playerMovement.SetLocalHorizontalDirection(Vector2.zero);
             var elapsedTime = Time.time - startTime;
 
             // Wait a bit for movement to settle
