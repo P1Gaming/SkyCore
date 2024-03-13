@@ -18,6 +18,8 @@ namespace UI.Inventory
         private GameObject _interactableVisual;
         [SerializeField]
         private HotBarUI _hotBarUI;
+        [SerializeField]
+        private GameObject _hotBarHighlight;
 
         [Header("Inventory Components")]
         [SerializeField, Tooltip("adjust this to change where the inventory slots are centered")]
@@ -70,6 +72,8 @@ namespace UI.Inventory
         private InventoryUIBase _inventoryUIJ;
         private InventoryUIBase _inventoryUIT;
         public HotBarUI Hotbar => _hotBarUI;
+
+        public GameObject HotbarHighlight => _hotBarHighlight;
 
         private InventoryDragAndDrop _dragAndDrop;
 

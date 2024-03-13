@@ -16,11 +16,12 @@ public class HoldingItemHandler : MonoBehaviour
 
     private ItemStack _item;
 
+    private GameObject _highLightHotBar;
+
     // Start is called before the first frame update
     void Start()
     {
         _instance = GameObject.FindGameObjectWithTag("Player")?.GetComponent<InventoryScene>();
-        HeldItemHandling(1);
     }
 
     // Update is called once per frame
@@ -50,8 +51,6 @@ public class HoldingItemHandler : MonoBehaviour
             _helditem.GetComponent<MeshFilter>().sharedMesh = ItemRef.itemInfo.ItemPrefab.GetComponent<MeshFilter>().sharedMesh;
             //Copy Materials Over
             _helditem.GetComponent<MeshRenderer>().sharedMaterials = ItemRef.itemInfo.ItemPrefab.GetComponent<MeshRenderer>().sharedMaterials;
-            //Change Index
-            _heldItemIndex = index;
 
             _item = ItemRef;
         }
@@ -60,6 +59,12 @@ public class HoldingItemHandler : MonoBehaviour
             _helditem.GetComponent<MeshFilter>().sharedMesh = null;
             _item = null;
         }
+        //Change Index
+        _heldItemIndex = index;
+
+        //TODO: This gets the hotbar, and goes ALLLLL they way done to the grid inside the hotbar. Ideally there should be a reference for this, but for the time being it works.
+        GameObject selectedGrid = InventoryUI.Instance.Hotbar.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(index).gameObject;
+        InventoryUI.Instance.HotbarHighlight.transform.position = selectedGrid.transform.position;
     }
 
     public ItemStack GetCurrentHeldItem()

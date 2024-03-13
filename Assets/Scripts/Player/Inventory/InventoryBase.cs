@@ -150,6 +150,8 @@ namespace Player
                 successfullyAdded = true;
             }
 
+            GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>().UpdateHeldItem();
+
             PrintHotbar();
             return successfullyAdded;
         }
