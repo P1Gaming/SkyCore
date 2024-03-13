@@ -23,7 +23,7 @@ namespace Player
             while (true)
             {
                 yield return new WaitForSeconds(3f);
-                if (PlayerMovement.Instance.GroundedEnoughToJump && PlayerMovement.Instance.StandingOnGroundLayer)
+                if (PlayerMovement.Instance.StandingOnGroundLayer)
                 {
                     _recentGroundedPosition = PlayerMovement.Instance.transform.position;
                 }

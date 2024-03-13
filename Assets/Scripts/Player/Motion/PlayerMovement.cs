@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Player.Motion
 {
     /// <summary>
-    /// Controls the players movement.
+    /// Controls the player's movement.
     /// </summary>
     public class PlayerMovement : MonoBehaviour
     {
@@ -24,214 +24,212 @@ namespace Player.Motion
 
         private Rigidbody _rigidbody;
 
-        private float _groundingSurfaceSlope;
-        private ContactPoint[] _collisionContacts = new ContactPoint[100];
-
-        public bool GroundedEnoughToJump { get; private set; }
-        public bool GroundedEnoughForNoGravity { get; private set; }
-        public bool GroundedEnoughForNormalAccelerationSettings { get; private set; }
-
-
-        public static PlayerMovement Instance { get; private set; }
-
-        public PlayerMovementSettings Settings => _settings;
-
-        public bool StandingOnGroundLayer => Physics.Raycast(transform.position + Vector3.up, Vector3.down, 1f, _groundLayer);
-
-        public bool IsMoving => _rigidbody.velocity.magnitude > .001f;
-
-        private float _timeSinceGroundedEnoughToJump = Mathf.Infinity;
+        private float _timeSinceStoodOnJumpableSurface = float.PositiveInfinity;
 
         private float _jumpInputTime = float.NegativeInfinity;
         private bool _fixedUpdateRanThisFrame;
         private bool _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun;
-
-        private bool _jumping;
-        private bool _jumpedInPriorFixedUpdate;
         private int _frameWhenGotJumpInputInFixedUpdate = -1;
 
-        private PlayerHorizontalMovementSettings _currentHorizontalMovementSettings;
+        private bool _jumping;
+        private bool _startedJumpingInMostRecentFixedUpdate;
 
-        private Vector2 HorizontalVelocity 
-        { 
-            get => new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z); 
-            set => _rigidbody.velocity = new Vector3(value.x, _rigidbody.velocity.y, value.y); 
+        private float _angleOfContactedSurface;
+        private int _layerOfContactedSurface;
+        private ContactPoint[] _collisionContacts = new ContactPoint[100];
+
+        // Directly control the rigidbody velocity rather than using AddForce. These properties are to make that easier.
+        private Vector2 HorizontalVelocity
+        {
+            get => new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z);
+            set => _rigidbody.velocity = new Vector3(value.x, _rigidbody.velocity.y, value.y);
         }
-        private float VerticalVelocity 
-        { 
-            get => _rigidbody.velocity.y; 
-            set => _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, value, _rigidbody.velocity.z); 
+        private float VerticalVelocity
+        {
+            get => _rigidbody.velocity.y;
+            set => _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, value, _rigidbody.velocity.z);
         }
+
+        public bool StandingOnGroundLayer => _angleOfContactedSurface < PlayerMovementSettings.SLOPE_DEGREES_TO_JUMP
+            && ((1 << _layerOfContactedSurface) & _groundLayer.value) != 0;
+
+        public bool IsMoving => _rigidbody.velocity.magnitude > .001f;
+
+        public static PlayerMovement Instance { get; private set; }
+
 
         private void Awake()
         {
             _settings.Initialize();
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.sleepThreshold = -1; // don't sleep
-            _currentHorizontalMovementSettings = _settings.GroundedHorizontalMovementSettings;
             Instance = this;
         }
 
         private void FixedUpdate()
         {
-            GroundedDetection();
+            _fixedUpdateRanThisFrame = true;
+
             UpdateHorizontalVelocity();
             UpdateVerticalVelocity();
-            _fixedUpdateRanThisFrame = true;
-            _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = false;
+
+            // The physics engine updates immediately after FixedUpdate, calling OnCollisionStay and updating _groundingSurfaceSlope.
+            _angleOfContactedSurface = float.PositiveInfinity; 
+        }
+
+        private void Update()
+        {
+            CheckRaiseWASDEvents();
+
+            // Keyboard input happens each frame, but fixed update isn't guaranteed to run every frame.
+            // If it didn't run this frame and the player is trying to jump, cache the jump input and
+            // will handle it next time FixedUpdate runs.
+            if (!_fixedUpdateRanThisFrame && GetJumpInput())
+            {
+                _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = true;
+            }
+            _fixedUpdateRanThisFrame = false;
         }
 
         private void OnCollisionEnter(Collision collision) => CheckGrounded(collision);
         private void OnCollisionStay(Collision collision) => CheckGrounded(collision);
 
-        private void Update()
-        {
-            if (!_fixedUpdateRanThisFrame && GetJumpInput())
-            {
-                _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = true;
-            }
-            CheckRaiseWASDEvents();
-            _fixedUpdateRanThisFrame = false;
-        }
-       
-
         private void CheckGrounded(Collision collision)
         {
+            // The player is touching another collider. Check how close that is to
+            // standing on a flat surface.
+
+            if (_startedJumpingInMostRecentFixedUpdate)
+            {
+                // For some reason, it thinks it's still touching the surface in this case.
+                // Need to handle this or the jump height will be like .1 units higher than the setting.
+                return;
+            }
+
             int numContacts = collision.GetContacts(_collisionContacts);
             for (int i = 0; i < numContacts; i++)
             {
                 float angle = Vector3.Angle(_collisionContacts[i].normal, Vector3.up);
-                _groundingSurfaceSlope = Mathf.Min(_groundingSurfaceSlope, angle);
+                int layer = _collisionContacts[i].otherCollider.gameObject.layer;
+                if (angle < _angleOfContactedSurface)
+                {
+                    _angleOfContactedSurface = angle;
+                    _layerOfContactedSurface = layer;
+                }
             }
         }
 
         /// <summary>
-        /// This moves the player, but does not determine which direction the player goes.
+        /// Decide the player's horizontal velocity.
         /// </summary>
         private void UpdateHorizontalVelocity()
         {
-            //Move Speed Power
-
             GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
-            Vector3 targetMoveDirection = transform.forward * forwardsBackwards + transform.right * rightLeft;
 
-            Vector2 targetVelocity = _settings.MaxHorizontalSpeed * new Vector2(targetMoveDirection.x, targetMoveDirection.z);
+            // Calculate some vectors for later.
+            Vector3 targetMovementDirection = transform.forward * forwardsBackwards + transform.right * rightLeft;
+            Vector2 targetVelocity = _settings.MaxHorizontalSpeed * new Vector2(targetMovementDirection.x, targetMovementDirection.z);
             Vector2 currentVelocity = HorizontalVelocity;
-            Vector2 velocityChangeDirection = (targetVelocity - currentVelocity).normalized;
 
-            float accel = targetMoveDirection.magnitude != 0 ? _currentHorizontalMovementSettings.AccelToSpeedUp
-                : _currentHorizontalMovementSettings.AccelToStop;
+            // Depending on whether it's falling and whether it's trying to speed up or stop moving, decide how quickly to accelerate.
+            float accel = _settings.DecideHorizontalAccelerationMagnitude(_angleOfContactedSurface, targetMovementDirection);
 
-            Vector2 newVelocity = currentVelocity + Time.deltaTime * accel * velocityChangeDirection;
+            // Move the current velocity towards the target velocity.
+            Vector2 newVelocity = currentVelocity + Time.deltaTime * accel * (targetVelocity - currentVelocity).normalized;
+
+            // Cap the velocity.
             if (newVelocity.magnitude > _settings.MaxHorizontalSpeed)
             {
                 newVelocity = newVelocity.normalized * _settings.MaxHorizontalSpeed;
             }
 
+            // If it moved the velocity too far and overshot the target velocity, make it equal the target velocity.
+            // Otherwise it'll jitter around zero velocity rather than stopping.
             Vector2 currentVelocityError = currentVelocity - targetVelocity;
             Vector2 newVelocityError = newVelocity - targetVelocity;
             if (Vector2.Dot(currentVelocityError, newVelocityError) < 0)
             {
-                // It overshot the target velocity, so do this to avoid jittering around targetVelocity.
                 newVelocity = targetVelocity;
             }
 
+            // Set the rigidbody's velocity.
             HorizontalVelocity = newVelocity;
         }
 
         /// <summary>
-        /// If the player gets the jump input, add upwards force.
+        /// If the player gets the jump input, change vertical velocity.
         /// </summary>
         private void UpdateVerticalVelocity()
         {
-            float gravityAccel = _settings.GravityAccel;
-
-            if (_rigidbody.velocity.y > 0 && _jumping)
-            {
-                gravityAccel = _settings.GravityAccelWhileJumpingUp;
-            }
-
+            // If there's a jump input, update the time when got that input.
             bool getJumpInputFirstTimeThisFrame = GetJumpInput() && Time.frameCount != _frameWhenGotJumpInputInFixedUpdate;
-
             if (getJumpInputFirstTimeThisFrame || _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun)
             {
-                _frameWhenGotJumpInputInFixedUpdate = Time.frameCount;
                 _jumpInputTime = Time.time;
+                _frameWhenGotJumpInputInFixedUpdate = Time.frameCount;
+                _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = false;
             }
 
-            bool canJump = _timeSinceGroundedEnoughToJump < _settings.CoyoteTime && !_jumping;
-            bool recentJumpInput = Time.time <= _jumpInputTime + _settings.JumpBufferTime;
-            if (canJump && recentJumpInput)
+            if (_angleOfContactedSurface < PlayerMovementSettings.SLOPE_DEGREES_TO_JUMP)
             {
-                // Jump Power
+                _timeSinceStoodOnJumpableSurface = 0.0f;
+                _jumping = false; // It's standing on a flat surface so if it was jumping, it's not anymore
+            }
+            else
+            {
+                _timeSinceStoodOnJumpableSurface += Time.deltaTime;
+            }
+
+            // If it can jump and got jump input recently, execute the jump.
+            bool canExecuteJump = _timeSinceStoodOnJumpableSurface < _settings.CoyoteTime && !_jumping;
+            bool gotJumpInputRecently = Time.time <= _jumpInputTime + _settings.JumpBufferTime;
+            bool executeJump = canExecuteJump && gotJumpInputRecently;
+            _startedJumpingInMostRecentFixedUpdate = executeJump;
+            if (executeJump)
+            {
                 VerticalVelocity = _settings.JumpVelocity;
-                _jumpInputTime = float.NegativeInfinity;
-                _timeSinceGroundedEnoughToJump = float.PositiveInfinity;
-                _jumping = true;
-                _jumpedInPriorFixedUpdate = true;
-            }
-            else if (!GroundedEnoughForNoGravity)
-            {
-                // Gravity Power and drag for terminal velocity
-                float totalAccel = -gravityAccel;
 
+                _jumping = true;
+                _jumpInputTime = float.NegativeInfinity;
+                _timeSinceStoodOnJumpableSurface = float.PositiveInfinity;
+                _angleOfContactedSurface = float.PositiveInfinity;
+            }
+
+            // Apply gravity unless standing still on a gentle slope.
+
+            // The 2nd line of this if statement is b/c when the player walks on a flat surface made of blocks,
+            // there are some extraneous collisions or something which bump the player up slightly. It still happens
+            // with this but much less noticeable.
+            // Need to do this when there's WASD input b/c when the player is walking down a slope, even if they get
+            // bumped up relative to the slope, vertical velocity can be negative.
+            GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
+            if (_angleOfContactedSurface > PlayerMovementSettings.SLOPE_DEGREES_TO_NOT_SLIDE_DOWN
+                || VerticalVelocity > 0 || rightLeft != 0 || forwardsBackwards != 0)
+            {
+                float totalAccel = -_settings.DecideGravityAcceleration(VerticalVelocity, _jumping);
+
+                // Add drag force for terminal velocity, so it doesn't fall absurdly fast.
+                // Don't just cap the velocity because that feels too sudden.
                 if (VerticalVelocity < -_settings.DownwardsVelocityAtEndOfJump)
                 {
                     // E.g. if it falls at 2m/s at the end of a jump on a flat surface, and it's falling at 3m/s,
                     // then this would equal 1.
                     float fallSpeedBeyondThreshold = -VerticalVelocity - _settings.DownwardsVelocityAtEndOfJump;
 
-                    float dragAccel = _settings.FallDragForceConstant
-                        * Mathf.Pow(fallSpeedBeyondThreshold, PlayerMovementSettings._fallDragProportionalityExponent);
+                    float dragAccel = _settings.FallDragForceConstant * Mathf.Pow(fallSpeedBeyondThreshold, 2f);
                     totalAccel += dragAccel;
+                }
+
+                if (executeJump)
+                {
+                    // This makes the jump height equal the setting. I don't know why. Otherwise it's like .03 off.
+                    // Doesn't really matter but hopefully this makes it feel slightly better, e.g. without this it's
+                    // at the top position of the jump for 2 fixed updates in a row rather than 1. No clue why.
+                    totalAccel /= 2;
                 }
 
                 VerticalVelocity += totalAccel * Time.deltaTime;
             }
-        }
-
-        /// <summary>
-        /// Checks if the player is falling.
-        /// </summary>
-        private void GroundedDetection()
-        {
-            if (_jumpedInPriorFixedUpdate)
-            {
-                // For some reason, in this case it incorrectly thinks it's grounded. Maybe the OnCollisionStay is called
-                // before the velocity moves it.
-
-                // Without doing this, with a jump height setting of 2.25, it jumps 2.34 units (with monitor refresh rate of 60.
-                // It'd be closer to 2.25 with a faster monitor because we set Time.fixedDeltaTime based on that.)
-
-                // With this check, it jumps 2.28 units, which is probably small enough error to be from physics innaccuracy.
-
-                GroundedEnoughForNoGravity = false;
-                GroundedEnoughForNormalAccelerationSettings = false;
-                GroundedEnoughToJump = false;
-            }
-            else
-            {
-                GroundedEnoughForNoGravity = _groundingSurfaceSlope < PlayerMovementSettings._slopeDegreesForNoGravity;
-                GroundedEnoughForNormalAccelerationSettings = _groundingSurfaceSlope < PlayerMovementSettings._slopeDegreesToNotBeFalling;
-                GroundedEnoughToJump = _groundingSurfaceSlope < PlayerMovementSettings._slopeDegreesToJump;
-            }
-            _jumpedInPriorFixedUpdate = false;
-
-            // Do this so will get the minimum slope angle when the physics engine updates after FixedUpdate runs.
-            _groundingSurfaceSlope = float.PositiveInfinity; 
-
-            if (GroundedEnoughToJump)
-            {
-                _timeSinceGroundedEnoughToJump = 0.0f;
-                _jumping = false;
-            }
-            else
-            {
-                _timeSinceGroundedEnoughToJump += Time.deltaTime;
-            }
-
-            _currentHorizontalMovementSettings = GroundedEnoughForNormalAccelerationSettings
-                ? _settings.GroundedHorizontalMovementSettings : _settings.NonGroundedHorizontalMovementSettings;
         }
 
         private void GetWASDInputAxes(out float rightLeft, out float forwardsBackwards)
@@ -266,7 +264,6 @@ namespace Player.Motion
             }
         }
 
-
         /// <summary>
         /// Moves the player to the position.
         /// </summary>
@@ -275,8 +272,6 @@ namespace Player.Motion
             _rigidbody.position = position;
             transform.position = position;
         }
-
-
 
         /// <summary>
         /// Sets Interacting state and toggles enabled
