@@ -19,7 +19,6 @@ namespace FiniteStateMachine
         [SerializeField]
         private FSMState _from;
 
-        [Header("To = null means transition to default state.")]
         [SerializeField]
         private FSMState _to;
         
@@ -68,7 +67,7 @@ namespace FiniteStateMachine
         /// <summary>
         /// Checks whether this transition occurs, and resets trigger parameters if so.
         /// </summary>
-        public void Check(FSMState currentState, FSMState defaultState, float durationInCurrentState
+        public void Check(FSMState currentState, float durationInCurrentState
             , Dictionary<FSMParameter, bool> bools, Dictionary<FSMParameter, bool> triggers
             , Dictionary<FSMParameter, float> floats, ref FSMState newState)
         {
@@ -132,7 +131,7 @@ namespace FiniteStateMachine
             }
             else
             {
-                newState = defaultState;
+                throw new System.Exception("In FSMTransition, _to is null.");
             }
         }
     }

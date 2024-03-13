@@ -15,5 +15,8 @@ namespace FiniteStateMachineEditor
 
         [field: SerializeField]
         public Vector2[] StateEditorPositions { get; private set; }
+
+        [field: SerializeField]
+        public Vector2 StateEditorForAnystatePosition { get; private set; } = new Vector2(-400, 0);
     }
 }

@@ -1,17 +1,17 @@
-using Codice.CM.Common.Merge;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using CustomPathfinding;
 
-// This is placeholder movement. The drone will pass through blocks.
-// We can either make it looks like the drone is super sci-fi and can pass thru blocks
-// or do something like navmesh so it flies around obstacles.
-// We might need to do our own navigation implementation if Unity's navmesh doesn't
-// support 3d. Or look into other options.
 
 public class DroneMovement : MonoBehaviour
 {
+    [SerializeField]
+    private Rigidbody _rigidbody;
+    [SerializeField]
+    private float _pathfindingAgentMinRadius = .48f;
+    [SerializeField]
+    private float _pathfindingAgentMaxRadius = .88f;
     [SerializeField, Tooltip("How fast the drone moves.")]
     private float _movementSpeed = 3f;
     [SerializeField, Tooltip("How fast the drone rotates towards something, in degrees/sec")]
@@ -23,43 +23,53 @@ public class DroneMovement : MonoBehaviour
     [SerializeField, Tooltip("How high the drone tries to hover relative to its target")]
     private float _hoverHeight = 2f;
 
+    [Header("Pathfinding Visualization")]
+    [SerializeField]
+    private bool _visualizePathfinding;
+    [SerializeField]
+    private GameObject _pathNodeVisual;
+    [SerializeField]
+    private GameObject _closedNodeVisual;
+    [SerializeField]
+    private GameObject _obstructedNodeVisual;
 
     private Transform _player;
-
-
-    // This specifies how close the drone must be to the target point to consider itself to have arrived.
-    private const float _hasArrivedDistanceThreshold = 0.1f;
-
+    private AStarPathfinding _pathfinding;
 
 
     private void Awake()
     {
         _player = Player.Motion.PlayerMovement.Instance.transform;
+        _pathfinding = new AStarPathfinding(gameObject.layer, _pathfindingAgentMinRadius, _pathfindingAgentMaxRadius
+            , _visualizePathfinding, _pathNodeVisual, _closedNodeVisual, _obstructedNodeVisual);
+    }
+
+    public void StopVelocity()
+    {
+        _rigidbody.velocity = Vector3.zero;
     }
 
     public void IdleMovement()
     {
         float rotateDegrees = _idleSpinSpeed * Time.deltaTime;
-        transform.Rotate(new Vector3(0, rotateDegrees, 0));
+        Vector3 newRotation = _rigidbody.rotation.eulerAngles;
+        newRotation.y += rotateDegrees;
+        _rigidbody.MoveRotation(Quaternion.Euler(newRotation));
     }
 
     /// <summary>
     /// Moves the drone along a vector, but not past the end of that vector.
-    /// Should be called from an update method until the drone reaches his destination.
+    /// (Not instantly. The physics tick must finish first. Also, there could be an obstacle.)
+    /// Should be called from a FixedUpdate method until the drone reaches his destination.
     /// </summary>
-    /// <returns>True if the drone has arrived at its destination, or false otherwise.</returns>
-    public bool MoveDrone(Vector3 toTarget)
+    /// <returns>True if the drone will arrive at its destination once this physics tick completes, or false otherwise.</returns>
+    public bool MoveDrone(Vector3 targetPosition)
     {
-        float maxMovementDistance = Time.deltaTime * _movementSpeed;
+        Vector3 toTarget = _pathfinding.CalcPathAndGetVectorToSomewhereOnIt(_rigidbody.position, targetPosition);
 
-        if (toTarget.magnitude < _hasArrivedDistanceThreshold)
-        {
-            return true;
-        }
-
-        transform.position += Vector3.MoveTowards(Vector3.zero, toTarget, maxMovementDistance);
-
-        return false;
+        Vector3 positionChange = Vector3.MoveTowards(Vector3.zero, toTarget, Time.deltaTime * _movementSpeed);
+        _rigidbody.velocity = positionChange / Time.deltaTime;
+        return positionChange == toTarget && toTarget == targetPosition - _rigidbody.position;
     }
 
     /// <summary>
@@ -99,24 +109,14 @@ public class DroneMovement : MonoBehaviour
         Vector3 targetPosition = _player.transform.position + (_player.transform.forward * distanceFromPlayer);
         targetPosition.y = _player.transform.position.y + height;
 
-        // Calculate vector from drone to target point in front of the player.
-        Vector3 direction = targetPosition - transform.position;
+        bool arrived = MoveDrone(targetPosition);
 
-        //Debug.DrawLine(transform.position, transform.position + direction, Color.green, 1f);
-
-        if (direction.magnitude <= _hasArrivedDistanceThreshold)
-        {
-            return true;
-        }
-
-        MoveDrone(direction);
-
-        if (keepFacingPlayer) 
+        if (keepFacingPlayer && !arrived) // dunno if the 2nd part of the && is necessary 
         {
             RotateTowardsTarget(_player.transform.position);
         }
 
-        return false;
+        return arrived;
     }
 
     /// <summary>
@@ -135,7 +135,8 @@ public class DroneMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Rotates the drone towards the provided transform.
+    /// Rotates the drone towards the provided transform. 
+    /// (Not instantly. The physics tick must finish first. Also, there could be an obstacle.)
     /// </summary>
     /// <param name="target">The transform to look at.</param>
     public void RotateTowardsTarget(Transform target)
@@ -144,19 +145,15 @@ public class DroneMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Rotates the drone towards the specified point in world space.
+    /// Rotates the drone towards the specified point in world space. 
+    /// (Not instantly. The physics tick must finish first. Also, there could be an obstacle.)
     /// </summary>
     /// <param name="target">The point to look at.</param>
     public void RotateTowardsTarget(Vector3 target)
     {
-        Quaternion priorRotation = transform.rotation;
-
-        // is there a way to get this rotation w/o changing the transform's rotation?
-        // Answer: We could calculate the vector from drone to target, and then calculate its horizontal angle. That's not hard, but I'm not sure if it's worth it, though.
-        transform.LookAt(target);
-        Quaternion rotateTowards = transform.rotation;
-
-        transform.rotation = Quaternion.RotateTowards(priorRotation, rotateTowards, _turnSpeed * Time.deltaTime);
+        Vector3 displacement = target - _rigidbody.position;
+        Quaternion rotateTowards = Quaternion.LookRotation(displacement);
+        Quaternion nextRotation = Quaternion.RotateTowards(transform.rotation, rotateTowards, _turnSpeed * Time.deltaTime);
+        _rigidbody.MoveRotation(nextRotation);
     }
-
 }

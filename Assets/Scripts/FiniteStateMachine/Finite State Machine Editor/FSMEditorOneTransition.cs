@@ -93,7 +93,6 @@ namespace FiniteStateMachineEditor
 
         private FSMEditorOneState FindAssociatedEditorState(FSMState state, List<FSMEditorOneState> editorStates)
         {
-            // TODO: deal with when from / to are null (meaning from anystate, or to default state. Maybe remove the latter functionality.)
             for (int i = 0; i < editorStates.Count; i++)
             {
                 if (editorStates[i].State == state)
