@@ -36,7 +36,6 @@ public class Interactable : MonoBehaviour
 
     private void DoInteractionThing(int index)
     {
-        Debug.Log("DoInteractionThing called");
         switch (index)
         {
             case 0: //taking berries from a berry bush
