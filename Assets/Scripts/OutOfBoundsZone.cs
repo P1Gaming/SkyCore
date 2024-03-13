@@ -10,27 +10,22 @@ namespace Player
     /// </summary> 
     public class OutOfBoundsZone : MonoBehaviour
     {
-        private float _lastTimeUpdatedRecentGroundedPosition;
         private Vector3 _recentGroundedPosition;
 
         private void Awake()
         {
-            PlayerMovement.Instance.UpdateBasedOnGrounded += UpdateBasedOnPlayerGrounded;
-
             _recentGroundedPosition = PlayerMovement.Instance.transform.position;
-            _lastTimeUpdatedRecentGroundedPosition = Time.time;
+            StartCoroutine(UpdateRespawnPoint());
         }
 
-        private void UpdateBasedOnPlayerGrounded(bool grounded)
+        private IEnumerator UpdateRespawnPoint()
         {
-            if (grounded)
+            while (true)
             {
-                // only do this every few seconds so when the player falls out of the world,
-                // it usually won't teleport the player to right on the edge (b/c that feels punishing,)
-                if (Time.time > _lastTimeUpdatedRecentGroundedPosition + 3f)
+                yield return new WaitForSeconds(3f);
+                if (PlayerMovement.Instance.StandingOnGroundLayer)
                 {
                     _recentGroundedPosition = PlayerMovement.Instance.transform.position;
-                    _lastTimeUpdatedRecentGroundedPosition = Time.time;
                 }
             }
         }
