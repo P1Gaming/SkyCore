@@ -20,20 +20,23 @@ public class Interactable : MonoBehaviour
 
     public void Interact(int index, PlayerInteraction interactingWith)
     {
+        //Debug.Log("Interact called");
         LastInteractedWith = interactingWith;
+        //Debug.Log("_interactions.Length" + _interactions.Length);
 
-        if(index > -1 && index < _interactions_.Length)
-        {
-            DoInteractionThing(_interactions_[index]);
-        }
-        else
-        {
-            Debug.LogError("some interaction code done goofed majorly");
-        }
+        //if(index > -1 && index < _interactions_.Length)
+        //{
+            DoInteractionThing(index);
+        //}
+        //else
+        //{
+        //    Debug.LogError("some interaction code done goofed majorly");
+        //}
     }
 
     private void DoInteractionThing(int index)
     {
+        Debug.Log("DoInteractionThing called");
         switch (index)
         {
             case 0: //taking berries from a berry bush
@@ -44,7 +47,7 @@ public class Interactable : MonoBehaviour
                     }
                     else
                     {
-                        GetComponent<BerryBush>().Harvest(LastInteractedWith);
+                        GetComponent<BerryBush>().Harvest();
                     }
                 }
                 break;

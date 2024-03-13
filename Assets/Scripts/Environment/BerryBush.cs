@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,12 @@ public class BerryBush : MonoBehaviour
 {
     [SerializeField, Tooltip("How long the bush takes to regrow berries")]
     private int _cooldown;
-    [SerializeField, Tooltip("The berry game object")]
-    GameObject _berry;
-    private GameObject _berryToTake;
     ItemStack _item;
+    [SerializeField]
+    ItemBase _itemBase;
     private bool _canBeHarvested = false;
+    [SerializeField,Tooltip("The number of berries to be harvested")]
+    private int _numOfBerries;
 
     [SerializeField, Tooltip("The visual indicator that the bush is ready to harvest")]
     private GameObject _indicator;
@@ -18,6 +20,7 @@ public class BerryBush : MonoBehaviour
     void Start()
     {
         SpawnBerry();
+        
     }
     private void Update()
     {
@@ -33,18 +36,17 @@ public class BerryBush : MonoBehaviour
 
     private void SpawnBerry()
     {
-        _berryToTake = Instantiate(_berry, _berry.transform);
         _canBeHarvested = true;
         _indicator.SetActive(true);
     }
-    public void Harvest(PlayerInteraction player)
+    public void Harvest()
     {
         if (_canBeHarvested)
         {
-            if (player.GetComponent<Player.InventoryBase>().TryAddItem(_item))
+            _item = new ItemStack(_itemBase, _numOfBerries);
+            if (InventoryScene.Instance.GoIntoFirst.TryAddItem(_item))
             {
                 _canBeHarvested = false;
-                Destroy(_berryToTake);
                 _indicator.SetActive(false);
             }
             StartCoroutine(BushCooldown());
