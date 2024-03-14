@@ -27,12 +27,14 @@ public class PickupItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Player.InventoryScene inventoryAndHotBar))
+        if (other.gameObject.tag != "Player")
         {
-            if (inventoryAndHotBar.HotBar.TryAddItem(new ItemStack(_itemInfo, _amount)))
-            {
-                Destroy(gameObject);
-            }
+            return;
+        }
+
+        if (UI.Inventory.InventoryUI.Instance.HotBar.TryAddItem(new ItemStack(_itemInfo, _amount)))
+        {
+            Destroy(gameObject);
         }
     }
 

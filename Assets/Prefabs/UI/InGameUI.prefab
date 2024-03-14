@@ -544,6 +544,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191d1c8df60f4904f9995cc4e3b776b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotBar:
+    _stacksCapacity: 3
+    _sortType: 0
+  _inventoryResource:
+    _stacksCapacity: 12
+    _sortType: 3
+  _inventoryJelly:
+    _stacksCapacity: 15
+    _sortType: 2
+  _inventoryTool:
+    _stacksCapacity: 9
+    _sortType: 1
   _firstPersonView: {fileID: 0}
   _interactableVisual: {fileID: 0}
   _hotBarHighlight: {fileID: 3135310602497220694}

@@ -44,7 +44,7 @@ namespace Jellies
         /// </summary>
         public void OnFeedButton()
         {
-            InventoryBase hotBar = InventoryScene.Instance.HotBar;
+            InventoryBase hotBar = UI.Inventory.InventoryUI.Instance.HotBar;
             if (hotBar.TrySubtractItemAmount(_berryItem, 1))
             {
                 FeedJelly(_berryItem.SaturationValue);

@@ -6,17 +6,10 @@ using UI.Inventory;
 
 namespace Player
 {
-    [Serializable] // to show this in the inspector
     public class InventoryBase
     {
-        [SerializeField, Tooltip("Max number of stacks (so the number of inventory slots).")]
         private int _stacksCapacity;
-
-        [SerializeField, Tooltip("Designated sort type of inventory section.")]
         private ItemBase.ItemSortType _sortType;
-
-
-        [NonSerialized] // Prevent warning about a serialization loop
         private InventoryBase[] _overflowTo;
 
 
@@ -28,6 +21,12 @@ namespace Player
         public int StacksCapacity => _stacksCapacity;
 
         public ItemBase.ItemSortType SortType => _sortType;
+
+        public InventoryBase(int stacksCapacity, ItemBase.ItemSortType sortType)
+        {
+            _stacksCapacity = stacksCapacity;
+            _sortType = sortType;
+        }
 
         public void SetDragAndDrop(InventoryDragAndDrop dragAndDrop) => _dragAndDrop = dragAndDrop;
         public void SetInventoryBaseUI(InventoryBaseUI inventoryBaseUI) => _inventoryBaseUI = inventoryBaseUI;

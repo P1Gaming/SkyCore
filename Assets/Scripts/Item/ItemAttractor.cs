@@ -41,7 +41,7 @@ public class ItemAttractor : MonoBehaviour
     private float _itemDetectionTimer;
 
 
-    private InventoryScene _inventoryScene;
+    private UI.Inventory.InventoryUI _inventory;
 
 
 
@@ -50,7 +50,7 @@ public class ItemAttractor : MonoBehaviour
         _collider = GetComponent<Collider>();
 
         // Get a reference to this object's InventoryScene or InventoryBase component. This script will use whichever is available.
-        _inventoryScene = GetComponent<InventoryScene>();
+        _inventory = UI.Inventory.InventoryUI.Instance;
 
         _homingStrength = _maxAttractionSpeed * (1f - _HomingPower);
     }
@@ -101,9 +101,9 @@ public class ItemAttractor : MonoBehaviour
     /// <returns>True if there is enough room for the passed in item stack.</returns>
     private bool InventoryHasRoomFor(ItemStack item)
     {
-        if (_inventoryScene != null)
+        if (_inventory != null)
         {
-            return _inventoryScene.HotBar.HasRoomForItem(item, true);
+            return _inventory.HotBar.HasRoomForItem(item, true);
         }
 
 
@@ -128,7 +128,7 @@ public class ItemAttractor : MonoBehaviour
             { 
                 float itemDistance = Vector3.Distance(transform.position, item.transform.position);
                 if (itemDistance <= item.ItemInfo.AttractionRadius &&
-                    _inventoryScene.HotBar.HasRoomForItem(item, true))
+                    _inventory.HotBar.HasRoomForItem(item, true))
                 {
                     // I made a function call here so we can easily swap out this logic by calling a different function to change the attraction style.
                     AttractItemNatural(item);

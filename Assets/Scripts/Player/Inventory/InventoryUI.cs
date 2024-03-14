@@ -13,6 +13,24 @@ namespace UI.Inventory
     public class InventoryUI : MonoBehaviour
     {
         [SerializeField]
+        private int _hotBarStacksCapacity = 3;
+        [SerializeField]
+        private int _resourceSectionStacksCapacity = 12;
+        [SerializeField]
+        private int _jellySectionStacksCapacity = 15;
+        [SerializeField]
+        private int _toolSectionStacksCapacity = 9;
+
+        private InventoryBase _hotBar;
+        private InventoryBase _inventoryResource;
+        private InventoryBase _inventoryJelly;
+        private InventoryBase _inventoryTool;
+
+        
+
+
+
+        [SerializeField]
         private FirstPersonView _firstPersonView;
         [SerializeField]
         private GameObject _interactableVisual;
@@ -67,6 +85,11 @@ namespace UI.Inventory
             }
         }
 
+        public InventoryBase HotBar => _hotBar;
+        public InventoryBase InventoryResource => _inventoryResource;
+        public InventoryBase InventoryJelly => _inventoryJelly;
+        public InventoryBase InventoryTool => _inventoryTool;
+
         public GameObject HotbarHighlight => _hotBarHighlight;
         public InventoryBaseUI HotbarUI => _hotBarUI;
         public GameObject HotBarGrid => _hotBarGrid;
@@ -74,27 +97,27 @@ namespace UI.Inventory
 
         private void Awake()
         {
+            _hotBar = new InventoryBase(_hotBarStacksCapacity, ItemBase.ItemSortType.None);
+            _inventoryResource = new InventoryBase(_resourceSectionStacksCapacity, ItemBase.ItemSortType.Resource);
+            _inventoryJelly = new InventoryBase(_jellySectionStacksCapacity, ItemBase.ItemSortType.JellyItem);
+            _inventoryTool = new InventoryBase(_toolSectionStacksCapacity, ItemBase.ItemSortType.Tool);
+
+            _hotBar.SetOverflowTo(new InventoryBase[] { _inventoryResource, _inventoryJelly, _inventoryTool });
+
             // need to do this in Awake b/c needs to happen before OnEnable (Start() happens after OnEnable()).
             // Maybe all the initialization can just be in Awake.
 
-            InventoryBase hotBarNonUI = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().HotBar;
-            _hotBarUI = new InventoryBaseUI(_inventorySlotPrefab, _hotBarGrid, hotBarNonUI, _itemParentDuringDragAndDrop
+            _hotBarUI = new InventoryBaseUI(_inventorySlotPrefab, _hotBarGrid, _hotBar, _itemParentDuringDragAndDrop
                 , ItemBase.ItemSortType.None);
 
-            InventoryBase inventoryR
-                = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().InventoryResource;
             _inventoryUIR = new InventoryBaseUI(_inventorySlotPrefab, _inventoryGridR
-                , inventoryR, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.Resource);
+                , _inventoryResource, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.Resource);
 
-            InventoryBase inventoryJ
-                = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().InventoryJelly;
             _inventoryUIJ = new InventoryBaseUI(_inventorySlotPrefab, _inventoryGridJelly
-                , inventoryJ, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.JellyItem);
+                , _inventoryJelly, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.JellyItem);
 
-            InventoryBase inventoryT
-                = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().InventoryTool;
             _inventoryUIT = new InventoryBaseUI(_inventorySlotPrefab, _inventoryGridTool
-                , inventoryT, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.Tool);
+                , _inventoryTool, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.Tool);
 
             
         }
