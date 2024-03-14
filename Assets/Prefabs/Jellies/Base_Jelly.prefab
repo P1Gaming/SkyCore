@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6841216160772456494}
   - component: {fileID: 6897571014077337869}
   - component: {fileID: 5170292628604333891}
+  - component: {fileID: -7263727104007098610}
   m_Layer: 3
   m_Name: Base_Jelly
   m_TagString: Untagged
@@ -222,6 +223,18 @@ MonoBehaviour:
   _totalJumpHeight: 0.76
   _stateMachine: {fileID: 7924440530794558401}
   _wanderExit: {fileID: 11400000, guid: 4bf60e81b010f214ab34282889a31737, type: 2}
+--- !u!114 &-7263727104007098610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94955809726303427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c1705e2ff82f44b9193fea7c1319f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &421980575205785031
 GameObject:
   m_ObjectHideFlags: 0

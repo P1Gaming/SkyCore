@@ -43,6 +43,12 @@ namespace Jellies
             private set;
         }
 
+        public bool CanBePet
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// The required experience per level
         /// </summary>
