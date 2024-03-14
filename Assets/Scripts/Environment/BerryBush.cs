@@ -1,6 +1,3 @@
-
-
-
 using Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,6 +46,7 @@ public class BerryBush : MonoBehaviour
             _item = new ItemStack(_itemBase, _numOfBerries);
             if (InventoryScene.Instance.GoIntoFirst.TryAddItem(_item))
             {
+                
                 _canBeHarvested = false;
                 _indicator.SetActive(false);
             }
