@@ -22,14 +22,14 @@ public class Interactable : MonoBehaviour
     {
         LastInteractedWith = interactingWith;
 
-        if(index > -1 && index < _interactions_.Length)
-        {
-            DoInteractionThing(_interactions_[index]);
-        }
-        else
-        {
-            Debug.LogError("some interaction code done goofed majorly");
-        }
+        //if(index > -1 && index < _interactions_.Length)
+        //{
+            DoInteractionThing(index);
+        //}
+        //else
+        //{
+        //    Debug.LogError("some interaction code done goofed majorly");
+        //}
     }
 
     private void DoInteractionThing(int index)
@@ -38,14 +38,14 @@ public class Interactable : MonoBehaviour
         {
             case 0: //taking berries from a berry bush
                 {
-                    if (!false)//GetComponent<BerryBush>())
+                    if (!GetComponent<BerryBush>())//GetComponent<BerryBush>())
                     {
                         Debug.LogError("trying to do the berry bush interaction with no bush component");
                     }
-                    //else
-                    //{
-                    //    GetComponent<BerryBush>().TakeABerry(LastInteractedWith);
-                    //}
+                    else
+                    {
+                        GetComponent<BerryBush>().Harvest();
+                    }
                 }
                 break;
             case 1: //the next interaction to be implemented should go here
