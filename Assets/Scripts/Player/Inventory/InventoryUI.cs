@@ -17,16 +17,18 @@ namespace UI.Inventory
         [SerializeField]
         private GameObject _interactableVisual;
         [SerializeField]
-        private HotBarUI _hotBarUI;
-        [SerializeField]
         private GameObject _hotBarHighlight;
 
 
-        [SerializeField, Tooltip("Prefab of the inventory slot element")]
-        private GameObject _inventorySlotObject;
+        [SerializeField]
+        private GameObject _inventorySlotPrefab;
 
         [SerializeField, Tooltip("Controls open close animation of backpack panel")]
         private Animator _animator;
+
+        [SerializeField, Tooltip("Add the GameObject representing thr hotbar that has a grid layout group component")]
+        private GameObject _hotBarGrid;
+
 
         [SerializeField, Tooltip("Add the GameObject representing an inventory section that has a grid layout group component")]
         private GameObject _inventoryGridR;
@@ -45,6 +47,7 @@ namespace UI.Inventory
 
         private InputAction _backpackAction;
         private bool _isInBackpackMode;
+        private InventoryBaseUI _hotBarUI;
         private InventoryBaseUI _inventoryUIR;
         private InventoryBaseUI _inventoryUIJ;
         private InventoryBaseUI _inventoryUIT;
@@ -65,24 +68,32 @@ namespace UI.Inventory
         }
 
         public GameObject HotbarHighlight => _hotBarHighlight;
-        public HotBarUI Hotbar => _hotBarUI;
+        public InventoryBaseUI HotbarUI => _hotBarUI;
+        public GameObject HotBarGrid => _hotBarGrid;
 
 
         private void Awake()
         {
             // need to do this in Awake b/c needs to happen before OnEnable (Start() happens after OnEnable()).
             // Maybe all the initialization can just be in Awake.
+
+            InventoryBase hotBarNonUI = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().HotBar;
+            _hotBarUI = new InventoryBaseUI(_inventorySlotPrefab, _hotBarGrid, hotBarNonUI, _itemParentDuringDragAndDrop
+                , ItemBase.ItemSortType.None);
+
             InventoryBase inventoryR
                 = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().InventoryResource;
-            _inventoryUIR = new InventoryBaseUI(_inventorySlotObject, _inventoryGridR
+            _inventoryUIR = new InventoryBaseUI(_inventorySlotPrefab, _inventoryGridR
                 , inventoryR, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.Resource);
+
             InventoryBase inventoryJ
                 = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().InventoryJelly;
-            _inventoryUIJ = new InventoryBaseUI(_inventorySlotObject, _inventoryGridJelly
+            _inventoryUIJ = new InventoryBaseUI(_inventorySlotPrefab, _inventoryGridJelly
                 , inventoryJ, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.JellyItem);
+
             InventoryBase inventoryT
                 = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>().InventoryTool;
-            _inventoryUIT = new InventoryBaseUI(_inventorySlotObject, _inventoryGridTool
+            _inventoryUIT = new InventoryBaseUI(_inventorySlotPrefab, _inventoryGridTool
                 , inventoryT, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.Tool);
 
             
@@ -102,10 +113,10 @@ namespace UI.Inventory
             _dragAndDrop = new InventoryDragAndDrop();
             _dragAndDrop.DisableInputAndStop();
 
+            _hotBarUI.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
             _inventoryUIR.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
             _inventoryUIJ.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
             _inventoryUIT.InventoryOrHotBar.SetDragAndDrop(_dragAndDrop);
-            _hotBarUI.SetDragAndDrop(_dragAndDrop);
         }
 
         private void LateUpdate()
@@ -122,9 +133,6 @@ namespace UI.Inventory
         private void OnEnable()
         {
             _backpackAction?.Enable();
-            _inventoryUIR.OnEnable();
-            _inventoryUIJ.OnEnable();
-            _inventoryUIT.OnEnable();
         }
 
         private void OnDisable()
@@ -135,6 +143,7 @@ namespace UI.Inventory
         private void OnDestroy()
         {
             // maybe can just do this in OnDisable, but doing this here for consistency with HotBarUI.
+            _hotBarUI.OnDestroy();
             _inventoryUIR.OnDestroy();
             _inventoryUIJ.OnDestroy();
             _inventoryUIT.OnDestroy();

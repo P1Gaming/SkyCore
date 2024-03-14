@@ -35,10 +35,7 @@ namespace UI.Inventory
                 _slotUIs[i] = slot.GetComponentInChildren<InventorySlotUI>();
                 _slotUIs[i].InitializeAfterInstantiate(this, itemParentDuringDragAndDrop, _typeAllowed);
             }
-        }
 
-        public void OnEnable()
-        {
             InventoryOrHotBar.OnChangeItem += OnChangeItem;
         }
 

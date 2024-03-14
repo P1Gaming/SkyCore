@@ -32,7 +32,7 @@ public class HoldingItemHandler : MonoBehaviour
 
     private void HeldItemHandling(int slotIndex)
     {
-        ItemStack itemStack = InventoryUI.Instance.Hotbar.InventoryHotbar.GetItemAtSlotIndex(slotIndex);
+        ItemStack itemStack = InventoryUI.Instance.HotbarUI.GetItemAtSlotIndex(slotIndex);
 
         if (itemStack != null)
         {
@@ -51,7 +51,7 @@ public class HoldingItemHandler : MonoBehaviour
         // Change Index
         _heldItemSlotIndex = slotIndex;
 
-        Transform selectedGrid = InventoryUI.Instance.Hotbar.HotBarGrid.transform.GetChild(slotIndex);
+        Transform selectedGrid = InventoryUI.Instance.HotBarGrid.transform.GetChild(slotIndex);
         InventoryUI.Instance.HotbarHighlight.transform.position = selectedGrid.position;
     }
 

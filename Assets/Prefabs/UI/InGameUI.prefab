@@ -509,7 +509,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8293496126186902776}
   - component: {fileID: 7225793608297504880}
-  - component: {fileID: 3797097006058136079}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: InventoryUI
@@ -547,32 +546,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstPersonView: {fileID: 0}
   _interactableVisual: {fileID: 0}
-  _hotBarUI: {fileID: 3797097006058136079}
   _hotBarHighlight: {fileID: 3135310602497220694}
-  _inventorySlotObject: {fileID: 1216759428009543111, guid: 05d2673f19a8d3046bceb338039fd469,
+  _inventorySlotPrefab: {fileID: 1216759428009543111, guid: 05d2673f19a8d3046bceb338039fd469,
     type: 3}
   _animator: {fileID: 8503622064943940983}
+  _hotBarGrid: {fileID: 2165622365241343621}
   _inventoryGridR: {fileID: 1659895323249121827}
   _inventoryGridJelly: {fileID: 7501520414366433016}
   _inventoryGridTool: {fileID: 4431161643414517217}
   _itemParentDuringDragAndDrop: {fileID: 7004866867576706999}
-  _animationSpeed: 0.25
---- !u!114 &3797097006058136079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644272998681635633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 685d4943abd5d0b4eb25b23779469694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inventorySlotPrefab: {fileID: 1216759428009543111, guid: 05d2673f19a8d3046bceb338039fd469,
-    type: 3}
-  _hotBarGrid: {fileID: 2165622365241343621}
-  _itemParentDuringDragAndDrop: {fileID: 7004866867576706999}
+  _animationDuration: 0.5
 --- !u!1 &3344506902684703440
 GameObject:
   m_ObjectHideFlags: 0
