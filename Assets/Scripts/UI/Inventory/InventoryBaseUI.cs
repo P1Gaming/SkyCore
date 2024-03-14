@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Player;
 using System.Diagnostics;
-using static UnityEditor.Progress;
 
 
 namespace UI.Inventory

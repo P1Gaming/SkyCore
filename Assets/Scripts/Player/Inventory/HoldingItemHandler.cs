@@ -74,7 +74,6 @@ public class HoldingItemHandler : MonoBehaviour
 
     public void UpdateHeldItem()
     {
-        UnityEngine.Debug.Log("KaCAw");
         HeldItemHandling(_heldItemIndex);
     }
 }
