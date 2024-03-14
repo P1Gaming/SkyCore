@@ -21,6 +21,7 @@ namespace UI.Inventory
             , InventoryBase inventoryOrHotBar, Transform itemParentDuringDragAndDrop, ItemBase.ItemSortType type)
         {
             InventoryOrHotBar = inventoryOrHotBar;
+            InventoryOrHotBar.SetInventoryBaseUI(this);
 
             _slotUIs = new InventorySlotUI[inventoryOrHotBar.StacksCapacity];
 
@@ -31,16 +32,9 @@ namespace UI.Inventory
                 _slotUIs[i] = slot.GetComponentInChildren<InventorySlotUI>();
                 _slotUIs[i].InitializeAfterInstantiate(this, itemParentDuringDragAndDrop, _typeAllowed);
             }
-
-            InventoryOrHotBar.OnChangeItem += OnChangeItem;
         }
 
-        public void OnDestroy()
-        {
-            InventoryOrHotBar.OnChangeItem -= OnChangeItem;
-        }
-
-        private void OnChangeItem(ItemStack item)
+        public void OnChangeItem(ItemStack item)
         {
             int index;
             if (!_itemsInSlotIndexes.TryGetValue(item, out index))

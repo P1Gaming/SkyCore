@@ -140,15 +140,6 @@ namespace UI.Inventory
             _backpackAction?.Disable();
         }
 
-        private void OnDestroy()
-        {
-            // maybe can just do this in OnDisable, but doing this here for consistency with HotBarUI.
-            _hotBarUI.OnDestroy();
-            _inventoryUIR.OnDestroy();
-            _inventoryUIJ.OnDestroy();
-            _inventoryUIT.OnDestroy();
-        }
-
         private void OnBackpack(InputAction.CallbackContext context)
         {
             Debug.Log("Pressing Inventory");

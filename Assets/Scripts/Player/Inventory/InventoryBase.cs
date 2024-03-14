@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UI.Inventory;
 
 namespace Player
 {
@@ -20,16 +21,16 @@ namespace Player
 
 
         private HashSet<ItemStack> _items = new HashSet<ItemStack>(); // unordered. UI code stores positioning in slots.
-        private UI.Inventory.InventoryDragAndDrop _dragAndDrop;
+        private InventoryDragAndDrop _dragAndDrop;
 
-
-        public event Action<ItemStack> OnChangeItem;
+        private InventoryBaseUI _inventoryBaseUI;
 
         public int StacksCapacity => _stacksCapacity;
 
         public ItemBase.ItemSortType SortType => _sortType;
 
-        public void SetDragAndDrop(UI.Inventory.InventoryDragAndDrop dragAndDrop) => _dragAndDrop = dragAndDrop;
+        public void SetDragAndDrop(InventoryDragAndDrop dragAndDrop) => _dragAndDrop = dragAndDrop;
+        public void SetInventoryBaseUI(InventoryBaseUI inventoryBaseUI) => _inventoryBaseUI = inventoryBaseUI;
 
         private void AddToStack(ItemStack item, int amount)
         {
@@ -46,7 +47,7 @@ namespace Player
                 _items.Remove(item);
                 _dragAndDrop.CheckDraggedStackNowEmpty();
             }
-            OnChangeItem?.Invoke(item);
+            _inventoryBaseUI.OnChangeItem(item);
             HoldingItemHandler.Instance.UpdateHeldItem();
         }
 
@@ -55,7 +56,7 @@ namespace Player
             if (_items.Count < _stacksCapacity)
             {
                 _items.Add(item);
-                OnChangeItem?.Invoke(item);
+                _inventoryBaseUI.OnChangeItem(item);
                 return true;
             }
             else if (_overflowTo != null)
