@@ -19,9 +19,11 @@ namespace UI.Inventory
         [SerializeField]
         private Transform _itemParentDuringDragAndDrop;
 
-        private InventoryUIBase _inventoryOrHotBarUI;
+        private InventoryBaseUI _inventoryOrHotBarUI;
 
-        public InventoryUIBase InventoryHotbar => _inventoryOrHotBarUI;
+        public InventoryBaseUI InventoryHotbar => _inventoryOrHotBarUI;
+
+        public GameObject HotBarGrid => _hotBarGrid;
 
         private void Awake()
         {
@@ -32,7 +34,7 @@ namespace UI.Inventory
                 Debug.LogError("Hotbar on player could not be found.");
             }
 
-            _inventoryOrHotBarUI = new InventoryUIBase(_inventorySlotPrefab, _hotBarGrid, hotbar, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.None);
+            _inventoryOrHotBarUI = new InventoryBaseUI(_inventorySlotPrefab, _hotBarGrid, hotbar, _itemParentDuringDragAndDrop, ItemBase.ItemSortType.None);
 
         }
 

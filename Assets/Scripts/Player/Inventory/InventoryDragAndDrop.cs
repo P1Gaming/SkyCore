@@ -1,14 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using Player;
-using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Collections.Specialized;
-using System;
-using System.Runtime.InteropServices;
 
 namespace UI.Inventory
 {
@@ -69,6 +62,7 @@ namespace UI.Inventory
                 _beingDragged.FollowMouse();
             }
 
+            // Keep track of whether the mouse is still hovering over the same slot after click started.
             if (_clickHappeningAndHoveringOverOriginalSlot)
             {
                 InventorySlotUI belowMouse = _slotBelowMouseFinder.FindInventorySlotBelowMouse();
@@ -87,7 +81,7 @@ namespace UI.Inventory
 
         private void MoveDraggedItemToSlot(InventorySlotUI moveTo)
         {
-            InventoryUIBase.MoveItemBetweenSlots(_beingDragged, moveTo);
+            InventoryBaseUI.MoveItemBetweenSlots(_beingDragged, moveTo);
             _beingDragged.StopItemDrag();
             _beingDragged = null;
         }

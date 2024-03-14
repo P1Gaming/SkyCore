@@ -25,7 +25,7 @@ namespace UI.Inventory
         private Vector3 _imagePosRelativeSlotPos;
         private Vector3 _textPosRelativeImagePos;
 
-        public InventoryUIBase InventoryOrHotBarUI { get; private set; }
+        public InventoryBaseUI InventoryOrHotBarUI { get; private set; }
         public bool IsNotEmpty => InventoryOrHotBarUI.IsNotEmpty(this);
         public ItemStack ItemStack => InventoryOrHotBarUI.GetItemInSlot(this);
         public int SlotIndex => InventoryOrHotBarUI.GetIndexOfSlot(this);
@@ -57,7 +57,7 @@ namespace UI.Inventory
         /// <summary>
         /// Initialization after instantiating the prefab.
         /// </summary>
-        public void InitializeAfterInstantiate(InventoryUIBase inventoryOrHotBarUI, Transform itemParentDuringDragAndDrop, ItemBase.ItemSortType type)
+        public void InitializeAfterInstantiate(InventoryBaseUI inventoryOrHotBarUI, Transform itemParentDuringDragAndDrop, ItemBase.ItemSortType type)
         {
             InventoryOrHotBarUI = inventoryOrHotBarUI;
             _itemParentDuringDragAndDrop = itemParentDuringDragAndDrop;

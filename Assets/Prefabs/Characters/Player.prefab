@@ -180,16 +180,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hotBar:
-    _stacksCapacityResource: 3
+    _stacksCapacity: 3
     _sortType: 0
   _inventoryResource:
-    _stacksCapacityResource: 12
+    _stacksCapacity: 12
     _sortType: 3
   _inventoryJelly:
-    _stacksCapacityResource: 15
+    _stacksCapacity: 15
     _sortType: 2
   _inventoryTool:
-    _stacksCapacityResource: 9
+    _stacksCapacity: 9
     _sortType: 1
 --- !u!114 &1732815361
 MonoBehaviour:
@@ -273,8 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e2e9645838db147a8b5472a231b560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heldItemIndex: 0
-  _helditem: {fileID: 2473881353618583568}
+  _helditemVisual: {fileID: 2473881353618583568}
+  _heldItemSlotIndex: 0
 --- !u!1 &548689563490798967
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 3336558720101766867}
   - component: {fileID: 3325898099016819488}
   m_Layer: 5
-  m_Name: Cube
+  m_Name: Held Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

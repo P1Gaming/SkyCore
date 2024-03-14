@@ -13,28 +13,28 @@ public class PickupItem : MonoBehaviour
     [SerializeField]
     private int _amount = 1;
 
-
     private Rigidbody _rigidbody;
 
+    public int Amount => _amount;
+    public ItemBase ItemInfo => _itemInfo;
+    public Rigidbody Rigidbody => _rigidbody;
 
-    private void OnEnable()
+
+    private void Awake()
     {
-        if (_rigidbody == null)
-            _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Player.InventoryScene inventoryAndHotBar))
         {
-            if (inventoryAndHotBar.GoIntoFirst.TryAddItem(new ItemStack(_itemInfo, _amount)))
+            if (inventoryAndHotBar.HotBar.TryAddItem(new ItemStack(_itemInfo, _amount)))
             {
                 Destroy(gameObject);
             }
         }
     }
 
-    public int Amount { get => _amount; }
-    public ItemBase ItemInfo { get => _itemInfo; }
-    public Rigidbody Rigidbody { get => _rigidbody; }
+    
 }

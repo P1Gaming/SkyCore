@@ -103,7 +103,7 @@ public class ItemAttractor : MonoBehaviour
     {
         if (_inventoryScene != null)
         {
-            return _inventoryScene.GoIntoFirst.HasRoomForItem(item, true);
+            return _inventoryScene.HotBar.HasRoomForItem(item, true);
         }
 
 
@@ -128,7 +128,7 @@ public class ItemAttractor : MonoBehaviour
             { 
                 float itemDistance = Vector3.Distance(transform.position, item.transform.position);
                 if (itemDistance <= item.ItemInfo.AttractionRadius &&
-                    _inventoryScene.GoIntoFirst.HasRoomForItem(item, true))
+                    _inventoryScene.HotBar.HasRoomForItem(item, true))
                 {
                     // I made a function call here so we can easily swap out this logic by calling a different function to change the attraction style.
                     AttractItemNatural(item);

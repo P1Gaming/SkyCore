@@ -10,10 +10,10 @@ namespace UI.Inventory
     /// <summary>
     /// Organizes items into inventory slots, and handles showing their info.
     /// </summary>
-    public class InventoryUIBase
+    public class InventoryBaseUI
     {
 
-        private InventorySlotUI[] _slotUIsResource;
+        private InventorySlotUI[] _slotUIs;
 
         private Dictionary<ItemStack, int> _itemsInSlotIndexes = new Dictionary<ItemStack, int>();
 
@@ -21,19 +21,19 @@ namespace UI.Inventory
 
         private ItemBase.ItemSortType _typeAllowed;
 
-        public InventoryUIBase(GameObject inventorySlotPrefab, GameObject inventoryOrHotBarGrid
+        public InventoryBaseUI(GameObject inventorySlotPrefab, GameObject inventoryOrHotBarGrid
             , InventoryBase inventoryOrHotBar, Transform itemParentDuringDragAndDrop, ItemBase.ItemSortType type)
         {
             InventoryOrHotBar = inventoryOrHotBar;
 
-            _slotUIsResource = new InventorySlotUI[inventoryOrHotBar.StacksCapacityResource];
+            _slotUIs = new InventorySlotUI[inventoryOrHotBar.StacksCapacity];
 
             _typeAllowed = type;
-            for (int i = 0; i < _slotUIsResource.Length; i++)
+            for (int i = 0; i < _slotUIs.Length; i++)
             {
                 GameObject slot = Object.Instantiate(inventorySlotPrefab, inventoryOrHotBarGrid.transform);
-                _slotUIsResource[i] = slot.GetComponentInChildren<InventorySlotUI>();
-                _slotUIsResource[i].InitializeAfterInstantiate(this, itemParentDuringDragAndDrop, _typeAllowed);
+                _slotUIs[i] = slot.GetComponentInChildren<InventorySlotUI>();
+                _slotUIs[i].InitializeAfterInstantiate(this, itemParentDuringDragAndDrop, _typeAllowed);
             }
         }
 
@@ -61,17 +61,17 @@ namespace UI.Inventory
             if (item.amount <= 0)
             {
                 _itemsInSlotIndexes.Remove(item);
-                _slotUIsResource[index].ShowItem(null);
+                _slotUIs[index].ShowItem(null);
             }
             else
             {
-                _slotUIsResource[index].ShowItem(item);
+                _slotUIs[index].ShowItem(item);
             }
         }
 
         private int GetEmptySlotWithLowestIndex()
         {
-            for (int i = 0; i < _slotUIsResource.Length; i++)
+            for (int i = 0; i < _slotUIs.Length; i++)
             {
                 if (!_itemsInSlotIndexes.ContainsValue(i))
                 {
@@ -84,9 +84,9 @@ namespace UI.Inventory
 
         public int GetIndexOfSlot(InventorySlotUI slot)
         {
-            for (int i = 0; i < _slotUIsResource.Length; i++)
+            for (int i = 0; i < _slotUIs.Length; i++)
             {
-                if (slot == _slotUIsResource[i])
+                if (slot == _slotUIs[i])
                 {
                     return i;
                 }
@@ -127,8 +127,8 @@ namespace UI.Inventory
             }
 
 
-            InventoryUIBase fromUI = from.InventoryOrHotBarUI;
-            InventoryUIBase toUI = to.InventoryOrHotBarUI;
+            InventoryBaseUI fromUI = from.InventoryOrHotBarUI;
+            InventoryBaseUI toUI = to.InventoryOrHotBarUI;
 
             Dictionary<ItemStack, int> fromItemsInSlotIndexes = fromUI._itemsInSlotIndexes;
             Dictionary<ItemStack, int> toItemsInSlotIndexes = toUI._itemsInSlotIndexes;
@@ -189,7 +189,7 @@ namespace UI.Inventory
             }
             itemInSlotIndexesAsList.Sort((a, b) => a.Item2.CompareTo(b.Item2));
 
-            string result = $"InventoryOrHotBarUI instance ({_slotUIsResource.Length} slots): ";
+            string result = $"InventoryOrHotBarUI instance ({_slotUIs.Length} slots): ";
             for (int i = 0; i < itemInSlotIndexesAsList.Count; i++)
             {
                 (ItemStack item, int index) = itemInSlotIndexesAsList[i];
@@ -202,9 +202,8 @@ namespace UI.Inventory
         /// <summary>
         /// Get what an item is relative to an index.
         /// </summary>
-        public ItemStack GetItemIndex(int index)
+        public ItemStack GetItemAtSlotIndex(int index)
         {
-
             foreach (ItemStack item in _itemsInSlotIndexes.Keys)
             {
                 if (index == _itemsInSlotIndexes[item])

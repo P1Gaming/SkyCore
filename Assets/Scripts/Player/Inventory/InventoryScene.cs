@@ -9,7 +9,6 @@ namespace Player
     /// </summary>
     public class InventoryScene : MonoBehaviour
     {
-
         [SerializeField]
         private InventoryBase _hotBar;
         [SerializeField]
@@ -23,7 +22,6 @@ namespace Player
         public InventoryBase InventoryResource => _inventoryResource;
         public InventoryBase InventoryJelly => _inventoryJelly;
         public InventoryBase InventoryTool => _inventoryTool;
-        public InventoryBase GoIntoFirst { get; private set; }
 
         private static InventoryScene _instance;
         public static InventoryScene Instance
@@ -32,8 +30,7 @@ namespace Player
             {
                 if (_instance == null)
                 {
-                    _instance = GameObject.FindGameObjectWithTag("Player")?
-                        .GetComponent<InventoryScene>();
+                    _instance = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>();
                 }
                 return _instance;
             }
@@ -41,23 +38,7 @@ namespace Player
 
         private void Awake()
         {
-            DecideWhereItemsGoFirstAndOverflow(out InventoryBase first, out InventoryBase[] overflow);
-            GoIntoFirst = first;
-            first.SetOverflowTo(overflow);
-        }
-
-        private void DecideWhereItemsGoFirstAndOverflow(out InventoryBase first, out InventoryBase[] overflow)
-        {
-            first = _hotBar;
-            overflow = new InventoryBase[3];
-            overflow[0] = _inventoryResource;
-            overflow[1] = _inventoryJelly;
-            overflow[2] = _inventoryTool;
-            Debug.Log(overflow.ToString());
-            foreach (InventoryBase a in overflow)
-            {
-                Debug.Log(a.StacksCapacityResource.ToString());
-            }
+            _hotBar.SetOverflowTo(new InventoryBase[] { _inventoryResource, _inventoryJelly, _inventoryTool });
         }
     }
 

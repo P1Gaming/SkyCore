@@ -13,13 +13,13 @@ namespace Player
     public class InventoryBase
     {
         [SerializeField, Tooltip("Max number of stacks (so the number of inventory slots).")]
-        private int _stacksCapacityResource;
+        private int _stacksCapacity;
 
         [SerializeField, Tooltip("Designated sort type of inventory section.")]
         private ItemBase.ItemSortType _sortType;
 
 
-        [NonSerialized] // I added this attribute to stop the following Unity warnings: "Serialization depth limit 10 exceeded at 'Player::InventoryBase._overflowTo'. There may be an object composition cycle in one or more of your serialized classes."
+        [NonSerialized] // Prevent warning about a serialization loop
         private InventoryBase[] _overflowTo;
 
 
@@ -29,7 +29,7 @@ namespace Player
 
         public event Action<ItemStack> OnChangeItem;
 
-        public int StacksCapacityResource => _stacksCapacityResource;
+        public int StacksCapacity => _stacksCapacity;
 
         public ItemBase.ItemSortType SortType => _sortType;
 
@@ -66,7 +66,7 @@ namespace Player
         /// <param name="item">The item that will be added to the hotbar</param>
         private bool TryAddItemAsNewStack(ItemStack item)
         {
-            if (_items.Count < _stacksCapacityResource)
+            if (_items.Count < _stacksCapacity)
             {
                 _items.Add(item);
                 OnChangeItem?.Invoke(item);
@@ -74,12 +74,12 @@ namespace Player
             }
             else if (_overflowTo != null)
             {
-                //Sorts to the proper inventory section
-                foreach(InventoryBase _o in _overflowTo)
+                // Sorts to the proper inventory section
+                foreach (InventoryBase _o in _overflowTo)
                 {
-                    if(item.itemInfo.SortType == _o.SortType || _o.SortType == ItemBase.ItemSortType.None)
+                    if (item.itemInfo.SortType == _o.SortType || _o.SortType == ItemBase.ItemSortType.None)
                     {
-                        if(_o.TryAddItem(item))
+                        if (_o.TryAddItem(item))
                         {
                             return true;
                         }
@@ -138,9 +138,9 @@ namespace Player
         /// <returns> Returns true if the item can be added, otherwise false.</returns>
         public bool TryAddItem(ItemStack item)
         {
-            bool successfullyAdded = false;
+            bool successfullyAdded;
             ItemStack itemHereAlready = GetItem(item.itemInfo, requireStackNotFull: true);
-            if ((itemHereAlready is null) || !item.itemInfo.IsStackable)
+            if (itemHereAlready == null || !item.itemInfo.IsStackable)
             {
                 successfullyAdded = TryAddItemAsNewStack(item);
             }
@@ -152,7 +152,6 @@ namespace Player
 
             GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>().UpdateHeldItem();
 
-            PrintHotbar();
             return successfullyAdded;
         }
 
@@ -196,7 +195,7 @@ namespace Player
             }
 
             // We couldn't fit the items in an existing stack, so see if we can add them as a new stack.
-            if (_items.Count < _stacksCapacityResource)
+            if (_items.Count < _stacksCapacity)
             {
                 // There is at least one empty slot in this inventory, so we know the passed in item stack can fit.
                 return true;
@@ -237,8 +236,6 @@ namespace Player
 
             AddToStack(item, -subtractedAmount);
 
-            //PrintHotbar();
-
             return true;
         }
 
@@ -252,19 +249,6 @@ namespace Player
 
             // I'm not sure whether to invoke the OnChangeItem event. That currently is just for InventoryOrHotBarUI,
             // and this is called by that so it's not necessary.
-        }
-
-        /// <summary>
-        /// For printing out the hotbar list. Used for debugging before UI was setup.
-        /// </summary>
-        public void PrintHotbar()
-        {
-            string toLog = "Hotbar:\n";
-            foreach (ItemStack item in _items)
-            {
-                toLog += item + "\n";
-            }
-            Debug.Log(toLog);
         }
 
         /// <param name="overflowTo">When full and try add item, goes here, or on ground if null.</param>

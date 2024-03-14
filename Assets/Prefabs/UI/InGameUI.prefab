@@ -273,7 +273,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: fc3768eab8a77434b827eab4d1dae0ff, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -549,16 +549,9 @@ MonoBehaviour:
   _interactableVisual: {fileID: 0}
   _hotBarUI: {fileID: 3797097006058136079}
   _hotBarHighlight: {fileID: 3135310602497220694}
-  _inventoryCenter: {x: 0, y: 0}
   _inventorySlotObject: {fileID: 1216759428009543111, guid: 05d2673f19a8d3046bceb338039fd469,
     type: 3}
-  _inventoryDimensions: {x: 0, y: 0}
-  _inventorySpacing: {x: 0, y: 0}
-  _resourceMenu: {fileID: 1820182494594089017}
-  _jellyItemMenu: {fileID: 3344506902684703440}
-  _toolMenu: {fileID: 4039134941394529392}
   _animator: {fileID: 8503622064943940983}
-  _backpackButton: {fileID: 7511249303458566761}
   _inventoryGridR: {fileID: 1659895323249121827}
   _inventoryGridJelly: {fileID: 7501520414366433016}
   _inventoryGridTool: {fileID: 4431161643414517217}
