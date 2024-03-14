@@ -100,7 +100,6 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (_interactable.gameObject.GetComponent<BerryBushInteraction>() != null)
         {
-
             _currentBush = _interactable.gameObject.GetComponent<BerryBush>();
         }
     }
@@ -163,12 +162,10 @@ public class PlayerInteraction : MonoBehaviour
                 _islandHeartCurrent.InteractStart();
             }
         }
-        else if (_currentBush != null)
+        else if (_currentBush != null && _interactable != null)
         {
             _interactable.Interact(0, this);
-
         }
-
 
     }
     public static void InventoryState(bool state)
