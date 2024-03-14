@@ -426,6 +426,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 55583485052113950, guid: 6c9f547523814e349808682e054c57ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 55583485615312681, guid: 6c9f547523814e349808682e054c57ab,
         type: 3}
       propertyPath: m_Size.x
@@ -441,6 +446,16 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 55583486134618127, guid: 6c9f547523814e349808682e054c57ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135860768428119889, guid: 6c9f547523814e349808682e054c57ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 526852573387811009, guid: 6c9f547523814e349808682e054c57ab,
         type: 3}
       propertyPath: m_RootOrder
@@ -454,7 +469,7 @@ PrefabInstance:
     - target: {fileID: 526852573387811009, guid: 6c9f547523814e349808682e054c57ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.14
+      value: 3.13
       objectReference: {fileID: 0}
     - target: {fileID: 526852573387811009, guid: 6c9f547523814e349808682e054c57ab,
         type: 3}
@@ -500,6 +515,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Berry Bush
+      objectReference: {fileID: 0}
+    - target: {fileID: 865835940704662139, guid: 6c9f547523814e349808682e054c57ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305089966726396674, guid: 6c9f547523814e349808682e054c57ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392077116739171383, guid: 6c9f547523814e349808682e054c57ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5252552352296487286, guid: 6c9f547523814e349808682e054c57ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c9f547523814e349808682e054c57ab, type: 3}
