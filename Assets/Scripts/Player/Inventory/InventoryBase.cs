@@ -5,10 +5,6 @@ using UnityEngine;
 
 namespace Player
 {
-    /// <summary>
-    /// Handles the adding of items into the hotbar or inventory. Once full, items overflow
-    /// into another instance of this class, or onto the ground.
-    /// </summary>
     [Serializable] // to show this in the inspector
     public class InventoryBase
     {
@@ -35,11 +31,6 @@ namespace Player
 
         public void SetDragAndDrop(UI.Inventory.InventoryDragAndDrop dragAndDrop) => _dragAndDrop = dragAndDrop;
 
-        /// <summary>
-        /// Creates a new item stack if the items picked up puts the amount over the max for the next open stack.
-        /// </summary>
-        /// <param name="item">The stack that has not reached the max items yet</param>
-        /// <param name="amount">The number of items to add to the stack</param>
         private void AddToStack(ItemStack item, int amount)
         {
             item.amount += amount;
@@ -56,14 +47,9 @@ namespace Player
                 _dragAndDrop.CheckDraggedStackNowEmpty();
             }
             OnChangeItem?.Invoke(item);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>().UpdateHeldItem();
+            HoldingItemHandler.Instance.UpdateHeldItem();
         }
 
-        /// <summary>
-        /// Adds the new item to the hot bar unless the hot bar is full it will try to add the item
-        /// to the inventory.
-        /// </summary>
-        /// <param name="item">The item that will be added to the hotbar</param>
         private bool TryAddItemAsNewStack(ItemStack item)
         {
             if (_items.Count < _stacksCapacity)
@@ -75,38 +61,23 @@ namespace Player
             else if (_overflowTo != null)
             {
                 // Sorts to the proper inventory section
-                foreach (InventoryBase _o in _overflowTo)
+                foreach (InventoryBase overflowOption in _overflowTo)
                 {
-                    if (item.itemInfo.SortType == _o.SortType || _o.SortType == ItemBase.ItemSortType.None)
+                    if (item.itemInfo.SortType == overflowOption.SortType || overflowOption.SortType == ItemBase.ItemSortType.None)
                     {
-                        if (_o.TryAddItem(item))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                        
+                        return overflowOption.TryAddItem(item);
                     }
                 }
-                Debug.Log("Can't add item because type is not found");
-                return false;
+
+                throw new InvalidOperationException("Can't add item because type is not found");
             }
             else
             {
-                //TODO: Drop the excess items
-                Debug.Log("Can't add item because inventory is full");
+                Debug.Log("Can't add item because inventory is full (TODO: toss excess items on the ground)");
                 return false;
             }
         }
-
-        /// <summary>
-        /// Finds an Item (which means a stack of items) in this inventory or hot bar.
-        /// </summary>
-        /// <param name="itemInfo">The type of item to find a stack of</param>
-        /// <param name="requireStackNotFull">Whether to only find a stack which isn't full</param>
-        /// <returns>Returns the stack of items, if not found returns null</returns>
+       
         private ItemStack GetItem(ItemBase itemInfo, bool requireStackNotFull)
         {
             foreach (ItemStack item in _items)
@@ -131,11 +102,6 @@ namespace Player
             return false;
         }
 
-        /// <summary>
-        /// Try to add the picked up item to the inventory of any gameobject with an inventory (Usually the player)
-        /// </summary>
-        /// <param name="item">The item component that was on the collided item pickup</param>
-        /// <returns> Returns true if the item can be added, otherwise false.</returns>
         public bool TryAddItem(ItemStack item)
         {
             bool successfullyAdded;
@@ -150,39 +116,21 @@ namespace Player
                 successfullyAdded = true;
             }
 
-            GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>().UpdateHeldItem();
+            HoldingItemHandler.Instance.UpdateHeldItem();
 
             return successfullyAdded;
         }
 
-        /// <summary>
-        /// Checks if the specified item stack can fit in this inventory or not.
-        /// </summary>
-        /// <param name="item">The stack of items to check if there is room for.</param>
-        /// <param name="includeOverflowInventories">If true and this inventory does not have enough room, this function will also check if the overflow inventories have room.</param>
-        /// <returns>True if this inventory has enough space for the passed in item stack.</returns>
         public bool HasRoomForItem(ItemStack item, bool includeOverflowInventories = false)
         {
             return HasRoomForItem(item.itemInfo, item.amount, includeOverflowInventories);
         }
 
-        /// <summary>
-        /// Checks if the specified item stack can fit in this inventory or not.
-        /// </summary>
-        /// <param name="item">The PickupItem to check if there is room for.</param>
-        /// <param name="includeOverflowInventories">If true and this inventory does not have enough room, this function will also check if the overflow inventories have room.</param>
-        /// <returns>True if this inventory has enough space for the passed in PickupItem.</returns>
         public bool HasRoomForItem(PickupItem item, bool includeOverflowInventories = false)
         {
             return HasRoomForItem(item.ItemInfo, item.Amount, includeOverflowInventories);
         }
 
-        /// <summary>
-        /// Checks if the specified item quantity can fit in this inventory or not.
-        /// </summary>
-        /// <param name="item">The stack of items to check if there is room for.</param>
-        /// <param name="includeOverflowInventories">If true and this inventory does not have enough room, this function will also check if the overflow inventories have room.</param>
-        /// <returns>True if this inventory has enough space for the passed in item stack.</returns>
         public bool HasRoomForItem(ItemBase itemInfo, float amount, bool includeOverflowInventories = false)
         {
             // First check if the items can be added to an existing stack.
@@ -220,16 +168,10 @@ namespace Player
             return false;
         }
 
-        /// <summary>
-        /// Check if the item exists in the HotBar & the item's amount >= subtractedAmount
-        /// </summary>
-        /// <param name="itemInfo"></param>
-        /// <param name="subtractedAmount"></param>
-        /// <returns>return the possibility to substract</returns>
         public bool TrySubtractItemAmount(ItemBase itemInfo, int subtractedAmount)
         {
             ItemStack item = GetItem(itemInfo, requireStackNotFull: false);
-            if ((item is null) || item.amount < subtractedAmount)
+            if (item == null || item.amount < subtractedAmount)
             {
                 return false;
             }
@@ -239,9 +181,6 @@ namespace Player
             return true;
         }
 
-        /// <summary>
-        /// Transfers an item between two InventoryOrHotBars.
-        /// </summary>
         public static void MoveItemBetweenInventorySections(InventoryBase from, InventoryBase to, ItemStack item)
         {
             from._items.Remove(item);
@@ -251,7 +190,6 @@ namespace Player
             // and this is called by that so it's not necessary.
         }
 
-        /// <param name="overflowTo">When full and try add item, goes here, or on ground if null.</param>
         public void SetOverflowTo(InventoryBase[] overflowTo)
         {
             _overflowTo = overflowTo;

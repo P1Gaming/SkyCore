@@ -13,6 +13,19 @@ public class HoldingItemHandler : MonoBehaviour
     public int _heldItemSlotIndex = 0;
     public ItemStack HeldItem { get; private set; }
 
+    private static HoldingItemHandler _instance;
+    public static HoldingItemHandler Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>();
+            }
+            return _instance;
+        }
+    }
+
 
     private void Update()
     {

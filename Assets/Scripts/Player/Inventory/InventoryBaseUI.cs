@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
-using System.Diagnostics;
 
 
 namespace UI.Inventory
 {
-    /// <summary>
-    /// Organizes items into inventory slots, and handles showing their info.
-    /// </summary>
     public class InventoryBaseUI
     {
 
@@ -44,9 +40,6 @@ namespace UI.Inventory
             InventoryOrHotBar.OnChangeItem -= OnChangeItem;
         }
 
-        /// <summary>
-        /// Updates the UI to show the item.
-        /// </summary>
         private void OnChangeItem(ItemStack item)
         {
             int index;
@@ -75,8 +68,7 @@ namespace UI.Inventory
                     return i;
                 }
             }
-            //Debug.LogError("Couldn't find a free slot in UI to show the item. This is a bug.");
-            return -1; // shouldn't happen
+            throw new System.InvalidOperationException("Couldn't get empty slow with lowest index. This shouldn't be possible.");
         }
 
         public int GetIndexOfSlot(InventorySlotUI slot)
@@ -147,13 +139,13 @@ namespace UI.Inventory
             int toSlotIndex = to.SlotIndex;
 
             fromItemsInSlotIndexes.Remove(itemToMove);
-            if (!(itemInTo is null))
+            if (itemInTo != null)
             {
                 toItemsInSlotIndexes.Remove(itemInTo);
             }
 
             toItemsInSlotIndexes.Add(itemToMove, toSlotIndex);
-            if (!(itemInTo is null))
+            if (itemInTo != null)
             {
                 fromItemsInSlotIndexes.Add(itemInTo, fromSlotIndex);
             }
@@ -174,31 +166,9 @@ namespace UI.Inventory
             from.ShowItem(from.ItemStack);
             to.ShowItem(to.ItemStack);
 
-            GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>().UpdateHeldItem();
+            HoldingItemHandler.Instance.UpdateHeldItem();
         }
 
-        public override string ToString()
-        {
-            List<(ItemStack, int)> itemInSlotIndexesAsList = new();
-            foreach (ItemStack item in _itemsInSlotIndexes.Keys)
-            {
-                itemInSlotIndexesAsList.Add((item, _itemsInSlotIndexes[item]));
-            }
-            itemInSlotIndexesAsList.Sort((a, b) => a.Item2.CompareTo(b.Item2));
-
-            string result = $"InventoryOrHotBarUI instance ({_slotUIs.Length} slots): ";
-            for (int i = 0; i < itemInSlotIndexesAsList.Count; i++)
-            {
-                (ItemStack item, int index) = itemInSlotIndexesAsList[i];
-                result += $"[[{index}] {item}] ";
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get what an item is relative to an index.
-        /// </summary>
         public ItemStack GetItemAtSlotIndex(int index)
         {
             foreach (ItemStack item in _itemsInSlotIndexes.Keys)

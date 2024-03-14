@@ -70,9 +70,7 @@ namespace UI.Inventory
         /// </summary>
         public void ShowItem(ItemStack item)
         {
-            // don't use != for now, b/c items are destroyed when picked up so == returns null
-            // even if it's not actually null.
-            bool show = !(item is null); 
+            bool show = item != null; 
 
             _countTextGameobject.SetActive(show);
             _imageGameobject.SetActive(show);
