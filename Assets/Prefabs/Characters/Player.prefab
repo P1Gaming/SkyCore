@@ -150,7 +150,7 @@ MonoBehaviour:
   _fpsCamera: {fileID: 0}
   _interactableLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
   _interactable: {fileID: 0}
 --- !u!114 &548689562930659582
 MonoBehaviour:

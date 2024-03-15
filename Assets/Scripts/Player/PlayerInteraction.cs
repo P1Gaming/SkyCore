@@ -47,8 +47,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private static bool _inventoryOpen;
 
-    private BerryBush _currentBush;
-
     /// <summary>
     /// If there is a raycast hit and no interactable assigned, enter interaction
     /// If there is a raycast hit and an interactable assigned, stay in interaction
@@ -98,10 +96,6 @@ public class PlayerInteraction : MonoBehaviour
             _islandHeartCurrent = _interactable.gameObject.GetComponent<IslandHeartInteractBase>();
             //TODO: Show inventory here
         }
-        else if (_interactable.gameObject.GetComponent<BerryBushInteraction>() != null)
-        {
-            _currentBush = _interactable.gameObject.GetComponent<BerryBush>();
-        }
     }
 
     /// <summary>
@@ -143,7 +137,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void HandleAction(InputAction.CallbackContext context)
     {
-        if (context.action.name != "Interact")
+        if(context.action.name != "Interact")
         {
             //Debug.Log("There was an issue with the Interaction system: "+ context.action.name);
             return;
@@ -154,20 +148,15 @@ public class PlayerInteraction : MonoBehaviour
             {
                 _jellyCurrent.InteractStart();
             }
-        }
-        else if (_islandHeartCurrent != null)
+        } else if( _islandHeartCurrent != null)
         {
             if (!_islandHeartCurrent.Interacting)
             {
                 _islandHeartCurrent.InteractStart();
             }
         }
-        else if (_currentBush != null && _interactable != null)
-        {
-            _interactable.Interact(0, this);
-        }
-
     }
+
     public static void InventoryState(bool state)
     {
         _inventoryOpen = state;
