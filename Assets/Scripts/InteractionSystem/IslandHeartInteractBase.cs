@@ -4,7 +4,6 @@ using Player.Motion;
 using TMPro;
 using UnityEngine.UI;
 using Jellies;
-using UI.Inventory;
 
 public class IslandHeartInteractBase : Interactable
 {

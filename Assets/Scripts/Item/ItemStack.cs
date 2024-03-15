@@ -7,12 +7,12 @@ using UnityEngine;
 /// </summary>
 public class ItemStack
 {
-    public readonly ItemBase itemInfo;
+    public readonly ItemIdentity identity;
     public int amount;
 
-    public bool IsStackFull => amount >= itemInfo.MaxStack;
+    public bool IsStackFull => amount >= identity.MaxStack;
 
-    public ItemStack(ItemBase itemInfo, int amount)
+    public ItemStack(ItemIdentity itemInfo, int amount)
     {
         if (itemInfo == null)
         {
@@ -24,11 +24,11 @@ public class ItemStack
                 $" amount ({amount}) > itemInfo.MaxStack ({itemInfo.MaxStack}) (can't fit that many items in a single stack.)");
         }
         this.amount = amount;
-        this.itemInfo = itemInfo;
+        identity = itemInfo;
     }
 
     public override string ToString()
     {
-        return "ID: " + itemInfo.ID + " Name: " + itemInfo.Name + " Amount: " + amount;
+        return "Name: " + identity.name + " Amount: " + amount;
     }
 }

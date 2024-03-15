@@ -71,7 +71,7 @@ public class ShowNewlyScannedThing : MonoBehaviour
 
     private void OnScanItemBeforeCast(object item)
     {
-        ItemBase itemCasted = item as ItemBase;
+        ItemIdentity itemCasted = item as ItemIdentity;
         if (itemCasted == null)
         {
             throw new System.ArgumentException("item must be non-null and an ItemBase");

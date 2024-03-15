@@ -120,7 +120,6 @@ public class PauseManagement : MonoBehaviour
 
     public void InventoryInteraction(bool report)
     {
-        //Placeholder until namespace issues are solved, cannot add namespace UI.Inventory to the script.
         _inventoryOpen = report;
     }
 

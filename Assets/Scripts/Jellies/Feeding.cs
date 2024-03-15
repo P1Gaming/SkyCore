@@ -16,7 +16,7 @@ namespace Jellies
     {
         [SerializeField, Tooltip("Scriptable object representing" +
         " the type of item to feed the jelly")]
-        private ItemBase _berryItem;
+        private BerryItemIdentity _berryItemIdentity;
 
         private Parameters _parameters;
 
@@ -44,10 +44,10 @@ namespace Jellies
         /// </summary>
         public void OnFeedButton()
         {
-            InventoryBase hotBar = UI.Inventory.InventoryUI.Instance.HotBar;
-            if (hotBar.TrySubtractItemAmount(_berryItem, 1))
+            InventorySection hotBar = InventoryUI.Instance.HotbarSection;
+            if (hotBar.TrySubtractItemAmount(_berryItemIdentity, 1))
             {
-                FeedJelly(_berryItem.SaturationValue);
+                FeedJelly(_berryItemIdentity.SaturationValue);
 
                 // Used to handle if the array is empty or outside of range for the slimes current level
                 try

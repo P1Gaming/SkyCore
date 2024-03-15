@@ -8,35 +8,40 @@ using UnityEngine;
 public class PickupItem : MonoBehaviour
 {
     [SerializeField]
-    private ItemBase _itemInfo;
+    private ItemIdentity _itemInfo;
 
     [SerializeField]
     private int _amount = 1;
 
     private Rigidbody _rigidbody;
 
+    private ItemStack _stack;
+
     public int Amount => _amount;
-    public ItemBase ItemInfo => _itemInfo;
+    public ItemIdentity ItemInfo => _itemInfo;
     public Rigidbody Rigidbody => _rigidbody;
 
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _stack = new ItemStack(_itemInfo, _amount);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) => TryPickup(other);
+    private void OnTriggerStay(Collider other) => TryPickup(other);
+
+    private void TryPickup(Collider other)
     {
         if (other.gameObject.tag != "Player")
         {
             return;
         }
 
-        if (UI.Inventory.InventoryUI.Instance.HotBar.TryAddItem(new ItemStack(_itemInfo, _amount)))
+        InventoryUI.Instance.HotbarSection.TakeInAsManyAsFit(_stack);
+        if (_stack.amount == 0)
         {
             Destroy(gameObject);
         }
     }
-
-    
 }

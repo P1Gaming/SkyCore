@@ -1,8 +1,5 @@
-using Player;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using UI.Inventory;
 using UnityEngine;
 
 public class HoldingItemHandler : MonoBehaviour
@@ -45,14 +42,14 @@ public class HoldingItemHandler : MonoBehaviour
 
     private void HeldItemHandling(int slotIndex)
     {
-        ItemStack itemStack = InventoryUI.Instance.HotbarUI.GetItemAtSlotIndex(slotIndex);
+        ItemStack itemStack = InventoryUI.Instance.HotbarSection.GetItemAtSlotIndex(slotIndex);
 
         if (itemStack != null)
         {
             // Visually Change Model
-            _helditemVisual.GetComponent<MeshFilter>().sharedMesh = itemStack.itemInfo.ItemPrefab.GetComponent<MeshFilter>().sharedMesh;
+            _helditemVisual.GetComponent<MeshFilter>().sharedMesh = itemStack.identity.ItemPrefab.GetComponent<MeshFilter>().sharedMesh;
             // Copy Materials Over
-            _helditemVisual.GetComponent<MeshRenderer>().sharedMaterials = itemStack.itemInfo.ItemPrefab.GetComponent<MeshRenderer>().sharedMaterials;
+            _helditemVisual.GetComponent<MeshRenderer>().sharedMaterials = itemStack.identity.ItemPrefab.GetComponent<MeshRenderer>().sharedMaterials;
 
             HeldItem = itemStack;
         }

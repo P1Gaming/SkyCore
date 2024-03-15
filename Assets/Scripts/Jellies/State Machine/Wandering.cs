@@ -12,7 +12,7 @@ public class Wandering : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _updateWandering;
     [SerializeField]
-    private ItemBase _berry;
+    private ItemIdentity _berry;
     [SerializeField]
     private NavMeshAgent _meshAgent;
     [SerializeField]
@@ -112,10 +112,10 @@ public class Wandering : MonoBehaviour
     {
         bool hasBerries = false;
         Vector3 playerPos = new Vector3(0,0,0);
-        UI.Inventory.InventoryUI inventory = UI.Inventory.InventoryUI.Instance;
+        InventoryUI inventory = InventoryUI.Instance;
         if (inventory != null)
         {
-            hasBerries = inventory.HotBar.HasItem(_berry);
+            hasBerries = inventory.HotbarSection.HasItem(_berry);
             playerPos = inventory.transform.position;
         }
 

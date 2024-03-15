@@ -42,7 +42,29 @@ namespace Player.View
 
         private float _xRot = 0f;
 
+        public static FirstPersonView Instance { get; private set; }
 
+
+        
+
+        /// <summary>
+        /// Get the starting local rotation of the look point in the x direction.
+        /// Hide and lock cursor to center of screen.
+        /// </summary> 
+        protected void Awake()
+        {
+            Instance = this;
+            _xRot = _cameraTarget.transform.rotation.eulerAngles.x;
+            Cursor.lockState = (CursorLockMode.Locked);
+            Cursor.visible = false;
+
+
+            // Get the sensitivity value if one is saved, or use the default.
+            float sensitivity = PlayerPrefs.GetFloat(PlayerPrefsKeys.FirstPersonViewSensitivity,
+                                                            DefaultSettingsMenuValues.FirstPersonViewSensitivity);
+
+            _sensitivitySetting = sensitivity / 100f;
+        }
 
         private void OnEnable()
         {
@@ -66,27 +88,9 @@ namespace Player.View
         }
 
         /// <summary>
-        /// Get the starting local rotation of the look point in the x direction.
-        /// Hide and lock cursor to center of screen.
-        /// </summary> 
-        protected void Awake()
-        {
-            _xRot = _cameraTarget.transform.rotation.eulerAngles.x;
-            Cursor.lockState = (CursorLockMode.Locked);
-            Cursor.visible = false;
-
-
-            // Get the sensitivity value if one is saved, or use the default.
-            float sensitivity = PlayerPrefs.GetFloat(PlayerPrefsKeys.FirstPersonViewSensitivity,
-                                                            DefaultSettingsMenuValues.FirstPersonViewSensitivity);
-
-            _sensitivitySetting = sensitivity / 100f;
-        }
-
-        /// <summary>
         /// Call update each frame, to run the look fuction.
         /// </summary> 
-        void Update()
+        private void Update()
         {
             PerformLook();
         }
