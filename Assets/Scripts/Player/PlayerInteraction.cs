@@ -146,6 +146,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!_jellyCurrent.Interacting && !_inventoryOpen)
             {
+                Debug.Log("Now");
                 _jellyCurrent.InteractStart();
             }
         } else if( _islandHeartCurrent != null)

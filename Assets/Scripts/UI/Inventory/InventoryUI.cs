@@ -184,12 +184,12 @@ namespace UI.Inventory
                 Debug.Log("Cancel pressing inventory because of pause game.");
                 return;
             }
-            /*else if (becomeInBackpackMode && JellyInteractBase.AnyInteracting)
+            else if (becomeInBackpackMode && JellyInteractBase.AnyInteracting)
             {
                 //the player has the game pause
                 Debug.Log("Cancel pressing inventory because of jelly Interaction");
                 return;
-            }*/
+            }
             else if (becomeInBackpackMode && IslandHeartInteractBase.AnyInteracting)
             {
                 //the player has the game paused
