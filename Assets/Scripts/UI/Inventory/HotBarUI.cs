@@ -21,6 +21,8 @@ namespace UI.Inventory
 
         private InventoryUIBase _inventoryOrHotBarUI;
 
+        public InventoryUIBase InventoryHotbar => _inventoryOrHotBarUI;
+
         private void Awake()
         {
             Player.InventoryBase hotbar 
