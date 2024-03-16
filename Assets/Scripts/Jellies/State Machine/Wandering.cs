@@ -112,10 +112,10 @@ public class Wandering : MonoBehaviour
     {
         bool hasBerries = false;
         Vector3 playerPos = new Vector3(0,0,0);
-        InventoryUI inventory = InventoryUI.Instance;
+        Inventory inventory = Inventory.Instance;
         if (inventory != null)
         {
-            hasBerries = inventory.HotbarSection.HasItem(_berry);
+            hasBerries = inventory.HasItemOnHotbar(_berry);
             playerPos = inventory.transform.position;
         }
 

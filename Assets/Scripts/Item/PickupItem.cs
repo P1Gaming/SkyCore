@@ -14,8 +14,8 @@ public class PickupItem : MonoBehaviour
     private int _amount = 1;
 
     private Rigidbody _rigidbody;
-
     private ItemStack _stack;
+    private bool _destroyed;
 
     public int Amount => _amount;
     public ItemIdentity ItemInfo => _itemInfo;
@@ -33,14 +33,20 @@ public class PickupItem : MonoBehaviour
 
     private void TryPickup(Collider other)
     {
-        if (other.gameObject.tag != "Player")
+        if (_destroyed)
+        {
+            // destroy doesn't happen until the end of the frame
+            return;
+        }
+        if (!other.gameObject.CompareTag("Player"))
         {
             return;
         }
 
-        InventoryUI.Instance.HotbarSection.TakeInAsManyAsFit(_stack);
+        Inventory.Instance.TakeInAsManyAsFit(_stack);
         if (_stack.amount == 0)
         {
+            _destroyed = true;
             Destroy(gameObject);
         }
     }

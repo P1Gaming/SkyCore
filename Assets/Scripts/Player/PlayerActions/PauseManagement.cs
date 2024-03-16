@@ -3,25 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Player.View;
-using System;
 
 public class PauseManagement : MonoBehaviour
 {
-    [SerializeField]
-    private CinemachineVirtualCamera[] _virtualCamera;
-    [SerializeField]
-    private FirstPersonView _firstPersonView;
-    [SerializeField]
-    private GameObject _jellyInteractVisual;
-    #pragma warning disable
-    [SerializeField, Range(0f,1f)]
-    private float _pauseTimeScaleVariance = .001f;
+    private List<CinemachineVirtualCamera> _virtualCameras = new();
 
     private PlayerActions _pauseAction;
-    private bool _paused = false;
-    private bool _inventoryOpen = false;
 
-    private EscMenuToggle _pMenu;
+    private EscMenuToggle _escMenuToggle;
 
     private static PauseManagement _instance;
     public static PauseManagement Instance
@@ -38,27 +27,30 @@ public class PauseManagement : MonoBehaviour
         }
     }
 
+    public static bool IsPaused => Time.timeScale == 0;
+
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        _instance = this;
+
+        // Only control enabled for the virtual cameras whose gameObjects are siblings of the main camera
+        // and whose gameObjects are active.
+        CinemachineVirtualCamera[] virtualCameras = FindObjectsOfType<CinemachineVirtualCamera>();
+        Camera mainCamera = Camera.main;
+        for (int i = 0; i < virtualCameras.Length; i++)
         {
-            Destroy(gameObject);
-            return;
+            if (virtualCameras[i].transform.parent == mainCamera.transform.parent)
+            {
+                _virtualCameras.Add(virtualCameras[i]);
+            }
         }
-        else
-        {
-            _instance = this;
-        }
-        DontDestroyOnLoad(gameObject);
 
         _pauseAction = new PlayerActions();
-        _pauseAction.UI.Pause.performed += _ => DeterminePause();
-        _paused = !_paused;
+        _pauseAction.UI.Pause.performed += callbackContext => TogglePause();
 
-        _pMenu = FindObjectOfType<EscMenuToggle>(true);
+        _escMenuToggle = FindObjectOfType<EscMenuToggle>(true);
 
-        _pMenu.SetActive(false);
-        _firstPersonView.enabled = true;
+        _escMenuToggle.SetActive(false);
     }
 
     private void OnEnable()
@@ -73,54 +65,28 @@ public class PauseManagement : MonoBehaviour
 
     private void SetPause(bool pause)
     {
-        _paused = pause;
-        _pMenu.SetActive(!pause);
-        if (Convert.ToInt32(pause) == 0)
+        bool wasPaused = IsPaused;
+        if (pause != wasPaused)
         {
-            Time.timeScale = Convert.ToInt32(pause);
+            CursorMode.ChangeNumberOfReasonsForFreeCursor(pause);
+            InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(pause);
         }
-        else
+
+
+
+        Time.timeScale = pause ? 0 : 1;
+
+        _escMenuToggle.SetActive(pause);
+
+        foreach (CinemachineVirtualCamera x in _virtualCameras)
         {
-            Time.timeScale = Convert.ToInt32(pause);
+            x.enabled = !pause;
         }
-        Cursor.visible = !pause;
-        Cursor.lockState = pause ? CursorLockMode.Locked : CursorLockMode.None;
-        foreach (var CinemachineVirtualCamera in _virtualCamera)
-        {
-            CinemachineVirtualCamera.enabled = pause;
-        }
-        _firstPersonView.enabled = pause;
-        _jellyInteractVisual.SetActive(pause);
+
     }
 
-    // <summary> 
-    // Controls the state of the pause menu.
-    // Has the ability to be disabled by other scripts if needed,
-    // to prevent uneccesary bugs with movement and other UIs.
-    // <summary>
-    public void DeterminePause()
+    public void TogglePause()
     {
-        if (!JellyInteractBase.AnyInteracting && !_inventoryOpen)
-        {
-            SetPause(!_paused);
-        }
+        SetPause(!IsPaused);
     }
-
-    public void OnSetPauseButton(bool state)
-    {
-        _paused = state;
-        DeterminePause();
-    }
-
-    public bool IsPaused()
-    {
-        //With the way paused is set up right now, need to return the opposite
-        return !_paused;
-    }
-
-    public void InventoryInteraction(bool report)
-    {
-        _inventoryOpen = report;
-    }
-
 }

@@ -26,10 +26,6 @@ public class JellyInteractBase : Interactable
     [SerializeField] 
     private TextMeshProUGUI _saturationText;
 
-    private GameObject _interactionUI;
-    private GameObject _inventoryUI;
-    private FirstPersonView _firstPersonView;
-    private PlayerInteraction _playerInteraction;
 
    
 
@@ -57,13 +53,6 @@ public class JellyInteractBase : Interactable
     private void Awake()
     {
         _jellyParams = GetComponent<Parameters>();
-
-        // Temporary single player reference. These might not work later, e.g. if the inventoryUI
-        // starts inactivate b/c FindWithTag wont work.
-        _interactionUI = InteractionUI.Instance.gameObject;
-        _inventoryUI = GameObject.FindWithTag("InventoryUI");
-        _firstPersonView = FindObjectOfType<FirstPersonView>();
-        _playerInteraction = _firstPersonView?.GetComponent<PlayerInteraction>();
     }
 
     private void Update()
@@ -90,8 +79,7 @@ public class JellyInteractBase : Interactable
 
         _jellyVCamera.SetActive(interact);
 
-        Cursor.visible = interact;
-        Cursor.lockState = interact ? CursorLockMode.Confined : CursorLockMode.Locked;
+        CursorMode.ChangeNumberOfReasonsForFreeCursor(interact);
 
         if (interact)
         {
@@ -113,9 +101,7 @@ public class JellyInteractBase : Interactable
 
     private void SetUIActive(bool active)
     {
-        _interactionUI.SetActive(active);
-        _firstPersonView.enabled = active;
-        PlayerMovement.Instance.SetInteract(!active);
+        InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(!active);
     }
 
     /// <summary> 

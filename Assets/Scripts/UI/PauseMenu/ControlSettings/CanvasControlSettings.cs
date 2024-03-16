@@ -67,11 +67,9 @@ namespace UI.ControlSettings
             // This line has to convert the slider's range into a percentage. So we subtract its minValue from both value and maxValue and then divide.
             _viewSensitivityText.text = $"{(value - _viewSensitivitySlider.minValue) / (_viewSensitivitySlider.maxValue - _viewSensitivitySlider.minValue) * 100:N0}%";
 
-            FirstPersonView fpView = FindObjectOfType<FirstPersonView>();
-            if (fpView != null)
-            {
-                fpView.SetSensitivity(value / 100);
-            }
+            
+            FirstPersonView.Instance.SetSensitivity(value / 100);
+            
 
         }
         public void SetShakyCamEnabled(bool value)

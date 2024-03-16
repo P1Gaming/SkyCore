@@ -42,14 +42,14 @@ public class ItemAttractor : MonoBehaviour
     private float _itemDetectionTimer;
 
 
-    private InventoryUI _inventory;
+    private Inventory _inventory;
 
 
 
     private void Awake()
     {
         // Get a reference to this object's InventoryScene or InventoryBase component. This script will use whichever is available.
-        _inventory = InventoryUI.Instance;
+        _inventory = Inventory.Instance;
 
         _homingStrength = _maxAttractionSpeed * (1f - _HomingPower);
     }
@@ -82,7 +82,7 @@ public class ItemAttractor : MonoBehaviour
             if (item != null)
             {
                 if (!_itemsBeingAttracted.Contains(item) &&
-                    InventoryHasRoomFor(new ItemStack(item.ItemInfo, item.Amount)))
+                   _inventory.HasRoomForItem(item.ItemInfo, item.Amount))
                 {
                     _itemsBeingAttracted.Add(item);
                 }
@@ -90,23 +90,6 @@ public class ItemAttractor : MonoBehaviour
 
         } // end foreach
 
-    }
-
-    /// <summary>
-    /// Checks if there is enough room for the specified item stack in this GameObject's inventory.
-    /// For now, this only supports the player's InventoryScene component. It could be expanded later if needed.
-    /// </summary>
-    /// <param name="item">The item stack to check if there is enough room for.</param>
-    /// <returns>True if there is enough room for the passed in item stack.</returns>
-    private bool InventoryHasRoomFor(ItemStack item)
-    {
-        if (_inventory != null)
-        {
-            return _inventory.HotbarSection.HasRoomForItem(item.identity, item.amount);
-        }
-
-
-        return false;
     }
 
     /// <summary>
@@ -127,7 +110,7 @@ public class ItemAttractor : MonoBehaviour
             { 
                 float itemDistance = Vector3.Distance(transform.position, item.transform.position);
                 if (itemDistance <= item.ItemInfo.AttractionRadius &&
-                    _inventory.HotbarSection.HasRoomForItem(item.ItemInfo, item.Amount))
+                    _inventory.HasRoomForItem(item.ItemInfo, item.Amount))
                 {
                     // I made a function call here so we can easily swap out this logic by calling a different function to change the attraction style.
                     AttractItemNatural(item);

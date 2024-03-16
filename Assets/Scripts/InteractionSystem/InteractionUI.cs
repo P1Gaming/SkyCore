@@ -5,28 +5,30 @@ using UnityEngine;
 public class InteractionUI : MonoBehaviour
 {
     private static InteractionUI _instance;
-
     public static InteractionUI Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = GameObject.FindWithTag("InteractionUI")?
-                    .GetComponent<InteractionUI>();
+                _instance = GameObject.FindWithTag("InteractionUI").GetComponent<InteractionUI>();
             }
             return _instance;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private int _numberOfReasonsToBeInactive = 0;
+    public int NumberOfReasonsToBeInactive
     {
-        
+        get => _numberOfReasonsToBeInactive;
+        set
+        {
+            _numberOfReasonsToBeInactive = value;
+            if (_numberOfReasonsToBeInactive < 0)
+            {
+                throw new System.Exception("In InteractionUI, _numberOfReasonsToBeInactive < 0: " + _numberOfReasonsToBeInactive);
+            }
+            gameObject.SetActive(_numberOfReasonsToBeInactive == 0);
+        }
     }
 }

@@ -10,28 +10,177 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class InventoryDragAndDrop
 {
+    private const float GENERATOR_DROPPABLE_RADIUS_AROUND_ISLAND_HEARTS = 3f;
+
     private InputAction _click;
-    private bool _clickHappeningAndHoveringOverOriginalSlot;
-    private InventorySlotUI _beingDragged;
+    private bool _stillHoveringOverSlotBeingDragged;
+    private InventorySlot _beingDragged;
 
     private List<RaycastResult> _raycastResults = new List<RaycastResult>();
     private PointerEventData _eventData;
     private EventSystem _eventSystem;
 
-    public InventoryDragAndDrop()
-    {
+    private RectTransform[] _whereToConsiderMouseInsideInventory;
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        PlayerInput playerInput = player == null ? null : player.GetComponent<PlayerInput>();
-        _click = playerInput == null ? null : playerInput.actions.FindAction("ClickForDragAndDrop", true);
+    public InventoryDragAndDrop(RectTransform[] whereToConsiderMouseInsideInventory)
+    {
+        _whereToConsiderMouseInsideInventory = whereToConsiderMouseInsideInventory;
+        _click = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindAction("ClickForDragAndDrop", true);
         _click.started += OnClickStart;
         _click.canceled += OnClickCancel;
         _click.Disable();
     }
 
+    public void EnableInput()
+    {
+        _click.Enable();
+    }
+
+    public void DisableInputAndStop()
+    {
+        if (_beingDragged != null)
+        {
+            TryMoveDraggedItemToSlot(_beingDragged, true);
+        }
+        _click.Disable();
+    }
+
+    private void OnClickStart(InputAction.CallbackContext context)
+    {
+        if (PauseManagement.IsPaused)
+        {
+            return;
+        }
+
+        // There are 2 ways to click and drag between slots:
+        // 1. Press, release without moving the mouse outside the slot, then move the mouse to a different slot and press again.
+        // 2. Press, move the mouse to a different slot, and release.
+        if (_beingDragged == null)
+        {
+            TryBeginDrag();
+        }
+        else
+        {
+            TryFinishDrag();
+        }
+    }
+
+    private void OnClickCancel(InputAction.CallbackContext context)
+    {
+        if (PauseManagement.IsPaused)
+        {
+            return;
+        }
+
+        if (_beingDragged != null)
+        {
+            CheckStoppedHoveringOverOriginalSlot();
+            if (!_stillHoveringOverSlotBeingDragged && FindInventorySlotBelowMouse() != null)
+            {
+                TryFinishDrag();
+            }
+        }
+    }
+
    
 
+    public void OnLateUpdate()
+    {
+        if (_beingDragged != null)
+        {
+            if (PauseManagement.IsPaused)
+            {
+                TryMoveDraggedItemToSlot(_beingDragged, true);
+            }
+            else
+            {
+                _beingDragged.FollowMouse();
+            }
+        }
 
+        CheckStoppedHoveringOverOriginalSlot();
+    }
+
+    private void CheckStoppedHoveringOverOriginalSlot()
+    {
+        if (_stillHoveringOverSlotBeingDragged && FindInventorySlotBelowMouse() != _beingDragged)
+        {
+            _stillHoveringOverSlotBeingDragged = false;
+        }
+    }
+
+    
+
+
+
+    private void TryBeginDrag()
+    {
+        InventorySlot slotBelowMouse = FindInventorySlotBelowMouse();
+        if (slotBelowMouse != null && slotBelowMouse.IsNotEmpty)
+        {
+            _beingDragged = slotBelowMouse;
+            _beingDragged.StartItemDrag();
+            _stillHoveringOverSlotBeingDragged = true;
+        }
+    }
+
+    private void TryFinishDrag()
+    {
+        if (_beingDragged._itemStack == null)
+        {
+            throw new System.Exception("_beingDragged._itemStack is null. This shouldn't be possible");
+        }
+
+        bool isOutsideInventory = true;
+        for (int i = 0; i < _whereToConsiderMouseInsideInventory.Length; i++)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(_whereToConsiderMouseInsideInventory[i], Input.mousePosition))
+            {
+                isOutsideInventory = false;
+                break;
+            }
+        }
+
+        if (isOutsideInventory)
+        {
+            FinishDragOutsideInventory();
+        }
+        else
+        {
+            InventorySlot slotBelowMouse = FindInventorySlotBelowMouse();
+            if (slotBelowMouse != null 
+                && !InventoryInfoGetter.UnmatchedSortTypes(_beingDragged._itemStack.identity.SortType, slotBelowMouse.SortType))
+            {
+                TryMoveDraggedItemToSlot(slotBelowMouse);
+            }
+        }
+    }
+
+    private void FinishDragOutsideInventory()
+    {
+        TryTossItem();
+    }
+
+    private void TryMoveDraggedItemToSlot(InventorySlot moveTo, bool throwIfFails = false)
+    {
+        if (moveTo == _beingDragged)
+        {
+            _beingDragged.StopItemDrag();
+            _beingDragged = null;
+            return;
+        }
+
+        InventorySlot wasBeingDragged = _beingDragged; // the next line can make _beingDragged null
+        if (Inventory.TryMoveItemBetweenSlots(_beingDragged, moveTo))
+        {
+            wasBeingDragged.StopItemDrag();
+            _beingDragged = null;
+        }
+        else if (throwIfFails)
+        {
+            throw new System.Exception("Couldn't move the dragged item to slot");
+        }
+    }
 
 
 
@@ -44,182 +193,56 @@ public class InventoryDragAndDrop
         }
     }
 
-    private void OnClickStart(InputAction.CallbackContext context)
-    {
-        OnClickStart(FindInventorySlotBelowMouse());
-    }
-
-    private void OnClickCancel(InputAction.CallbackContext context)
-    {
-        OnClickEnd(FindInventorySlotBelowMouse());
-    }
-
-    public void EnableInput()
-    {
-        _click?.Enable();
-    }
-
-    public void DisableInputAndStop()
-    {
-        CheckCancelDrag();
-        _click?.Disable();
-    }
-
-    public void OnLateUpdate()
-    {
-        if (_beingDragged != null)
-        {
-            _beingDragged.FollowMouse();
-        }
-
-        // Keep track of whether the mouse is still hovering over the same slot after click started.
-        if (_clickHappeningAndHoveringOverOriginalSlot)
-        {
-            InventorySlotUI belowMouse = FindInventorySlotBelowMouse();
-            if (belowMouse != _beingDragged)
-            {
-                _clickHappeningAndHoveringOverOriginalSlot = false;
-            }
-        }
-    }
-
-
-        
-        
-
-        
-
-    private void MoveDraggedItemToSlot(InventorySlotUI moveTo)
-    {
-        InventorySection.MoveItemBetweenSlots(_beingDragged, moveTo);
-        _beingDragged.StopItemDrag();
-        _beingDragged = null;
-    }
-
-    /// <summary>
-    /// Updates drag and drop when a mouse click starts.
-    /// </summary>
-    public void OnClickStart(InventorySlotUI slotBelowMouse)
-    {
-        //Check if there is a slot, if not toss the item
-        if (slotBelowMouse == null)
-        {
-            if (!_beingDragged || _beingDragged._itemStack == null)
-            {
-                return;
-            }
-            TossItem();
-            return;
-        }
-
-            
-        if (_beingDragged != null && (_beingDragged._itemStack.identity.SortType == slotBelowMouse.SortType || slotBelowMouse.SortType == ItemIdentity.ItemSortType.None))
-        {
-            // Clicking again after clicking to pick up the item, so the player
-            // released the item without a slot below the mouse.
-            MoveDraggedItemToSlot(slotBelowMouse);
-        }
-        else if (slotBelowMouse.IsNotEmpty)
-        {
-            _beingDragged = slotBelowMouse;
-            _beingDragged.StartItemDrag();
-            _clickHappeningAndHoveringOverOriginalSlot = true;
-        }
-    }
-
-    /// <summary>
-    /// Updates drag and drop when a mouse click ends.
-    /// </summary>
-    public void OnClickEnd(InventorySlotUI slotBelowMouse)
-    {
-        if (_beingDragged != null && slotBelowMouse != null)
-        {
-            // x: clicked a slot then released the mouse button without the cursor leaving that slot.
-            // Without checking that, clicking (and not holding down) would immediately return the item
-            // to the same inventory slot.
-            bool x = _clickHappeningAndHoveringOverOriginalSlot && (slotBelowMouse == _beingDragged);
-            if (!x)
-            {
-                if(_beingDragged._itemStack.identity.SortType != slotBelowMouse.SortType && slotBelowMouse.SortType != ItemIdentity.ItemSortType.None)
-                {
-                    return;
-                }
-                MoveDraggedItemToSlot(slotBelowMouse);
-            }
-        }
-        //If there isn't a slot, toss the item.
-        else
-        {
-            if (!_beingDragged || _beingDragged._itemStack == null)
-            {
-                return;
-            }
-            TossItem();
-            return;
-        }
-    }
-
-    /// <summary>
-    /// If an item is being dragged, put it back in its original inventory slot.
-    /// </summary>
-    public void CheckCancelDrag()
-    {
-        if (_beingDragged != null)
-        {
-            MoveDraggedItemToSlot(_beingDragged);
-        }
-    }
-
     /// <summary>
     /// Toss an item if it is dragged out of the inventory.
     /// </summary>
-    private void TossItem()
+    private void TryTossItem()
     {
-        if (_beingDragged._itemStack.amount > 0)
+        if (_beingDragged._itemStack.amount <= 0)
         {
-            GameObject droppedItem = _beingDragged._itemStack.identity.ItemPrefab;
+            throw new System.Exception("item stack amount is <= 0 in TossItem. amount: " + _beingDragged._itemStack.amount);
+        }
 
-            //Check what the item is
+        // If the item is a generator and the closest island heart is too far away, return.
+        if (_beingDragged._itemStack.identity is GeneratorItemIdentity)
+        {
+            GameObject[] IslandHeartPos = GameObject.FindGameObjectsWithTag("IslandHeart");
+            float closestIslandHeart = Mathf.Infinity;
 
-            //Is the Item a Generator?
-            if (_beingDragged._itemStack.identity is GeneratorItemIdentity)
+            foreach (GameObject IslandHeart in IslandHeartPos)
             {
-                //If so check to see if the island heart is close by. If not just return and do nothing.
-                GameObject[] IslandHeartPos = GameObject.FindGameObjectsWithTag("IslandHeart");
-                float closestIslandHeart = Mathf.Infinity;
-
-                foreach (GameObject IslandHeart in IslandHeartPos)
+                float distance = (IslandHeart.transform.position - GameObject.FindGameObjectWithTag("Player").transform.position).magnitude;
+                if (distance < closestIslandHeart)
                 {
-                    float distance = (IslandHeart.transform.position - GameObject.FindGameObjectWithTag("Player").transform.position).magnitude;
-                    if (distance < closestIslandHeart)
-                    {
-                        closestIslandHeart = distance;
-                    }
-                }
-
-                if (closestIslandHeart > 3)
-                {
-                    return;
+                    closestIslandHeart = distance;
                 }
             }
 
-            //Spawn item in front of the player
-            Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
-            Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
-            Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
-            UnityEngine.Object.Instantiate(droppedItem, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
-
-            //Decrement Item
-
-            _beingDragged.InventoryOrHotBarUI.TrySubtractItemAmount(_beingDragged._itemStack.identity, 1);
+            if (closestIslandHeart > GENERATOR_DROPPABLE_RADIUS_AROUND_ISLAND_HEARTS)
+            {
+                return;
+            }
         }
+
+        //Spawn item in front of the player
+        Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
+        Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
+        Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
+        GameObject itemPrefab = _beingDragged._itemStack.identity.ItemPrefab;
+        Object.Instantiate(itemPrefab, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+
+        //Decrement Item
+
+        _beingDragged._itemStack.amount--;
+        _beingDragged.OnItemStackChanged();
+        
     }
 
 
 
 
 
-    private InventorySlotUI FindInventorySlotBelowMouse()
+    private InventorySlot FindInventorySlotBelowMouse()
     {
         // source: https://forum.unity.com/threads/how-to-detect-if-mouse-is-over-ui.1025533/
         // is there a better way to do this?
@@ -243,7 +266,7 @@ public class InventoryDragAndDrop
 
         foreach (RaycastResult raycastResult in _raycastResults)
         {
-            InventorySlotUI result = raycastResult.gameObject.GetComponent<InventorySlotUI>();
+            InventorySlot result = raycastResult.gameObject.GetComponent<InventorySlot>();
             if (result != null)
             {
                 return result;

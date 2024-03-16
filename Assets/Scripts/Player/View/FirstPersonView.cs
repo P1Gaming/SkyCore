@@ -23,9 +23,6 @@ namespace Player.View
         [SerializeField, Range(0.01f, 20f)]
         private float _baseSpeed;
 
-        [SerializeField]
-        private float _lookThreshold;
-
         [SerializeField, Range(0, 89.9f)]
         private float _clampAngle = 89.9f;
 
@@ -42,10 +39,39 @@ namespace Player.View
 
         private float _xRot = 0f;
 
-        public static FirstPersonView Instance { get; private set; }
+        private static FirstPersonView _instance;
+        public static FirstPersonView Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = GameObject.FindWithTag("Player").GetComponent<FirstPersonView>();
+                }
+                return _instance;
+            }
+        }
 
+        private int _numberOfReasonsToIgnoreInputs = 0;
+        public int NumberOfReasonsToIgnoreInputs
+        {
+            get => _numberOfReasonsToIgnoreInputs;
+            set
+            {
+                _numberOfReasonsToIgnoreInputs = value;
+                if (_numberOfReasonsToIgnoreInputs < 0)
+                {
+                    throw new System.Exception("In FirstPersonView, _numberOfReasonsToIgnoreInputs < 0: " + _numberOfReasonsToIgnoreInputs);
+                }
+                if (_numberOfReasonsToIgnoreInputs > 0)
+                {
+                    // Clear recent inputs
+                    _lookDirection = Vector2.zero;
+                }
+            }
+        }
+        private bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
 
-        
 
         /// <summary>
         /// Get the starting local rotation of the look point in the x direction.
@@ -53,10 +79,9 @@ namespace Player.View
         /// </summary> 
         protected void Awake()
         {
-            Instance = this;
+            _instance = this;
             _xRot = _cameraTarget.transform.rotation.eulerAngles.x;
-            Cursor.lockState = (CursorLockMode.Locked);
-            Cursor.visible = false;
+            CursorMode.Initialize();
 
 
             // Get the sensitivity value if one is saved, or use the default.
@@ -68,23 +93,13 @@ namespace Player.View
 
         private void OnEnable()
         {
-            if (!TryGetComponent(out PlayerInput handler))
-            {
-                return;
-            }
-
-            RegisterEventHandlers(handler);
+            _lookDirection = Vector2.zero;
+            RegisterEventHandlers(GetComponent<PlayerInput>());
         }
 
         private void OnDisable()
         {
-            if (!TryGetComponent(out PlayerInput handler))
-            {
-                return;
-            }
-
-            UnregisterEventHandlers(handler);
-
+            UnregisterEventHandlers(GetComponent<PlayerInput>());
         }
 
         /// <summary>
@@ -100,10 +115,9 @@ namespace Player.View
         /// based on current delta input of the mouse from player input.
         /// Sensitivity is controlled in settings by player.
         /// </summary> 
-
         private void PerformLook()
         {
-            if (_lookDirection.sqrMagnitude < _lookThreshold)
+            if (_lookDirection.sqrMagnitude == 0)
             {
                 return;
             }
@@ -123,7 +137,10 @@ namespace Player.View
 
         private void OnLook(InputAction.CallbackContext context)
         {
-            _lookDirection = context.ReadValue<Vector2>();
+            if (!IgnoreInputs)
+            {
+                _lookDirection = context.ReadValue<Vector2>();
+            }
         }
 
         private void RegisterEventHandlers(PlayerInput input)
@@ -154,7 +171,6 @@ namespace Player.View
         /// </summary> 
         public void SetSensitivity(float newSens)
         {
-            Debug.Log(newSens);
             _sensitivitySetting = newSens;
         }
 

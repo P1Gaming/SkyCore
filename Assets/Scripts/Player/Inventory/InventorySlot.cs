@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// <summary>
 /// UI for a single inventory slot. Shows an item, including while the mouse is dragging it to another slot.
 /// </summary>
-public class InventorySlotUI : MonoBehaviour
+public class InventorySlot : MonoBehaviour
 {
     [SerializeField]
     private GameObject _imageGameobject;
@@ -27,8 +27,7 @@ public class InventorySlotUI : MonoBehaviour
 
     public ItemStack _itemStack;
 
-    public ItemIdentity.ItemSortType SortType => InventoryOrHotBarUI.SortType;
-    public InventorySection InventoryOrHotBarUI { get; private set; }
+    public ItemIdentity.ItemSortType SortType { get; private set; }
     public bool IsNotEmpty => _itemStack != null;
 
 
@@ -41,10 +40,38 @@ public class InventorySlotUI : MonoBehaviour
         _textPosRelativeImagePos = _countTextGameobject.transform.position - _imageGameobject.transform.position;
     }
 
-    public void InitializeAfterInstantiate(InventorySection inventoryOrHotBarUI
+    private void LateUpdate()
+    {
+        // Ensure the thing being shown matches _itemStack, to check for bugs.
+#if UNITY_EDITOR
+        if (_itemStack == null)
+        {
+            if (_imageGameobject.activeSelf || _countTextGameobject.activeSelf)
+            {
+                throw new System.Exception("In InventorySlot, _itemStack is null but slot gameobject active " 
+                    + _imageGameobject.activeSelf + " " + _countTextGameobject.activeSelf);
+            }
+        }
+        else
+        {
+            if (_image.sprite != _itemStack.identity.Icon)
+            {
+                throw new System.Exception("In InventorySlot, _image.sprite != _itemStack.identity.Icon. Item stack identity: "
+                    + _itemStack.identity.name + ", amount: " + _itemStack.amount);
+            }
+            if (_countText.text != "" + _itemStack.amount)
+            {
+                throw new System.Exception("In InventorySlot, _countText.text != _itemStack.amount. Item stack identity: "
+                    + _itemStack.identity.name + ", amount: " + _itemStack.amount);
+            }
+        }
+#endif
+    }
+
+    public void InitializeAfterInstantiate(ItemIdentity.ItemSortType sortType
         , Transform itemParentDuringDragAndDrop, InventoryDragAndDrop dragAndDrop)
     {
-        InventoryOrHotBarUI = inventoryOrHotBarUI;
+        SortType = sortType;
         _itemParentDuringDragAndDrop = itemParentDuringDragAndDrop;
         _dragAndDrop = dragAndDrop;
         OnItemStackChanged();
@@ -64,19 +91,14 @@ public class InventorySlotUI : MonoBehaviour
 
     public void OnItemStackChanged()
     {
-        if (_itemStack != null)
+        if (_itemStack != null && _itemStack.amount <= 0)
         {
             if (_itemStack.amount < 0)
             {
                 throw new System.Exception("_itemStack.amount < 0, indicating a" +
                     " bug happening before this was called. _itemStack.amount: " + _itemStack.amount);
             }
-
-            if (_itemStack.amount == 0)
-            {
-                _itemStack = null;
-                _dragAndDrop.CheckDraggedStackNowEmpty();
-            }
+            _itemStack = null;
         }
 
         bool show = _itemStack != null; 
@@ -88,10 +110,9 @@ public class InventorySlotUI : MonoBehaviour
             _image.sprite = _itemStack.identity.Icon;
             _countText.text = _itemStack.amount.ToString();
         }
-        else
-        {
-            StopItemDrag();
-        }
+
+
+        _dragAndDrop.CheckDraggedStackNowEmpty();
     }
 
     /// <summary>
@@ -108,7 +129,7 @@ public class InventorySlotUI : MonoBehaviour
     /// </summary>
     public void StopItemDrag()
     {
-        _imageGameobject.transform.SetParent(transform.parent, true);
+        _imageGameobject.transform.SetParent(transform.parent, true); // this script is on a child gameObject of the slot prefab
         _countTextGameobject.transform.SetParent(transform.parent, true);
 
         _imageGameobject.transform.position = transform.position + _imagePosRelativeSlotPos;

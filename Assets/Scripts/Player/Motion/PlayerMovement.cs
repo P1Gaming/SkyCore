@@ -55,7 +55,39 @@ namespace Player.Motion
 
         public bool IsMoving => _rigidbody.velocity.magnitude > .001f;
 
-        public static PlayerMovement Instance { get; private set; }
+        private static PlayerMovement _instance;
+        public static PlayerMovement Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+                }
+                return _instance;
+            }
+        }
+
+        private int _numberOfReasonsToIgnoreInputs = 0;
+        public int NumberOfReasonsToIgnoreInputs
+        {
+            get => _numberOfReasonsToIgnoreInputs;
+            set
+            {
+                _numberOfReasonsToIgnoreInputs = value;
+                if (_numberOfReasonsToIgnoreInputs < 0)
+                {
+                    throw new System.Exception("In PlayerMovement, _numberOfReasonsToIgnoreInputs < 0: " + _numberOfReasonsToIgnoreInputs);
+                }
+                if (_numberOfReasonsToIgnoreInputs > 0)
+                {
+                    // Clear recent inputs which could otherwise cause jumping later.
+                    _jumpInputTime = float.NegativeInfinity;
+                    _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = false;
+                }
+            }
+        }
+        private bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
 
 
         private void Awake()
@@ -63,7 +95,17 @@ namespace Player.Motion
             _settings.Initialize();
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.sleepThreshold = -1; // don't sleep
-            Instance = this;
+            _instance = this;
+        }
+
+        private void OnEnable()
+        {
+            _rigidbody.isKinematic = false;
+        }
+
+        private void OnDisable()
+        {
+            _rigidbody.isKinematic = true;
         }
 
         private void FixedUpdate()
@@ -234,12 +276,22 @@ namespace Player.Motion
 
         private void GetWASDInputAxes(out float rightLeft, out float forwardsBackwards)
         {
+            if (IgnoreInputs)
+            {
+                rightLeft = 0;
+                forwardsBackwards = 0;
+                return;
+            }
             rightLeft = Input.GetAxisRaw("Horizontal");
             forwardsBackwards = Input.GetAxisRaw("Vertical");
         }
 
         private bool GetJumpInput()
         {
+            if (IgnoreInputs)
+            {
+                return false;
+            }
             return Input.GetButtonDown("Jump");
         }
 
@@ -271,19 +323,6 @@ namespace Player.Motion
         {
             _rigidbody.position = position;
             transform.position = position;
-        }
-
-        /// <summary>
-        /// Sets Interacting state and toggles enabled
-        /// </summary>
-        /// <param name="isInteracting"></param>
-        public void SetInteract(bool isInteracting)
-        {
-            // We might need a combined way for disabling this script, since it'll also
-            // be disabled during inventory and will be able to open inventory while interacting.
-            // E.g. an int for the number of reasons to disable this script.
-            enabled = !isInteracting;
-            _rigidbody.isKinematic = isInteracting;
         }
     }
 }
