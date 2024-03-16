@@ -283,5 +283,27 @@ public class DroneScanning : MonoBehaviour
         TrackThingToScan();
     }
 
+    public void ShowScanningVisual(Vector3 targetPosition)
+    {
+        _placeholderScanAttemptingVisual.SetPosition(0, transform.position);
+        _placeholderScanAttemptingVisual.SetPosition(1, targetPosition);
+        _placeholderScanAttemptingVisual.enabled = true;
+    }
 
+    public void HideScanningVisual()
+    {
+        _placeholderScanAttemptingVisual.enabled = false;
+    }
+
+    public void ShowScanningSuccessVisual(Vector3 targetPosition)
+    {
+        _placeholderScanSuccessVisual.SetPosition(0, transform.position);
+        _placeholderScanSuccessVisual.SetPosition(1, targetPosition);
+        _placeholderScanSuccessVisual.enabled = true;
+    }
+
+    public void HideScanningSuccessVisual()
+    {
+        _placeholderScanSuccessVisual.enabled = false;
+    }
 }

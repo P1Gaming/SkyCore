@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2910864d0735de64cbd2c229c08f3ae7, type: 3}
-  m_Name: Trigger_MovementTutorial_DroneInterceptPlayer
+  m_Name: Trigger_MovementTutorial_JumpTestPassed
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 1
   <InitialBool>k__BackingField: 0

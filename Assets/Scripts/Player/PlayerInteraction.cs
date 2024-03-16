@@ -1,5 +1,6 @@
 using Jellies;
 using Player;
+using UI.Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,38 +45,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private IslandHeartInteractBase _islandHeartCurrent;
 
-    private static PlayerInteraction _instance;
-    public static PlayerInteraction Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = GameObject.FindWithTag("Player").GetComponent<PlayerInteraction>();
-            }
-            return _instance;
-        }
-    }
-
-    private int _numberOfReasonsToIgnoreInputs = 0;
-    public int NumberOfReasonsToIgnoreInputs
-    {
-        get => _numberOfReasonsToIgnoreInputs;
-        set
-        {
-            _numberOfReasonsToIgnoreInputs = value;
-            if (_numberOfReasonsToIgnoreInputs < 0)
-            {
-                throw new System.Exception("In PlayerInteraction, _numberOfReasonsToIgnoreInputs < 0: " + _numberOfReasonsToIgnoreInputs);
-            }
-        }
-    }
-    private bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
-
-
-
-
-
+    private BerryBush _currentBush;
+    private static bool _inventoryOpen;
 
     /// <summary>
     /// If there is a raycast hit and no interactable assigned, enter interaction
@@ -84,7 +55,6 @@ public class PlayerInteraction : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        _instance = this;
         gameObject.GetComponent<PlayerInput>().onActionTriggered += HandleAction;
     }
 
@@ -127,6 +97,10 @@ public class PlayerInteraction : MonoBehaviour
             _islandHeartCurrent = _interactable.gameObject.GetComponent<IslandHeartInteractBase>();
             //TODO: Show inventory here
         }
+        else if (_interactable.gameObject.GetComponent<BerryBushInteraction>() != null)
+        {
+            _currentBush = _interactable.gameObject.GetComponent<BerryBush>();
+        }
     }
 
     /// <summary>
@@ -134,7 +108,7 @@ public class PlayerInteraction : MonoBehaviour
     /// </summary>
     private void OnInteractionStay()
     {
-        if (!IgnoreInputs && Input.GetButtonDown("Interaction Button"))
+        if (Input.GetButtonDown("Interaction Button"))
         {
             //this is is a kludge, there will need to be a system for determining which interaction to use
             //but doing it like this for now b/c some functionality is better than none
@@ -168,32 +142,33 @@ public class PlayerInteraction : MonoBehaviour
 
     private void HandleAction(InputAction.CallbackContext context)
     {
-        if (context.action.name != "Interact")
+        if(context.action.name != "Interact")
         {
             //Debug.Log("There was an issue with the Interaction system: "+ context.action.name);
             return;
         }
-
-        if (IgnoreInputs)
-        {
-            return;
-        }
-
-
         if (_jellyCurrent != null)
         {
-            if (!_jellyCurrent.Interacting)
+            if (!_jellyCurrent.Interacting && !_inventoryOpen)
             {
                 _jellyCurrent.InteractStart();
             }
-        } 
-        else if (_islandHeartCurrent != null)
+        } else if( _islandHeartCurrent != null)
         {
             if (!_islandHeartCurrent.Interacting)
             {
                 _islandHeartCurrent.InteractStart();
             }
         }
+        else if (_currentBush != null && _interactable != null)
+        {
+            _interactable.Interact(0, this);
+        }
+    }
+
+    public static void InventoryState(bool state)
+    {
+        _inventoryOpen = state;
     }
 
 }
