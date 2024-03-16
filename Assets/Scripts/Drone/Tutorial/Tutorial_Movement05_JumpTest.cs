@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using System;
 using Player.View;
+using Player.Motion;
 
 public class Tutorial_Movement05_JumpTest : MonoBehaviour
 {
@@ -32,10 +33,6 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
     private Sprite _sprite_DroneSuccess;
     [SerializeField]
     private Sprite _sprite_DroneTutorialComplete;
-
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _jumpAction;
 
 
     [Header("Finite State Machine Parameters")]
@@ -82,7 +79,7 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
 
     private void EnterTutorial()
     {
-        _jumpAction.action.Enable();
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs--;
 
         _waitingForTutorialDronePictureTimeToEnd = false;
         _jumpTestPassed = false;
@@ -98,7 +95,7 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
             StartCoroutine(WaitForTutorialDonePictureDisplayTimeToEnd());
         }
         
-        if (_jumpAction.action.WasPerformedThisFrame())
+        if (PlayerMovement.Instance.GetJumpInput())
         {
             _jumpTestPassed = true;
         }

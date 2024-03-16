@@ -19,7 +19,8 @@ public static class InputIgnoring
         int change = incrementDontDecrement ? 1 : -1;
         InteractionUI.Instance.NumberOfReasonsToBeInactive += change;
         Player.View.FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs += change;
-        Player.Motion.PlayerMovement.Instance.NumberOfReasonsToIgnoreInputs += change;
+        Player.Motion.PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs += change;
+        Player.Motion.PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs += change;
         PlayerInteraction.Instance.NumberOfReasonsToIgnoreInputs += change;
     }
 }

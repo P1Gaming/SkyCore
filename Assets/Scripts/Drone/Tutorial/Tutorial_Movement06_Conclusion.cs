@@ -52,14 +52,6 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
     [SerializeField]
     private Sprite _sprite_Analyzing;
 
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _cameraLookAction;
-    [SerializeField]
-    InputActionReference _playerMovementAction;
-    [SerializeField]
-    InputActionReference _jumpAction;
-
 
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
@@ -133,9 +125,9 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
         CameraSystem.SwitchToFirstPersonCamera();
 
         // Re-enable all the player controls.
-        _cameraLookAction.action.Enable();
-        _playerMovementAction.action.Enable();
-        _jumpAction.action.Enable();
+        Player.View.FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        Player.Motion.PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs--;
+        Player.Motion.PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs--;
     }
 
     private IEnumerator DoTutorialConclusion()

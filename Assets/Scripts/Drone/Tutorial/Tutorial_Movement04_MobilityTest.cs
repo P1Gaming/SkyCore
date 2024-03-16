@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using System;
 using Player.View;
+using Player.Motion;
 
 public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 {
@@ -32,13 +33,6 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private Sprite _sprite_DroneSuccess;
 
 
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _cameraLookAction;
-    [SerializeField]
-    InputActionReference _playerMovementAction;
-
-
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
@@ -51,17 +45,6 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private GameEventScriptableObject _Update;
     [SerializeField]
     private GameEventScriptableObject _Exit;
-
-
-    [Header("Events for Tutorial Detecting Controls")]
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementWEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementSEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementAEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementDEvent;
 
 
 
@@ -144,20 +127,20 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
    
     private void CheckPlayerInput()
     {
-        Vector2 direction = _playerMovementAction.action.ReadValue<Vector2>();
-        if (direction.x < 0)
+        Player.Motion.PlayerMovement.Instance.GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
+        if (rightLeft < 0)
         {
             _keysPressed |= MovementKeysPressed.A;
         }
-        else if (direction.x > 0)
+        else if (rightLeft > 0)
         {
             _keysPressed |= MovementKeysPressed.D;
         }
-        if (direction.y < 0)
+        if (forwardsBackwards < 0)
         {
             _keysPressed |= MovementKeysPressed.S;
         }
-        else if (direction.y > 0)
+        else if (forwardsBackwards > 0)
         {
             _keysPressed |= MovementKeysPressed.W;
         }
@@ -165,7 +148,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 
     private IEnumerator WaitForPlayerToLookAtDrone()
     {
-        _cameraLookAction.action.Enable();
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
 
 
         yield return new WaitForSeconds(1.0f);
@@ -181,14 +164,14 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 
         HUD_Manager.Instance.EnableDroneIndicatorIcon(false);
 
-        _cameraLookAction.action.Disable();
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
         CameraSystem.SwitchToTutorialCamera();
         _playerLookedAtDrone = true;
 
         yield return new WaitForSeconds(1.0f);
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneMovementControls);
-        _playerMovementAction.action.Enable();
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
     }
 
     private void CheckIfPlayerHasPassedMobilityTest()
@@ -198,7 +181,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
         {
             _mobilityTestPassed = true;
 
-            _playerMovementAction.action.Disable();
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
         }
         else if (!_RequireAll4MovementKeysPressed &&
                  _keysPressed > 0)
@@ -206,7 +189,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
             // _requireAll4MovementKeysPressed is false, so as long as at least one key has been pressed we can return true.
             _mobilityTestPassed = true;
 
-            _playerMovementAction.action.Disable();
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
         }
 
     }

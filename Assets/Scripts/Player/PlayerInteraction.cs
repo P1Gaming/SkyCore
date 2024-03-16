@@ -68,6 +68,7 @@ public class PlayerInteraction : MonoBehaviour
         set
         {
             _numberOfReasonsToIgnoreInputs = value;
+            Debug.Log("# reasons ignore inputs for PlayerInteraction: " + value);
             if (_numberOfReasonsToIgnoreInputs < 0)
             {
                 throw new System.Exception("In PlayerInteraction, _numberOfReasonsToIgnoreInputs < 0: " + _numberOfReasonsToIgnoreInputs);

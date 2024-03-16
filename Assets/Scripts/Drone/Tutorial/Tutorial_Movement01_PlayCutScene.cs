@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 
 using Player.View;
+using Player.Motion;
 
 
 public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
@@ -34,14 +35,6 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     [SerializeField]
     private PictogramBehavior _pictogramBehaviour;
 
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _playerMovementAction;
-    [SerializeField]
-    InputActionReference _playerJumpAction;
-    [SerializeField]
-    InputActionReference _cameraLookAction;
-
 
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
@@ -66,7 +59,6 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
     private bool _cutSceneHasFinished;
     private bool _playerLookedAtDrone;
-    private MeshRenderer _droneRenderer;
 
     private GameEventResponses _gameEventResponses = new();
 
@@ -92,8 +84,6 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
         //_stateMachineInstance.LogTransitions = true;
 
-        _droneRenderer = _drone.GetComponentInChildren<MeshRenderer>();
-
         _gameEventResponses.SetResponses(
             (_tutorialStage01_Enter, EnterTutorial),
             (_tutorialStage01_Update, UpdateTutorial)
@@ -102,8 +92,8 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
         if (!_skipTutorial || !_skipCutscene)
         {
-            _playerMovementAction.action.Disable();
-            _playerJumpAction.action.Disable();
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs++;
         }
     }
 
@@ -148,7 +138,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
                 _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial); // Trigger transition to next part of the tutorial.
 
                 FirstPersonView.Instance.ClampHorizontalAngle = false;
-                _cameraLookAction.action.Disable();
+                FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
             }
         }
 
@@ -165,9 +155,9 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
         {
             _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
 
-            _cameraLookAction.action.Enable();
-            _playerMovementAction.action.Enable();
-            _playerJumpAction.action.Enable();
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs--;
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs--;
+            FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
 
             return;
         }
@@ -177,8 +167,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
     private IEnumerator WaitForPlayerToLookAtDrone()
     {
-        _cameraLookAction.action.Enable();
-
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
 
         // Limit player look to 90 degrees left or right.
         FirstPersonView.Instance.HorizontalClampingAngle = 90f;
@@ -198,7 +187,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
         HUD_Manager.Instance.EnableDroneIndicatorIcon(false);
 
-        _cameraLookAction.action.Disable();
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
         _playerLookedAtDrone = true;
     }
 

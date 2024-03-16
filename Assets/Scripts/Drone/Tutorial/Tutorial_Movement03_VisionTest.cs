@@ -31,11 +31,6 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     private Sprite _sprite_DroneSuccess;
 
 
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _cameraLookAction;
-
-
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
@@ -81,7 +76,7 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
         // Switch back to the player camera. This is needed as this is the one that is moved by the look controls.
         CameraSystem.SwitchToFirstPersonCamera();
 
-        _cameraLookAction.action.Enable();
+        Player.View.FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneCameraControls);
 
