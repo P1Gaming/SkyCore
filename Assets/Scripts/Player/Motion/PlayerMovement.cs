@@ -250,7 +250,7 @@ namespace Player.Motion
 
         private bool GetJumpInput()
         {
-            return _jumpAction.action.WasPerformedThisFrame();
+            return _jumpAction.action.IsPressed();
         }
 
         private void CheckRaiseWASDEvents()
