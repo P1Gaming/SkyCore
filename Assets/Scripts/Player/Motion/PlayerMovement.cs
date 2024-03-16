@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player.Motion
 {
@@ -13,6 +14,13 @@ namespace Player.Motion
         private PlayerMovementSettings _settings;
         [SerializeField]
         private LayerMask _groundLayer;
+
+        [Header("Player Input Actions")]
+        [SerializeField]
+        private InputActionReference _moveAction;
+        [SerializeField]
+        private InputActionReference _jumpAction;
+
         [SerializeField] 
         private GameEventScriptableObject _playerMovementW;
         [SerializeField]
@@ -234,13 +242,15 @@ namespace Player.Motion
 
         private void GetWASDInputAxes(out float rightLeft, out float forwardsBackwards)
         {
-            rightLeft = Input.GetAxisRaw("Horizontal");
-            forwardsBackwards = Input.GetAxisRaw("Vertical");
+            Vector2 input = _moveAction.action.ReadValue<Vector2>();
+
+            rightLeft = input.x; ;
+            forwardsBackwards = input.y;
         }
 
         private bool GetJumpInput()
         {
-            return Input.GetButtonDown("Jump");
+            return _jumpAction.action.IsPressed();
         }
 
         private void CheckRaiseWASDEvents()

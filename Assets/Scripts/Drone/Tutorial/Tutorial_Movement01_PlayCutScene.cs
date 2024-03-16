@@ -5,12 +5,17 @@ using FiniteStateMachine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
+using Player.View;
+
+
 public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 {
     [SerializeField]
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
+    [SerializeField]
+    private FirstPersonView _firstPersonView;
 
 
     [Header("Tutorial Options")]
@@ -21,7 +26,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
     [SerializeField]
     private float _droneDistanceToStopInFrontOfPlayer;
-    [Tooltip("This specifies how long of a delay between the end of the cutscene and when the drone flies onto the screen to help the player.")]
+    [Tooltip("This specifies how long of a delay there is between the player looking at the drone and when it flies over to help the player.")]
     [SerializeField, Min(0)]
     private float _droneInterceptDelay = 3f;
     [Tooltip("After the cutscene has ended, this is the delay between when the drone starts moving toward the player and when the camera starts to turn to look at the drone.")]
@@ -34,6 +39,8 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     [Header("Player Input Actions")]
     [SerializeField]
     InputActionReference _playerMovementAction;
+    [SerializeField]
+    InputActionReference _playerJumpAction;
     [SerializeField]
     InputActionReference _cameraLookAction;
 
@@ -60,9 +67,8 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     private CutScenePlayer _cutScenePlayer;
 
     private bool _cutSceneHasFinished;
-
-    private Transform _player;
-
+    private bool _playerLookedAtDrone;
+    private MeshRenderer _droneRenderer;
 
     private GameEventResponses _gameEventResponses = new();
 
@@ -80,23 +86,29 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
         _pictogramBehaviour.SetImageActive(false);
 
         // Skip the rest of this function if _skipTutorial is enabled.
-        if (_skipTutorial)
+        if (_skipTutorial && _skipCutscene)
         {
             _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
             return;
         }
 
-
         //_stateMachineInstance.LogTransitions = true;
 
-
-        _player = Player.Motion.PlayerMovement.Instance.transform;
+        _droneRenderer = _drone.GetComponentInChildren<MeshRenderer>();
 
         _gameEventResponses.SetResponses(
             (_tutorialStage01_Enter, EnterTutorial),
             (_tutorialStage01_Update, UpdateTutorial)
             );
+
+
+        if (!_skipTutorial || !_skipCutscene)
+        {
+            _playerMovementAction.action.Disable();
+            _playerJumpAction.action.Disable();
+        }
     }
+
 
     private void OnEnable() => _gameEventResponses.Register();
     private void OnDisable() => _gameEventResponses.Unregister();
@@ -107,30 +119,38 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     {
         _timer = 0f;
 
-        _cameraLookAction.action.Disable();
-        _playerMovementAction.action.Disable();
 
         if (!_skipCutscene)
         {
             // Trigger cutscene.
             _cutScenePlayer.OnCutSceneStopped += OnCutSceneEnded;
-            _cutScenePlayer.PlayCutScene("TestCutScene"); // There is an overload of this function that lets you pass in the index of the cutscene in the CutScenePlayer's list if you have multiple in its list.
+            _cutScenePlayer.PlayCutScene("TestCutScene"); // There is an overload of this function that lets you pass in the index of the cutscene in the CutScenePlayer's list if you have multiple in its list.            
         }
         else
         {
             _cutSceneHasFinished = true;
+
+            if (!_skipTutorial)
+            {
+                // Call the cut scene ended event handler to trigger the code that normally runs when the cut scene has ended.
+                OnCutSceneEnded(this, new CutScenePlayerEventArgs() { CutScene = null });
+            }
         }
+
     }
 
     private void UpdateTutorial()
     {
-        if (_cutSceneHasFinished)
+        if (_cutSceneHasFinished && _playerLookedAtDrone)
         {
             _timer += Time.deltaTime;
 
             if (_timer >= _droneInterceptDelay)
             {
                 _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial); // Trigger transition to next part of the tutorial.
+
+                _firstPersonView.ClampHorizontalAngle = false;
+                _cameraLookAction.action.Disable();
             }
         }
 
@@ -139,8 +159,50 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     private void OnCutSceneEnded(object sender, CutScenePlayerEventArgs e)
     {
         _cutSceneHasFinished = true;
-
+      
         _cutScenePlayer.OnCutSceneStopped -= OnCutSceneEnded;
+
+
+        if (_skipTutorial)
+        {
+            _stateMachineInstance.SetBool(_finishedTutorialParameter, true);
+
+            _cameraLookAction.action.Enable();
+            _playerMovementAction.action.Enable();
+            _playerJumpAction.action.Enable();
+
+            return;
+        }
+
+        StartCoroutine(WaitForPlayerToLookAtDrone());
     }
+
+    private IEnumerator WaitForPlayerToLookAtDrone()
+    {
+        _cameraLookAction.action.Enable();
+
+
+        // Limit player look to 90 degrees left or right.
+        _firstPersonView.HorizontalClampingAngle = 90f;
+        _firstPersonView.ClampHorizontalAngle = true;
+
+
+        yield return new WaitForSeconds(1.0f);
+
+        HUD_Manager.Instance.EnableDroneIndicatorIcon(true);
+
+
+        while (!Camera.main.IsObjectInFrontOfCamera(_drone.gameObject))
+        {
+            yield return null;
+        }
+
+
+        HUD_Manager.Instance.EnableDroneIndicatorIcon(false);
+
+        _cameraLookAction.action.Disable();
+        _playerLookedAtDrone = true;
+    }
+
 
 }

@@ -19,7 +19,11 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
 
 
     [Header("Tutorial Options")]
-    [Tooltip("When the player first moves the mouse, this much time will elapse before the tutorial advances. If the value is 0, it would advance instantly when the player first moves the camera, which would be odd.")]
+    [Tooltip("This specifies how much the player has to move their view horizontally (in degrees) in either direction to pass the vision test.")]
+    [SerializeField, Min(0f)]
+    private float _VisionTestRequiredMovementAmount = 360f;
+
+    [Tooltip("When the player has passed the vision test, this much time (in seconds) will elapse before the tutorial advances.")]
     [SerializeField, Min(0f)]
     private float _VisionTestSuccessDelay = 2.0f;
 
@@ -28,6 +32,8 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     private PictogramBehavior _pictogramBehaviour;
     [SerializeField]
     private Sprite _sprite_DroneCameraControls;
+    [SerializeField]
+    private Sprite _sprite_DroneSuccess;
 
 
     [Header("Player Input Actions")]
@@ -48,15 +54,8 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     [SerializeField]
     private GameEventScriptableObject _Exit;
 
-    [Header("Events for Tutorial Detecting Controls")]
-    [SerializeField]
-    private GameEventScriptableObject _playerLookControlsEvent;
-
-
 
     private FiniteStateMachineInstance _stateMachineInstance;
-
-    private Transform _player;
 
 
     private bool _visionTestPassed;
@@ -64,18 +63,13 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
 
     private GameEventResponses _gameEventResponses = new();
 
-    private float _firstCameraMoveTime;
-
 
 
     private void Awake()
     {
         _stateMachineInstance = _drone.GetActionStateMachineInstance();
 
-        _player = Player.Motion.PlayerMovement.Instance.transform;
-
         _gameEventResponses.SetResponses(
-            (_playerLookControlsEvent, PlayerMovedCamera),
             (_Enter, EnterTutorial),
             (_Update, UpdateTutorial),
             (_Exit, ExitTutorial)
@@ -85,16 +79,6 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     private void OnEnable() => _gameEventResponses.Register();
     private void OnDisable() => _gameEventResponses.Unregister();
 
-    public void PlayerMovedCamera()
-    {
-        if (_visionTestPassed)
-        {
-            return;
-        }
-
-        _visionTestPassed = true;
-        _firstCameraMoveTime = Time.time;
-    }
 
 
     private void EnterTutorial()
@@ -105,12 +89,13 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
         _cameraLookAction.action.Enable();
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneCameraControls);
+
+        StartCoroutine(WaitForPlayerToRotateViewAFull360Degrees());
     }
 
     private void UpdateTutorial()
     {
-        if (_visionTestPassed && 
-            Time.time - _firstCameraMoveTime >= _VisionTestSuccessDelay)
+        if (_visionTestPassed)
         {
             _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial);
         }
@@ -121,6 +106,55 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
         // Switch back to the tutorial camera.
         _tutorialCamera.MoveToTopOfPrioritySubqueue();
         _tutorialCamera.LookAt = _drone.transform;
+    }
+
+    /// <summary>
+    /// This coroutine waits until the player has rotated his view at least 360 degrees left or right.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator WaitForPlayerToRotateViewAFull360Degrees()
+    {
+        float totalDegreesMoved = 0f;
+        float lastFrameHorizLookAngle = Camera.main.transform.rotation.eulerAngles.y;
+
+
+        while (Mathf.Abs(totalDegreesMoved) < _VisionTestRequiredMovementAmount)
+        {
+            float curFrameHorizLookAngle = Camera.main.transform.rotation.eulerAngles.y;
+
+            // Calculate how much the angle of the camera changed since the last frame.
+            float angleDelta = curFrameHorizLookAngle - lastFrameHorizLookAngle;
+
+            // Check if the player's view angle crossed the 0/360 degree boundary during the last frame.
+            // If so, it means the angle went from 0 to 359 or vice versa, so we have to correct for this or we'll get
+            // erroneous results on frames where this occurs, which throws off the total angle delta we're tracking (totalDegreesMoved).
+            if (Mathf.Abs(angleDelta) > 300f)
+            {
+                angleDelta = angleDelta > 0 ? angleDelta - 360
+                                           : angleDelta + 360;
+            }
+
+
+            totalDegreesMoved += angleDelta;
+
+            //Debug.Log($"CurFrameDelta: {angleDelta}    TotalDelta: {totalDegreesMoved}    CurFrame: {curFrameHorizLookAngle}    LastFrame: {lastFrameHorizLookAngle}");
+
+
+            // Cache the current look angle so we can use it on the next frame.
+            lastFrameHorizLookAngle = curFrameHorizLookAngle;
+
+
+            // Wait for the next frame.
+            yield return null;
+
+        } // end while
+
+
+        _pictogramBehaviour.ChangePictogramImage(_sprite_DroneSuccess);
+
+        yield return new WaitForSeconds(_VisionTestSuccessDelay);
+
+        _visionTestPassed = true;
     }
 
 }

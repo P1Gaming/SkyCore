@@ -104,7 +104,7 @@ public class DroneMovement : MonoBehaviour
     /// <param name="keepFacingPlayer">If set to true, the drone will constantly keep rotating to face the player as it moves toward him.</param>
     /// <param name="height">(Optional) The drone will try to stay at this height above the player. This parameter's value is defaulted so that the drone is a bit above the player, making it look down at you at an angle.</param>
     /// <returns>True if the drone has arrived at its destination, or false otherwise.</returns>
-    public bool MoveDroneInFrontOfPlayer(float distanceFromPlayer, bool keepFacingPlayer, float height = 1.5f)
+    public bool MoveDroneInFrontOfPlayer(float distanceFromPlayer, bool keepFacingPlayer, float height = 3f)
     {
         Vector3 targetPosition = _player.transform.position + (_player.transform.forward * distanceFromPlayer);
         targetPosition.y = _player.transform.position.y + height;
