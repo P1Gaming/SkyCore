@@ -45,6 +45,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private IslandHeartInteractBase _islandHeartCurrent;
 
+    private BerryBush _currentBush;
     private static bool _inventoryOpen;
 
     /// <summary>
@@ -95,6 +96,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             _islandHeartCurrent = _interactable.gameObject.GetComponent<IslandHeartInteractBase>();
             //TODO: Show inventory here
+        }
+        else if (_interactable.gameObject.GetComponent<BerryBushInteraction>() != null)
+        {
+            _currentBush = _interactable.gameObject.GetComponent<BerryBush>();
         }
     }
 
@@ -154,6 +159,10 @@ public class PlayerInteraction : MonoBehaviour
             {
                 _islandHeartCurrent.InteractStart();
             }
+        }
+        else if (_currentBush != null && _interactable != null)
+        {
+            _interactable.Interact(0, this);
         }
     }
 
