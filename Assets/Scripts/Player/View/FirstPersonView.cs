@@ -90,12 +90,12 @@ namespace Player.View
         private void OnEnable()
         {
             _lookDirection = Vector2.zero;
-            RegisterEventHandlers(GetComponent<PlayerInput>());
+            RegisterEventHandlers();
         }
 
         private void OnDisable()
         {
-            UnregisterEventHandlers(GetComponent<PlayerInput>());
+            UnregisterEventHandlers();
         }
 
         /// <summary>
@@ -173,10 +173,13 @@ namespace Player.View
 
         private void OnLook(InputAction.CallbackContext context)
         {
-            _lookDirection = context.ReadValue<Vector2>();
+            if (!IgnoreInputs)
+            {
+                _lookDirection = context.ReadValue<Vector2>();
+            }
         }
 
-        private void RegisterEventHandlers(PlayerInput input)
+        private void RegisterEventHandlers()
         {
             if (_cameraLookAction != null)
             {
@@ -186,7 +189,7 @@ namespace Player.View
             }
         }
 
-        private void UnregisterEventHandlers(PlayerInput input)
+        private void UnregisterEventHandlers()
         {
             if (_cameraLookAction != null)
             {
