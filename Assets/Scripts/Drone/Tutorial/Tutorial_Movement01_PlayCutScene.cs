@@ -14,8 +14,6 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
-    [SerializeField]
-    private FirstPersonView _firstPersonView;
 
 
     [Header("Tutorial Options")]
@@ -149,7 +147,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
             {
                 _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial); // Trigger transition to next part of the tutorial.
 
-                _firstPersonView.ClampHorizontalAngle = false;
+                FirstPersonView.Instance.ClampHorizontalAngle = false;
                 _cameraLookAction.action.Disable();
             }
         }
@@ -183,8 +181,8 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
 
         // Limit player look to 90 degrees left or right.
-        _firstPersonView.HorizontalClampingAngle = 90f;
-        _firstPersonView.ClampHorizontalAngle = true;
+        FirstPersonView.Instance.HorizontalClampingAngle = 90f;
+        FirstPersonView.Instance.ClampHorizontalAngle = true;
 
 
         yield return new WaitForSeconds(1.0f);

@@ -6,8 +6,6 @@ using Player.View;
 
 public class PauseManagement : MonoBehaviour
 {
-    private List<CinemachineVirtualCamera> _virtualCameras = new();
-
     private PlayerActions _pauseAction;
 
     private EscMenuToggle _escMenuToggle;
@@ -32,18 +30,6 @@ public class PauseManagement : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-
-        // Only control enabled for the virtual cameras whose gameObjects are siblings of the main camera
-        // and whose gameObjects are active.
-        CinemachineVirtualCamera[] virtualCameras = FindObjectsOfType<CinemachineVirtualCamera>();
-        Camera mainCamera = Camera.main;
-        for (int i = 0; i < virtualCameras.Length; i++)
-        {
-            if (virtualCameras[i].transform.parent == mainCamera.transform.parent)
-            {
-                _virtualCameras.Add(virtualCameras[i]);
-            }
-        }
 
         _pauseAction = new PlayerActions();
         _pauseAction.UI.Pause.performed += callbackContext => TogglePause();
@@ -70,18 +56,12 @@ public class PauseManagement : MonoBehaviour
         {
             CursorMode.ChangeNumberOfReasonsForFreeCursor(pause);
             InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(pause);
+            CameraSystem.PauseCameraMovement = pause; // is this necessary? maybe cinemachine doesn't move the camera when timescale is 0.
         }
-
-
 
         Time.timeScale = pause ? 0 : 1;
 
         _escMenuToggle.SetActive(pause);
-
-        foreach (CinemachineVirtualCamera x in _virtualCameras)
-        {
-            x.enabled = !pause;
-        }
 
     }
 

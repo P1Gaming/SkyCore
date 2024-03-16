@@ -14,11 +14,6 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
-    [SerializeField]
-    private CinemachineVirtualCamera _playerCamera;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
 
     [Header("Tutorial Options")]
     [Tooltip("This specifies whether or not the player must press all four movement keys to pass the mobility test, or just any one of them.")]
@@ -122,7 +117,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
         _mobilityTestPassed = false;
 
         // Switch back to the player camera. This is needed as this is the one that is moved by the look controls.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
 
 
         StartCoroutine(WaitForPlayerToLookAtDrone());
@@ -144,7 +139,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private void ExitTutorial()
     {
         // Switch back to the normal player camera.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
     }
    
     private void CheckPlayerInput()
@@ -187,7 +182,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
         HUD_Manager.Instance.EnableDroneIndicatorIcon(false);
 
         _cameraLookAction.action.Disable();
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToTutorialCamera();
         _playerLookedAtDrone = true;
 
         yield return new WaitForSeconds(1.0f);

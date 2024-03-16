@@ -16,12 +16,6 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
     [SerializeField]
     private DroneScanning _droneScanning;
 
-    [SerializeField]
-    private CinemachineVirtualCamera _playerCamera;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
-
     [Header("Tutorial Options")]
     [Tooltip("This is how long (in seconds) the planet drone image is displayed.")]
     private float _planetImageDuration = 3f;
@@ -118,7 +112,7 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
         _droneAreaScanComplete = false;
         _conclusionFinished = false;
 
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToTutorialCamera();
 
         StartCoroutine(DoTutorialConclusion());
     }
@@ -136,15 +130,12 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
     private void ExitTutorial()
     {
         // Switch back to the normal player cam.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
 
         // Re-enable all the player controls.
         _cameraLookAction.action.Enable();
         _playerMovementAction.action.Enable();
         _jumpAction.action.Enable();
-
-        // Switch back to the normal player camera.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
     }
 
     private IEnumerator DoTutorialConclusion()
