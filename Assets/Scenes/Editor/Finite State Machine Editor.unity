@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.30692166, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2143277563}
   m_HandleRect: {fileID: 2143277562}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000036
   m_Size: 0.93364567
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4079,7 +4079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816353bbe51fca84ca90d3c77949e98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateMachineName: Drone Movement
+  _stateMachineName: Drone
   _stateMachineDefinition: {fileID: 0}
 --- !u!114 &1152390466
 MonoBehaviour:

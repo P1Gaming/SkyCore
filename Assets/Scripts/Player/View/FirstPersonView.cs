@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+
+using Cursor = UnityEngine.Cursor;
+
 
 ///<summary>
 /// This class handles the use of the target of a cinemachine camera
@@ -12,6 +16,10 @@ namespace Player.View
 
     public class FirstPersonView : MonoBehaviour
     {
+        [SerializeField]
+        private InputActionReference _cameraLookAction;
+
+
         [Header("Modifiable by player")]
         [SerializeField]
         private bool _isInverted = false;
@@ -27,20 +35,21 @@ namespace Player.View
         private float _lookThreshold;
 
         [SerializeField, Range(0, 89.9f)]
-        private float _clampAngle = 89.9f;
+        private float _clampVerticalAngle = 89.9f;
+
 
         [SerializeField]
         private GameObject _cameraTarget;
-
-        [SerializeField]
-        private PlayerInput _playerControls;
 
         [SerializeField]
         private GameEventScriptableObject _lookDirectionChangeEvent;
 
         private Vector2 _lookDirection;
 
-        private float _xRot = 0f;
+        private float _verticalRotation = 0f;
+
+        private float _horizontalClampAngle;
+
 
 
 
@@ -71,14 +80,14 @@ namespace Player.View
         /// </summary> 
         protected void Awake()
         {
-            _xRot = _cameraTarget.transform.rotation.eulerAngles.x;
+            _verticalRotation = _cameraTarget.transform.rotation.eulerAngles.x;
             Cursor.lockState = (CursorLockMode.Locked);
             Cursor.visible = false;
 
 
             // Get the sensitivity value if one is saved, or use the default.
             float sensitivity = PlayerPrefs.GetFloat(PlayerPrefsKeys.FirstPersonViewSensitivity,
-                                                            DefaultSettingsMenuValues.FirstPersonViewSensitivity);
+                                                     DefaultSettingsMenuValues.FirstPersonViewSensitivity);
 
             _sensitivitySetting = sensitivity / 100f;
         }
@@ -104,17 +113,38 @@ namespace Player.View
                 return;
             }
             _lookDirectionChangeEvent.Raise();
-            _xRot -= _lookDirection.y * (_sensitivitySetting * _baseSpeed);
-            _xRot = Mathf.Clamp(_xRot, -_clampAngle, _clampAngle);
+
+
+
+            // Clamp the camera's vertical rotation.
+            _verticalRotation -= _lookDirection.y * (_sensitivitySetting * _baseSpeed);
+            _verticalRotation = Mathf.Clamp(_verticalRotation, -_clampVerticalAngle, _clampVerticalAngle);
+
             transform.Rotate(0f, _lookDirection.x * (_sensitivitySetting * _baseSpeed), 0f);
             if(_isInverted)
             {
-                _cameraTarget.transform.localRotation = Quaternion.Euler(_xRot, 0, 0);
+                _cameraTarget.transform.localRotation = Quaternion.Euler(_verticalRotation, 0, 0);
             }
             else
             {
-                _cameraTarget.transform.localRotation = Quaternion.Euler(-_xRot, 0, 0);
+                _cameraTarget.transform.localRotation = Quaternion.Euler(-_verticalRotation, 0, 0);
             }
+
+
+            // Clamp the camera's horizontal rotation if that option is enabled. This is used by the movement tutorial.
+            if (ClampHorizontalAngle)
+            {
+                Quaternion q = transform.localRotation;
+                Vector3 lookRotation = q.eulerAngles;
+               
+                lookRotation.y = AngleUtils.ConvertAngleToPlusMinus180(lookRotation.y); // Covert from 0-360f to -180 to 180 degrees.
+                lookRotation.y = Mathf.Clamp(lookRotation.y, -_horizontalClampAngle, _horizontalClampAngle);
+                lookRotation.y = AngleUtils.ConvertAngleBackTo0To360(lookRotation.y);
+                
+                q.eulerAngles = lookRotation;
+                transform.localRotation = q;
+            }
+
         }
 
         private void OnLook(InputAction.CallbackContext context)
@@ -124,23 +154,21 @@ namespace Player.View
 
         private void RegisterEventHandlers(PlayerInput input)
         {
-            InputAction lookAction = input.actions.FindAction("Look");
-            if (lookAction != null)
+            if (_cameraLookAction != null)
             {
-                lookAction.started += OnLook;
-                lookAction.performed += OnLook;
-                lookAction.canceled += OnLook;
+                _cameraLookAction.action.started += OnLook;
+                _cameraLookAction.action.performed += OnLook;
+                _cameraLookAction.action.canceled += OnLook;
             }
         }
 
         private void UnregisterEventHandlers(PlayerInput input)
         {
-            InputAction lookAction = input.actions.FindAction("Look");
-            if (lookAction != null)
+            if (_cameraLookAction != null)
             {
-                lookAction.started -= OnLook;
-                lookAction.performed -= OnLook;
-                lookAction.canceled -= OnLook;
+                _cameraLookAction.action.started -= OnLook;
+                _cameraLookAction.action.performed -= OnLook;
+                _cameraLookAction.action.canceled -= OnLook;
             }
         }
 
@@ -157,6 +185,21 @@ namespace Player.View
         public float GetSensitivity()
         {
             return _sensitivitySetting;
+        }
+
+        /// <summary>
+        /// When enabled, the camera's horizontal angle will be clamped so it can't rotate left or right by more than the
+        /// amount specified by ClampingAngleY.
+        /// </summary>
+        public bool ClampHorizontalAngle { get; set; }
+        
+        /// <summary>
+        /// Gets/Sets how much to limit the camera's horizontal rotation by. This parameter is only used when ClampHorizontalAngle is enabled.
+        /// </summary>
+        public float HorizontalClampingAngle
+        {
+            get { return _horizontalClampAngle; }
+            set { _horizontalClampAngle = Mathf.Clamp(value, 0.0f, 259.9f); }
         }
 
     }

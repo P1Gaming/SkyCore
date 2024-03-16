@@ -98,7 +98,7 @@ namespace FiniteStateMachineEditor
                 if (editorStates[i].State == state)
                     return editorStates[i];
             }
-            throw new System.InvalidOperationException("didnt find the associated editorState");
+            throw new System.InvalidOperationException($"Didnt find the editorState associated with state \"{state.name}\"!");
         }
 
         public void UpdateLine()
