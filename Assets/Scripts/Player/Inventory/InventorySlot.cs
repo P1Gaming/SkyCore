@@ -64,7 +64,7 @@ public class InventorySlot : MonoBehaviour
             if (_countText.text != "" + _itemStack.amount)
             {
                 throw new System.Exception("In InventorySlot, _countText.text != _itemStack.amount. Item stack identity: "
-                    + _itemStack.identity.name + ", amount: " + _itemStack.amount);
+                    + _itemStack.identity.name + ", amount: " + _itemStack.amount + ", amount shown: " + _countText.text);
             }
         }
     }

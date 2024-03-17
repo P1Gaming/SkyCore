@@ -80,6 +80,7 @@ public class InventorySection
                 int numberToSubtract = System.Math.Min(amountLeftToSubtract, inSlot.amount);
                 amountLeftToSubtract -= numberToSubtract;
                 inSlot.amount -= numberToSubtract;
+                _slots[index].OnItemStackChanged();
             }
         }
     }

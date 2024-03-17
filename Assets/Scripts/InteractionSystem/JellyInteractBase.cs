@@ -27,6 +27,7 @@ public class JellyInteractBase : Interactable
     private TextMeshProUGUI _saturationText;
 
 
+    public Feeding Feeding { get; private set; }
    
 
     private Parameters _jellyParams;
@@ -41,18 +42,24 @@ public class JellyInteractBase : Interactable
             {
                 _interacting = value;
 
-                // Only 1 can interact at a time, so we can determine whether
-                // any are interacting like this. Need the static one, but also
-                // need to know whether this specific one is interacting.
-                AnyInteracting = value;
+                if (value)
+                {
+                    InteractingJelly = this;
+                }
+                else
+                {
+                    InteractingJelly = null;
+                }
             }
         }
     }
-    public static bool AnyInteracting { get; private set; }
+    public static JellyInteractBase InteractingJelly { get; private set; }
+    public static bool AnyInteracting => InteractingJelly != null;
 
     private void Awake()
     {
         _jellyParams = GetComponent<Parameters>();
+        Feeding = GetComponent<Feeding>();
     }
 
     private void Update()

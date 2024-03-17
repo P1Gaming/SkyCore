@@ -163,25 +163,28 @@ public class InventoryDragAndDrop
 
     private void FinishDragOutsideInventory()
     {
+        if (!JellyInteractBase.AnyInteracting)
+        {
+            TryTossItem();
+            return;
+        }
+
         if (_beingDragged._itemStack.identity == _berryItemIdentity)
         {
+            // Try to feed the jelly which the player is interacting with.
             Ray ray;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 100, _jellyFeedingLayerMask))
             {
-                Jellies.Feeding feeding = hit.collider.GetComponent<Jellies.Feeding>();
-                if (feeding != null)
+                JellyInteractBase jellyInteract = hit.collider.GetComponent<JellyInteractBase>();
+                if (jellyInteract == JellyInteractBase.InteractingJelly
+                    && jellyInteract.Feeding.TryFeedJelly(_berryItemIdentity.SaturationValue))
                 {
-                    if (feeding.TryFeedJelly(_berryItemIdentity.SaturationValue))
-                    {
-                        _beingDragged._itemStack.amount--;
-                        _beingDragged.OnItemStackChanged();
-                    }
+                    _beingDragged._itemStack.amount--;
+                    _beingDragged.OnItemStackChanged();
                 }
-                return;
             }
         }
-        TryTossItem();
     }
 
     private void TryMoveDraggedItemToSlot(InventorySlot moveTo, bool throwIfFails = false)
