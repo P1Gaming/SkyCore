@@ -28,7 +28,7 @@ public static class CursorMode
     {
         int change = incrementDontDecrement ? 1 : -1;
         _numberOfReasonsForFreeCursor += change;
-        Debug.Log("# reasons for free cursor: " + _numberOfReasonsForFreeCursor);
+        //Debug.Log("# reasons for free cursor: " + _numberOfReasonsForFreeCursor);
         if (_numberOfReasonsForFreeCursor < 0)
         {
             throw new System.Exception("In CursorMode, _numberOfReasonsForFreeCursor < 0: " + _numberOfReasonsForFreeCursor);

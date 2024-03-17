@@ -56,7 +56,11 @@ namespace Player.View
             {
                 if (_instance == null)
                 {
-                    _instance = GameObject.FindWithTag("Player").GetComponent<FirstPersonView>();
+                    GameObject player = GameObject.FindWithTag("Player");
+                    if (player != null)
+                    {
+                        _instance = player.GetComponent<FirstPersonView>();
+                    }
                 }
                 return _instance;
             }
@@ -69,7 +73,7 @@ namespace Player.View
             set
             {
                 _numberOfReasonsToIgnoreInputs = value;
-                Debug.Log("# reasons ignore inputs for first person view: " + value);
+                //Debug.Log("# reasons ignore inputs for first person view: " + value);
                 if (_numberOfReasonsToIgnoreInputs < 0)
                 {
                     throw new System.Exception("In FirstPersonView, _numberOfReasonsToIgnoreInputs < 0: " + _numberOfReasonsToIgnoreInputs);

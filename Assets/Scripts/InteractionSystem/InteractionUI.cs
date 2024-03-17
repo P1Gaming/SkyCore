@@ -24,7 +24,7 @@ public class InteractionUI : MonoBehaviour
         set
         {
             _numberOfReasonsToBeInactive = value;
-            Debug.Log("# reasons InteractionUI inactive: " + value);
+            //Debug.Log("# reasons InteractionUI inactive: " + value);
             if (_numberOfReasonsToBeInactive < 0)
             {
                 throw new System.Exception("In InteractionUI, _numberOfReasonsToBeInactive < 0: " + _numberOfReasonsToBeInactive);

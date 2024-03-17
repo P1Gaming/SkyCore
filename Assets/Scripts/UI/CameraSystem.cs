@@ -34,12 +34,6 @@ public class CameraSystem : MonoBehaviour
     public static CinemachineVirtualCamera TutorialCamera => Instance._tutorialCamera;
     public static CinemachineVirtualCamera CutsceneCamera => Instance._cutsceneCamera;
 
-    public static bool PauseCameraMovement
-    {
-        get => Instance._currentCamera.gameObject.activeSelf;
-        set => Instance._currentCamera.gameObject.SetActive(!value);
-    }
-
     private void Awake()
     {
         if (_instance == null)

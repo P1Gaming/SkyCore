@@ -68,7 +68,7 @@ namespace Player.Motion
             set
             {
                 _numberOfReasonsToIgnoreWASDInputs = value;
-                Debug.Log("# reasons ignore WASD: " + value);
+                //Debug.Log("# reasons ignore WASD: " + value);
                 if (_numberOfReasonsToIgnoreWASDInputs < 0)
                 {
                     throw new System.Exception("In PlayerMovement, _numberOfReasonsToIgnoreWASDInputs < 0: " + _numberOfReasonsToIgnoreWASDInputs);
@@ -84,7 +84,7 @@ namespace Player.Motion
             set
             {
                 _numberOfReasonsToIgnoreJumpInputs = value;
-                Debug.Log("# reasons ignore jump: " + value);
+                //Debug.Log("# reasons ignore jump: " + value);
                 if (_numberOfReasonsToIgnoreJumpInputs < 0)
                 {
                     throw new System.Exception("In PlayerMovement, _numberOfReasonsToIgnoreJumpInputs < 0: " + _numberOfReasonsToIgnoreJumpInputs);

@@ -67,7 +67,7 @@ public class Inventory : MonoBehaviour
         set
         {
             _numberOfReasonsToIgnoreInputs = value;
-            Debug.Log("# reasons ignore inputs for inventory: " + value);
+            //Debug.Log("# reasons ignore inputs for inventory: " + value);
             if (_numberOfReasonsToIgnoreInputs < 0)
             {
                 throw new System.Exception("In Inventory, _numberOfReasonsToIgnoreInputs < 0: " + _numberOfReasonsToIgnoreInputs);
