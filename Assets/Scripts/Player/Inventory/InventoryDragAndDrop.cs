@@ -20,10 +20,15 @@ public class InventoryDragAndDrop
     private PointerEventData _eventData;
     private EventSystem _eventSystem;
 
+    private LayerMask _jellyFeedingLayerMask = 1 << LayerMask.NameToLayer("Jellies");
+
     private RectTransform[] _whereToConsiderMouseInsideInventory;
 
-    public InventoryDragAndDrop(RectTransform[] whereToConsiderMouseInsideInventory)
+    private BerryItemIdentity _berryItemIdentity;
+
+    public InventoryDragAndDrop(RectTransform[] whereToConsiderMouseInsideInventory, BerryItemIdentity berryItemIdentity)
     {
+        _berryItemIdentity = berryItemIdentity;
         _whereToConsiderMouseInsideInventory = whereToConsiderMouseInsideInventory;
         _click = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().actions.FindAction("ClickForDragAndDrop", true);
         _click.started += OnClickStart;
@@ -158,6 +163,24 @@ public class InventoryDragAndDrop
 
     private void FinishDragOutsideInventory()
     {
+        if (_beingDragged._itemStack.identity == _berryItemIdentity)
+        {
+            Ray ray;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, 100, _jellyFeedingLayerMask))
+            {
+                Jellies.Feeding feeding = hit.collider.GetComponent<Jellies.Feeding>();
+                if (feeding != null)
+                {
+                    if (feeding.TryFeedJelly(_berryItemIdentity.SaturationValue))
+                    {
+                        _beingDragged._itemStack.amount--;
+                        _beingDragged.OnItemStackChanged();
+                    }
+                }
+                return;
+            }
+        }
         TryTossItem();
     }
 

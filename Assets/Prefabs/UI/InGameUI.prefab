@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _DroneIndicatorIcon: {fileID: 841405714}
-  _DroneIndicatorBlinkingDuration: 3
   _BlinkFrequency: 0.1
 --- !u!1 &411158827067671458
 GameObject:
@@ -688,6 +687,7 @@ MonoBehaviour:
   - {fileID: 8488431368788840681}
   - {fileID: 4240029726417867947}
   - {fileID: 4102057301379869527}
+  _berryItemIdentity: {fileID: 11400000, guid: ea60c6bcafafb47449f58b1932dda3a8, type: 2}
   _hotBarStacksCapacity: 3
   _resourceSectionStacksCapacity: 12
   _jellySectionStacksCapacity: 15

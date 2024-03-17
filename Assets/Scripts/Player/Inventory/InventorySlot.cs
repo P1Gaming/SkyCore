@@ -40,10 +40,12 @@ public class InventorySlot : MonoBehaviour
         _textPosRelativeImagePos = _countTextGameobject.transform.position - _imageGameobject.transform.position;
     }
 
+#if UNITY_EDITOR
     private void LateUpdate()
     {
         // Ensure the thing being shown matches _itemStack, to check for bugs.
-#if UNITY_EDITOR
+        // Shouldn't just show stuff every frame in the final product, for performance especially garbage allocation.
+
         if (_itemStack == null)
         {
             if (_imageGameobject.activeSelf || _countTextGameobject.activeSelf)
@@ -65,8 +67,8 @@ public class InventorySlot : MonoBehaviour
                     + _itemStack.identity.name + ", amount: " + _itemStack.amount);
             }
         }
-#endif
     }
+#endif
 
     public void InitializeAfterInstantiate(ItemIdentity.ItemSortType sortType
         , Transform itemParentDuringDragAndDrop, InventoryDragAndDrop dragAndDrop)

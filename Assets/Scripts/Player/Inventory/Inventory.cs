@@ -23,9 +23,11 @@ public class Inventory : MonoBehaviour
     private Transform _toolSectionSlotsParent;
     [SerializeField]
     private Transform _resourceSectionSlotsParent;
-
     [SerializeField]
     private RectTransform[] _whereToConsiderMouseInsideInventory;
+
+    [SerializeField]
+    private BerryItemIdentity _berryItemIdentity;
 
     [SerializeField]
     private int _hotBarStacksCapacity = 3;
@@ -83,7 +85,7 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        _dragAndDrop = new InventoryDragAndDrop(_whereToConsiderMouseInsideInventory);
+        _dragAndDrop = new InventoryDragAndDrop(_whereToConsiderMouseInsideInventory, _berryItemIdentity);
 
         _hotbarSection = new InventorySection(_hotBarStacksCapacity, ItemIdentity.ItemSortType.None
             , _inventorySlotPrefab, _hotbarSectionSlotsParent, _itemParentDuringDragAndDrop, _dragAndDrop);
