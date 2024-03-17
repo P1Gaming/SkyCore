@@ -102,6 +102,8 @@ public class Inventory : MonoBehaviour
         PlayerInput playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         _backpackAction = playerInput.actions.FindAction("Backpack", true);
         _backpackAction.performed += OnBackpack;
+
+        HoldingItemHandler.Instance.UpdateHeldItem();
     }
 
     private void OnEnable() => _backpackAction.Enable();
@@ -138,8 +140,6 @@ public class Inventory : MonoBehaviour
         {
             _sections[i].TakeIntoNewStacks(item);
         }
-
-        HoldingItemHandler.Instance.UpdateHeldItem();
     }
        
     public bool TrySubtractItemAmount(ItemIdentity identity, int amount)
@@ -162,8 +162,6 @@ public class Inventory : MonoBehaviour
         {
             throw new System.Exception("amount should be 0 here but is " + amount);
         }
-
-        HoldingItemHandler.Instance.UpdateHeldItem();
 
         return true;
     }
@@ -194,7 +192,6 @@ public class Inventory : MonoBehaviour
             to._itemStack = temp;
             from.OnItemStackChanged();
             to.OnItemStackChanged();
-            HoldingItemHandler.Instance.UpdateHeldItem();
         }
 
         return succeed;

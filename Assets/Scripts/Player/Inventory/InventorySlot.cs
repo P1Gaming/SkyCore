@@ -76,7 +76,7 @@ public class InventorySlot : MonoBehaviour
         SortType = sortType;
         _itemParentDuringDragAndDrop = itemParentDuringDragAndDrop;
         _dragAndDrop = dragAndDrop;
-        OnItemStackChanged();
+        OnItemStackChanged(true);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class InventorySlot : MonoBehaviour
         _countTextGameobject.transform.position = Input.mousePosition + _textPosRelativeImagePos;
     }
 
-    public void OnItemStackChanged()
+    public void OnItemStackChanged(bool forInitialization = false)
     {
         if (_itemStack != null && _itemStack.amount <= 0)
         {
@@ -113,8 +113,12 @@ public class InventorySlot : MonoBehaviour
             _countText.text = _itemStack.amount.ToString();
         }
 
-
         _dragAndDrop.CheckDraggedStackNowEmpty();
+
+        if (!forInitialization)
+        {
+            HoldingItemHandler.Instance.UpdateHeldItem();
+        }
     }
 
     /// <summary>
