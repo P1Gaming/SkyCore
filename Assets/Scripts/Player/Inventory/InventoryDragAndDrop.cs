@@ -47,7 +47,7 @@ public class InventoryDragAndDrop
 
     private void OnClickStart(InputAction.CallbackContext context)
     {
-        if (PauseManagement.IsPaused)
+        if (Inventory.Instance.IgnoreInputs)
         {
             return;
         }
@@ -67,7 +67,7 @@ public class InventoryDragAndDrop
 
     private void OnClickCancel(InputAction.CallbackContext context)
     {
-        if (PauseManagement.IsPaused)
+        if (Inventory.Instance.IgnoreInputs)
         {
             return;
         }
@@ -88,7 +88,7 @@ public class InventoryDragAndDrop
     {
         if (_beingDragged != null)
         {
-            if (PauseManagement.IsPaused)
+            if (Inventory.Instance.IgnoreInputs)
             {
                 TryMoveDraggedItemToSlot(_beingDragged, true);
             }

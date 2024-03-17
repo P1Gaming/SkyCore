@@ -75,7 +75,7 @@ namespace Player.Motion
                 }
             }
         }
-        private bool IgnoreWASDInputs => NumberOfReasonsToIgnoreWASDInputs > 0;
+        public bool IgnoreWASDInputs => NumberOfReasonsToIgnoreWASDInputs > 0;
 
         private int _numberOfReasonsToIgnoreJumpInputs = 0;
         public int NumberOfReasonsToIgnoreJumpInputs
@@ -97,7 +97,7 @@ namespace Player.Motion
                 }
             }
         }
-        private bool IgnoreJumpInputs => NumberOfReasonsToIgnoreJumpInputs > 0;
+        public bool IgnoreJumpInputs => NumberOfReasonsToIgnoreJumpInputs > 0;
 
 
         private void Awake()

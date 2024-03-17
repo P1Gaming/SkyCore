@@ -89,12 +89,12 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
             (_tutorialStage01_Update, UpdateTutorial)
             );
 
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs++;
 
-        if (!_skipTutorial || !_skipCutscene)
-        {
-            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
-            PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs++;
-        }
+        Inventory.Instance.NumberOfReasonsToIgnoreInputs++;
+        InteractionUI.Instance.NumberOfReasonsToBeInactive++;
+        PlayerInteraction.Instance.NumberOfReasonsToIgnoreInputs++;
     }
 
 
@@ -107,6 +107,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
     {
         _timer = 0f;
 
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
 
         if (!_skipCutscene)
         {
@@ -138,7 +139,11 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
                 _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial); // Trigger transition to next part of the tutorial.
 
                 FirstPersonView.Instance.ClampHorizontalAngle = false;
-                FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
+                if (!FirstPersonView.Instance.IgnoreInputs && !PauseManagement.IsPaused)
+                {
+                    throw new System.Exception("Player shouldn't be able to move camera at this point.");
+                }
+                //FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
             }
         }
 
@@ -150,6 +155,7 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
       
         _cutScenePlayer.OnCutSceneStopped -= OnCutSceneEnded;
 
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
 
         if (_skipTutorial)
         {
@@ -157,7 +163,14 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
             PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs--;
             PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs--;
-            FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+            if (_skipCutscene)
+            {
+                FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+            }
+
+            Inventory.Instance.NumberOfReasonsToIgnoreInputs--;
+            InteractionUI.Instance.NumberOfReasonsToBeInactive--;
+            PlayerInteraction.Instance.NumberOfReasonsToIgnoreInputs--;
 
             return;
         }
@@ -167,7 +180,10 @@ public class Tutorial_Movement01_PlayCutScene : MonoBehaviour
 
     private IEnumerator WaitForPlayerToLookAtDrone()
     {
-        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        if (FirstPersonView.Instance.IgnoreInputs && !PauseManagement.IsPaused)
+        {
+            throw new System.Exception("Player should be able to move camera at this point.");
+        }
 
         // Limit player look to 90 degrees left or right.
         FirstPersonView.Instance.HorizontalClampingAngle = 90f;

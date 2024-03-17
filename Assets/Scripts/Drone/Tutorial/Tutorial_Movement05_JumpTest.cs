@@ -105,6 +105,7 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
     {
         // Switch back to the normal player camera.
         CameraSystem.SwitchToFirstPersonCamera();
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs++;
     }
    
     private IEnumerator WaitForTutorialDonePictureDisplayTimeToEnd()

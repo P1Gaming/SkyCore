@@ -56,6 +56,7 @@ public class PauseManagement : MonoBehaviour
         {
             CursorMode.ChangeNumberOfReasonsForFreeCursor(pause);
             InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(pause);
+            Inventory.Instance.NumberOfReasonsToIgnoreInputs += pause ? 1 : -1;
             CameraSystem.PauseCameraMovement = pause; // is this necessary? maybe cinemachine doesn't move the camera when timescale is 0.
         }
 

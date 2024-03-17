@@ -81,7 +81,7 @@ namespace Player.View
                 }
             }
         }
-        private bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
+        public bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
 
 
 

@@ -75,7 +75,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
-    private bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
+    public bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
 
 
 

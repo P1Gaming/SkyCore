@@ -148,7 +148,11 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 
     private IEnumerator WaitForPlayerToLookAtDrone()
     {
-        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        //FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        if (FirstPersonView.Instance.IgnoreInputs && !PauseManagement.IsPaused)
+        {
+            throw new Exception("Player should be able to move the camera at this point");
+        }
 
 
         yield return new WaitForSeconds(1.0f);
@@ -171,24 +175,32 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneMovementControls);
-        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs--;
     }
 
     private void CheckIfPlayerHasPassedMobilityTest()
     {
+        if (_mobilityTestPassed)
+        {
+            return;
+        }
+
+        bool passTest = false;
         if (_RequireAll4MovementKeysPressed &&        
             _keysPressed == MovementKeysPressed.All)
         {
-            _mobilityTestPassed = true;
-
-            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
+            passTest = true;
         }
         else if (!_RequireAll4MovementKeysPressed &&
                  _keysPressed > 0)
         {
             // _requireAll4MovementKeysPressed is false, so as long as at least one key has been pressed we can return true.
-            _mobilityTestPassed = true;
+            passTest = true;
+        }
 
+        if (passTest)
+        {
+            _mobilityTestPassed = true;
             PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
         }
 

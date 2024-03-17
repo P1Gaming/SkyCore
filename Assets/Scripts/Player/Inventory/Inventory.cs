@@ -60,7 +60,23 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    
+    private int _numberOfReasonsToIgnoreInputs = 0;
+    public int NumberOfReasonsToIgnoreInputs
+    {
+        get => _numberOfReasonsToIgnoreInputs;
+        set
+        {
+            _numberOfReasonsToIgnoreInputs = value;
+            Debug.Log("# reasons ignore inputs for inventory: " + value);
+            if (_numberOfReasonsToIgnoreInputs < 0)
+            {
+                throw new System.Exception("In Inventory, _numberOfReasonsToIgnoreInputs < 0: " + _numberOfReasonsToIgnoreInputs);
+            }
+        }
+    }
+    public bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
+
+
     public GameObject HotbarHighlight => _hotBarHighlight;
     public Transform HotBarSlotsParent => _hotbarSectionSlotsParent;
 
@@ -187,7 +203,7 @@ public class Inventory : MonoBehaviour
 
     private void OnBackpack(InputAction.CallbackContext context)
     {
-        if (PauseManagement.IsPaused)
+        if (IgnoreInputs)
         {
             return;
         }
