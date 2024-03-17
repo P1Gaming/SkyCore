@@ -55,7 +55,7 @@ public class PauseManagement : MonoBehaviour
         if (pause != wasPaused)
         {
             CursorMode.ChangeNumberOfReasonsForFreeCursor(pause);
-            InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(pause);
+            InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(pause);
             Inventory.Instance.NumberOfReasonsToIgnoreInputs += pause ? 1 : -1;
         }
 

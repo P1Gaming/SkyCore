@@ -76,14 +76,15 @@ public class CraftingUIInteract : MonoBehaviour
             if (_isUIOpen)
             {
                 CursorMode.RemoveReasonForFreeCursor();
-                InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(false);
+                InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(false);
                 _menuController.PopPage(); // Remove the workbench page from the menu
                 _workBenchUI.GetComponent<CraftingUICode>().OnClose();
             }
             else
             {
                 CursorMode.AddReasonForFreeCursor();
-                InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(true);
+                InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(true);
+
                 _menuController.PushPage(_workbenchPage); // Add the workbench page to the menu
             }
 

@@ -108,7 +108,7 @@ public class JellyInteractBase : Interactable
 
     private void SetUIActive(bool active)
     {
-        InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(!active);
+        InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(!active);
     }
 
     /// <summary> 

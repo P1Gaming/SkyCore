@@ -210,7 +210,7 @@ public class Inventory : MonoBehaviour
         _isInBackpackMode = !_isInBackpackMode;
 
         CursorMode.ChangeNumberOfReasonsForFreeCursor(_isInBackpackMode);
-        InputIgnoring.ChangeNumberOfReasonsToIgnoreInputs(_isInBackpackMode);
+        InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementThings(_isInBackpackMode);
 
         if (_isInBackpackMode)
         {
