@@ -1,0 +1,16 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2126837384	Play_Island_Heart			\Default Work Unit\Env\Play_Island_Heart	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	1673590565	IslandHeart_XP			\Default Work Unit\IslandHeart_XP	
+
+Switch	ID	Name	Switch Group			Notes
+	1548389549	Unleveled	IslandHeart_XP			
+	2145291615	Level_UP	IslandHeart_XP			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2803209766	Island_Heart_XP			\Default Work Unit\Island_Heart_XP	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	958036601	ENV_IslandHeart_Lvl_UP	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\ENV--General-LvlUpIsland_01_14883D71.wem		\Actor-Mixer Hierarchy\Env\Island Heart\Island_Heart_XP\Level_Up\ENV_IslandHeart_Lvl_UP		1287236
+
