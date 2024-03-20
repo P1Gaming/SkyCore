@@ -82,7 +82,6 @@ public class IslandHeartLeveling : MonoBehaviour
 		}
 		if(_generator == null)
 		{
-			InventoryScene scene = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScene>();
 			//TODO: Drone should be notified to display the Generator icon here
 			Debug.Log("Displaying Inventory Scene and recommending the Generator be dropped");
 

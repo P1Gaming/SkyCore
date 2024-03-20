@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{03F4683F-01D9-47F8-B6C2-EC8A3388EBA4}" SchemaVersion="103">
 	<Modulators>
-		<WorkUnit Name="Default Work Unit" ID="{03F4683F-01D9-47F8-B6C2-EC8A3388EBA4}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{03F4683F-01D9-47F8-B6C2-EC8A3388EBA4}" PersistMode="Standalone">
+			<ChildrenList>
+				<ModulatorLfo Name="LFO_Ambience" ID="{FB2D13C4-7A09-4064-B983-EBD663E33C69}" ShortID="303548583">
+					<PropertyList>
+						<Property Name="LfoAttack" Type="Real64" Value="2"/>
+						<Property Name="LfoDepth" Type="Real64" Value="56.8">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{7FDF1E09-95EF-4484-83AC-C32E1C82E36D}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+						<Property Name="LfoFrequency" Type="Real64" Value="0.08">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{3FFCA95A-71CF-4096-9120-1D944CE78FFD}">
+										<PropertyList>
+											<Property Name="Max" Type="Real64" Value="2"/>
+											<Property Name="Min" Type="Real64" Value="-500"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+					</PropertyList>
+				</ModulatorLfo>
+				<ModulatorLfo Name="LFO_High-Pass" ID="{EFDBACB9-424F-4D1D-B3E2-D9DFB254DB0E}" ShortID="396877732">
+					<PropertyList>
+						<Property Name="LfoFrequency" Type="Real64" Value="0.03"/>
+					</PropertyList>
+				</ModulatorLfo>
+			</ChildrenList>
+		</WorkUnit>
 	</Modulators>
 </WwiseDocument>

@@ -6,7 +6,7 @@ using Jellies;
 public class DroneScannableLocator
 {
     private Collider[] _overlapSphereResults = new Collider[10000];
-    private HashSet<ItemBase> _scannedItems = new();
+    private HashSet<ItemIdentity> _scannedItems = new();
     private HashSet<Jellies.JellyType> _scannedJellyTypes = new();
     private int _jellyLayerMask;
     private int _itemLayerMask;

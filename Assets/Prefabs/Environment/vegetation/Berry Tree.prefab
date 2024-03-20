@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 10
-  _itemBase: {fileID: 11400000, guid: ea60c6bcafafb47449f58b1932dda3a8, type: 2}
+  _berryItemIdentity: {fileID: 0}
   _numOfBerries: 3
   _indicator: {fileID: 3625939396564118192}
 --- !u!114 &5258244351885728814
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 10
-  _itemBase: {fileID: 11400000, guid: ea60c6bcafafb47449f58b1932dda3a8, type: 2}
+  _berryItemIdentity: {fileID: 11400000, guid: ea60c6bcafafb47449f58b1932dda3a8, type: 2}
   _numOfBerries: 3
   _indicator: {fileID: 3625939396564118192}
 --- !u!114 &8924327866034643932

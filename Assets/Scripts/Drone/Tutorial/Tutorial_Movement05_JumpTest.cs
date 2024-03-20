@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using System;
 using Player.View;
+using Player.Motion;
 
 public class Tutorial_Movement05_JumpTest : MonoBehaviour
 {
@@ -14,11 +15,6 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
-    [SerializeField]
-    private CinemachineVirtualCamera _playerCamera;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
 
     [Header("Tutorial Options")]
     [Tooltip("This is how long (in seconds) the drone will display the jump tutorial complete image.")]
@@ -37,10 +33,6 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
     private Sprite _sprite_DroneSuccess;
     [SerializeField]
     private Sprite _sprite_DroneTutorialComplete;
-
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _jumpAction;
 
 
     [Header("Finite State Machine Parameters")]
@@ -87,14 +79,13 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
 
     private void EnterTutorial()
     {
-        _jumpAction.action.Enable();
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs--;
 
         _waitingForTutorialDronePictureTimeToEnd = false;
         _jumpTestPassed = false;
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneJumpControls);
-
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToTutorialCamera();
     }
 
     private void UpdateTutorial()
@@ -104,7 +95,7 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
             StartCoroutine(WaitForTutorialDonePictureDisplayTimeToEnd());
         }
         
-        if (_jumpAction.action.WasPerformedThisFrame())
+        if (PlayerMovement.Instance.GetJumpInput())
         {
             _jumpTestPassed = true;
         }
@@ -113,7 +104,8 @@ public class Tutorial_Movement05_JumpTest : MonoBehaviour
     private void ExitTutorial()
     {
         // Switch back to the normal player camera.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs++;
     }
    
     private IEnumerator WaitForTutorialDonePictureDisplayTimeToEnd()

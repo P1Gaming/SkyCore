@@ -1,0 +1,109 @@
+Event	ID	Name			Wwise Object Path	Notes
+	98439365	Play_Player_Footsteps			\Default Work Unit\Player\Play_Player_Footsteps	
+	152276835	Play_PickupItem			\Default Work Unit\Player\Play_PickupItem	
+	303910132	Play_Broken_Spaceship			\Default Work Unit\Env\Play_Broken_Spaceship	
+	403792184	Play_Jellies_Pet			\Default Work Unit\Jellies\Play_Jellies_Pet	
+	496414419	Play_Jelly_Level_Up			\Default Work Unit\Jellies\Play_Jelly_Level_Up	
+	546353625	Play_UI_Inventory_Take			\Default Work Unit\UI\Inventory Take-Drop\Play_UI_Inventory_Take	
+	562256996	Play_Player_Jump			\Default Work Unit\Player\Play_Player_Jump	
+	1406322581	Play_Jellies_Roam_Grass			\Default Work Unit\Jellies\Play_Jellies_Roam_Grass	
+	2126837384	Play_Island_Heart			\Default Work Unit\Env\Play_Island_Heart	
+	2169761796	Play_Drone_All			\Default Work Unit\Env\Play_Drone_All	
+	2229253950	Play_UseItem			\Default Work Unit\Player\Play_UseItem	
+	2405070987	Play_Jelly_Eating			\Default Work Unit\Jellies\Play_Jelly_Eating	
+	2687999423	Play_Day_Night			\Default Work Unit\Env\Play_Day_Night	
+	2736433684	Play_UI_CloseMenu			\Default Work Unit\UI\Play_UI_CloseMenu	
+	2830116340	Play_Left_Click			\Default Work Unit\UI\Play_Left_Click	
+	3537301466	Play_Player_DropItem			\Default Work Unit\Player\Play_Player_DropItem	
+	3541361906	Play_UI_OpenMenu			\Default Work Unit\UI\Play_UI_OpenMenu	
+	3807302544	Play_Mouse_Hovering			\Default Work Unit\UI\Play_Mouse_Hovering	
+	3929504087	Play_UI_Inventory_Drop			\Default Work Unit\UI\Inventory Take-Drop\Play_UI_Inventory_Drop	
+	4284253250	Play_Drone_Scanning			\Default Work Unit\Env\Play_Drone_Scanning	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	1281648863	Item_Type			\Default Work Unit\Item_Type	
+	1673590565	IslandHeart_XP			\Default Work Unit\IslandHeart_XP	
+	1819922903	Menu_Type			\Default Work Unit\Menu_Type	
+	3865314626	Material			\Default Work Unit\Material	
+
+Switch	ID	Name	Switch Group			Notes
+	302590163	Berry	Item_Type			
+	333239846	Jelly_Dew	Item_Type			
+	1759730654	Portable_Generator	Item_Type			
+	1548389549	Unleveled	IslandHeart_XP			
+	2145291615	Level_UP	IslandHeart_XP			
+	2005704188	Main_Menu	Menu_Type			
+	3090328911	Inventory_Menu	Menu_Type			
+	3422541661	Pause_Menu	Menu_Type			
+	2195636714	Dirt	Material			
+	2654748154	Water	Material			
+	4248645337	Grass	Material			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	2654748154	Water			\Default Work Unit\Water	
+	3733145084	DroneState			\Default Work Unit\DroneState	
+
+State	ID	Name	State Group			Notes
+	2432428	Above	Water			
+	384800980	Below	Water			
+	748895195	None	Water			
+	58138747	Active	DroneState			
+	748895195	None	DroneState			
+	1874288895	Idle	DroneState			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	78180746	Above	Water	\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Water\InWater\Player_Footsteps_InWater		
+	347835993	Below	Water	\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Water\OnWater		
+	412595563	Idle	DroneState	\Actor-Mixer Hierarchy\Env\Drone\Drone Hovering\ENV_Drone_Hovering		
+	549781492	Active	DroneState	\Actor-Mixer Hierarchy\Env\Drone\Drone Hovering\ENV_Drone_Idle		
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2803209766	Island_Heart_XP			\Default Work Unit\Island_Heart_XP	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	13498165	ENV_IslandHeart_Idle	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\heartbeat-03_D79FB2B7.wem		\Actor-Mixer Hierarchy\Env\Island Heart\Island_Heart_XP\ENV_IslandHeart_Idle		5836864
+	23739380	Jellies--Grass-Roaming_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_01		0
+	36526449	Jellies--General--Eating--SFX_1	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--SFX_1_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--SFX_1		0
+	44768568	Player_Footsteps_InWater	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Swimming_01_33AC0A03.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Water\InWater\Player_Footsteps_InWater		1230768
+	45832823	Player_Jump_InWater_04	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Exiting_Water_04_17650498.wem		\Actor-Mixer Hierarchy\Player\Movement\Jump\Jump_InWater\Player_Jump_InWater\Player_Jump_InWater_04		762356
+	53662747	Jellies--Grass-Roaming_03	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_03_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_03		0
+	53939665	Jellies--General--Eating--chomp_1	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--chomp_1_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--chomp_1		0
+	60950605	UI_Mouse_Hover	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Menu_HoveringMenuButtons_04_10C4C929.wem		\Actor-Mixer Hierarchy\UI\Mouse Hovering\UI_Mouse_Hover		96064
+	78256152	UI_Inventory_Take	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI_Pause_Slider_Grabbing_Dropping_Lufs_88CD4DCA.wem		\Actor-Mixer Hierarchy\UI\Inventory Menu\Take Item\UI_Inventory_Take		21792
+	99406942	Jellies--Grass-Roaming_02	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_02_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_02		0
+	116842961	Jellies--Grass-Roaming_04	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--Grass-Roaming_04_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Roaming\Grass\Jellies--Grass-Roaming_04		0
+	137681786	Jellies--General--Eating--chomp_2	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--chomp_2_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--chomp_2		0
+	161257019	Player_Footsteps_Grass_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\footsteps_grass_step_single-001_2F6D34DD.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Grass\Player_Footsteps_Grass_01		35028
+	195837913	Player_Jump_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Clothing_Jumping_Dropping_01_5B67AD5B.wem		\Actor-Mixer Hierarchy\Player\Movement\Jump\Jump_Generic\Player_Jump_01		120804
+	230185988	UI_PauseMenu_Closing_06	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI_PauseMenu_Closing_06_1400C02E.wem		\Actor-Mixer Hierarchy\UI\Open_Close Menu\Close Menu\UI_PauseMenu_Close\UI_PauseMenu_Closing_06		347652
+	268109012	Jellies--General-Petting-Happy_03	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Petting-Happy_03_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Pet\Jellies--General-Petting-Happy_03		0
+	310241983	UI_Generic_Click	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI_Menu Generic_Click_10C4C929.wem		\Actor-Mixer Hierarchy\UI\UI_Generic_Click		96064
+	354210599	Player_Footsteps_Grass_04	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\footsteps_grass_step_single-004_D8B61E66.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Grass\Player_Footsteps_Grass_04		29412
+	356729394	Player_Footsteps_Dirt_04	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Dirt_04_79A85C78.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Dirt\Player_Footsteps_Dirt_04		85652
+	368222679	Player_Footsteps_Water_04	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Water_03_95273C7F.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Water\OnWater\Player_Footsteps_Water_04		107256
+	381248890	UI_Pause_Menu_Close_Click	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Menu_HoveringMenuButtons_04_AC96386E.wem		\Actor-Mixer Hierarchy\UI\Open_Close Menu\Close Menu\UI_PauseMenu_Close\UI_Pause_Menu_Close_Click		93956
+	425362036	Jellies--General-Eating_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Eating_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General-Eating_01		0
+	427470194	Jellies--General--Eating--chomp_3	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--chomp_3_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--chomp_3		0
+	435491131	UI_Inventory_Drop	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI_Pause_Slider_Grabbing_Dropping_Lufs_6B3F897D.wem		\Actor-Mixer Hierarchy\UI\Inventory Menu\Drop Item\UI_Inventory_Drop		74560
+	485921160	UI_Mouse_Hover_Inventory_Menu	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Menu_HoveringMenu_Inventory_Lufs_10C4C929.wem		\Actor-Mixer Hierarchy\UI\Mouse Hovering\UI_Mouse_Hover_Inventory_Menu		96064
+	488063799	Player_Footsteps_Water_03	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Water_03_2B5C285A.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Water\OnWater\Player_Footsteps_Water_03		93348
+	491288057	Jellies--General-Petting-Happy_02	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Petting-Happy_02_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Pet\Jellies--General-Petting-Happy_02		0
+	512316781	Jellies--General-Petting-Happy_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General-Petting-Happy_01_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Pet\Jellies--General-Petting-Happy_01		0
+	554937318	Player_Footsteps_Dirt_05	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Dirt_05_88A88AB3.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Dirt\Player_Footsteps_Dirt_05		85492
+	580305815	Player_Footsteps_Grass_02	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\footsteps_grass_step_single-002_0B4E8244.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Grass\Player_Footsteps_Grass_02		32190
+	593221781	ENV_Drone_Hovering	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\ENV_DRONE_HOVERING_V2_B_360F2363.wem		\Actor-Mixer Hierarchy\Env\Drone\Drone Hovering\ENV_Drone_Hovering		1972920
+	612077736	Player_Jump_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Clothing_Jumping_Dropping_01_D91B5123.wem		\Actor-Mixer Hierarchy\Player\Movement\Jump\Jump_InWater\Player_Jump_01		150164
+	614237393	Jellies--General--Eating--SFX_2	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--SFX_2_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--SFX_2		0
+	669829311	Player_Footsteps_Dirt_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Dirt_01_C6050F38.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Dirt\Player_Footsteps_Dirt_01		80348
+	688530654	Player_Footsteps_Dirt_03	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Dirt_03_73C56048.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Dirt\Player_Footsteps_Dirt_03		71664
+	692682056	ENV_Spaceship_Broken	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\ENV-Spaceship-Broken_02_60C8EAD5.wem		\Actor-Mixer Hierarchy\Env\Enviroment\ENV_Spaceship_Broken		2935664
+	728279142	UI_PauseMenu_Open	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\UI_PauseMenu_Closing_06_7AB1865E.wem		\Actor-Mixer Hierarchy\UI\Open_Close Menu\Open Menu\Pause Menu Open\UI_PauseMenu_Open		368704
+	747980697	Player_Footsteps_Grass_03	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\footsteps_grass_step_single-003_4B57805E.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Grass\Player_Footsteps_Grass_03		31878
+	777634846	Jellies--General--Eating--SFX_3	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Jellies--General--Eating--SFX_3_10C4C929.wem		\Actor-Mixer Hierarchy\Jellies\Eating\Jellies--General--Eating--SFX_3		0
+	784710590	Player_Footsteps_Water_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Water_02_A3EF6A28.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Water\OnWater\Player_Footsteps_Water_01		113548
+	787634844	Player_Jump_InWater_02	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Exiting_Water_02_9735FCF8.wem		\Actor-Mixer Hierarchy\Player\Movement\Jump\Jump_InWater\Player_Jump_InWater\Player_Jump_InWater_02		609984
+	864130489	Player_Footsteps_Dirt_02	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Dirt_02_B1DC8A23.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Dirt\Player_Footsteps_Dirt_02		89052
+	958036601	ENV_IslandHeart_Lvl_UP	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\ENV--General-LvlUpIsland_01_14883D71.wem		\Actor-Mixer Hierarchy\Env\Island Heart\Island_Heart_XP\ENV_IslandHeart_Lvl_UP		1287236
+	992020355	Player_Jump_InWater_01	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Exiting_Water_01_10C4C929.wem		\Actor-Mixer Hierarchy\Player\Movement\Jump\Jump_InWater\Player_Jump_InWater\Player_Jump_InWater_01		528064
+	1064254406	Player_Footsteps_Water_02	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Mac\SFX\Player_Footsteps_Water_02_E7ED4D0C.wem		\Actor-Mixer Hierarchy\Player\Movement\Footsteps\Water\OnWater\Player_Footsteps_Water_02		98192
+

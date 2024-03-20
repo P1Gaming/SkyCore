@@ -4,7 +4,6 @@ using Player.Motion;
 using TMPro;
 using UnityEngine.UI;
 using Jellies;
-using UI.Inventory;
 
 public class IslandHeartInteractBase : Interactable
 {
@@ -21,10 +20,6 @@ public class IslandHeartInteractBase : Interactable
     private Button _feedButton;
 
     private IslandHeartLeveling heart;
-
-    private GameObject _interactionUI;
-    private FirstPersonView _firstPersonView;
-    private PlayerInteraction _playerInteraction;
 
 
     private bool _interacting;
@@ -49,12 +44,6 @@ public class IslandHeartInteractBase : Interactable
     private void Awake()
     {
         heart = gameObject.GetComponent<IslandHeartLeveling>();
-
-        // Temporary single player reference. These might not work later, e.g. if the inventoryUI
-        // starts inactivate b/c FindWithTag wont work.
-        _interactionUI = InteractionUI.Instance.gameObject;
-        _firstPersonView = FindObjectOfType<FirstPersonView>();
-        _playerInteraction = _firstPersonView?.GetComponent<PlayerInteraction>();
     }
 
     private void Update()
@@ -70,7 +59,6 @@ public class IslandHeartInteractBase : Interactable
     /// </summary>
     private void OnInteractionStay()
     {
-        
         _feedButton.interactable = !heart.IsMaxLevel();
     }
 
@@ -80,8 +68,7 @@ public class IslandHeartInteractBase : Interactable
 
         _islandHeartVCamera.SetActive(interact);
 
-        Cursor.visible = interact;
-        Cursor.lockState = interact ? CursorLockMode.Confined : CursorLockMode.Locked;
+        CursorMode.ChangeNumberOfReasonsForFreeCursor(interact);
 
         if (interact)
         {
@@ -103,9 +90,7 @@ public class IslandHeartInteractBase : Interactable
 
     private void SetUIActive(bool active)
     {
-        _interactionUI.SetActive(active);
-        _firstPersonView.enabled = active;
-        PlayerMovement.Instance.SetInteract(!active);
+        InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(!active);
     }
 
     /// <summary> 

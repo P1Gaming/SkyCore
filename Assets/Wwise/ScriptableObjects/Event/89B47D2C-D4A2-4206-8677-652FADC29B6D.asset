@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f585edf4249e14789eb152545d8cd5, type: 3}
   m_Name: 89B47D2C-D4A2-4206-8677-652FADC29B6D
   m_EditorClassIdentifier: 
-  objectName: Play_PickupItem_Berries
-  id: 1376999814
+  objectName: Play_PickupItem
+  id: 152276835
   guid: 89B47D2C-D4A2-4206-8677-652FADC29B6D

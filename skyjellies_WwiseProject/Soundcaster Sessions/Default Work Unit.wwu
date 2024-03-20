@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{6D5A0973-13BA-4E58-AD6F-1D001C6D79C9}" SchemaVersion="103">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{6D5A0973-13BA-4E58-AD6F-1D001C6D79C9}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{6D5A0973-13BA-4E58-AD6F-1D001C6D79C9}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="Testing Island Heart" ID="{032D9AF9-3237-44E5-9882-BE58DC27B864}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Pause Menu Open" ID="{20E7BC86-5C4A-409C-B2BD-3B1D25BDC156}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="UI_PauseMenu_Close" ID="{E30A7C90-E0E3-43FB-A709-80BC0611BDBF}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Ttile Screen" ID="{9C5877D1-112F-477F-9342-E891E0DE712C}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Biome Music" ID="{0B431F5B-F7ED-42BD-9007-F2AA781D5B9C}" WorkUnitID="{ABE72476-8F6F-4310-A911-9A7E0C513B95}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="UI_Mouse_Hover" ID="{BE48169B-F312-4921-A5A2-C5EBBA47168F}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="UI_Generic_Click" ID="{3B506B45-A658-42F9-A5CF-3AA6F18649FE}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Birds" ID="{072DC396-6B66-49AF-8D77-A58B734B862B}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+							<Position X="1" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="UI_Pause_Slider_Grab" ID="{4B1CFCE5-BB8F-4FA5-B968-A23AC09064DE}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="UI_Pause_Slider_Drop" ID="{F2D2A696-5F26-4100-9BFD-7433EF622034}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ENV_Waterfall" ID="{C5433E5D-E101-44CB-818A-EDFF24E54673}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
+							<Position X="2" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Footsteps" ID="{375DF73B-757F-4E81-B399-62A7530C5168}" WorkUnitID="{77E6AF40-97DC-4391-B713-B4353111E069}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Jump" ID="{613166A8-628C-444B-91DC-EA988EE4818B}" WorkUnitID="{77E6AF40-97DC-4391-B713-B4353111E069}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Fall" ID="{59B86596-7E97-4515-88C0-072BDFABB362}" WorkUnitID="{77E6AF40-97DC-4391-B713-B4353111E069}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="UI_Mouse_Hover_Inventory_Menu" ID="{ECAAC3DD-03F6-4D08-A33B-5F95709BE4A2}" WorkUnitID="{24F872FC-45D6-49A0-9AC7-B0BBEB815244}"/>
+							<Position X="4" Y="0"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="Island_Heart_XP" ID="{65AD78AC-938C-4914-B9CC-4293041DA912}"/>
+							<Value>100</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Game_Music_Volume" ID="{06A37A0E-6248-4AC9-8BE6-26DE7865AA46}"/>
+							<Value>100</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Master_Volume" ID="{D054B2A7-0A44-4C0A-9E2F-AAE52970ACB8}"/>
+							<Value>100</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="SFX_Volume" ID="{23A87B2F-6C9B-4C20-A7A9-E365BDDAB4AF}"/>
+							<Value>100</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="Below" ID="{50E4D1AF-30EF-4F99-B664-8A0B9B5871B9}"/>
+						<CurrentStateRef Name="Mid" ID="{2F43133F-B95F-4C6C-AB6A-FE4D31B9F385}"/>
+						<CurrentStateRef Name="Game_On" ID="{A030FA25-8AAD-4478-9CE7-30EECD46C8D5}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="Mid" ID="{B6964031-576C-4676-BD7A-698C65D66222}"/>
+						<CurrentSwitchRef Name="Level_UP" ID="{62F4D3F4-A9C3-4EF9-B8C5-2E7EF664320B}"/>
+						<CurrentSwitchRef Name="Berry" ID="{D3E7BB4F-513C-4605-A2C9-5DF20E59C16C}"/>
+						<CurrentSwitchRef Name="Inventory_Menu" ID="{BAB869D1-0079-4D7D-B27F-C70F13026CB8}"/>
+						<CurrentSwitchRef Name="Dirt" ID="{36E36445-7B78-4A85-A233-DA9D3B7C02E8}"/>
+					</CurrentSwitchList>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundcasterSessions>
 </WwiseDocument>
