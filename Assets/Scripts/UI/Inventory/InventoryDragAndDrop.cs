@@ -200,17 +200,28 @@ namespace UI.Inventory
                 }
 
                 //Spawn item in front of the player
+                Vector3 playerCameraFwd = GameObject.Find("Camera Target").transform.forward;
                 Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
-                Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
-                Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
-                UnityEngine.Object.Instantiate(droppedItem, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+                Vector3 playerUp = GameObject.FindWithTag("Player").transform.up;
+                Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + (playerCameraFwd * 2f) + (playerUp * 2f);
+
+                Vector3 playerHeight = GameObject.FindWithTag("Player").GetComponent<CapsuleCollider>().center;
+                float interactDist = GameObject.FindWithTag("Player").GetComponent<CraftingUIInteract>().InteractionDistance;
+                
+                if (Physics.Linecast(playerPos + playerHeight, playerPos + (playerCameraFwd * interactDist)))
+                {
+                    UnityEngine.Object.Instantiate(droppedItem, playerPos + (playerHeight * 3f), GameObject.FindWithTag("Player").transform.rotation);
+                }
+                else
+                {
+                    GameObject droppedItemInst = UnityEngine.Object.Instantiate(droppedItem, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+                    droppedItemInst.GetComponent<Rigidbody>().AddForce(playerCameraFwd * 5f, ForceMode.Impulse);
+                }
 
                 //Decrement Item
 
                 _beingDragged.InventoryOrHotBarUI.InventoryOrHotBar.TrySubtractItemAmount(_beingDragged.ItemStack.itemInfo, 1);
             }
         }
-
-
     } 
 }

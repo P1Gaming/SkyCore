@@ -16,6 +16,7 @@ public class CraftingUIInteract : MonoBehaviour
     private GameObject _workBenchUI; // Reference to the workbench UI GameObject
 
     public bool IsNearWorkBench { get; private set; } // Indicates if the player is near the workbench
+    public float InteractionDistance { get { return _interactionDistance; } }
     private bool _isUIOpen = false; // Indicates if the workbench UI is open
     private PlayerInput _playerInput; // Reference to the PlayerInput component
 

@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemInfo: {fileID: 11400000, guid: f08ac2219aff5d1409c793c7fcc98c07, type: 2}
   _amount: 1
+  _timeTillEnabled: 3
 --- !u!54 &6902432759847146897
 Rigidbody:
   m_ObjectHideFlags: 0
