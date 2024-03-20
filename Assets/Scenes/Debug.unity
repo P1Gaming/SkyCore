@@ -13488,12 +13488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67d2485ede59eb48a8d76ef1a9ac1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _virtualCamera:
-  - {fileID: 1526066957}
-  - {fileID: 1959618772}
-  _firstPersonView: {fileID: 1732815347}
-  _jellyInteractVisual: {fileID: 1484817482}
-  _pauseTimeScaleVariance: 0
 --- !u!4 &1494201044
 Transform:
   m_ObjectHideFlags: 0
@@ -17697,18 +17691,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1425884169}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1959618772 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3410671823466571551, guid: f149bed98245c2c4b89e7baf183dc5d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1425884169}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1964190753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4364394114180109594, guid: 08227f49a691e1945a0bb856a6e91501,
