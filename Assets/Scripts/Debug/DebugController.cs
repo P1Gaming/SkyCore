@@ -173,8 +173,7 @@ public class DebugController : MonoBehaviour
     /// </summary>
     private void LockMouse()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        CursorMode.RemoveReasonForFreeCursor();
     }
 
     /// <summary>
@@ -182,8 +181,7 @@ public class DebugController : MonoBehaviour
     /// </summary>
     private void UnlockMouse()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        CursorMode.AddReasonForFreeCursor();
     }
 
     /// <summary>

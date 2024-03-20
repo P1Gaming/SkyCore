@@ -4,6 +4,8 @@ using UnityEngine;
 using FiniteStateMachine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using Player.Motion;
+using Player.View;
 
 
 public class Tutorial_Movement06_Conclusion : MonoBehaviour
@@ -15,12 +17,6 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
     private DroneMovement _movement;
     [SerializeField]
     private DroneScanning _droneScanning;
-
-    [SerializeField]
-    private CinemachineVirtualCamera _playerCamera;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
 
     [Header("Tutorial Options")]
     [Tooltip("This is how long (in seconds) the planet drone image is displayed.")]
@@ -57,14 +53,6 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
     private Sprite _sprite_Success;
     [SerializeField]
     private Sprite _sprite_Analyzing;
-
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _cameraLookAction;
-    [SerializeField]
-    InputActionReference _playerMovementAction;
-    [SerializeField]
-    InputActionReference _jumpAction;
 
 
     [Header("Finite State Machine Parameters")]
@@ -118,7 +106,7 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
         _droneAreaScanComplete = false;
         _conclusionFinished = false;
 
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToTutorialCamera();
 
         StartCoroutine(DoTutorialConclusion());
     }
@@ -136,15 +124,34 @@ public class Tutorial_Movement06_Conclusion : MonoBehaviour
     private void ExitTutorial()
     {
         // Switch back to the normal player cam.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
 
         // Re-enable all the player controls.
-        _cameraLookAction.action.Enable();
-        _playerMovementAction.action.Enable();
-        _jumpAction.action.Enable();
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs--;
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs--;
 
-        // Switch back to the normal player camera.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        Inventory.Instance.NumberOfReasonsToIgnoreInputs--;
+        InteractionUI.Instance.NumberOfReasonsToBeInactive--;
+        PlayerInteraction.Instance.NumberOfReasonsToIgnoreInputs--;
+
+        if (!PauseManagement.IsPaused && (FirstPersonView.Instance.IgnoreInputs 
+            || PlayerMovement.Instance.IgnoreJumpInputs || PlayerMovement.Instance.IgnoreWASDInputs
+            || Inventory.Instance.IgnoreInputs || !InteractionUI.Instance.gameObject.activeSelf
+            || PlayerInteraction.Instance.IgnoreInputs))
+        {
+            throw new System.Exception("At this point, player should be able to move camera, jump, use WASD, use inventory (may change once" +
+                " we add inventory tutorial), and interact with things. info: "
+                + "FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs: " + FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs 
+                + ", PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs: " + PlayerMovement.Instance.NumberOfReasonsToIgnoreJumpInputs 
+                + ", PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs: " + PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs 
+                + ", Inventory.Instance.NumberOfReasonsToIgnoreInputs: " + Inventory.Instance.NumberOfReasonsToIgnoreInputs
+                + ", InteractionUI.Instance.NumberOfReasonsToBeInactive: " + InteractionUI.Instance.NumberOfReasonsToBeInactive
+                + ", InteractionUI.Instance.gameObject.activeSelf: " + InteractionUI.Instance.gameObject.activeSelf
+                + ", PlayerInteraction.Instance.NumberOfReasonsToIgnoreInputs: " + PlayerInteraction.Instance.NumberOfReasonsToIgnoreInputs
+
+                );
+        }
     }
 
     private IEnumerator DoTutorialConclusion()

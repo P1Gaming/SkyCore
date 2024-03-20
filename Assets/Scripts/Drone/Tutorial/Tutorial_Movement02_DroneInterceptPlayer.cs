@@ -13,9 +13,6 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     private DroneMovement _droneMovement;
     [SerializeField]
     private DroneScanning _droneScanning;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
 
 
     [Header("Tutorial Settings")]
@@ -170,17 +167,16 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
 
 
         // Switch to the tutorial camera.
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
-        _tutorialCamera.enabled = true;
+        CameraSystem.SwitchToTutorialCamera();
 
-        _tutorialCamera.LookAt = _drone.transform;
+        CameraSystem.TutorialCamera.LookAt = _drone.transform;
     }
 
     private void ExitTutorial()
     {
         _movementStateMachineInstance.SetBool(_interceptPlayer, false);
 
-        _tutorialCamera.LookAt = null;       
+        CameraSystem.TutorialCamera.LookAt = null;       
     }
 
    

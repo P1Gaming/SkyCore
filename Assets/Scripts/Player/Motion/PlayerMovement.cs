@@ -15,21 +15,6 @@ namespace Player.Motion
         [SerializeField]
         private LayerMask _groundLayer;
 
-        [Header("Player Input Actions")]
-        [SerializeField]
-        private InputActionReference _moveAction;
-        [SerializeField]
-        private InputActionReference _jumpAction;
-
-        [SerializeField] 
-        private GameEventScriptableObject _playerMovementW;
-        [SerializeField]
-        private GameEventScriptableObject _playerMovementA;
-        [SerializeField]
-        private GameEventScriptableObject _playerMovementS;
-        [SerializeField]
-        private GameEventScriptableObject _playerMovementD;
-
         private Rigidbody _rigidbody;
 
         private float _timeSinceStoodOnJumpableSurface = float.PositiveInfinity;
@@ -63,7 +48,56 @@ namespace Player.Motion
 
         public bool IsMoving => _rigidbody.velocity.magnitude > .001f;
 
-        public static PlayerMovement Instance { get; private set; }
+        private static PlayerMovement _instance;
+        public static PlayerMovement Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+                }
+                return _instance;
+            }
+        }
+
+        private int _numberOfReasonsToIgnoreWASDInputs = 0;
+        public int NumberOfReasonsToIgnoreWASDInputs
+        {
+            get => _numberOfReasonsToIgnoreWASDInputs;
+            set
+            {
+                _numberOfReasonsToIgnoreWASDInputs = value;
+                //Debug.Log("# reasons ignore WASD: " + value);
+                if (_numberOfReasonsToIgnoreWASDInputs < 0)
+                {
+                    throw new System.Exception("In PlayerMovement, _numberOfReasonsToIgnoreWASDInputs < 0: " + _numberOfReasonsToIgnoreWASDInputs);
+                }
+            }
+        }
+        public bool IgnoreWASDInputs => NumberOfReasonsToIgnoreWASDInputs > 0;
+
+        private int _numberOfReasonsToIgnoreJumpInputs = 0;
+        public int NumberOfReasonsToIgnoreJumpInputs
+        {
+            get => _numberOfReasonsToIgnoreJumpInputs;
+            set
+            {
+                _numberOfReasonsToIgnoreJumpInputs = value;
+                //Debug.Log("# reasons ignore jump: " + value);
+                if (_numberOfReasonsToIgnoreJumpInputs < 0)
+                {
+                    throw new System.Exception("In PlayerMovement, _numberOfReasonsToIgnoreJumpInputs < 0: " + _numberOfReasonsToIgnoreJumpInputs);
+                }
+                if (_numberOfReasonsToIgnoreJumpInputs > 0)
+                {
+                    // Clear recent inputs which could otherwise cause jumping later.
+                    _jumpInputTime = float.NegativeInfinity;
+                    _jumpInputHappenedInAFrameWhereFixedUpdateDidntRun = false;
+                }
+            }
+        }
+        public bool IgnoreJumpInputs => NumberOfReasonsToIgnoreJumpInputs > 0;
 
 
         private void Awake()
@@ -71,8 +105,12 @@ namespace Player.Motion
             _settings.Initialize();
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.sleepThreshold = -1; // don't sleep
-            Instance = this;
+            _instance = this;
         }
+
+        private void OnEnable() => _rigidbody.isKinematic = false;
+
+        private void OnDisable() => _rigidbody.isKinematic = true;
 
         private void FixedUpdate()
         {
@@ -87,8 +125,6 @@ namespace Player.Motion
 
         private void Update()
         {
-            CheckRaiseWASDEvents();
-
             // Keyboard input happens each frame, but fixed update isn't guaranteed to run every frame.
             // If it didn't run this frame and the player is trying to jump, cache the jump input and
             // will handle it next time FixedUpdate runs.
@@ -240,38 +276,25 @@ namespace Player.Motion
             }
         }
 
-        private void GetWASDInputAxes(out float rightLeft, out float forwardsBackwards)
+        public void GetWASDInputAxes(out float rightLeft, out float forwardsBackwards)
         {
-            Vector2 input = _moveAction.action.ReadValue<Vector2>();
-
-            rightLeft = input.x; ;
-            forwardsBackwards = input.y;
+            if (IgnoreWASDInputs)
+            {
+                rightLeft = 0;
+                forwardsBackwards = 0;
+                return;
+            }
+            rightLeft = Input.GetAxisRaw("Horizontal");
+            forwardsBackwards = Input.GetAxisRaw("Vertical");
         }
 
-        private bool GetJumpInput()
+        public bool GetJumpInput()
         {
-            return _jumpAction.action.IsPressed();
-        }
-
-        private void CheckRaiseWASDEvents()
-        {
-            GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
-            if (rightLeft < 0)
+            if (IgnoreJumpInputs)
             {
-                _playerMovementA.Raise();
+                return false;
             }
-            if (rightLeft > 0)
-            {
-                _playerMovementD.Raise();
-            }
-            if (forwardsBackwards > 0)
-            {
-                _playerMovementW.Raise();
-            }
-            if (forwardsBackwards < 0)
-            {
-                _playerMovementS.Raise();
-            }
+            return Input.GetButtonDown("Jump");
         }
 
         /// <summary>
@@ -281,19 +304,6 @@ namespace Player.Motion
         {
             _rigidbody.position = position;
             transform.position = position;
-        }
-
-        /// <summary>
-        /// Sets Interacting state and toggles enabled
-        /// </summary>
-        /// <param name="isInteracting"></param>
-        public void SetInteract(bool isInteracting)
-        {
-            // We might need a combined way for disabling this script, since it'll also
-            // be disabled during inventory and will be able to open inventory while interacting.
-            // E.g. an int for the number of reasons to disable this script.
-            enabled = !isInteracting;
-            _rigidbody.isKinematic = isInteracting;
         }
     }
 }

@@ -1,31 +1,30 @@
-using Player;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using UI.Inventory;
 using UnityEngine;
 
 public class HoldingItemHandler : MonoBehaviour
 {
-
-    private static InventoryScene _instance;
-    public int _heldItemIndex = 0;
-
     [SerializeField]
-    private GameObject _helditem;
+    private GameObject _helditemVisual;
 
-    private ItemStack _item;
+    public int _heldItemSlotIndex = 0;
+    public ItemStack HeldItem { get; private set; }
 
-    private GameObject _highLightHotBar;
-
-    // Start is called before the first frame update
-    void Start()
+    private static HoldingItemHandler _instance;
+    public static HoldingItemHandler Instance
     {
-        _instance = GameObject.FindGameObjectWithTag("Player")?.GetComponent<InventoryScene>();
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindGameObjectWithTag("Player").GetComponent<HoldingItemHandler>();
+            }
+            return _instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
         if (Input.GetKeyDown("1"))
         {
@@ -41,39 +40,33 @@ public class HoldingItemHandler : MonoBehaviour
         }
     }
 
-    private void HeldItemHandling(int index)
+    private void HeldItemHandling(int slotIndex)
     {
-        ItemStack ItemRef = InventoryUI.Instance.Hotbar.InventoryHotbar.GetItemIndex(index);
+        ItemStack itemStack = Inventory.Instance.GetHotbarItemAtSlotIndex(slotIndex);
 
-        if (ItemRef != null)
+        if (itemStack != null)
         {
-            //Visually Change Model
-            _helditem.GetComponent<MeshFilter>().sharedMesh = ItemRef.itemInfo.ItemPrefab.GetComponent<MeshFilter>().sharedMesh;
-            //Copy Materials Over
-            _helditem.GetComponent<MeshRenderer>().sharedMaterials = ItemRef.itemInfo.ItemPrefab.GetComponent<MeshRenderer>().sharedMaterials;
+            // Visually Change Model
+            _helditemVisual.GetComponent<MeshFilter>().sharedMesh = itemStack.identity.ItemPrefab.GetComponent<MeshFilter>().sharedMesh;
+            // Copy Materials Over
+            _helditemVisual.GetComponent<MeshRenderer>().sharedMaterials = itemStack.identity.ItemPrefab.GetComponent<MeshRenderer>().sharedMaterials;
 
-            _item = ItemRef;
+            HeldItem = itemStack;
         }
         else
         {
-            _helditem.GetComponent<MeshFilter>().sharedMesh = null;
-            _item = null;
+            _helditemVisual.GetComponent<MeshFilter>().sharedMesh = null;
+            HeldItem = null;
         }
-        //Change Index
-        _heldItemIndex = index;
+        // Change Index
+        _heldItemSlotIndex = slotIndex;
 
-        //TODO: This gets the hotbar, and goes ALLLLL they way done to the grid inside the hotbar. Ideally there should be a reference for this, but for the time being it works.
-        GameObject selectedGrid = InventoryUI.Instance.Hotbar.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(index).gameObject;
-        InventoryUI.Instance.HotbarHighlight.transform.position = selectedGrid.transform.position;
-    }
-
-    public ItemStack GetCurrentHeldItem()
-    {
-        return _item;
+        Transform selectedSlot = Inventory.Instance.HotBarSlotsParent.GetChild(slotIndex);
+        Inventory.Instance.HotbarHighlight.transform.position = selectedSlot.position;
     }
 
     public void UpdateHeldItem()
     {
-        HeldItemHandling(_heldItemIndex);
+        HeldItemHandling(_heldItemSlotIndex);
     }
 }

@@ -28,7 +28,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e2a6b2596faf7a4f8b8cf772d631260, type: 2}
   - {fileID: 11400000, guid: cdb5bbdaf836e5c45be91aa75f4dcfe8, type: 2}
   - {fileID: 11400000, guid: 1e37a04e0c4d42a4789e7db8542c6742, type: 2}
-  - {fileID: 11400000, guid: 4c4ccbf12c50b0e49a4e6ab20f5762d7, type: 2}
   - {fileID: 11400000, guid: 8ffffa81d328f194a84b93c3fd3825a7, type: 2}
   - {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc, type: 2}
   <Transitions>k__BackingField:

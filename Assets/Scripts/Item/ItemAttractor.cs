@@ -13,6 +13,10 @@ using UnityEngine;
 /// </remarks>
 public class ItemAttractor : MonoBehaviour
 {
+    // This is the maximum distance any item can be pulled into the player from.
+    // It is also used by the ItemIdentity.cs script.
+    public const float MAX_ATTRACTION_RADIUS = 50f;
+
     [Tooltip("This property controls how strongly the item is pulled in.")]
     [Range(0.1f, 100f)]
     [SerializeField]
@@ -28,9 +32,6 @@ public class ItemAttractor : MonoBehaviour
     [SerializeField]
     private float _HomingPower = 0.75f;
 
-
-    private Collider _collider;
-
     private List<PickupItem> _itemsBeingAttracted = new List<PickupItem>();
 
     // This is how frequently CheckForNewNearbyTargets() gets called.
@@ -41,16 +42,14 @@ public class ItemAttractor : MonoBehaviour
     private float _itemDetectionTimer;
 
 
-    private InventoryScene _inventoryScene;
+    private Inventory _inventory;
 
 
 
     private void Awake()
     {
-        _collider = GetComponent<Collider>();
-
         // Get a reference to this object's InventoryScene or InventoryBase component. This script will use whichever is available.
-        _inventoryScene = GetComponent<InventoryScene>();
+        _inventory = Inventory.Instance;
 
         _homingStrength = _maxAttractionSpeed * (1f - _HomingPower);
     }
@@ -76,14 +75,14 @@ public class ItemAttractor : MonoBehaviour
     {
         // We use MAX_ATTRACTION_RADIUS so any item within the max radius can be detected.
         // Whether it actually starts getting pulled to this attractor depends on how far away it actually is.
-        Collider[] colliders = Physics.OverlapSphere(transform.position, ItemBase.MAX_ATTRACTION_RADIUS);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, MAX_ATTRACTION_RADIUS);
         foreach (Collider c in colliders)
         {
             PickupItem item = c.GetComponent<PickupItem>();
             if (item != null)
             {
                 if (!_itemsBeingAttracted.Contains(item) &&
-                    InventoryHasRoomFor(new ItemStack(item.ItemInfo, item.Amount)))
+                   _inventory.HasRoomForItem(item.ItemInfo, item.Amount))
                 {
                     _itemsBeingAttracted.Add(item);
                 }
@@ -91,23 +90,6 @@ public class ItemAttractor : MonoBehaviour
 
         } // end foreach
 
-    }
-
-    /// <summary>
-    /// Checks if there is enough room for the specified item stack in this GameObject's inventory.
-    /// For now, this only supports the player's InventoryScene component. It could be expanded later if needed.
-    /// </summary>
-    /// <param name="item">The item stack to check if there is enough room for.</param>
-    /// <returns>True if there is enough room for the passed in item stack.</returns>
-    private bool InventoryHasRoomFor(ItemStack item)
-    {
-        if (_inventoryScene != null)
-        {
-            return _inventoryScene.GoIntoFirst.HasRoomForItem(item, true);
-        }
-
-
-        return false;
     }
 
     /// <summary>
@@ -128,7 +110,7 @@ public class ItemAttractor : MonoBehaviour
             { 
                 float itemDistance = Vector3.Distance(transform.position, item.transform.position);
                 if (itemDistance <= item.ItemInfo.AttractionRadius &&
-                    _inventoryScene.GoIntoFirst.HasRoomForItem(item, true))
+                    _inventory.HasRoomForItem(item.ItemInfo, item.Amount))
                 {
                     // I made a function call here so we can easily swap out this logic by calling a different function to change the attraction style.
                     AttractItemNatural(item);
