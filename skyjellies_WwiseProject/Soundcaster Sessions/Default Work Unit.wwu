@@ -30,10 +30,6 @@
 							<Position X="1" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="ENV_Ambience_Day" ID="{81C4AA5E-46D1-4BB4-B6BD-36D11F71842A}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
-							<Position X="1" Y="2"/>
-						</Module>
-						<Module>
 							<ObjectRef Name="Birds" ID="{072DC396-6B66-49AF-8D77-A58B734B862B}" WorkUnitID="{32D576A2-9496-4B74-A2EF-F2F7B909F3D2}"/>
 							<Position X="1" Y="3"/>
 						</Module>
