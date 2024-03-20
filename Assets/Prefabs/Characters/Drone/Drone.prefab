@@ -365,6 +365,7 @@ MonoBehaviour:
   _movement: {fileID: 7605286380065068526}
   _playerCamera: {fileID: 0}
   _tutorialCamera: {fileID: 0}
+  _VisionTestRequiredMovementAmount: 360
   _VisionTestSuccessDelay: 2
   _pictogramBehaviour: {fileID: 6357170253752879243}
   _sprite_DroneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
@@ -1099,6 +1100,7 @@ GameObject:
   - component: {fileID: 7605286380065068526}
   - component: {fileID: 843046984382702895}
   - component: {fileID: 3021005747530959631}
+  - component: {fileID: 2480667785771511631}
   m_Layer: 11
   m_Name: Drone
   m_TagString: Untagged
@@ -1223,6 +1225,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2480667785771511631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364394114180109592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &4546807933443600289
 GameObject:
   m_ObjectHideFlags: 0

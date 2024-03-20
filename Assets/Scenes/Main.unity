@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.49999952, g: 0, b: 0.49999952, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.049842283, g: 0.11801382, b: 0.15417996, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2565,7 +2565,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7cd3cceb93dc55b4fbc91e120e78cda0, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 37e43cc2570de434bbf779b029725fbb, type: 2}
 --- !u!4 &980499172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9183954327217161216, guid: c5e139a25bb4391669482ff677f6b40e,
