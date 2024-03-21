@@ -17,6 +17,6 @@ MonoBehaviour:
   <ItemPrefab>k__BackingField: {fileID: 2916422275461499499, guid: 59a9630d6690a1b47ad3878e5b1587c7,
     type: 3}
   <MaxStack>k__BackingField: 1
-  <IsDroppable>k__BackingField: 1
   <SortType>k__BackingField: 1
-  <AttractionRadius>k__BackingField: 0
+  <AttractionRadius>k__BackingField: 0.75
+  <AttractionRadiusIfSpawnedByTossingFromInventory>k__BackingField: 0.75

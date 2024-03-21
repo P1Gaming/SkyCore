@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2916422275461499499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 973209602561125509}
@@ -45,7 +45,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2916422275461499499}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a4123a3425e356a42a6152aad5ddea3c, type: 2}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -115,8 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickupTrigger: {fileID: 1465078219525711002}
   _itemInfo: {fileID: 11400000, guid: f08ac2219aff5d1409c793c7fcc98c07, type: 2}
-  _amount: 5
-  _durationToPreventPickupWhenTossed: 3
+  _amount: 1
   <Rigidbody>k__BackingField: {fileID: 6902432759847146897}
 --- !u!54 &6902432759847146897
 Rigidbody:
@@ -126,8 +125,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2916422275461499499}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.1
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0

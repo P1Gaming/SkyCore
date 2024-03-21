@@ -19,3 +19,4 @@ MonoBehaviour:
   <MaxStack>k__BackingField: 99
   <SortType>k__BackingField: 2
   <AttractionRadius>k__BackingField: 5
+  <AttractionRadiusIfSpawnedByTossingFromInventory>k__BackingField: 1
