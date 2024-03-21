@@ -5,6 +5,8 @@ using FiniteStateMachine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using System;
+using Player.View;
+using Player.Motion;
 
 public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 {
@@ -13,19 +15,14 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
-    [SerializeField]
-    private CinemachineVirtualCamera _playerCamera;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
 
     [Header("Tutorial Options")]
     [Tooltip("This specifies whether or not the player must press all four movement keys to pass the mobility test, or just any one of them.")]
     [SerializeField]
     private bool _RequireAll4MovementKeysPressed = true;
-    [Tooltip("This is how long the drone will display the tutorial complete image.")]
+    [Tooltip("When the player has passed the mobility test, this much time (in seconds) will elapse before the tutorial advances.")]
     [SerializeField, Min(0f)]
-    private float _droneTutorialCompleteDisplayDuration = 3f;
+    private float _MobilityTestSuccessDelay = 2.0f;
 
     [Header("Drone Pictogram")]
     [SerializeField]
@@ -33,21 +30,13 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     [SerializeField]
     private Sprite _sprite_DroneMovementControls;
     [SerializeField]
-    private Sprite _sprite_DroneTutorialComplete;
-
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _cameraLookAction;
-    [SerializeField]
-    InputActionReference _playerMovementAction;
+    private Sprite _sprite_DroneSuccess;
 
 
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
     private FSMParameter _triggerForNextPartOfTutorial;
-    [SerializeField]
-    private FSMParameter _finishedMovementTutorial;
 
     [Header("Tutorial State Machine Events - Stage 04 - Mobility Test")]
     [SerializeField]
@@ -58,21 +47,8 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private GameEventScriptableObject _Exit;
 
 
-    [Header("Events for Tutorial Detecting Controls")]
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementWEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementSEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementAEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementDEvent;
-
-
 
     private FiniteStateMachineInstance _stateMachineInstance;
-
-    private Transform _player;
 
     // This variable uses a flags enum, so we can track all four buttons separately with a single variable.
     private MovementKeysPressed _keysPressed;
@@ -81,7 +57,9 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 
     private GameEventResponses _gameEventResponses = new();
 
-    private bool _coroutineIsRunning;
+    private bool _waitingForTutorialDronePictureTimeToEnd;
+
+    private bool _playerLookedAtDrone;
 
 
 
@@ -101,17 +79,11 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     {
         _stateMachineInstance = _drone.GetActionStateMachineInstance();
 
-        _player = Player.Motion.PlayerMovement.Instance.transform;
-
         // Clear the variable that tracks which keys have been pressed.
         _keysPressed = 0f;
 
         _gameEventResponses.SetResponses(
             // Player controls events
-            (_playerMovementWEvent, PlayerMovedW),
-            (_playerMovementSEvent, PlayerMovedS),
-            (_playerMovementAEvent, PlayerMovedA),
-            (_playerMovementDEvent, PlayerMovedD),
             (_Enter, EnterTutorial),
             (_Update, UpdateTutorial),
             (_Exit, ExitTutorial)
@@ -121,46 +93,28 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private void OnEnable() => _gameEventResponses.Register();
     private void OnDisable() => _gameEventResponses.Unregister();
 
-    public void PlayerMovedW()
-    {
-        _keysPressed |= MovementKeysPressed.W;
-    }
-    public void PlayerMovedA()
-    {
-        _keysPressed |= MovementKeysPressed.A;
-    }
-    public void PlayerMovedS()
-    {
-        _keysPressed |= MovementKeysPressed.S;
-    }
-    public void PlayerMovedD()
-    {
-        _keysPressed |= MovementKeysPressed.D;
-    }
 
     private void EnterTutorial()
     {
-        _coroutineIsRunning = false;
+        _waitingForTutorialDronePictureTimeToEnd = false;
         _mobilityTestPassed = false;
 
         // Switch back to the player camera. This is needed as this is the one that is moved by the look controls.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
-        
-        _playerMovementAction.action.Enable();
+        CameraSystem.SwitchToFirstPersonCamera();
 
-        _pictogramBehaviour.ChangePictogramImage(_sprite_DroneMovementControls);
+
+        StartCoroutine(WaitForPlayerToLookAtDrone());
     }
 
     private void UpdateTutorial()
     {
-        if (_mobilityTestPassed && !_coroutineIsRunning)
+        if (_playerLookedAtDrone && _mobilityTestPassed && !_waitingForTutorialDronePictureTimeToEnd)
         {
-            _pictogramBehaviour.ChangePictogramImage(_sprite_DroneTutorialComplete);
-
             StartCoroutine(WaitForTutorialDonePictureDisplayTimeToEnd());
         }
         else
         {
+            CheckPlayerInput();
             CheckIfPlayerHasPassedMobilityTest();
         }
     }
@@ -168,45 +122,104 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private void ExitTutorial()
     {
         // Switch back to the normal player camera.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
+    }
+   
+    private void CheckPlayerInput()
+    {
+        Player.Motion.PlayerMovement.Instance.GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
+        if (rightLeft < 0)
+        {
+            _keysPressed |= MovementKeysPressed.A;
+        }
+        else if (rightLeft > 0)
+        {
+            _keysPressed |= MovementKeysPressed.D;
+        }
+        if (forwardsBackwards < 0)
+        {
+            _keysPressed |= MovementKeysPressed.S;
+        }
+        else if (forwardsBackwards > 0)
+        {
+            _keysPressed |= MovementKeysPressed.W;
+        }
+    }
 
-        _cameraLookAction.action.Enable();
+    private IEnumerator WaitForPlayerToLookAtDrone()
+    {
+        //FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        if (FirstPersonView.Instance.IgnoreInputs && !PauseManagement.IsPaused)
+        {
+            throw new Exception("Player should be able to move the camera at this point");
+        }
+
+
+        yield return new WaitForSeconds(1.0f);
+
+        HUD_Manager.Instance.EnableDroneIndicatorIcon(true);
+
+
+        while (!Camera.main.IsObjectInFrontOfCamera(_drone.gameObject))
+        {
+            yield return null;
+        }
+
+
+        HUD_Manager.Instance.EnableDroneIndicatorIcon(false);
+
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
+        CameraSystem.SwitchToTutorialCamera();
+        _playerLookedAtDrone = true;
+
+        yield return new WaitForSeconds(1.0f);
+
+        _pictogramBehaviour.ChangePictogramImage(_sprite_DroneMovementControls);
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs--;
     }
 
     private void CheckIfPlayerHasPassedMobilityTest()
     {
+        if (_mobilityTestPassed)
+        {
+            return;
+        }
+
+        bool passTest = false;
         if (_RequireAll4MovementKeysPressed &&        
             _keysPressed == MovementKeysPressed.All)
         {
-            _mobilityTestPassed = true;
+            passTest = true;
         }
         else if (!_RequireAll4MovementKeysPressed &&
                  _keysPressed > 0)
         {
             // _requireAll4MovementKeysPressed is false, so as long as at least one key has been pressed we can return true.
-            _mobilityTestPassed = true;
+            passTest = true;
         }
-        
+
+        if (passTest)
+        {
+            _mobilityTestPassed = true;
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
+        }
+
     }
 
     private IEnumerator WaitForTutorialDonePictureDisplayTimeToEnd()
     {
-        _coroutineIsRunning = true;
+        _waitingForTutorialDronePictureTimeToEnd = true;
 
-        float elapsedTime = 0f;
-        while (elapsedTime <= _droneTutorialCompleteDisplayDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        // Display the success image.
+        _pictogramBehaviour.ChangePictogramImage(_sprite_DroneSuccess);
+        yield return new WaitForSeconds(_MobilityTestSuccessDelay);
 
-
+        // Trigger the next part of the tutorial.
         _stateMachineInstance.SetTrigger(_triggerForNextPartOfTutorial);
-        _stateMachineInstance.SetBool(_finishedMovementTutorial, true);
 
-        _pictogramBehaviour.SetImageActive(false);
 
-        _coroutineIsRunning = false;
+        // Switch back to the normal player cam.
+        _waitingForTutorialDronePictureTimeToEnd = false;
     }
 
 

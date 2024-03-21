@@ -35,7 +35,7 @@ public class SettingsMenuButtonsHandler : MonoBehaviour
         _escMenuToggle.SetActive(false);
         if (_pauseManagement != null)
         {
-            _pauseManagement.DeterminePause();
+            _pauseManagement.TogglePause();
         }
     }
 }

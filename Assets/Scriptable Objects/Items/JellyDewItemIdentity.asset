@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffa95c3c762d424c8d76268d880a53c, type: 3}
+  m_Name: JellyDewItemIdentity
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: 96aacc2788b226e4681de8b1f3be40b4,
+    type: 3}
+  <ItemPrefab>k__BackingField: {fileID: 2916422275461499499, guid: c4d143484380c78428d84c668b9d4ef6,
+    type: 3}
+  <MaxStack>k__BackingField: 99
+  <SortType>k__BackingField: 2
+  <AttractionRadius>k__BackingField: 5

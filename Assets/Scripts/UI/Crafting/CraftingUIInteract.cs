@@ -55,8 +55,6 @@ public class CraftingUIInteract : MonoBehaviour
 
         _playerInput = GetComponent<PlayerInput>(); // Get the PlayerInput component attached to the player
 
-        LockCursor(); // Lock the cursor at the start
-
         if (TryGetComponent(out PlayerInput input))
         {
             _interactionAction = input.actions.FindAction("Crafting"); // Find the "Crafting" action in the input actions
@@ -78,15 +76,16 @@ public class CraftingUIInteract : MonoBehaviour
         {
             if (_isUIOpen)
             {
-                LockCursor(); // Lock the cursor when the workbench UI is inactive
-                EnablePlayerMovement(); // Enable player movement
+                CursorMode.RemoveReasonForFreeCursor();
+                InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(false);
                 _menuController.PopPage(); // Remove the workbench page from the menu
                 _workBenchUI.GetComponent<CraftingUICode>().OnClose();
             }
             else
             {
-                UnlockCursor(); // Unlock the cursor when the workbench UI is active
-                DisablePlayerMovement(); // Disable player movement
+                CursorMode.AddReasonForFreeCursor();
+                InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(true);
+
                 _menuController.PushPage(_workbenchPage); // Add the workbench page to the menu
             }
 
@@ -108,6 +107,10 @@ public class CraftingUIInteract : MonoBehaviour
     /// </summary>
     private void DetectWorkBench()
     {
+        // this code seems like the PlayerInteraction script. Not sure if it's identical.
+        // Maybe we can merge this into the interaction system.
+        // This code probably hasn't been worked on for a long time, not sure what state it's in. I've never crafted anything.
+
         // Create a ray from the player forward
         Ray ray = new Ray(transform.position, transform.forward);
 
@@ -127,62 +130,5 @@ public class CraftingUIInteract : MonoBehaviour
         {
             IsNearWorkBench = false;
         }
-    }
-
-    /// <summary>
-    /// Toggles the active state of the workbench UI and updates the _isUIOpen flag
-    /// Also enables/disables player movement and locks/unlocks the cursor
-    /// </summary>
-    private void ToggleWorkBenchUI()
-    {
-        _workBenchUI.SetActive(!_workBenchUI.activeSelf); // Toggle the workbench UI active state
-        _isUIOpen = _workBenchUI.activeSelf; // Update the UI open state
-
-        if (_isUIOpen)
-        {
-            UnlockCursor(); // Unlock the cursor when the workbench UI is active
-            DisablePlayerMovement(); // Disable player movement
-        }
-        else
-        {
-            LockCursor(); // Lock the cursor when the workbench UI is inactive
-            EnablePlayerMovement(); // Enable player movement
-        }
-    }
-
-    /// <summary>
-    /// Locks the cursor and hides it
-    /// </summary>
-    private void LockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor in the center of the screen
-        Cursor.visible = false; // Hide the cursor
-    }
-
-    /// <summary>
-    /// Unlocks the cursor and makes it appear
-    /// </summary>
-    private void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-        Cursor.visible = true; // Show the cursor
-    }
-
-    /// <summary>
-    /// Disables the "Move" and "Look" actions of the player input
-    /// </summary>
-    private void DisablePlayerMovement()
-    {
-        _playerInput.currentActionMap.FindAction("Move").Disable(); // Disable the "Move" action
-        _playerInput.currentActionMap.FindAction("Look").Disable(); // Disable the "Look" action
-    }
-
-    /// <summary>
-    /// Enables the "Move" and "Look" actions of the player input
-    /// </summary>
-    private void EnablePlayerMovement()
-    {
-        _playerInput.currentActionMap.FindAction("Move").Enable(); // Enable the "Move" action
-        _playerInput.currentActionMap.FindAction("Look").Enable(); // Enable the "Look" action
     }
 }

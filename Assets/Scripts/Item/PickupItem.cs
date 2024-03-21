@@ -8,44 +8,46 @@ using UnityEngine;
 public class PickupItem : MonoBehaviour
 {
     [SerializeField]
-    private ItemBase _itemInfo;
+    private ItemIdentity _itemInfo;
 
     [SerializeField]
     private int _amount = 1;
 
-    [SerializeField, Tooltip("Time elapsed before the items collision is enabled.")]
-    private float _timeTillEnabled = 1f;
-
     private Rigidbody _rigidbody;
+    private ItemStack _stack;
+    private bool _destroyed;
+
+    public int Amount => _amount;
+    public ItemIdentity ItemInfo => _itemInfo;
+    public Rigidbody Rigidbody => _rigidbody;
 
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (_rigidbody == null)
-            _rigidbody = GetComponent<Rigidbody>();
-
-        StartCoroutine(EnableCollision(gameObject));
+        _rigidbody = GetComponent<Rigidbody>();
+        _stack = new ItemStack(_itemInfo, _amount);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) => TryPickup(other);
+    private void OnTriggerStay(Collider other) => TryPickup(other);
+
+    private void TryPickup(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Player.InventoryScene inventoryAndHotBar) && GetComponent<Collider>().isTrigger)
+        if (_destroyed)
         {
-            if (inventoryAndHotBar.GoIntoFirst.TryAddItem(new ItemStack(_itemInfo, _amount)))
-            {
-                Destroy(gameObject);
-            }
+            // destroy doesn't happen until the end of the frame
+            return;
+        }
+        if (!other.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
+
+        Inventory.Instance.TakeInAsManyAsFit(_stack);
+        if (_stack.amount == 0)
+        {
+            _destroyed = true;
+            Destroy(gameObject);
         }
     }
-
-    IEnumerator EnableCollision(GameObject itemCollider)
-    {
-        itemCollider.GetComponent<Collider>().isTrigger = false;
-        yield return new WaitForSeconds(_timeTillEnabled);
-        itemCollider.GetComponent<Collider>().isTrigger = true;
-    }
-
-    public int Amount { get => _amount; }
-    public ItemBase ItemInfo { get => _itemInfo; }
-    public Rigidbody Rigidbody { get => _rigidbody; }
 }

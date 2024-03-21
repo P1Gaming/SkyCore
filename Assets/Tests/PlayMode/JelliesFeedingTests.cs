@@ -16,7 +16,7 @@ public class JelliesFeedingTests
         float increasseValue = 10;
         parameters.SetFoodSaturation(initValue);
         
-        feeding.FeedJelly(increasseValue);
+        feeding.TryFeedJelly(increasseValue);
         
         Assert.AreEqual(initValue + increasseValue, parameters.FoodSaturation);
         yield return null;

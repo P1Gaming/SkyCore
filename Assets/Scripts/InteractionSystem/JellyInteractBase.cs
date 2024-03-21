@@ -26,11 +26,8 @@ public class JellyInteractBase : Interactable
     [SerializeField] 
     private TextMeshProUGUI _saturationText;
 
-    private GameObject _interactionUI;
-    private GameObject _inventoryUI;
-    private FirstPersonView _firstPersonView;
-    private PlayerInteraction _playerInteraction;
 
+    public Feeding Feeding { get; private set; }
    
 
     private Parameters _jellyParams;
@@ -45,25 +42,24 @@ public class JellyInteractBase : Interactable
             {
                 _interacting = value;
 
-                // Only 1 can interact at a time, so we can determine whether
-                // any are interacting like this. Need the static one, but also
-                // need to know whether this specific one is interacting.
-                AnyInteracting = value;
+                if (value)
+                {
+                    InteractingJelly = this;
+                }
+                else
+                {
+                    InteractingJelly = null;
+                }
             }
         }
     }
-    public static bool AnyInteracting { get; private set; }
+    public static JellyInteractBase InteractingJelly { get; private set; }
+    public static bool AnyInteracting => InteractingJelly != null;
 
     private void Awake()
     {
         _jellyParams = GetComponent<Parameters>();
-
-        // Temporary single player reference. These might not work later, e.g. if the inventoryUI
-        // starts inactivate b/c FindWithTag wont work.
-        _interactionUI = InteractionUI.Instance.gameObject;
-        _inventoryUI = GameObject.FindWithTag("InventoryUI");
-        _firstPersonView = FindObjectOfType<FirstPersonView>();
-        _playerInteraction = _firstPersonView?.GetComponent<PlayerInteraction>();
+        Feeding = GetComponent<Feeding>();
     }
 
     private void Update()
@@ -90,8 +86,7 @@ public class JellyInteractBase : Interactable
 
         _jellyVCamera.SetActive(interact);
 
-        Cursor.visible = interact;
-        Cursor.lockState = interact ? CursorLockMode.Confined : CursorLockMode.Locked;
+        CursorMode.ChangeNumberOfReasonsForFreeCursor(interact);
 
         if (interact)
         {
@@ -113,9 +108,7 @@ public class JellyInteractBase : Interactable
 
     private void SetUIActive(bool active)
     {
-        _interactionUI.SetActive(active);
-        _firstPersonView.enabled = active;
-        PlayerMovement.Instance.SetInteract(!active);
+        InputIgnoring.ChangeNumberOfReasonsToIgnoreInputsForMovementAndInteractionThings(!active);
     }
 
     /// <summary> 

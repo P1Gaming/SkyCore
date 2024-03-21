@@ -10,10 +10,9 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     [SerializeField]
     private Drone _drone;
     [SerializeField]
-    private DroneMovement _movement;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
+    private DroneMovement _droneMovement;
     [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
+    private DroneScanning _droneScanning;
 
 
     [Header("Tutorial Settings")]
@@ -22,9 +21,12 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     [Tooltip("After the cutscene has ended, this is the delay between when the drone starts moving toward the player and when the camera starts to turn to look at the drone.")]
     [SerializeField, Min(0)]
     private float _cameraLookAtDroneDelay = 1f;
-    [Tooltip("This sets how long it takes the drone to perform medical assistance when it intercepts the player right after the cutscene plays.")]
+    [Tooltip("This sets how long it takes (in seconds) the drone to perform medical assistance when it intercepts the player right after the cutscene plays.")]
     [SerializeField, Min(0)]
     private float _medicalAssistanceDuration = 3f;
+    [Tooltip("This sets how long (in seconds) the drone's scan success visual is displayed for.")]
+    [SerializeField, Min(0)]
+    private float _medicalAssistanceCompleteDelay = 1.5f;
 
     [Header("Drone Pictogram")]
     [SerializeField]
@@ -95,9 +97,6 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
         _medicalAssistanceComplete = false;
         _startedMedicalAssistance = false;
 
-        // Switch to the tutorial camera.
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
-
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneMedicalAssistance);
 
         StartCoroutine(WaitToFocusCamera());
@@ -106,7 +105,7 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
     private void UpdateInterceptPlayer()
     {
         // This runs from FixedUpdate
-        _finishedInterceptingPlayer = _movement.MoveDroneInFrontOfPlayer(_droneDistanceToStopInFrontOfPlayer, true);
+        _finishedInterceptingPlayer = _droneMovement.MoveDroneInFrontOfPlayer(_droneDistanceToStopInFrontOfPlayer, true);
     }
 
     private void UpdateTutorial()
@@ -114,13 +113,15 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
         // This currently runs from Update
 
         // The drone moves into view until it is right in front of the player.
-        if (!_startedMedicalAssistance && _finishedInterceptingPlayer)
+        if (_finishedInterceptingPlayer && !_startedMedicalAssistance)
         {
             // The drone has reached the player, so display the health image.
             _pictogramBehaviour.SetImageActive(true);
 
             _startedMedicalAssistance = true;
 
+            // Show the drone's scanning visual.
+            _droneScanning.ShowScanningVisual(_player.transform.position);
             StartCoroutine(WaitForMedicalAssistanceToFinish());
         }
 
@@ -142,6 +143,16 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
             yield return null;
         }
 
+
+        // Hide the drone's scanning visual, and show the success visual.
+        _droneScanning.HideScanningVisual();
+        _droneScanning.ShowScanningSuccessVisual(_player.transform.position);
+        
+        // Hide the drone's scanning success visual after the specified delay.
+        yield return new WaitForSeconds(_medicalAssistanceCompleteDelay);
+        _droneScanning.HideScanningSuccessVisual();
+
+
         _medicalAssistanceComplete = true;
     }
 
@@ -154,14 +165,18 @@ public class Tutorial_Movement02_DroneInterceptPlayer : MonoBehaviour
             yield return null;
         }
 
-        _tutorialCamera.LookAt = _drone.transform;
+
+        // Switch to the tutorial camera.
+        CameraSystem.SwitchToTutorialCamera();
+
+        CameraSystem.TutorialCamera.LookAt = _drone.transform;
     }
 
     private void ExitTutorial()
     {
         _movementStateMachineInstance.SetBool(_interceptPlayer, false);
 
-        _tutorialCamera.LookAt = null;
+        CameraSystem.TutorialCamera.LookAt = null;       
     }
 
    

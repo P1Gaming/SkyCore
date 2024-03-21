@@ -116,13 +116,13 @@
 										<CustomStateList>
 											<CustomState>
 												<StateRef Name="Game_On" ID="{A030FA25-8AAD-4478-9CE7-30EECD46C8D5}"/>
-												<CustomState Name="" ID="{C3BDF832-EE78-4C5A-80C6-A0F0FF1D7406}" ShortID="933433604"/>
+												<CustomState Name="" ID="{8B404618-FAF2-420A-9766-B64BE62F7435}" ShortID="392198826"/>
 											</CustomState>
 											<CustomState>
 												<StateRef Name="Game_Pause" ID="{88A212A3-F7E4-4AE1-8F68-35CF2A96F72B}"/>
-												<CustomState Name="" ID="{A03FC212-C67D-4261-818F-A1ACAA8D0104}" ShortID="592350309">
+												<CustomState Name="" ID="{082F5627-58BE-4280-A987-B52EB13633AB}" ShortID="399242203">
 													<PropertyList>
-														<Property Name="BusVolume" Type="Real64" Value="-108"/>
+														<Property Name="BusVolume" Type="Real64" Value="-18"/>
 													</PropertyList>
 												</CustomState>
 											</CustomState>
