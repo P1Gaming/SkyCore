@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using Player.Motion;
+using Player.View;
 
 
 /// <summary>
@@ -11,6 +13,7 @@ using UnityEngine.EventSystems;
 public class InventoryDragAndDrop
 {
     private const float GENERATOR_DROPPABLE_RADIUS_AROUND_ISLAND_HEARTS = 3f;
+    private const float TOSS_DIRECTION_MAX_ANGLE_OFFSET = 1f;
 
     private InputAction _click;
     private bool _stillHoveringOverSlotBeingDragged;
@@ -24,6 +27,8 @@ public class InventoryDragAndDrop
 
     private RectTransform[] _whereToConsiderMouseInsideInventory;
 
+    private Transform _playerTransform;
+    private CapsuleCollider _playerCapsuleCollider;
     private BerryItemIdentity _berryItemIdentity;
 
     public InventoryDragAndDrop(RectTransform[] whereToConsiderMouseInsideInventory, BerryItemIdentity berryItemIdentity)
@@ -34,6 +39,9 @@ public class InventoryDragAndDrop
         _click.started += OnClickStart;
         _click.canceled += OnClickCancel;
         _click.Disable();
+
+        _playerTransform = PlayerMovement.Instance.transform;
+        _playerCapsuleCollider = _playerTransform.GetComponent<CapsuleCollider>();
     }
 
     public void EnableInput()
@@ -250,18 +258,28 @@ public class InventoryDragAndDrop
             }
         }
 
-        //Spawn item in front of the player
-        Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
-        Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
-        Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
-        GameObject itemPrefab = _beingDragged._itemStack.identity.ItemPrefab;
-        Object.Instantiate(itemPrefab, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+        // Spawn the item and toss it.
 
-        //Decrement Item
+        GameObject itemPrefab = _beingDragged._itemStack.identity.ItemPrefab;
+        Vector3 spawnPos = FirstPersonView.Instance.CameraTarget.position - .1f * Vector3.up;
+        GameObject spawned = Object.Instantiate(itemPrefab, spawnPos, _playerTransform.rotation);
+        Vector3 tossDirection = FirstPersonView.Instance.CameraTarget.forward;
+
+        // Randomize the toss direction very very slightly. Otherwise when you toss a bunch of berries, they pile up in a line
+        // 1 berry wide because their colliders are perfectly aligned.
+        float angleOffset = Random.Range(0, TOSS_DIRECTION_MAX_ANGLE_OFFSET);
+        float distanceOffset = angleOffset * Mathf.Deg2Rad * Mathf.Sqrt(2) / (.25f * Mathf.PI);
+        // stack exchange how to find a random unit vector orthogonal to a random unit vector in 3d
+        Vector3 r = Random.insideUnitSphere;
+        Vector3 u = r - Vector3.Dot(r, tossDirection) * tossDirection;
+        tossDirection += distanceOffset * u.normalized;
+        tossDirection.Normalize();
+
+        spawned.GetComponent<PickupItem>().TossFromInventory(tossDirection);
+
 
         _beingDragged._itemStack.amount--;
         _beingDragged.OnItemStackChanged();
-        
     }
 
 

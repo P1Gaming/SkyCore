@@ -87,7 +87,7 @@ namespace Player.View
         }
         public bool IgnoreInputs => NumberOfReasonsToIgnoreInputs > 0;
 
-
+        public Transform CameraTarget => _cameraTarget.transform;
 
 
 

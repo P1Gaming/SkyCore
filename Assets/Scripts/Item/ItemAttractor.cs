@@ -109,7 +109,7 @@ public class ItemAttractor : MonoBehaviour
             else
             { 
                 float itemDistance = Vector3.Distance(transform.position, item.transform.position);
-                if (itemDistance <= item.ItemInfo.AttractionRadius &&
+                if (itemDistance <= item.CurrentAttractionRadius &&
                     _inventory.HasRoomForItem(item.ItemInfo, item.Amount))
                 {
                     // I made a function call here so we can easily swap out this logic by calling a different function to change the attraction style.
