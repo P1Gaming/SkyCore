@@ -255,7 +255,8 @@ public class InventoryDragAndDrop
         Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
         Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
         GameObject itemPrefab = _beingDragged._itemStack.identity.ItemPrefab;
-        Object.Instantiate(itemPrefab, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+        GameObject instantiated = Object.Instantiate(itemPrefab, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
+        instantiated.GetComponent<PickupItem>().PreventImmediatePickupWhenTossed();
 
         //Decrement Item
 

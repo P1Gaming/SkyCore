@@ -50,8 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d2f2a64697a6649aa18e748a835aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickupTrigger: {fileID: 6715055194844041023}
   _itemInfo: {fileID: 11400000, guid: ea60c6bcafafb47449f58b1932dda3a8, type: 2}
   _amount: 1
+  _durationToPreventPickupWhenTossed: 3
+  <Rigidbody>k__BackingField: {fileID: 7448747993760946307}
 --- !u!135 &6715055194844041023
 SphereCollider:
   m_ObjectHideFlags: 0

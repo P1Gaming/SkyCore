@@ -113,8 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d2f2a64697a6649aa18e748a835aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickupTrigger: {fileID: 1465078219525711002}
   _itemInfo: {fileID: 11400000, guid: f08ac2219aff5d1409c793c7fcc98c07, type: 2}
   _amount: 5
+  _durationToPreventPickupWhenTossed: 3
+  <Rigidbody>k__BackingField: {fileID: 6902432759847146897}
 --- !u!54 &6902432759847146897
 Rigidbody:
   m_ObjectHideFlags: 0

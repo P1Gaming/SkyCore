@@ -8,25 +8,42 @@ using UnityEngine;
 public class PickupItem : MonoBehaviour
 {
     [SerializeField]
+    private Collider _pickupTrigger;
+
+    [SerializeField]
     private ItemIdentity _itemInfo;
 
     [SerializeField]
     private int _amount = 1;
 
-    private Rigidbody _rigidbody;
+    [SerializeField]
+    private float _durationToPreventPickupWhenTossed = 3f;
+
+    [field: SerializeField]
+    public Rigidbody Rigidbody { get; private set; }
+
     private ItemStack _stack;
     private bool _destroyed;
 
     public int Amount => _amount;
     public ItemIdentity ItemInfo => _itemInfo;
-    public Rigidbody Rigidbody => _rigidbody;
 
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _stack = new ItemStack(_itemInfo, _amount);
     }
+
+
+    public void PreventImmediatePickupWhenTossed() => StartCoroutine(DisableTriggerForDuration());
+
+    private IEnumerator DisableTriggerForDuration()
+    {
+        _pickupTrigger.enabled = false;
+        yield return new WaitForSeconds(_durationToPreventPickupWhenTossed);
+        _pickupTrigger.enabled = true;
+    }
+
 
     private void OnTriggerEnter(Collider other) => TryPickup(other);
     private void OnTriggerStay(Collider other) => TryPickup(other);
