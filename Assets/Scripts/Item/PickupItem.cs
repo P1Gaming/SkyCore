@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class PickupItem : MonoBehaviour
 {
+    private const float TOSS_IMPULSE = 5f;
+
     [SerializeField]
     private Collider _pickupTrigger;
 
@@ -35,7 +37,17 @@ public class PickupItem : MonoBehaviour
     }
 
 
-    public void PreventImmediatePickupWhenTossed() => StartCoroutine(DisableTriggerForDuration());
+    public void TossFromInventory(Vector3 direction) 
+    {
+        
+        Rigidbody.AddForce(direction * TOSS_IMPULSE, ForceMode.Impulse);
+
+        // Don't pick up the item immediately.
+        StartCoroutine(DisableTriggerForDuration()); 
+
+        // maybe also use continuous collision detection on the rigidbody for a bit if that makes it feel better, then switch to discrete
+        // collision detection for performance.
+    }
 
     private IEnumerator DisableTriggerForDuration()
     {

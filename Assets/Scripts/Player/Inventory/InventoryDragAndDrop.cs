@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using Player.Motion;
+using Player.View;
 
 
 /// <summary>
@@ -11,6 +13,7 @@ using UnityEngine.EventSystems;
 public class InventoryDragAndDrop
 {
     private const float GENERATOR_DROPPABLE_RADIUS_AROUND_ISLAND_HEARTS = 3f;
+    
 
     private InputAction _click;
     private bool _stillHoveringOverSlotBeingDragged;
@@ -24,6 +27,8 @@ public class InventoryDragAndDrop
 
     private RectTransform[] _whereToConsiderMouseInsideInventory;
 
+    private Transform _playerTransform;
+    private CapsuleCollider _playerCapsuleCollider;
     private BerryItemIdentity _berryItemIdentity;
 
     public InventoryDragAndDrop(RectTransform[] whereToConsiderMouseInsideInventory, BerryItemIdentity berryItemIdentity)
@@ -34,6 +39,9 @@ public class InventoryDragAndDrop
         _click.started += OnClickStart;
         _click.canceled += OnClickCancel;
         _click.Disable();
+
+        _playerTransform = PlayerMovement.Instance.transform;
+        _playerCapsuleCollider = _playerTransform.GetComponent<CapsuleCollider>();
     }
 
     public void EnableInput()
@@ -250,19 +258,15 @@ public class InventoryDragAndDrop
             }
         }
 
-        //Spawn item in front of the player
-        Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
-        Vector3 playerFwd = GameObject.FindWithTag("Player").transform.forward;
-        Vector3 updatedPos = new Vector3(playerPos.x, playerPos.y, playerPos.z) + playerFwd * 2f;
+        // Spawn the item and toss it.
         GameObject itemPrefab = _beingDragged._itemStack.identity.ItemPrefab;
-        GameObject instantiated = Object.Instantiate(itemPrefab, updatedPos, GameObject.FindWithTag("Player").transform.rotation);
-        instantiated.GetComponent<PickupItem>().PreventImmediatePickupWhenTossed();
-
-        //Decrement Item
+        Vector3 spawnPos = _playerTransform.position + _playerCapsuleCollider.center;
+        GameObject spawned = Object.Instantiate(itemPrefab, spawnPos, _playerTransform.rotation);
+        Vector3 tossDirection = FirstPersonView.Instance.CameraTargetDirection;
+        spawned.GetComponent<PickupItem>().TossFromInventory(tossDirection);
 
         _beingDragged._itemStack.amount--;
         _beingDragged.OnItemStackChanged();
-        
     }
 
 
