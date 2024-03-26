@@ -7,34 +7,118 @@ using UnityEngine;
 /// </summary>
 public class PickupItem : MonoBehaviour
 {
+    private const float TOSS_IMPULSE_PER_MASS = 5f;
+    private const float DURATION_TO_PREVENT_PICKUP_WHEN_TOSSED = 1.5f;
+    private const float DURATION_OF_CONTINUOUS_COLLISION_DETECTION_WHEN_TOSSED = 20f;
+
     [SerializeField]
-    private ItemBase _itemInfo;
+    private Collider _pickupTrigger;
+
+    [SerializeField]
+    private ItemIdentity _itemInfo;
 
     [SerializeField]
     private int _amount = 1;
 
+    [field: SerializeField]
+    public Rigidbody Rigidbody { get; private set; }
 
-    private Rigidbody _rigidbody;
+    public float CurrentAttractionRadius { get; private set; }
+
+    private ItemStack _stack;
+    private bool _destroyed;
+    private float _defaultSleepThreshold;
+    private CollisionDetectionMode _defaultCollisionDetectionMode;
+
+    public int Amount => _amount;
+    public ItemIdentity ItemInfo => _itemInfo;
 
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (_rigidbody == null)
-            _rigidbody = GetComponent<Rigidbody>();
+        _stack = new ItemStack(_itemInfo, _amount);
+        _defaultSleepThreshold = Rigidbody.sleepThreshold;
+        _defaultCollisionDetectionMode = Rigidbody.collisionDetectionMode;
+        CurrentAttractionRadius = _itemInfo.AttractionRadius;
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    public void TossFromInventory(Vector3 direction) 
     {
-        if (other.gameObject.TryGetComponent(out Player.InventoryScene inventoryAndHotBar))
+        CurrentAttractionRadius = _itemInfo.AttractionRadiusIfSpawnedByTossingFromInventory;
+
+
+        Rigidbody.AddForce(direction * TOSS_IMPULSE_PER_MASS * Rigidbody.mass, ForceMode.Impulse);
+
+        // Don't pick up the item immediately.
+        StartCoroutine(DisableTriggerTemporarily());
+
+        // Use continuous collision detection for a bit, then switch to discrete for performance.
+        StartCoroutine(UseContinuousCollisionDetectionTemporarily());
+    }
+
+    private IEnumerator DisableTriggerTemporarily()
+    {
+        _pickupTrigger.enabled = false;
+        yield return new WaitForSeconds(DURATION_TO_PREVENT_PICKUP_WHEN_TOSSED); 
+        _pickupTrigger.enabled = true;
+    }
+
+    private IEnumerator UseContinuousCollisionDetectionTemporarily()
+    {
+        Rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        yield return new WaitForSeconds(DURATION_OF_CONTINUOUS_COLLISION_DETECTION_WHEN_TOSSED);
+        Rigidbody.collisionDetectionMode = _defaultCollisionDetectionMode;
+    }
+
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if (IsPlayer(other))
         {
-            if (inventoryAndHotBar.GoIntoFirst.TryAddItem(new ItemStack(_itemInfo, _amount)))
-            {
-                Destroy(gameObject);
-            }
+            Rigidbody.sleepThreshold = -1; // don't sleep
+            TryPickup();
         }
     }
 
-    public int Amount { get => _amount; }
-    public ItemBase ItemInfo { get => _itemInfo; }
-    public Rigidbody Rigidbody { get => _rigidbody; }
+    private void OnTriggerStay(Collider other) 
+    {
+        if (IsPlayer(other))
+        {
+            TryPickup();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // this will only work properly if the player has a single collider. Otherwise need to keep
+        // track of how many of the player's colliders are inside the collider (so OnTriggerEnter => increment
+        // and OnTriggerExit => decrement and if that makes the int 0, do the default sleep threshold.)
+
+        // Controlling sleeping like this to ensure OnTriggerStay continues to get called, but allowing
+        // sleeping in general for performance.
+
+        if (IsPlayer(other))
+        {
+            Rigidbody.sleepThreshold = _defaultSleepThreshold;
+        }
+    }
+
+    private static bool IsPlayer(Collider collider) => collider.gameObject.CompareTag("Player");
+
+    private void TryPickup()
+    {
+        if (_destroyed)
+        {
+            // destroy doesn't happen until the end of the frame
+            return;
+        }
+
+        Inventory.Instance.TakeInAsManyAsFit(_stack);
+        if (_stack.amount == 0)
+        {
+            _destroyed = true;
+            Destroy(gameObject);
+        }
+    }
 }

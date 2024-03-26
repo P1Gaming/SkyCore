@@ -7,17 +7,57 @@
 					<ChildrenList>
 						<Switch Name="Dirt" ID="{36E36445-7B78-4A85-A233-DA9D3B7C02E8}"/>
 						<Switch Name="Grass" ID="{53E5DABC-BE29-4EFA-B9D9-58CAFA9889B1}"/>
-						<Switch Name="Sand" ID="{5A476742-3CD9-46B6-8CB0-6F7D4A2EFFF1}"/>
-						<Switch Name="Stone" ID="{2B171FFB-A3EF-490D-A967-724BFC3B653C}"/>
-						<Switch Name="Wood" ID="{F07A717F-20A1-45B0-A7CF-37779018E09E}"/>
+						<Switch Name="Water" ID="{ABB7DDDD-AF1A-4B97-ABA6-FF0E78BC99A4}"/>
 					</ChildrenList>
 				</SwitchGroup>
-				<SwitchGroup Name="ItemType" ID="{0A4AB8A8-6133-4815-924F-54223D488615}">
+				<SwitchGroup Name="Item_Type" ID="{B2665098-18F9-4A15-8946-3C4B48B4B45C}">
 					<ChildrenList>
-						<Switch Name="BlockBroken" ID="{AB0E44CC-F4F8-4ABD-AA82-F8317DC9D013}"/>
-						<Switch Name="BlockGrass" ID="{8FD80840-7AE1-40DA-A220-8DCBC92D6C54}"/>
-						<Switch Name="BlockStone" ID="{2A329599-8E54-406C-9EAD-6D5A94BB4FC9}"/>
-						<Switch Name="BlockWood" ID="{C1660E2E-7611-435A-9F7E-17D4C1B7EEFA}"/>
+						<Switch Name="Berry" ID="{D3E7BB4F-513C-4605-A2C9-5DF20E59C16C}"/>
+						<Switch Name="Portable_Generator" ID="{0FC2380C-CB58-4202-92F4-EE91C6372D50}"/>
+						<Switch Name="Jelly_Dew" ID="{304397C4-5A3D-4122-A07C-D36D7587CBCD}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="Menu_Type" ID="{D5234D67-B7FF-4A5B-8CA4-028C5B0D9467}">
+					<ChildrenList>
+						<Switch Name="Main_Menu" ID="{30D578E6-B84B-4B73-8CB3-5E89A7BB71C5}"/>
+						<Switch Name="Pause_Menu" ID="{5D069452-5AB5-4B6E-BBF5-5F00C8CAA3E5}"/>
+						<Switch Name="Inventory_Menu" ID="{BAB869D1-0079-4D7D-B27F-C70F13026CB8}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="IslandHeart_XP" ID="{BE4BFC75-C65E-46B5-8B9A-B6124C9C8EF2}">
+					<PropertyList>
+						<Property Name="UseGameParameter" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Switch Name="Level_UP" ID="{62F4D3F4-A9C3-4EF9-B8C5-2E7EF664320B}"/>
+						<Switch Name="Unleveled" ID="{3185B6D2-043B-4746-9538-B931FCE196A4}"/>
+					</ChildrenList>
+					<SwitchOnRTPC>
+						<GameParameterRef Name="Island_Heart_XP" ID="{65AD78AC-938C-4914-B9CC-4293041DA912}"/>
+						<Curve Name="" ID="{D3ED9E66-DF4B-44CA-8EC1-E4789E1C1C52}">
+							<PropertyList>
+								<Property Name="Flags" Type="int32" Value="65537"/>
+							</PropertyList>
+							<PointList>
+								<Point>
+									<XPos>0</XPos>
+									<YPos>2</YPos>
+									<Flags>5</Flags>
+								</Point>
+								<Point>
+									<XPos>100</XPos>
+									<YPos>1</YPos>
+									<Flags>37</Flags>
+								</Point>
+							</PointList>
+						</Curve>
+					</SwitchOnRTPC>
+				</SwitchGroup>
+				<SwitchGroup Name="Day_Cycle" ID="{AEA0F0D6-C21F-4113-8AF2-2F6A72AB326C}">
+					<ChildrenList>
+						<Switch Name="Day" ID="{0190B17C-9450-4F44-9DCC-F28978A1E577}"/>
+						<Switch Name="Night" ID="{3CEF3E22-3260-4185-A9A1-CD9BB35F25AE}"/>
+						<Switch Name="Mid" ID="{B6964031-576C-4676-BD7A-698C65D66222}"/>
 					</ChildrenList>
 				</SwitchGroup>
 			</ChildrenList>

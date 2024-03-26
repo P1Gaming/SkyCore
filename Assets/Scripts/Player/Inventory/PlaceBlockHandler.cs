@@ -2,6 +2,7 @@ using Player.View;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlaceBlockHandler : MonoBehaviour
 {
@@ -35,36 +36,59 @@ public class PlaceBlockHandler : MonoBehaviour
 
     // Update is called once per frame
 
-    //Temp comment
     void Update()
     {
-        //Check if player is holding placeable item?
-        //GetComponentInParent<HoldingItemHandler>().GetCurrentHeldItem().itemInfo.Attributes.;
-        Vector3 gridPosition = _idealBlockPlacement.transform.position;
-
-        gridPosition.x = Mathf.Floor(gridPosition.x / _cellSize) * _cellSize + _offSet.x;
-        gridPosition.y = Mathf.Floor(gridPosition.y / _cellSize) * _cellSize + _offSet.y;
-        gridPosition.z = Mathf.Floor(gridPosition.z / _cellSize) * _cellSize + _offSet.z;
-
-        while (Physics.CheckBox(gridPosition, Vector3.one / 2.001f, Quaternion.identity, _groundLayer))
+        //Check if player is holding item?
+        if (GetComponentInParent<HoldingItemHandler>().HeldItem != null)
         {
-            gridPosition.y += _cellSize;
-        }
+            PlaceableItemIdentity placeableItem = GetComponentInParent<HoldingItemHandler>().HeldItem.identity as PlaceableItemIdentity;
 
-        if (_activeBlockHelper)
+            //Check if item can be placed
+            if (placeableItem != null && placeableItem.CanBePlaced)
+            {
+                if (!_activeBlockHelper)
+                {
+                    _activeBlockHelper = Instantiate(_blockHelperReference);
+                }
+
+                //Covert to grid coordinates
+                Vector3 gridPosition = _idealBlockPlacement.transform.position;
+
+                gridPosition.x = Mathf.Floor(gridPosition.x / _cellSize) * _cellSize + _offSet.x;
+                gridPosition.y = Mathf.Floor(gridPosition.y / _cellSize) * _cellSize + _offSet.y;
+                gridPosition.z = Mathf.Floor(gridPosition.z / _cellSize) * _cellSize + _offSet.z;
+
+                //Move up if it runs into a collision
+                while (Physics.CheckBox(gridPosition, Vector3.one / 2.001f, Quaternion.identity, _groundLayer))
+                {
+                    gridPosition.y += _cellSize;
+                }
+
+                if (_activeBlockHelper)
+                {
+                    _activeBlockHelper.transform.position = gridPosition;
+                }
+
+                PlaceBlockChecker();
+            }
+            else
+            {
+                Destroy(_activeBlockHelper);
+            }
+        }
+        else
         {
-            _activeBlockHelper.transform.position = gridPosition;
+            Destroy(_activeBlockHelper);
         }
-
-        PlaceBlockChecker();
-
     }
 
     private void PlaceBlockChecker()
     {
-        if (Input.GetButtonDown("Fire1"))
+        //Check if the player presses m1 and make sure the backpack is not opened.
+        if (Input.GetButtonDown("Fire1") && !Inventory.Instance._isInBackpackMode)
         {
             Instantiate(_blockRef, _activeBlockHelper.transform.position, _activeBlockHelper.transform.rotation);
+            Inventory.Instance.TrySubtractItemAmount(GetComponentInParent<HoldingItemHandler>().HeldItem.identity, 1);
         }
     }
 }

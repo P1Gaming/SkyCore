@@ -16,13 +16,17 @@ namespace Jellies
     {
         [SerializeField, Tooltip("Scriptable object representing" +
         " the type of item to feed the jelly")]
-        private ItemBase _berryItem;
+        private BerryItemIdentity _berryItemIdentity;
 
         private Parameters _parameters;
 
         private DewInstantiate _dew;
 
         private SlimeExperience _slimeExp;
+
+
+        public bool IsFull => _parameters.FoodSaturation == _parameters.MaxFoodSaturation;
+
         private void Awake()
         {
             _parameters = GetComponent<Parameters>();
@@ -34,9 +38,24 @@ namespace Jellies
         /// Feeds jelly by increasing it's food saturation.
         /// </summary>
         /// <param name="amountToIncrease">Amount of food to feed by, is same as saturation.</param>
-        public void FeedJelly(float amountToIncrease)
+        public bool TryFeedJelly(float amountToIncrease)
         {
+            if (_parameters.FoodSaturation >= _parameters.MaxFoodSaturation)
+            {
+                if (_parameters.FoodSaturation > _parameters.MaxFoodSaturation)
+                {
+                    throw new Exception("In Feeding, _parameters.FoodSaturation >= _parameters.MaxFoodSaturation: "
+                        + _parameters.FoodSaturation + " " + _parameters.MaxFoodSaturation);
+                }
+                return false;
+            }
+
             _parameters.IncreaseFoodSaturation(amountToIncrease);
+
+            int index = Math.Min(_parameters.NumOfDewSpawnedAtLevel.Length - 1, _slimeExp.LevelNum - 1);
+            _dew.DewSpawn(_parameters.NumOfDewSpawnedAtLevel[index]);
+
+            return true;
         }
 
         /// <summary>
@@ -44,23 +63,9 @@ namespace Jellies
         /// </summary>
         public void OnFeedButton()
         {
-            InventoryBase hotBar = InventoryScene.Instance.HotBar;
-            if (hotBar.TrySubtractItemAmount(_berryItem, 1))
+            if (Inventory.Instance.TrySubtractItemAmount(_berryItemIdentity, 1))
             {
-                FeedJelly(_berryItem.SaturationValue);
-
-                // Used to handle if the array is empty or outside of range for the slimes current level
-                try
-                {
-                    _dew.DewSpawn(_parameters.NumOfDewSpawnedAtLevel[_slimeExp.LevelNum - 1]);
-                } catch (System.IndexOutOfRangeException)
-                {
-                    // Uses the highest level requirement if the slimes current level is outside of range
-                    Debug.LogWarning("Property value \"NumOfDewSpawnedAtLevel\" array is either empty or outside of range for level num." +
-                        "Using highest level requirement (" + _parameters.NumOfDewSpawnedAtLevel[_parameters.NumOfDewSpawnedAtLevel.Length - 1] +
-                        ")");
-                    _dew.DewSpawn(_parameters.NumOfDewSpawnedAtLevel[_parameters.NumOfDewSpawnedAtLevel.Length - 1]);
-                }
+                TryFeedJelly(_berryItemIdentity.SaturationValue);
             }
         }
     }

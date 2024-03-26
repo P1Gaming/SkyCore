@@ -27,6 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 384924b84b4d0564680cd88e0dc27d20, type: 2}
   - {fileID: 11400000, guid: 9e2a6b2596faf7a4f8b8cf772d631260, type: 2}
   - {fileID: 11400000, guid: cdb5bbdaf836e5c45be91aa75f4dcfe8, type: 2}
+  - {fileID: 11400000, guid: 1e37a04e0c4d42a4789e7db8542c6742, type: 2}
   - {fileID: 11400000, guid: 8ffffa81d328f194a84b93c3fd3825a7, type: 2}
   - {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc, type: 2}
   <Transitions>k__BackingField:
@@ -44,7 +45,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ffeafd6bd95dd3f45a397c1d2c46d2aa, type: 2}
   - {fileID: 11400000, guid: c2e35218109e6dc4ba875bec37f6c674, type: 2}
   - {fileID: 11400000, guid: 724b8fe7a99d683419654ef5e002eadc, type: 2}
-  - {fileID: 11400000, guid: c94ecae704dd04041bea346442404f32, type: 2}
+  - {fileID: 11400000, guid: 57f9cf037daa7584aa2144a9647f7b4d, type: 2}
+  - {fileID: 11400000, guid: 3b98234e7a1bb3749a8d8aa0fc5386da, type: 2}
+  - {fileID: 11400000, guid: afd083a114ca3ce43bcd44982c4e632b, type: 2}
   - {fileID: 11400000, guid: 77a07d289bd2cff4a907532a02d1488d, type: 2}
   <EditorInfo>k__BackingField:
     <States>k__BackingField:
@@ -57,6 +60,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b33320edead6f7d4083bbae2c7677948, type: 2}
     - {fileID: 11400000, guid: bc7dc86491d959d459202a8df94b6715, type: 2}
     - {fileID: 11400000, guid: 65ce1772ec0bf864bbc586bd9326e44d, type: 2}
+    - {fileID: 11400000, guid: cb5d86914d853c741b98f6fd87d5672c, type: 2}
+    - {fileID: 11400000, guid: 127cb582c8d40ae418affa789a3f5c81, type: 2}
     <StateEditorPositions>k__BackingField:
     - {x: 786.61176, y: -468.98312}
     - {x: 565.3529, y: 230.37724}
@@ -64,7 +69,9 @@ MonoBehaviour:
     - {x: 470.7926, y: -105.49633}
     - {x: 250.97351, y: -215.19159}
     - {x: 325.72284, y: -701.10034}
-    - {x: 326.4214, y: -886.03735}
-    - {x: 315.69583, y: -1052.2825}
-    - {x: 503.39194, y: -1225.6779}
+    - {x: 321.0587, y: -866.37396}
+    - {x: 317.48343, y: -1041.557}
+    - {x: 322.45575, y: -1204.1093}
+    - {x: 324.87186, y: -1379.8522}
+    - {x: 567.2247, y: -1550.1542}
     <StateEditorForAnystatePosition>k__BackingField: {x: 428.5069, y: 385.08978}

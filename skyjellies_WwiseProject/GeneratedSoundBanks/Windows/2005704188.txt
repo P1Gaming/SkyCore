@@ -1,0 +1,35 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3571595122	Play_Main_Title_Music			\Default Work Unit\Music\Play_Main_Title_Music	
+	3807302544	Play_Mouse_Hovering			\Default Work Unit\UI\Play_Mouse_Hovering	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	1819922903	Menu_Type			\Default Work Unit\Menu_Type	
+
+Switch	ID	Name	Switch Group			Notes
+	2005704188	Main_Menu	Menu_Type			
+	3090328911	Inventory_Menu	Menu_Type			
+	3422541661	Pause_Menu	Menu_Type			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	2666809638	Day_Night			\Default Work Unit\Day_Night	
+	4091656514	GameState			\Default Work Unit\GameState	
+
+State	ID	Name	State Group			Notes
+	311764537	Day	Day_Night			
+	748895195	None	Day_Night			
+	1011622525	Night	Day_Night			
+	1182670505	Mid	Day_Night			
+	748895195	None	GameState			
+	2219001485	Game_On	GameState			
+	2772308904	Game_Pause	GameState			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	722912081	Game_On	GameState	\Interactive Music Hierarchy\Music\Ttile Screen\Music--UI-MenuMusicexam_2-3		
+	754564752	Night	Day_Night	\Interactive Music Hierarchy\Music\Ttile Screen\Music--UI-MenuMusicexam_2-3		
+	975075603	Game_Pause	GameState	\Interactive Music Hierarchy\Music\Ttile Screen\Music--UI-MenuMusicexam_2-3		
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	60950605	UI_Mouse_Hover	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Windows\SFX\Menu_HoveringMenuButtons_04_10C4C929.wem		\Actor-Mixer Hierarchy\UI\Mouse Hovering\UI_Mouse_Hover		96064
+	309194636	Music--UI-MenuMusicexam_2-3	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Windows\SFX\Music--UI-MenuMusicexam_2-3_D79FB2B7.wem		\Interactive Music Hierarchy\Music\Ttile Screen\Music--UI-MenuMusicexam_2-3\Music--UI-MenuMusicexam_2-3		9479916
+	485921160	UI_Mouse_Hover_Inventory_Menu	C:\Users\Loukas\Documents\GitHub\SkyCore\skyjellies_WwiseProject\.cache\Windows\SFX\Menu_HoveringMenu_Inventory_Lufs_10C4C929.wem		\Actor-Mixer Hierarchy\UI\Mouse Hovering\UI_Mouse_Hover_Inventory_Menu		96064
+

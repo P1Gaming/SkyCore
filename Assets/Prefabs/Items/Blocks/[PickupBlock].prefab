@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2916422275461499499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 973209602561125509}
@@ -112,8 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d2f2a64697a6649aa18e748a835aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickupTrigger: {fileID: 2132609281998647699}
   _itemInfo: {fileID: 11400000, guid: f08ac2219aff5d1409c793c7fcc98c07, type: 2}
   _amount: 1
+  <Rigidbody>k__BackingField: {fileID: 6902432759847146897}
 --- !u!54 &6902432759847146897
 Rigidbody:
   m_ObjectHideFlags: 0

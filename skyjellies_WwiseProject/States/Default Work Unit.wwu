@@ -3,19 +3,64 @@
 	<States>
 		<WorkUnit Name="Default Work Unit" ID="{5F0A70B5-4CFD-4F47-A45F-35000A121C70}" PersistMode="Standalone">
 			<ChildrenList>
-				<StateGroup Name="FireState" ID="{F0B25BEC-D4CF-4413-92E2-EF5A09A5AE0D}">
-					<ChildrenList>
-						<State Name="None" ID="{606D4C82-3039-45DE-8076-7DD3BF2E72A0}"/>
-						<State Name="FireOff" ID="{FA1206CF-9963-4F62-8F1E-B05CFFC3D141}"/>
-						<State Name="FireOn" ID="{D6D01088-1387-40FC-9052-B2AA7F76C5DB}"/>
-					</ChildrenList>
-				</StateGroup>
 				<StateGroup Name="GameState" ID="{C05EE549-8991-4FD9-8432-F96CC9BC1C07}">
 					<ChildrenList>
 						<State Name="None" ID="{E88748C1-9157-4531-8C7D-9F2EF56CAC55}"/>
 						<State Name="Game_On" ID="{A030FA25-8AAD-4478-9CE7-30EECD46C8D5}"/>
 						<State Name="Game_Pause" ID="{88A212A3-F7E4-4AE1-8F68-35CF2A96F72B}"/>
 					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="Game_On" ID="{A030FA25-8AAD-4478-9CE7-30EECD46C8D5}"/>
+							<EndState Name="Game_Pause" ID="{88A212A3-F7E4-4AE1-8F68-35CF2A96F72B}"/>
+							<Time>0.5</Time>
+							<IsShared>true</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
+				<StateGroup Name="Day_Night" ID="{123D2424-D2FD-45D8-9AEC-1543CE2E8849}">
+					<ChildrenList>
+						<State Name="None" ID="{8222AC9D-E762-4CAA-9368-47D3C8BFE898}"/>
+						<State Name="Day" ID="{292D43AA-1244-4DA2-A66F-6E8FE89D3415}"/>
+						<State Name="Night" ID="{C738B72D-9455-4DC8-BA13-9B784358E14C}"/>
+						<State Name="Mid" ID="{2F43133F-B95F-4C6C-AB6A-FE4D31B9F385}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="Day" ID="{292D43AA-1244-4DA2-A66F-6E8FE89D3415}"/>
+							<EndState Name="Mid" ID="{2F43133F-B95F-4C6C-AB6A-FE4D31B9F385}"/>
+							<Time>5</Time>
+							<IsShared>true</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Mid" ID="{2F43133F-B95F-4C6C-AB6A-FE4D31B9F385}"/>
+							<EndState Name="Night" ID="{C738B72D-9455-4DC8-BA13-9B784358E14C}"/>
+							<Time>5</Time>
+							<IsShared>true</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
+				<StateGroup Name="Water" ID="{45FD7A3D-2D18-45CF-8A94-DDF1A6A5A6BE}">
+					<ChildrenList>
+						<State Name="None" ID="{F513B9D2-788D-46F2-9FDC-2F2113EB115D}"/>
+						<State Name="Above" ID="{9F40E068-E5BA-4328-86AE-99F27150F0BA}"/>
+						<State Name="Below" ID="{50E4D1AF-30EF-4F99-B664-8A0B9B5871B9}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="DroneState" ID="{D9D19E05-2DED-4056-9EB2-C0D5DCB8B2C8}">
+					<ChildrenList>
+						<State Name="None" ID="{09AB1F9C-8185-4F04-A907-7157C90BD00A}"/>
+						<State Name="Idle" ID="{3E02B33D-4A05-4CA7-A17B-D4B989D965E1}"/>
+						<State Name="Active" ID="{7ACB5A09-B78E-4BE6-A664-CB6C12EA7C0C}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="Idle" ID="{3E02B33D-4A05-4CA7-A17B-D4B989D965E1}"/>
+							<EndState Name="Active" ID="{7ACB5A09-B78E-4BE6-A664-CB6C12EA7C0C}"/>
+							<Time>3</Time>
+							<IsShared>true</IsShared>
+						</Transition>
+					</TransitionList>
 				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
