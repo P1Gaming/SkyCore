@@ -20,7 +20,7 @@ public class PlaceBlockHandler : MonoBehaviour
     private LayerMask _groundLayer;
 
     [SerializeField]
-    private Vector3 _offSet = new Vector3(0.56f, 0.506f, 0.03f);
+    private Vector3 _offSet = Vector3.zero;
 
     [SerializeField]
     private GameObject _blockRef;
@@ -34,9 +34,12 @@ public class PlaceBlockHandler : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    //Temp comment
     void Update()
     {
-
+        //Check if player is holding placeable item?
+        //GetComponentInParent<HoldingItemHandler>().GetCurrentHeldItem().itemInfo.Attributes.;
         Vector3 gridPosition = _idealBlockPlacement.transform.position;
 
         gridPosition.x = Mathf.Floor(gridPosition.x / _cellSize) * _cellSize + _offSet.x;
@@ -46,7 +49,6 @@ public class PlaceBlockHandler : MonoBehaviour
         while (Physics.CheckBox(gridPosition, Vector3.one / 2.001f, Quaternion.identity, _groundLayer))
         {
             gridPosition.y += _cellSize;
-            UnityEngine.Debug.Log("Work heathen");
         }
 
         if (_activeBlockHelper)
@@ -63,7 +65,6 @@ public class PlaceBlockHandler : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(_blockRef, _activeBlockHelper.transform.position, _activeBlockHelper.transform.rotation);
-            print("test");
         }
     }
 }
