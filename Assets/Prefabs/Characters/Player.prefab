@@ -35,12 +35,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548689562930659578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 548689563490798966}
   - {fileID: 3652034199185686198}
+  - {fileID: 2320113488971030611}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -363,6 +364,60 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3839615161503421157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2320113488971030611}
+  - component: {fileID: 588975908445257916}
+  m_Layer: 0
+  m_Name: IdealPlacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2320113488971030611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3839615161503421157}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.120000005, z: 3.253}
+  m_LocalScale: {x: 0.9784346, y: 0.25013, z: 1.1640527}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 548689562930659580}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588975908445257916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3839615161503421157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcbcf29377fc650459954d4ca54c7374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _idealBlockPlacement: {fileID: 3839615161503421157}
+  _blockHelperReference: {fileID: 6217806639456890100, guid: 42142cb2cd381bc42a515d3ce3ab4d55,
+    type: 3}
+  _cellSize: 1
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _offSet: {x: 0.56, y: 0.506, z: 0.03}
+  _blockRef: {fileID: 2238913430914877175, guid: 067261c83a45ad741a37bb6c60f1bb35,
+    type: 3}
 --- !u!1 &4171865345557668876
 GameObject:
   m_ObjectHideFlags: 0

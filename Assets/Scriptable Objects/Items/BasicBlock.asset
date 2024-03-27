@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dbd70ec821dc8448240b7f3969f07d, type: 3}
+  m_Name: BasicBlock
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b,
+    type: 3}
+  <ItemPrefab>k__BackingField: {fileID: 2916422275461499499, guid: 962f1f49e30b40741abf946948809023,
+    type: 3}
+  <MaxStack>k__BackingField: 64
+  <SortType>k__BackingField: 3
+  <AttractionRadius>k__BackingField: 0.75
+  <AttractionRadiusIfSpawnedByTossingFromInventory>k__BackingField: 0.75
+  <CanBePlaced>k__BackingField: 1
+  <BlockRef>k__BackingField: {fileID: 2238913430914877175, guid: 067261c83a45ad741a37bb6c60f1bb35,
+    type: 3}

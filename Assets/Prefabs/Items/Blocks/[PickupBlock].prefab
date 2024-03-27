@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: -8599889517674976643}
   - component: {fileID: 4083773366731029148}
   - component: {fileID: 6902432759847146897}
-  - component: {fileID: 307694518312139239}
   m_Layer: 13
-  m_Name: '[JellyDew]'
+  m_Name: '[PickupBlock]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2916422275461499499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 973209602561125509}
@@ -45,7 +44,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2916422275461499499}
-  m_Material: {fileID: 13400000, guid: a4123a3425e356a42a6152aad5ddea3c, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -71,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8905841fc4d605b49826ba0c5599c668, type: 2}
+  - {fileID: 2100000, guid: 686e992c33ccc904bbb82ceb9291faf7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickupTrigger: {fileID: 1465078219525711002}
-  _itemInfo: {fileID: 11400000, guid: 5e8b8fa837c1d2d469ba390cdeb0882a, type: 2}
+  _itemInfo: {fileID: 11400000, guid: f08ac2219aff5d1409c793c7fcc98c07, type: 2}
   _amount: 1
   <Rigidbody>k__BackingField: {fileID: 6902432759847146897}
 --- !u!54 &6902432759847146897
@@ -133,22 +132,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &307694518312139239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2916422275461499499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_IgnoreFromBuild: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &5347180354881980550
 GameObject:
   m_ObjectHideFlags: 0
