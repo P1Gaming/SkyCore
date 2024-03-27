@@ -85,7 +85,7 @@ public class PlaceBlockHandler : MonoBehaviour
     private void PlaceBlockChecker()
     {
         //Check if the player presses m1 and make sure the backpack is not opened.
-        if (Input.GetButtonDown("Fire1") && !Inventory.Instance._isInBackpackMode)
+        if (Input.GetButtonDown("Fire1") && !Inventory.Instance._isInBackpackMode && !PlayerInteraction.Instance.IgnoreInputs)
         {
             Instantiate(_blockRef, _activeBlockHelper.transform.position, _activeBlockHelper.transform.rotation);
             Inventory.Instance.TrySubtractItemAmount(GetComponentInParent<HoldingItemHandler>().HeldItem.identity, 1);
