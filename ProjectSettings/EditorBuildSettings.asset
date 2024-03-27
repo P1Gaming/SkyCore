@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 6063efdd28e6f1d4584134d0f0248329
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: ba7dac18c2786bd4ea64602b95035d04
-  - enabled: 1
-    path: Assets/Scenes/StorySlideShow.unity
-    guid: 845a38e2824455a45b43a2115b9289be
+    path: Assets/Scenes/DebugGame.unity
+    guid: 340e9b2edea9c6a4abb0e7d31cf3fef8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ed5c78f9973ad8c4fabf1389113f03df,
       type: 2}
