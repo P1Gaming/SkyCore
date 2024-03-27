@@ -722,6 +722,8 @@ namespace FiniteStateMachineEditor
             }
 
 
+            // rename the state
+
             string statePath = AssetDatabase.GetAssetPath(_selectedState.State);
 
             string pathOfStateFolder = PathOfFolder(_selectedState.State);
@@ -735,6 +737,19 @@ namespace FiniteStateMachineEditor
 
             _refs.StateTitleInputField.SetTextWithoutNotify(_selectedState.Name);
 
+
+            // rename the transitions connected to the state
+            foreach (FSMEditorOneTransition transition in _selectedState.ConnectedTransitions)
+            {
+                string transitionTitle = $"[{transition.From.Name}] to [{transition.To.Name}]"; // excludes numbers at end
+                string oldTransitionPath = AssetDatabase.GetAssetPath(transition.Transition);
+                string newTransitionPath = MakePathForScriptableObject(ref transitionTitle, "Transitions", oldTransitionPath);
+                string errorMessage2 = AssetDatabase.RenameAsset(oldTransitionPath, newTransitionPath);
+                if (errorMessage2.Length != 0)
+                    Debug.LogWarning(errorMessage2 + $" (oldTransitionPath: {oldTransitionPath}, newTransitionPath: {newTransitionPath})");
+            }
+
+            // rename the game events
 
             string enterGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnEnter);
             string updateGameEventPath = AssetDatabase.GetAssetPath(_selectedState.State.OnUpdate);
@@ -903,7 +918,8 @@ namespace FiniteStateMachineEditor
             exitTitle = stateTitle + " {Exit}";
         }
 
-        public static string AdjustTitleToNotAlreadyExist(string title, string pathOfFolder, out int number)
+        public static string AdjustTitleToNotAlreadyExist(string title, string pathOfFolder, out int number
+            , string pathWhichCanAlreadyExistBecauseWillRename = null)
         {
             number = 0;
             string path;
@@ -914,16 +930,17 @@ namespace FiniteStateMachineEditor
                 string fileName = $"{newTitle}.asset";
                 path = System.IO.Path.Combine(pathOfFolder, fileName);
                 number++;
-            } while (AssetDatabase.AssetPathToGUID(path, AssetPathToGUIDOptions.OnlyExistingAssets).Length != 0);
+            } while (AssetDatabase.AssetPathToGUID(path, AssetPathToGUIDOptions.OnlyExistingAssets).Length != 0
+            && (pathWhichCanAlreadyExistBecauseWillRename == null || path != pathWhichCanAlreadyExistBecauseWillRename));
+
             number--;
             return newTitle;
         }
 
         public static string PathOfFolder(ScriptableObject scriptableObject)
         {
-            string pathOfFSMDefinition = AssetDatabase.GetAssetPath(scriptableObject);
-            string pathOfParentFolder = System.IO.Path.GetDirectoryName(pathOfFSMDefinition);
-            return pathOfParentFolder;
+            string pathOfAsset = AssetDatabase.GetAssetPath(scriptableObject);
+            return System.IO.Path.GetDirectoryName(pathOfAsset);
         }
 
         private string PathOfParentFolder()
@@ -931,7 +948,8 @@ namespace FiniteStateMachineEditor
             return PathOfFolder(_stateMachineDefinition);
         }
 
-        private string MakePathForScriptableObject(ref string title, string subfolder = null)
+        private string MakePathForScriptableObject(ref string title, string subfolder = null
+            , string pathWhichCanAlreadyExistBecauseWillRename = null)
         {
             string pathOfParentFolder = PathOfParentFolder();
             string pathOfFolder = pathOfParentFolder;
@@ -944,7 +962,7 @@ namespace FiniteStateMachineEditor
             if (!AssetDatabase.IsValidFolder(pathOfFolder))
                 throw new System.InvalidOperationException("The folder isn't valid somehow.");
 
-            title = AdjustTitleToNotAlreadyExist(title, pathOfFolder, out _);
+            title = AdjustTitleToNotAlreadyExist(title, pathOfFolder, out _, pathWhichCanAlreadyExistBecauseWillRename);
             return System.IO.Path.Combine(pathOfFolder, $"{title}.asset");
         }
 
