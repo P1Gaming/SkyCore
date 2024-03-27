@@ -42,11 +42,14 @@ namespace Jellies
             get;
             private set;
         }
-
+        private bool _canBePet;
         public bool CanBePet
         {
             get;
-            private set;
+            set; 
+             
+                
+            
         }
 
         /// <summary>

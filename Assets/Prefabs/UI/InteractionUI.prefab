@@ -479,6 +479,7 @@ MonoBehaviour:
   DataResponse:
     m_PersistentCalls:
       m_Calls: []
+  _selectivelyListenTo: {fileID: 0}
 --- !u!114 &3180189522068837300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +511,7 @@ MonoBehaviour:
   DataResponse:
     m_PersistentCalls:
       m_Calls: []
+  _selectivelyListenTo: {fileID: 0}
 --- !u!114 &5283769244749263402
 MonoBehaviour:
   m_ObjectHideFlags: 0
