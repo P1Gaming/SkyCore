@@ -380,7 +380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00015458508}
+  m_AnchoredPosition: {x: 0, y: -0.00013781145}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1291113709836234544
@@ -476,7 +476,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &470205561676347797
 MonoBehaviour:
@@ -533,34 +533,6 @@ MonoBehaviour:
   _craftItemDataGameObject: {fileID: 8907478798504253228}
   _recipeListItemPrefab: {fileID: 9076688361657249349, guid: a2f6ab161653ee145a0b552d79913fe5,
     type: 3}
-  UpgradeButtonClick:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  CraftSuccessButtonClick:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  CraftNotSuccessButtonClick:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  SortButtonClick:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  LeftArrowClick:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  RightArrowClick:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  ListOfItemsSort:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
 --- !u!225 &1775769936697523810
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -569,9 +541,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470205561676347883}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &7635816549288520332
 MonoBehaviour:
@@ -1236,7 +1208,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 470205562406444870}
   m_HandleRect: {fileID: 470205562406444871}
   m_Direction: 2
-  m_Value: 1.0000018
+  m_Value: 1.0000015
   m_Size: 0.6666667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1649,7 +1621,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 470205562203142812}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 470205561676347798}
+        m_TargetAssemblyTypeName: CraftingUICode, GameplayUI
+        m_MethodName: OnCraftButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &470205562221983116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,9 +2358,10 @@ GameObject:
   - component: {fileID: 470205562434581627}
   - component: {fileID: 470205562434581624}
   - component: {fileID: 5243922936151236826}
+  - component: {fileID: 1789710781}
   m_Layer: 0
   m_Name: WorkBench
-  m_TagString: Untagged
+  m_TagString: WorkBench
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2388,7 +2373,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470205562434581625}
-  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 8.76, y: 1.37, z: 3.7762566}
   m_LocalScale: {x: 1, y: 0.7694378, z: 0.43877}
   m_ConstrainProportionsScale: 0
@@ -2475,6 +2460,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialPage: {fileID: 0}
   _firstFocusItem: {fileID: 0}
+--- !u!208 &1789710781
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470205562434581625}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &470205562446545746
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,7 +3505,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 470205562800456664}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 470205561676347798}
+        m_TargetAssemblyTypeName: CraftingUICode, GameplayUI
+        m_MethodName: OnUpgradeButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &470205562814629375
 GameObject:
   m_ObjectHideFlags: 0
@@ -6042,7 +6055,7 @@ PrefabInstance:
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
       propertyPath: _craftableItemsList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
@@ -6063,7 +6076,7 @@ PrefabInstance:
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
       propertyPath: _craftableItemsList.Array.data[1]._category
-      value: Survival
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
@@ -6094,6 +6107,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._category
+      value: Jelly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._itemIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39,
+        type: 3}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._itemName
+      value: Brush
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
       propertyPath: _craftableItemsList.Array.data[0]._craftedItem
       value: Fireplace
       objectReference: {fileID: 0}
@@ -6109,12 +6138,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._craftedItem
+      value: Brush
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
       propertyPath: _craftableItemsList.Array.data[1]._levelRequirement
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
       propertyPath: _craftableItemsList.Array.data[2]._levelRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._levelRequirement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
@@ -6130,6 +6169,11 @@ PrefabInstance:
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
       propertyPath: _craftableItemsList.Array.data[2]._materialRequirementsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
@@ -6191,6 +6235,24 @@ PrefabInstance:
       propertyPath: _craftableItemsList.Array.data[2]._materialRequirementsList.Array.data[3]._icon
       value: 
       objectReference: {fileID: 21300000, guid: 7ee48c5fba4919649a8a6094cbead669,
+        type: 3}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[0]._icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 874d8401331ede14087e8d8d486ddda6,
+        type: 3}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[1]._icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 94fe868620119564f9474f40cd6145aa,
+        type: 3}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[2]._icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 65dce6f411e0a0c46b6e55fc1a412d8e,
         type: 3}
     - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
         type: 3}
@@ -6291,6 +6353,36 @@ PrefabInstance:
         type: 3}
       propertyPath: _craftableItemsList.Array.data[2]._materialRequirementsList.Array.data[3]._quantity
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[0]._material
+      value: Stick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[0]._quantity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[1]._material
+      value: Coal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[1]._quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[2]._material
+      value: Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213955118160219119, guid: 84eb8f35d1078ac4bbe6f663add26a94,
+        type: 3}
+      propertyPath: _craftableItemsList.Array.data[3]._materialRequirementsList.Array.data[2]._quantity
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84eb8f35d1078ac4bbe6f663add26a94, type: 3}
