@@ -296,18 +296,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
-  _firstPersonView: {fileID: 0}
   _skipTutorial: 1
   _skipCutscene: 1
   _droneDistanceToStopInFrontOfPlayer: 3
   _droneInterceptDelay: 1
   _pictogramBehaviour: {fileID: 6357170253752879243}
-  _playerMovementAction: {fileID: 3772474531761166920, guid: c0d8178b5f09e324ab7d0a0918e94a52,
-    type: 3}
-  _playerJumpAction: {fileID: -4496663719376472700, guid: c0d8178b5f09e324ab7d0a0918e94a52,
-    type: 3}
-  _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
-    type: 3}
   _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 384924b84b4d0564680cd88e0dc27d20,
     type: 2}
   _finishedTutorialParameter: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,
@@ -333,7 +326,6 @@ MonoBehaviour:
   _drone: {fileID: 9117878907213001977}
   _droneMovement: {fileID: 7605286380065068526}
   _droneScanning: {fileID: 557467598811146302}
-  _tutorialCamera: {fileID: 0}
   _droneDistanceToStopInFrontOfPlayer: 3
   _cameraLookAtDroneDelay: 1
   _medicalAssistanceDuration: 3
@@ -363,16 +355,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
-  _playerCamera: {fileID: 0}
-  _tutorialCamera: {fileID: 0}
   _VisionTestRequiredMovementAmount: 360
   _VisionTestSuccessDelay: 2
   _pictogramBehaviour: {fileID: 6357170253752879243}
   _sprite_DroneCameraControls: {fileID: 21300000, guid: 051acd4636203e941bd6975435785dc5,
     type: 3}
   _sprite_DroneSuccess: {fileID: 21300000, guid: 74620e4b8b6a15041aba5196dc27a818,
-    type: 3}
-  _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
     type: 3}
   _triggerForNextPartOfTutorial: {fileID: 11400000, guid: cdb5bbdaf836e5c45be91aa75f4dcfe8,
     type: 2}
@@ -393,8 +381,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
-  _playerCamera: {fileID: 0}
-  _tutorialCamera: {fileID: 0}
   _RequireAll4MovementKeysPressed: 1
   _MobilityTestSuccessDelay: 2
   _pictogramBehaviour: {fileID: 6357170253752879243}
@@ -402,23 +388,11 @@ MonoBehaviour:
     type: 3}
   _sprite_DroneSuccess: {fileID: 21300000, guid: 74620e4b8b6a15041aba5196dc27a818,
     type: 3}
-  _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
-    type: 3}
-  _playerMovementAction: {fileID: 3772474531761166920, guid: c0d8178b5f09e324ab7d0a0918e94a52,
-    type: 3}
   _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 1e37a04e0c4d42a4789e7db8542c6742,
     type: 2}
   _Enter: {fileID: 11400000, guid: e0c02f75513784c4497a20c2f3d12350, type: 2}
   _Update: {fileID: 11400000, guid: 39f51ea94bffa2f46b58be2c85ee56ce, type: 2}
   _Exit: {fileID: 11400000, guid: 3e30795ec823bc847a0c685a5f6a6faa, type: 2}
-  _playerMovementWEvent: {fileID: 11400000, guid: cde78e48f2a6d9d449296a5f8ce13bff,
-    type: 2}
-  _playerMovementSEvent: {fileID: 11400000, guid: f3bba7203d7687b4d8ae5626e51f8207,
-    type: 2}
-  _playerMovementAEvent: {fileID: 11400000, guid: d5b3ddedcb5691342b259f158821bfc0,
-    type: 2}
-  _playerMovementDEvent: {fileID: 11400000, guid: ca3f1110853dfc5438e2d42759ece5e4,
-    type: 2}
 --- !u!114 &1319222911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,8 +407,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
-  _playerCamera: {fileID: 0}
-  _tutorialCamera: {fileID: 0}
   _jumpTestSuccessDelay: 2
   _droneTutorialCompleteDisplayDuration: 3
   _pictogramBehaviour: {fileID: 6357170253752879243}
@@ -443,8 +415,6 @@ MonoBehaviour:
   _sprite_DroneSuccess: {fileID: 21300000, guid: 74620e4b8b6a15041aba5196dc27a818,
     type: 3}
   _sprite_DroneTutorialComplete: {fileID: 21300000, guid: f60ab30c504892f438ee0d90f5b7ad59,
-    type: 3}
-  _jumpAction: {fileID: -4496663719376472700, guid: c0d8178b5f09e324ab7d0a0918e94a52,
     type: 3}
   _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 1e37a04e0c4d42a4789e7db8542c6742,
     type: 2}
@@ -466,8 +436,6 @@ MonoBehaviour:
   _drone: {fileID: 9117878907213001977}
   _movement: {fileID: 7605286380065068526}
   _droneScanning: {fileID: 557467598811146302}
-  _playerCamera: {fileID: 0}
-  _tutorialCamera: {fileID: 0}
   _AreaScanArcSize: 360
   _AreaScanDuration: 10
   _AreaScanRadius: 10
@@ -479,12 +447,6 @@ MonoBehaviour:
     type: 3}
   _sprite_Success: {fileID: 21300000, guid: 74620e4b8b6a15041aba5196dc27a818, type: 3}
   _sprite_Analyzing: {fileID: 21300000, guid: af43eb8ffc567e5488adefa2ffa9c543, type: 3}
-  _cameraLookAction: {fileID: 7838861856215508277, guid: c0d8178b5f09e324ab7d0a0918e94a52,
-    type: 3}
-  _playerMovementAction: {fileID: 3772474531761166920, guid: c0d8178b5f09e324ab7d0a0918e94a52,
-    type: 3}
-  _jumpAction: {fileID: 1120369429361536294, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
   _triggerForNextPartOfTutorial: {fileID: 11400000, guid: 8ffffa81d328f194a84b93c3fd3825a7,
     type: 2}
   _finishedMovementTutorial: {fileID: 11400000, guid: 843d9f318215dd34f89d42ebcbf352dc,

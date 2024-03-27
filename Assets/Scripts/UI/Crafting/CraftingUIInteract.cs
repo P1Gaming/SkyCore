@@ -11,8 +11,6 @@ public class CraftingUIInteract : MonoBehaviour
     private float _interactionDistance = 2f; // distance for when you can interact with the workbench
     private InputAction _interactionAction; // Use Key C to interact with crafting UI
     [SerializeField]
-    private GameObject _workBench; // Reference to the workbench GameObject
-    [SerializeField]
     private GameObject _workBenchUI; // Reference to the workbench UI GameObject
 
     public bool IsNearWorkBench { get; private set; } // Indicates if the player is near the workbench
@@ -111,12 +109,22 @@ public class CraftingUIInteract : MonoBehaviour
         // This code probably hasn't been worked on for a long time, not sure what state it's in. I've never crafted anything.
 
         // Create a ray from the player forward
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
+
+        // Uncomment this line of code to see a visualization of the ray cast in both edit and play modes.
+        /*
+        Debug.DrawLine(Camera.main.transform.position,
+                       Camera.main.transform.position + Camera.main.transform.forward * _interactionDistance,
+                       Color.blue,
+                       0.5f);
+        */
+
 
         // Check if the player is near the workbench
         if (Physics.Raycast(ray, out RaycastHit hit, _interactionDistance))
         {
-            if (hit.collider.gameObject == _workBench)
+            if (hit.collider.gameObject.CompareTag("WorkBench"))
             {
                 IsNearWorkBench = true;
             }

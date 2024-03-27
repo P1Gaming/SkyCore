@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 778735141883549238}
   - component: {fileID: 778735141883549239}
   - component: {fileID: 3482280350065571232}
+  - component: {fileID: 6740377474806148261}
   m_Layer: 4
   m_Name: water
   m_TagString: water
@@ -199,6 +200,22 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 1
   m_AffectedAgents: ffffffff
+--- !u!208 &6740377474806148261
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778735141883549241}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5718751510219064868
 GameObject:
   m_ObjectHideFlags: 0
