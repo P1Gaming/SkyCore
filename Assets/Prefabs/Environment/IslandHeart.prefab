@@ -329,6 +329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a9a9281a541814488f73c28707e8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jellyDewIdentity: {fileID: 11400000, guid: 5e8b8fa837c1d2d469ba390cdeb0882a, type: 2}
+  _blockStacksPerLevelup: 3
+  _blockPrefab: {fileID: 5946823464085723818, guid: 2fb88b9b82188074084dbb53622bc416,
+    type: 3}
   _generatorLocation: {fileID: 3260943594608178710}
   _heartLevel: 1
   _maxHeartLevel: 3

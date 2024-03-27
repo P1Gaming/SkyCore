@@ -1,4 +1,3 @@
-using Codice.CM.Common.Tree.Partial;
 using Player;
 using System;
 using System.Collections;
@@ -14,6 +13,14 @@ public class IslandHeartLeveling : MonoBehaviour
     /// Island Heart this script is attached to levels up
     /// </summary>
     public event EventHandler islandHeartLevelUp;
+
+	[SerializeField]
+	private JellyDewItemIdentity _jellyDewIdentity;
+
+	[SerializeField]
+	private int _blockStacksPerLevelup = 10;
+	[SerializeField]
+	private GameObject _blockPrefab;
 
 	[Tooltip("The world space where the generator is placed when attached to Island Heart")]
 	[SerializeField]
@@ -74,7 +81,7 @@ public class IslandHeartLeveling : MonoBehaviour
 			//      as a stack of items with a count that can be put in place of the 1 currently used here. This
 			//		would also help prevent future performance problems due to too many items spawned for the
 			//		game to keep track of.
-			FeedIslandHeart(1);
+			FeedIslandHeart(1, false);
 		}
 		if(!other.gameObject.tag.Equals("Player"))
 		{
@@ -102,16 +109,21 @@ public class IslandHeartLeveling : MonoBehaviour
 		}
 	}
 
-	
+	public void FeedIslandHeart(float xpValue) => FeedIslandHeart(xpValue, true); // for the button
 
 	/// <summary>
 	/// This method is called by the entity providing the experience. 
 	/// It also carries over surplus experience to the next level. 
 	/// </summary>
 	/// <param name="xpValue"></param>
-	public void FeedIslandHeart(float xpValue)
+	public void FeedIslandHeart(float xpValue, bool takeFromInventory)
 	{
-        if (_currentXP + xpValue >= _xpThreshold)
+		if (takeFromInventory && !Inventory.Instance.TrySubtractItemAmount(_jellyDewIdentity, 1))
+		{
+			return;
+		}
+
+		if (_currentXP + xpValue >= _xpThreshold)
 		{
 			float difference = _currentXP - _xpThreshold;
 			difference += xpValue;
@@ -150,6 +162,10 @@ public class IslandHeartLeveling : MonoBehaviour
 		_heartLevel++;
 		_xpThreshold *= _xpMultiplier;
 		islandHeartLevelUp?.Invoke(this, null);
+
+		for (int i = 0; i < _blockStacksPerLevelup; i++)
+			Instantiate(_blockPrefab, DewInstantiate.Nearby(transform, 1, 2), transform.rotation);
+
 		//TODO: Add any other sequences or animations/model changes an island heart goes through upon level up
 	}
 }

@@ -12,7 +12,7 @@ using Player.View;
 /// </summary>
 public class InventoryDragAndDrop
 {
-    private const float GENERATOR_DROPPABLE_RADIUS_AROUND_ISLAND_HEARTS = 3f;
+    private const float GENERATOR_DROPPABLE_RADIUS_AROUND_ISLAND_HEARTS = 5f;
     private const float TOSS_DIRECTION_MAX_ANGLE_OFFSET = 1f;
 
     private InputAction _click;

@@ -16,6 +16,11 @@ public class DewInstantiate : MonoBehaviour
     public void DewSpawn(int amount)
     {
         for(int i = 0; i < amount; i++)
-            Instantiate(_dewPrefab, transform.position + (transform.right * Random.Range(minXSpawnRange, maxXSpawnRange)), transform.rotation);
+            Instantiate(_dewPrefab, Nearby(transform, minXSpawnRange, maxXSpawnRange), transform.rotation);
+    }
+
+    public static Vector3 Nearby(Transform transform, float minSpawnRange, float maxSpawnRange)
+    {
+        return transform.position + (transform.right * Random.Range(minSpawnRange, maxSpawnRange));
     }
 }
