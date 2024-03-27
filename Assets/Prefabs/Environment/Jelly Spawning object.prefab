@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1514728233490027210}
   - component: {fileID: 8640186738394427234}
   - component: {fileID: -601268693100806447}
+  - component: {fileID: 6810635418921603788}
   m_Layer: 0
   m_Name: Jelly Spawning object
   m_TagString: Untagged
@@ -159,6 +160,7 @@ MonoBehaviour:
   DataResponse:
     m_PersistentCalls:
       m_Calls: []
+  _selectivelyListenTo: {fileID: 0}
 --- !u!135 &-601268693100806447
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -172,3 +174,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6810635418921603788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970713263616467734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff

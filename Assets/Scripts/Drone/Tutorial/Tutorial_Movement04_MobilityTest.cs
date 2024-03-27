@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using System;
 using Player.View;
+using Player.Motion;
 
 public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 {
@@ -14,11 +15,6 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
-    [SerializeField]
-    private CinemachineVirtualCamera _playerCamera;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
 
     [Header("Tutorial Options")]
     [Tooltip("This specifies whether or not the player must press all four movement keys to pass the mobility test, or just any one of them.")]
@@ -37,13 +33,6 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private Sprite _sprite_DroneSuccess;
 
 
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _cameraLookAction;
-    [SerializeField]
-    InputActionReference _playerMovementAction;
-
-
     [Header("Finite State Machine Parameters")]
     [Tooltip("This parameter tracks what step the tutorial is currently in.")]
     [SerializeField]
@@ -56,17 +45,6 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private GameEventScriptableObject _Update;
     [SerializeField]
     private GameEventScriptableObject _Exit;
-
-
-    [Header("Events for Tutorial Detecting Controls")]
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementWEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementSEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementAEvent;
-    [SerializeField]
-    private GameEventScriptableObject _playerMovementDEvent;
 
 
 
@@ -122,7 +100,7 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
         _mobilityTestPassed = false;
 
         // Switch back to the player camera. This is needed as this is the one that is moved by the look controls.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
 
 
         StartCoroutine(WaitForPlayerToLookAtDrone());
@@ -144,25 +122,25 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
     private void ExitTutorial()
     {
         // Switch back to the normal player camera.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
     }
    
     private void CheckPlayerInput()
     {
-        Vector2 direction = _playerMovementAction.action.ReadValue<Vector2>();
-        if (direction.x < 0)
+        Player.Motion.PlayerMovement.Instance.GetWASDInputAxes(out float rightLeft, out float forwardsBackwards);
+        if (rightLeft < 0)
         {
             _keysPressed |= MovementKeysPressed.A;
         }
-        else if (direction.x > 0)
+        else if (rightLeft > 0)
         {
             _keysPressed |= MovementKeysPressed.D;
         }
-        if (direction.y < 0)
+        if (forwardsBackwards < 0)
         {
             _keysPressed |= MovementKeysPressed.S;
         }
-        else if (direction.y > 0)
+        else if (forwardsBackwards > 0)
         {
             _keysPressed |= MovementKeysPressed.W;
         }
@@ -170,7 +148,11 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 
     private IEnumerator WaitForPlayerToLookAtDrone()
     {
-        _cameraLookAction.action.Enable();
+        //FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
+        if (FirstPersonView.Instance.IgnoreInputs && !PauseManagement.IsPaused)
+        {
+            throw new Exception("Player should be able to move the camera at this point");
+        }
 
 
         yield return new WaitForSeconds(1.0f);
@@ -186,32 +168,40 @@ public class Tutorial_Movement04_MobilityTest : MonoBehaviour
 
         HUD_Manager.Instance.EnableDroneIndicatorIcon(false);
 
-        _cameraLookAction.action.Disable();
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
+        FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs++;
+        CameraSystem.SwitchToTutorialCamera();
         _playerLookedAtDrone = true;
 
         yield return new WaitForSeconds(1.0f);
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneMovementControls);
-        _playerMovementAction.action.Enable();
+        PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs--;
     }
 
     private void CheckIfPlayerHasPassedMobilityTest()
     {
+        if (_mobilityTestPassed)
+        {
+            return;
+        }
+
+        bool passTest = false;
         if (_RequireAll4MovementKeysPressed &&        
             _keysPressed == MovementKeysPressed.All)
         {
-            _mobilityTestPassed = true;
-
-            _playerMovementAction.action.Disable();
+            passTest = true;
         }
         else if (!_RequireAll4MovementKeysPressed &&
                  _keysPressed > 0)
         {
             // _requireAll4MovementKeysPressed is false, so as long as at least one key has been pressed we can return true.
-            _mobilityTestPassed = true;
+            passTest = true;
+        }
 
-            _playerMovementAction.action.Disable();
+        if (passTest)
+        {
+            _mobilityTestPassed = true;
+            PlayerMovement.Instance.NumberOfReasonsToIgnoreWASDInputs++;
         }
 
     }

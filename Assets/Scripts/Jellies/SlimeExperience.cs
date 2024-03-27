@@ -97,20 +97,12 @@ public class SlimeExperience : MonoBehaviour
             _levelNum++;
 
             // Used to handle if the array is empty or outside of range for the slimes current level
-            try
-            {
-                _expThreshold = _parameters.RequiredExpForNextLevel[_levelNum - 1];
-            } catch (System.IndexOutOfRangeException)
-            {
-                // Uses the highest level requirement if the slimes current level is outside of range
-                Debug.LogWarning("Property value \"RequiredExpForNextLevel\" array is either empty or outside of range for level num. " +
-                    "Using highest level requirement (" + _parameters.RequiredExpForNextLevel[_parameters.RequiredExpForNextLevel.Length - 1] + 
-                    ")");
-                _expThreshold = _parameters.RequiredExpForNextLevel[_parameters.RequiredExpForNextLevel.Length - 1];
-            }
+            int index = System.Math.Min(_levelNum - 1, _parameters.RequiredExpForNextLevel.Length - 1);
+            _expThreshold = _parameters.RequiredExpForNextLevel[index];
+           
 
             // Placeholder for notifying if the player has reached another level
-            Debug.Log("Your jelly has reached level " + _levelNum + "!");
+            //Debug.Log("Your jelly has reached level " + _levelNum + "!");
         }
         
         _currentEXP = _extraEXP;

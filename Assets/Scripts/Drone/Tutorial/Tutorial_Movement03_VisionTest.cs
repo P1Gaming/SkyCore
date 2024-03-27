@@ -11,11 +11,6 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     private Drone _drone;
     [SerializeField]
     private DroneMovement _movement;
-    [SerializeField]
-    private CinemachineVirtualCamera _playerCamera;
-    [Tooltip("This is the camera we switch to when the tutorial starts, as it needs some different settings than the regular player camera.")]
-    [SerializeField]
-    private CinemachineVirtualCamera _tutorialCamera;
 
 
     [Header("Tutorial Options")]
@@ -34,11 +29,6 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     private Sprite _sprite_DroneCameraControls;
     [SerializeField]
     private Sprite _sprite_DroneSuccess;
-
-
-    [Header("Player Input Actions")]
-    [SerializeField]
-    InputActionReference _cameraLookAction;
 
 
     [Header("Finite State Machine Parameters")]
@@ -84,9 +74,9 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     private void EnterTutorial()
     {
         // Switch back to the player camera. This is needed as this is the one that is moved by the look controls.
-        _playerCamera.MoveToTopOfPrioritySubqueue();
+        CameraSystem.SwitchToFirstPersonCamera();
 
-        _cameraLookAction.action.Enable();
+        Player.View.FirstPersonView.Instance.NumberOfReasonsToIgnoreInputs--;
 
         _pictogramBehaviour.ChangePictogramImage(_sprite_DroneCameraControls);
 
@@ -104,8 +94,8 @@ public class Tutorial_Movement03_VisionTest : MonoBehaviour
     private void ExitTutorial()
     {
         // Switch back to the tutorial camera.
-        _tutorialCamera.MoveToTopOfPrioritySubqueue();
-        _tutorialCamera.LookAt = _drone.transform;
+        CameraSystem.SwitchToTutorialCamera();
+        CameraSystem.TutorialCamera.LookAt = _drone.transform;
     }
 
     /// <summary>

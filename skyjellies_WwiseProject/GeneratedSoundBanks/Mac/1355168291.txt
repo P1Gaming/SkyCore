@@ -1,0 +1,55 @@
+Switch Group	ID	Name			Wwise Object Path	Notes
+	1673590565	IslandHeart_XP			\Default Work Unit\IslandHeart_XP	
+
+Switch	ID	Name	Switch Group			Notes
+	1548389549	Unleveled	IslandHeart_XP			
+	2145291615	Level_UP	IslandHeart_XP			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	2654748154	Water			\Default Work Unit\Water	
+	2666809638	Day_Night			\Default Work Unit\Day_Night	
+	3733145084	DroneState			\Default Work Unit\DroneState	
+	4091656514	GameState			\Default Work Unit\GameState	
+
+State	ID	Name	State Group			Notes
+	2432428	Above	Water			
+	384800980	Below	Water			
+	748895195	None	Water			
+	311764537	Day	Day_Night			
+	748895195	None	Day_Night			
+	1011622525	Night	Day_Night			
+	1182670505	Mid	Day_Night			
+	58138747	Active	DroneState			
+	748895195	None	DroneState			
+	1874288895	Idle	DroneState			
+	748895195	None	GameState			
+	2219001485	Game_On	GameState			
+	2772308904	Game_Pause	GameState			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	16506564	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX\Player		
+	60656406	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Music\Game_Music		
+	126104113	Game_On	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Music\Pause_Menu_Music		
+	399242203	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX\Env		
+	819921913	Game_Pause	GameState	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX\Jellies		
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1564184899	SFX_Volume			\Default Work Unit\SFX_Volume	
+	1850957680	Game_Music_Volume			\Default Work Unit\Game_Music_Volume	
+	4179668880	Master_Volume			\Default Work Unit\Master_Volume	
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	258110631	Game_Music			\Default Work Unit\Master Audio Bus\Music\Game_Music	
+	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
+	529726550	Env			\Default Work Unit\Master Audio Bus\SFX\Env	
+	1069431850	Player			\Default Work Unit\Master Audio Bus\SFX\Player	
+	1551306167	UI			\Default Work Unit\Master Audio Bus\SFX\UI	
+	2095980153	Pause_Menu_Music			\Default Work Unit\Master Audio Bus\Music\Pause_Menu_Music	
+	2607341427	Jellies			\Default Work Unit\Master Audio Bus\SFX\Jellies	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
+
+Audio Devices	ID	Name	Type				Notes
+	2317455096	No_Output	No Output			
+	3859886410	System	System			
+
